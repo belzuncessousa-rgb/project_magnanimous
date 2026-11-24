@@ -164,3 +164,16 @@ Only the **new GDD** in Notion ("📖 GDD — Project Magnanimous") counts. The 
 - Personal scenes are part of the story and happen regardless (NO PT cost to watch). Decisions INSIDE them can cost/affect
   resources: e.g. promising to visit mum more often → later recurring visits cost PT but improve future interactions;
   she may want to sponsor something with her own money; etc. Personal ↔ political must cross-affect (Claude designs).
+
+## Newspapers (topic 9 — closed)
+- Five papers: The St. Veldra Ledger (establishment liberal, CP family) · The Kunasai Clarion (Edgar Monsoon, NF tabloid)
+  · The Katanaí Voice (unions/movements, presses Lara from the left) · Arvane Dispatch (neutral geopolitics)
+  · The Canopy Review (neutral science/health/environment).
+- Irregular editions: not every paper every turn; some months a paper may have more than one edition.
+- Mix of reactive headlines (same decision, different slant) + world news. Paper mood toward Lara from Media faction opinion
+  and owner party relation. Main channel of indirect feedback (no numbers).
+- Occasional free action: give an interview to a paper (costs PT).
+
+## Execution plan
+- main: engine + UI vertical slice + organic map (2 views) + P1-S1 (Inauguration, fix "north"→"south") + 2 more P1 scenes.
+- then a separate branch for the rest of chapter 1 and outlines for ch2–3; stop for author review before writing far ahead.
