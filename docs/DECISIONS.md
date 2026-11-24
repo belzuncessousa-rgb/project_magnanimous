@@ -91,3 +91,10 @@ Only the **new GDD** in Notion ("📖 GDD — Project Magnanimous") counts. The 
 - Geopolitical lines: Zharan / Federation / isolationism / the regional bloc ("Northern Partnership" = Mercosur-but-stronger,
   EU-like bloc of Kunasai + neighbours) / in-between neutral "friend of all". The endings page currently uses
   "Northern Partnership" for the Federation fragment — rename that one; the bloc keeps the name.
+- Cabinet answers: Claude creates the missing ministers (archive names as inspiration). Environment is NOT a ministry:
+  the theme is spread across existing ministries.
+- Great projects final list (reconciled with Notion Planning page): 1 Rare-earth mining (Ibira) · 2 Tech & university hub
+  (Tekoku; ch4, gated) · 3 Mognagna Water Program (desalination) · 4 National Railway Integration · 5 Ibira Fluvial Network
+  · 6 Housing & sanitation (Luz's unfinished work). Hydro dam and Katanaí port → term 2. Chapter 1 offers 1, 4, 6.
+  (Old 5-vs-3 water anti-combo dropped with the dam.)
+- Before asking more design questions: read the full mirrored GDD in docs/gdd/ (many answers are already there).
