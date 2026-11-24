@@ -1,7 +1,8 @@
 [
   {
     "id": "c1-arvane-low",
-    "chapter": 1, "turn": 1,
+    "chapter": 1,
+    "turn": 1,
     "location": "tekoku",
     "title": "The Arvane at Atiaiaba",
     "text": "The harbour master at Atiaiaba reports the Arvane almost two metres below its January average. Eleven barges are waiting at the river bar for water that is not coming. The harbour master adds, unasked, that the river 'smells of somewhere else'.",
@@ -9,7 +10,8 @@
   },
   {
     "id": "c1-ibira-boats",
-    "chapter": 1, "turn": 1,
+    "chapter": 1,
+    "turn": 1,
     "location": "ibira",
     "title": "Lights on the upper Ibira",
     "text": "Fishermen near the mouth of a tributary report fast boats travelling at night without lights. They have not told the police. They told a priest with a radio programme, who told his listeners, one of whom works for the Ministry of Justice.",
@@ -17,7 +19,8 @@
   },
   {
     "id": "c1-ibira-boats-dark",
-    "chapter": 1, "turn": 1,
+    "chapter": 1,
+    "turn": 1,
     "location": "ibira",
     "title": "A quiet river",
     "text": "For the first time in months, no one on the upper Ibira reports boats at night. The fishermen say this is not a good sign. They say the river is quiet the way a dog is quiet before it bites.",
@@ -25,7 +28,8 @@
   },
   {
     "id": "c1-tamarin-slopes",
-    "chapter": 1, "turn": 1,
+    "chapter": 1,
+    "turn": 1,
     "location": "ibicui",
     "title": "Katanaí: the upper slopes",
     "text": "A municipal census team counts some 1,400 families who have settled on the upper slopes above Vila Tamarin since the harvest — most from Mognagna. They have built in brick, which means they intend to stay. The trunk sewer of the Great Sanitation Works stops well below them.",
@@ -33,7 +37,8 @@
   },
   {
     "id": "c1-sugar-bay-trucks",
-    "chapter": 1, "turn": 1,
+    "chapter": 1,
+    "turn": 1,
     "location": "mognagna",
     "title": "Water trucks in the sertão",
     "text": "The dry season has come early to the interior of Mognagna. Governor Porper has ordered water trucks to twelve municipalities and asked, in the same statement, when the federal transfers for April will be confirmed.",
@@ -41,10 +46,83 @@
   },
   {
     "id": "c1-st-veldra-haze",
-    "chapter": 1, "turn": 1,
+    "chapter": 1,
+    "turn": 1,
     "location": "ibicui",
     "title": "Haze over St. Veldra",
     "text": "A brown haze sits over St. Veldra for the third day. Hospitals in the old tobacco districts report respiratory admissions well above the seasonal average. Trembolo's new cigarette advertisements, which feature a sunrise, are unaffected.",
+    "when": "true"
+  },
+  {
+    "id": "c1-piranhas-curfew",
+    "chapter": 1,
+    "turn": 2,
+    "location": "ibicui",
+    "title": "A curfew nobody declared",
+    "text": "In a periphery of Katanaí, the bakeries now close at four and the buses stop running at dusk. No authority has ordered it. Blue paint has appeared on the shutters of the shops that close last.",
+    "when": "true"
+  },
+  {
+    "id": "c1-atiaiaba-signatures",
+    "chapter": 1,
+    "turn": 2,
+    "location": "tekoku",
+    "title": "Queues in Atiaiaba",
+    "text": "Volunteers collecting signatures for 'One Kunasaian, One Weight' have run out of forms twice in the cathedral square. Senator Lessa's name is on the forms. Several of the volunteers wear National Front badges, which the Senator's office has not asked them to remove.",
+    "when": "true"
+  },
+  {
+    "id": "c1-ibira-pumps",
+    "chapter": 1,
+    "turn": 2,
+    "location": "tapira",
+    "title": "Pumps on the middle Ibira",
+    "text": "Downstream gauges suggest that new irrigation pumps on the Ibira's middle course in Tapira are drawing far more than their licences allow. The licences, a clerk in the state water office admits, were issued 'generously' and 'some time ago'.",
+    "when": "true"
+  },
+  {
+    "id": "c1-jaguar-crates",
+    "chapter": 1,
+    "turn": 2,
+    "location": "capital",
+    "title": "Emerald in crates",
+    "text": "In the palace courtyard, the Jaguars' breastplates are being packed into numbered crates for the National Museum. A small crowd watches from the railings. Somebody leaves flowers.",
+    "when": "flag.jaguars_defunded"
+  },
+  {
+    "id": "c1-dock-slowdown",
+    "chapter": 1,
+    "turn": 3,
+    "location": "ibicui",
+    "title": "Katanaí works to rule",
+    "text": "Dockers at Katanaí worked strictly to rule for a single shift on Thursday. Nobody called it a strike. Forty-one ships waited at anchor in the gulf until the next morning, and the shipping agents called it several other things.",
+    "when": "true"
+  },
+  {
+    "id": "c1-taua-turned-back",
+    "chapter": 1,
+    "turn": 3,
+    "location": "ibira",
+    "title": "Turned back below the Tauá",
+    "text": "A Geological Service team sent to re-measure the Tauá Hills for the Planning ministry was turned back at a river crossing. The report does not say by whom. It says the men were polite, well armed and 'familiar with the team's itinerary'.",
+    "when": "true"
+  },
+  {
+    "id": "c1-sugar-bay-rain",
+    "chapter": 1,
+    "turn": 3,
+    "location": "mognagna",
+    "title": "Rain in Sugar Bay",
+    "text": "Rain fell on Sugar Bay for the first time since November — twenty minutes of it. The local radio announced it like a football result. In the interior, the water trucks are still running.",
+    "when": "true"
+  },
+  {
+    "id": "c1-strawberry-freeze",
+    "chapter": 1,
+    "turn": 3,
+    "location": "tekoku",
+    "title": "Strawberry pauses hiring",
+    "text": "Strawberry has announced a hiring freeze at its Atiaiaba plant, citing 'uncertainty in the national environment'. Its share price rose slightly on the news. Several of the physics graduates who did not raise their hands have now bought tickets.",
     "when": "true"
   }
 ]
