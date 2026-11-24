@@ -54,3 +54,16 @@ Only the **new GDD** in Notion ("📖 GDD — Project Magnanimous") counts. The 
 - The inheritance has faces: two previous governments — a PM government (Tercilio Luz) and a CP (center-right) government.
   One left an overpriced great work (superfaturamento) financed by the Fund loan; the other a plain corruption scandal,
   deepening the democratic crisis.
+
+## Great projects (topic 3 — closed)
+- Six projects: 1 Rare-earth mining (Ibira) · 2 Tech & university hub (Tekoku/Strawberry) · 3 Sertão irrigation canal (Mognagna)
+  · 4 Railway/logistics corridor (Tapira→ports) · 5 Ibira river hydro dam · 6 Housing & sanitation in the peripheries (Ibicuí+).
+- Combos kept: 1+2 (national chips/Strawberry), 1+4 (mineral exports), 3+4 (+Zharan trade), 5+1/5+2 (cheap energy),
+  5 vs 3 anti-combo (water crisis in Tekoku), 6+security (weakens cartels in peripheries).
+- Other side effects come from the index system, not dedicated chains (e.g. mining output needs Ibira stability → you must
+  deal with cartels; indigenous/environmental conflict is one event chain). Avoid multiplying event chains.
+- Projects NEVER fail. Instead: follow-up events until inauguration (pick contractor, oversight, incidents) that add or save cost
+  and can involve corruption.
+- Chapter 1 offers only 3 projects (candidates: 4, 5, 6 and/or 1). Project 2 unlocks only in chapter 4 and only with prior
+  tech/knowledge investment. Unchosen chapter-1 options may carry over to chapter 4 (to be decided then).
+- The inherited Tercilio Luz overpriced unfinished work is kept as a story thread.
