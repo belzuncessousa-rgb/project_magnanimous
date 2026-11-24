@@ -37,3 +37,20 @@ Only the **new GDD** in Notion ("📖 GDD — Project Magnanimous") counts. The 
 - Light distribution of education, health, environment, security across chapters.
 - Lara needs a personal arc (not yet designed).
 - Process: decide each front with the author one by one before writing beyond P1-S1 + 2 scenes.
+
+## Rhythm (topic 1 — closed)
+- Irregular, visible dates. Chapter 1 happens within the first month; later turns can span many months.
+- Each turn: ~4 main interactions the player can do in any order (minister briefings, meetings, decisions, visits)
+  + an ambient layer of map pop-ups/incidents (crime activity, river levels, etc.) and small news.
+- Every sector minister (health, education, environment, security...) gets an overview/briefing scene early:
+  what is going on, their plans, the crises brewing (brain drain, environmental, etc.) even if payoff comes later.
+- First great project is chosen at the END of chapter 1 (main decision of the chapter, surrounded by other content).
+
+## Debt (topic 2 — closed)
+- The whole inherited debt is owed to "the Fund" (IMF analog). Interest ≈ 11% of initial revenue.
+- Ch1: Fontes reveals the hole (no decision). Ch2 decision inside the budget: pay principal / borrow more (Fund only) / status quo.
+- Ch5 opens many options: Fund again, Zharan, the Federation directly, domestic bonds (cheaper the more nationalist
+  the government — rare upside of nationalism), and default/repudiation (gated by how the government was run).
+- The inheritance has faces: two previous governments — a PM government (Tercilio Luz) and a CP (center-right) government.
+  One left an overpriced great work (superfaturamento) financed by the Fund loan; the other a plain corruption scandal,
+  deepening the democratic crisis.
