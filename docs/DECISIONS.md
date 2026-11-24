@@ -133,3 +133,15 @@ Only the **new GDD** in Notion ("📖 GDD — Project Magnanimous") counts. The 
 - Northern Partnership: any neighbour can be brought in; Arenza is REQUIRED to start it; others need a minimum relationship
   or some manoeuvre (pressure/deal) to force them in. Success is graded (more/less members, depth).
 - Claude creates leader names and decides any big foreign event in chapters 1–3.
+
+## Light themes & crises (topic 7)
+- Terminology: CoL = Conditions of Living (quality of life), never "cost of living".
+- Each theme (health, education, environment, security) gets: early minister briefing, ambient pop-ups/news, ministry budget
+  tier in ch2, and small decisions — distributed across ch1–3.
+- Military Dictatorship Files: only a SEED in ch1–3 (petition/news), explodes later.
+- Cartels: conceding ≠ war. Conceding → cartel DOMINANCE in their regions (fewer visible problems, they control part of the
+  vote, but heavy CoL/stability damage etc. — effects to be designed richer). WAR happens if you ANTAGONISE them without
+  eliminating them (reducing their Capacity to Act) first. Cartel war is too early for ch3.
+- Ch3 crisis candidates: Ibicuí periphery strikes; representation-reform impasse (more than one may trigger).
+  Trigger conditions must be rich (multiple indices/flags), not one-liners.
+- Ministers: Claude may give own arcs where they fit.
