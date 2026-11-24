@@ -119,3 +119,17 @@ Only the **new GDD** in Notion ("📖 GDD — Project Magnanimous") counts. The 
 - CV: backed Lara in the election (PM+CV+OPP electoral coalition) but got no ministry; now votes case by case and charges
   dearly ("critical support").
 - Congress seats final: PM 24, OPP 20, CP 17, NF 12, FFF 9, CA 8, CV 6, Independents 4 (=100). PM+OPP+CV = 50% (no majority).
+
+## International (topic 6 — closed)
+- Federation: always markedly arrogant, somewhat imperialist toward Kunasai and the rest of the continent.
+- Identities: Federation (south, beyond the canal; de-facto owner of the Fund; wants open market, Ibira minerals, Kunasai away
+  from Zharan) · Zharan (other continent, east; patient state superpower; infrastructure for minerals/ports) · Arenza (behind
+  the eastern belt; proud mid-size democracy, historical RIVAL of Kunasai; partnership of equals → Northern Partnership pillar)
+  · Tarev (east border; fragile Zharan satellite; cartels manufacture there) · Veldmoor (peninsula north of Tekoku; small, rich,
+  scientific, culturally Veldran; credibility for democratic behaviour) · Mondrath (as written in GDD).
+- Context neighbours (Vassel, Orvane, Selvara, Cabral, Torreval): newspaper/map only in v1.
+- Chapter 2 first contacts: Federation ambassador (debt, polite threat) · Zharan envoy (investment in the chosen project)
+  · Arenza president courtesy visit (tests Lara; bloc seed) · Mondrath cold letter.
+- Northern Partnership: any neighbour can be brought in; Arenza is REQUIRED to start it; others need a minimum relationship
+  or some manoeuvre (pressure/deal) to force them in. Success is graded (more/less members, depth).
+- Claude creates leader names and decides any big foreign event in chapters 1–3.
