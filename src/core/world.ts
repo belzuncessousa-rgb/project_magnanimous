@@ -155,6 +155,7 @@ export function createState(world: WorldInput): GameState {
     printedNews: [],
     popupQueue: [],
     shownPopups: [],
+    activePopups: [],
     crisis: {},
     cooldowns: {},
     freeActionsUsed: {},

@@ -1,0 +1,10 @@
+[
+  { "id": "rally", "label": "Hold a rally", "description": "[DEMO] Speak to the crowds in a region.", "cost": "1 PT",
+    "targets": "regions", "effects": ["[approval +3 @ target]"], "cooldown": 1, "result": "You speak to the crowds in {target}." },
+  { "id": "envoy", "label": "Send an envoy", "description": "[DEMO] A gesture of goodwill abroad.", "cost": "1 EPI",
+    "targets": "countries", "effects": ["[target relation +1]"], "cooldown": 2, "result": "An envoy departs for {target}." },
+  { "id": "whip", "label": "Work the benches", "description": "[DEMO] Calls and favours in Congress.", "cost": "1 PT",
+    "effects": ["[pm opinion +1]", "[opp opinion +1]"], "result": "A long evening of calls." },
+  { "id": "interview", "label": "Give an interview", "description": "[DEMO] An exclusive for one paper.", "cost": "2 PT",
+    "effects": ["[media opinion +1]", "[approval +1 @ all]"], "cooldown": 3, "result": "The interview runs on the front page." }
+]

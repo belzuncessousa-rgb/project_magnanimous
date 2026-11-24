@@ -1,0 +1,12 @@
+{
+  "_comment": "DEMO chapter structure",
+  "chapters": [
+    { "id": 1, "title": "Demo Chapter One", "turns": [
+      { "turn": 1, "date": "1 March — Inauguration Week", "popups": ["demo-river"] },
+      { "turn": 2, "date": "19 March", "popups": ["demo-crime"] }
+    ]},
+    { "id": 2, "title": "Demo Chapter Two", "turns": [
+      { "turn": 1, "date": "June" }
+    ]}
+  ]
+}

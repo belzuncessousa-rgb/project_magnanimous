@@ -1,0 +1,5 @@
+[
+  { "id": "demo-river", "location": "tekoku", "title": "River levels", "text": "[DEMO] The Arvane runs high after early rains. Ferries are delayed." },
+  { "id": "demo-crime", "location": "ibira", "title": "Night raid", "text": "[DEMO] Police report a raid on a river depot near the border." },
+  { "id": "demo-strike-rumours", "location": "ibicui", "title": "Murmurs", "text": "[DEMO] Union stewards meet late in the Katanaí periphery." }
+]
