@@ -361,7 +361,7 @@ export class App {
     if (!g || this.busy) return;
     const f = g.forcedScene();
     if (f) {
-      await new Promise((r) => setTimeout(r, this.settings.transitions ? 600 : 0));
+      await new Promise((r) => setTimeout(r, this.settings.transitions ? 1400 : 0));
       if (this.game === g && !this.busy) await this.playScene(f.id);
     }
   }

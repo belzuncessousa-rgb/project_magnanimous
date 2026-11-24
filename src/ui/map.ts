@@ -77,7 +77,7 @@ export interface MapCallbacks {
 }
 
 function tokenImage(id: string): SVGImageElement {
-  const img = s('image', { class: 'token', href: `map/tokens/${id}.png`, x: -26, y: -26, width: 52, height: 52 });
+  const img = s('image', { class: 'token', href: `map/tokens/${id}.png`, x: -32, y: -32, width: 64, height: 64 });
   // CSS fallback (ring + glyph) stays visible when the token art is missing
   img.addEventListener('error', () => img.remove());
   return img;
@@ -88,6 +88,8 @@ const pathOf = (poly: Pt[]) => 'M' + poly.map(([x, y]) => `${x},${y}`).join('L')
 export class MapView {
   readonly el: HTMLElement;
   private svg: SVGSVGElement;
+  /** markers live in a second SVG stacked above the HTML pop-up pins */
+  private markerSvg: SVGSVGElement;
   private vb: { x: number; y: number; w: number; h: number };
   private base: { x: number; y: number; w: number; h: number };
   private markerLayer: SVGGElement;
@@ -108,11 +110,12 @@ export class MapView {
     this.el = h('div', { class: 'map' });
     this.svg = s('svg', { class: 'map-svg', preserveAspectRatio: 'xMidYMid slice', role: 'img', 'aria-label': 'Map of Kunasai' });
     this.markerLayer = s('g', { class: 'markers' });
+    this.markerSvg = s('svg', { class: 'map-svg marker-svg', preserveAspectRatio: 'xMidYMid slice', 'aria-hidden': 'false' }, this.markerLayer);
     this.hotLayer = s('g', { class: 'hotspots' });
     this.toastLayer = h('div', { class: 'map-toasts' });
     this.tooltip = h('div', { class: 'map-tooltip', hidden: true });
     this.build();
-    this.el.append(this.svg, this.toastLayer, this.tooltip);
+    this.el.append(this.svg, this.toastLayer, this.markerSvg, this.tooltip);
     this.applyViewBox();
     this.bindPanZoom();
     window.addEventListener('resize', () => this.layoutToasts());
@@ -188,7 +191,7 @@ export class MapView {
       }
     }
     labels.append(s('text', { class: 'label label-water', x: 160, y: 600 }, 'Gulf of Katanaí'));
-    this.svg.append(defs, sea, terrain, image, political, inkBorders, this.hotLayer, offmap, labels, this.markerLayer);
+    this.svg.append(defs, sea, terrain, image, political, inkBorders, this.hotLayer, offmap, labels);
     this.svg.addEventListener('click', (ev) => {
       if (this.dragged) return;
       const t = ev.target as Element;
@@ -236,9 +239,9 @@ export class MapView {
       const key = m.at.join(',');
       const k = perSpot.get(key) ?? 0;
       perSpot.set(key, k + 1);
-      const dx = k === 0 ? 0 : (k % 2 ? 1 : -1) * Math.ceil(k / 2) * 50;
+      const dx = k === 0 ? 0 : (k % 2 ? 1 : -1) * Math.ceil(k / 2) * 62;
       const x = m.at[0] + dx;
-      const y = m.at[1] - 30;
+      const y = m.at[1] - 36;
       const g = s('g', {
         class: `marker kind-${m.kind}${m.required ? ' required' : ''}${m.locked ? ' locked' : ''}`,
         transform: `translate(${x},${y})`,
@@ -248,8 +251,8 @@ export class MapView {
         'data-scene': m.id,
       },
         s('g', { class: 'marker-body' },
-          s('circle', { class: 'pulse', r: 22 }),
-          s('circle', { class: 'ring', r: 21 }),
+          s('circle', { class: 'pulse', r: 27 }),
+          s('circle', { class: 'ring', r: 26 }),
           s('text', { class: 'glyph', y: 7 }, KIND_GLYPH[m.kind] ?? '•'),
           m.token ? tokenImage(m.token) : null),
       );
@@ -358,6 +361,7 @@ export class MapView {
     this.vb.x = Math.min(b.x + b.w - this.vb.w, Math.max(b.x, this.vb.x));
     this.vb.y = Math.min(b.y + b.h - this.vb.h, Math.max(b.y, this.vb.y));
     this.svg.setAttribute('viewBox', `${this.vb.x} ${this.vb.y} ${this.vb.w} ${this.vb.h}`);
+    this.markerSvg.setAttribute('viewBox', `${this.vb.x} ${this.vb.y} ${this.vb.w} ${this.vb.h}`);
     this.el.style.setProperty('--zoom', String(b.w / this.vb.w));
     this.layoutToasts();
   }

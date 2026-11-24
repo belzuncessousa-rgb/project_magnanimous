@@ -1,5 +1,5 @@
 import './styles.css';
-import { loadContent } from './content/loader';
+import { loadContent, loadDevCorpus } from './content/loader';
 import { App } from './ui/app';
 import type { Geometry } from './ui/map';
 
@@ -13,7 +13,7 @@ async function boot() {
     root.textContent = 'Could not load map data.';
     throw e;
   }
-  const app = new App(root, loadContent(), geo);
+  const app = new App(root, (await loadDevCorpus()) ?? loadContent(), geo);
   app.showTitle();
   (window as unknown as { __app?: App }).__app = app;
 }
