@@ -1,0 +1,63 @@
+{
+  "chapters": [
+    {
+      "id": 1,
+      "title": "Opening the Curtain",
+      "question": "Who will you be?",
+      "turns": [
+        {
+          "turn": 1,
+          "date": "1 January",
+          "year": 1,
+          "label": "Inauguration Day",
+          "scenes": ["p1-inauguration", "p1-blue-room", "p1-first-night"],
+          "closing": null,
+          "popups": ["c1-arvane-low", "c1-ibira-boats", "c1-ibira-boats-dark", "c1-tamarin-slopes", "c1-sugar-bay-trucks", "c1-st-veldra-haze"],
+          "news": [
+            "c1t1-ledger-current", "c1t1-ledger-oath",
+            "c1t1-clarion-silent", "c1t1-clarion-ibicui",
+            "c1t1-voice-silence", "c1t1-voice-tamarin",
+            "c1t1-dispatch-guests", "c1t1-dispatch-sovereign",
+            "c1t1-canopy-arvane"
+          ]
+        },
+        {
+          "turn": 2,
+          "date": "8 January",
+          "year": 1,
+          "label": "The First Week",
+          "todo": "Phase 2 (branch wip/content-ch1): treasury, health, justice, defense/Jaguars briefings + Senator Lessa (representation crisis).",
+          "scenes": [],
+          "closing": null,
+          "popups": [],
+          "news": []
+        },
+        {
+          "turn": 3,
+          "date": "26 January",
+          "year": 1,
+          "label": "The End of the First Month",
+          "todo": "Phase 2: education, Avros/bench, planning (three projects), Vila Tamarin personal visit; closing = great-project choice.",
+          "scenes": [],
+          "closing": null,
+          "popups": [],
+          "news": []
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "A Herculean Task",
+      "question": "Can you govern?",
+      "todo": "Outline in docs/story/BIBLE.md §10. Budget tiers, debt decision, representation reform push, first foreign contacts. March → July.",
+      "turns": []
+    },
+    {
+      "id": 3,
+      "title": "Burdens of Leadership",
+      "question": "Can you survive?",
+      "todo": "Outline in docs/story/BIBLE.md §10. Tax reform discussion; crisis via pressure meters. September → December. Ends with newspaper summary + 'to be continued'.",
+      "turns": []
+    }
+  ]
+}
