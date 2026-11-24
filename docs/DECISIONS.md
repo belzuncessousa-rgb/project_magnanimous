@@ -177,3 +177,14 @@ Only the **new GDD** in Notion ("📖 GDD — Project Magnanimous") counts. The 
 ## Execution plan
 - main: engine + UI vertical slice + organic map (2 views) + P1-S1 (Inauguration, fix "north"→"south") + 2 more P1 scenes.
 - then a separate branch for the rest of chapter 1 and outlines for ch2–3; stop for author review before writing far ahead.
+
+## Newspapers (topic 9 — closed)
+- Papers: The St. Veldra Ledger (establishment liberal, CP family) · The Kunasai Clarion (Edgar Monsoon, NF tabloid)
+  · The Katanaí Voice (unions/movements, left, criticises Lara from the left) · Arvane Dispatch (neutral, geopolitics)
+  · The Canopy Review (neutral, science/health/environment).
+- Irregular: not every turn has every paper; some months a paper can have more than one edition/story.
+- Mix of reactive headlines (same decision framed per slant) and world news. Each paper's mood toward Lara shapes tone.
+- Main indirect feedback channel (fits "no numbers" rule).
+- Sporadic free action: give an interview/exclusive to a paper (PT cost).
+
+## Status: design round 1 complete (topics 1–9). Next: build engine + map + P1 content.
