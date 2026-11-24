@@ -63,7 +63,21 @@ Only the **new GDD** in Notion ("📖 GDD — Project Magnanimous") counts. The 
 - Other side effects come from the index system, not dedicated chains (e.g. mining output needs Ibira stability → you must
   deal with cartels; indigenous/environmental conflict is one event chain). Avoid multiplying event chains.
 - Projects NEVER fail. Instead: follow-up events until inauguration (pick contractor, oversight, incidents) that add or save cost
-  and can involve corruption.
-- Chapter 1 offers only 3 projects (candidates: 4, 5, 6 and/or 1). Project 2 unlocks only in chapter 4 and only with prior
+  (any resource: FC, PT, IPI, EPI, approval — not only money) and can involve corruption.
+- Chapter 1 offers exactly 3 projects: 1 (rare earths), 4 (railway), 6 (housing & sanitation). Project 2 unlocks only in chapter 4 and only with prior
   tech/knowledge investment. Unchosen chapter-1 options may carry over to chapter 4 (to be decided then).
-- The inherited Tercilio Luz overpriced unfinished work is kept as a story thread.
+- The inherited overpriced unfinished work of Tercilio Luz (PM, populist) IS project 6, sanitation: choosing it = finishing
+  your own party's tainted work (cheaper, scandal attached). The CP government after him had a plain bribery scandal.
+
+## Politics & representation (topic 4 — closed)
+- Resources: PT = the president's personal time/energy, mostly spent in free actions (rallies, visiting a great project to
+  reduce trouble, etc.). IPI = legislative/cabinet leverage for Congress deals.
+- Unicameral Congress for all votes; the Senate exists only as the subject of the representation reform.
+- No simple majority: PM + OPP coalition is short of 50%. Lara is NOT PM's party leader: the PM bench has its own leader
+  she must convince, and OPP must be paid too. CV is strongly opposed (a real communist party).
+- The representation reform has a recurring face: an influential Ibicuí senator (CP or CA) — to be created.
+- Drama: Lara is from Ibicuí; rebalancing helps her state but hurts PM's poor base in Ibira/Mognagna.
+- Endings (from Notion 7. Endings): final campaign speech before the 2nd-term election, assembled from sphere fragments
+  (Economy 3x3 matrix, Democracy + representation addendum, Corruption, Geopolitics 5 outcomes + Mondrath addendum,
+  Social, Security). Term 1 "sets the stage" for term 2 (e.g. a pivot left to run with CV) — not designed yet, not needed now.
+- NOTE: the endings geopolitics fragment calls the Federation "Northern Partnership" — must become southern.
