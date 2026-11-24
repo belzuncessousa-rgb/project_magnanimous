@@ -145,3 +145,12 @@ Only the **new GDD** in Notion ("📖 GDD — Project Magnanimous") counts. The 
 - Ch3 crisis candidates: Ibicuí periphery strikes; representation-reform impasse (more than one may trigger).
   Trigger conditions must be rich (multiple indices/flags), not one-liners.
 - Ministers: Claude may give own arcs where they fit.
+- Crisis model APPROVED: each crisis has a hidden pressure meter computed every turn from several indices/flags (e.g. Ibicuí
+  strikes: periphery infra/CoL falling, no decentralisation, Labor Compact unfunded, CV relation, unions mood; mitigated by
+  palliatives and approval). Threshold → fires; several can fire together and compound. Player sees only signals
+  (pop-ups/news). Ch3 candidates: Ibicuí strikes, representation impasse, Avros scandal (if Salgado's anti-corruption
+  dept was funded).
+- Cartel DOMINANCE effects APPROVED: less visible violence (stability stops falling), cartels deliver votes in Ibira/peripheries
+  (approval floor at election); CoL collapses, stability ceiling locked, part of regional output becomes illicit (no FC),
+  rare earths pay them a toll, corruption bar up (scandal/impeachment ammo); Salgado angry (redline), Federation demands
+  cooperation (sovereignty), Tarev pleased, Veldmoor cools, Ibira indigenous more exposed.
