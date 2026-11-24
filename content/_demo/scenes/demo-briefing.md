@@ -14,6 +14,8 @@ portraits: [salgado]
 
 > **Renata Salgado:** "Three things, Madam President. Pick where we start."
 
+→ agenda
+
 ## agenda | Agenda (hub)
 
 1. **"The cartels."** `→ cartels`

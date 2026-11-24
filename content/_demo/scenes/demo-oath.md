@@ -20,7 +20,6 @@ The palace corridor smells of floor wax and old paper. Beyond the doors, a crowd
 > **Caio Mertens:** "Madam President. They are ready for you."
 
 1. **"Then let us not keep them waiting."** `[+1 STRUCT]` `[approval +2 @ all]`
-   ↳ > Then let us not keep them waiting.
 2. **Take a breath first** `[stability +1 @ all]`
    ↳ *One breath. Then another. The noise outside becomes a single sound.*
 3. **"How many of them voted for us, Caio?"** `[mertens opinion -1]`

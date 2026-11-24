@@ -365,6 +365,8 @@ class SceneBuilder {
 
 function resolveTarget(raw: string, beats: Beat[]): Target {
   const r = raw.trim().replace(/[.;,]+$/, '');
+  // a beat literally named "end" wins over the keyword unless written END
+  if (r !== 'END' && beats.some((b) => b.id === r)) return { kind: 'beat', beat: r };
   if (/^(end|end scene|map|return)$/i.test(r)) return { kind: 'end' };
   const sm = /^scene\s*:\s*(\S+)$/i.exec(r);
   if (sm) return { kind: 'scene', scene: sm[1]! };

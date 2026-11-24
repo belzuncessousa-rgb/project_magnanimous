@@ -162,11 +162,11 @@ export function taxRevenue(state: GameState): number {
 
 export function rawFC(state: GameState): number {
   const pop = Object.values(state.regions).reduce((s, r) => s + r.population, 0);
-  return taxRevenue(state) - pop * T.resources.perCapitaCost - state.nation.debtInterest;
+  return taxRevenue(state) - pop * state.nation.costPerCapita - state.nation.debtInterest;
 }
 
 export function formulaFC(state: GameState): number {
-  return clamp(Math.floor(rawFC(state) / T.resources.fcBracket), T.resources.FC.min, T.resources.FC.max);
+  return clamp(Math.floor(rawFC(state) / Math.max(state.nation.fcBracket, 1e-9)), T.resources.FC.min, T.resources.FC.max);
 }
 
 export function formulaIPI(state: GameState): number {

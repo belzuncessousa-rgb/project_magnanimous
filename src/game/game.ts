@@ -70,7 +70,14 @@ export class Game {
   isAvailable(sc: Scene): boolean {
     const s = this.state;
     if (s.completedScenes.includes(sc.id)) return false;
-    const listed = this.turnDef()?.scenes.includes(sc.id) ?? false;
+    const td = this.turnDef();
+    if (td?.closing === sc.id) {
+      // closing scene: only once every other scene of the turn has been played
+      const others = this.content.scenes.filter((o) => o.id !== sc.id && this.isAvailable(o));
+      return others.length === 0 && test(s, sc.meta.when, { sceneId: sc.id });
+    }
+    if (this.isClosingElsewhere(sc.id)) return false;
+    const listed = td?.scenes.includes(sc.id) ?? false;
     const crisis = this.crisisForScene(sc.id);
     if (crisis && !s.crisis[crisis.id]?.fired) return false;
     if (!listed && !crisis) {
@@ -81,7 +88,17 @@ export class Game {
     return test(s, sc.meta.when, { sceneId: sc.id });
   }
 
+  /** a scene used as `closing` of some turn is never offered as an ordinary scene */
+  private isClosingElsewhere(id: string): boolean {
+    return this.content.chapters.some((c) => c.turns.some((t) => t.closing === id));
+  }
+
+  isClosing(sc: Scene): boolean {
+    return this.turnDef()?.closing === sc.id;
+  }
+
   isRequired(sc: Scene): boolean {
+    if (this.isClosing(sc)) return true;
     return sc.meta.required ?? TUNING.requiredKinds.includes(sc.meta.kind);
   }
 
@@ -107,7 +124,13 @@ export class Game {
   }
 
   pendingRequired(): Scene[] {
-    return this.availableScenes().filter((s) => this.isRequired(s));
+    const pending = this.availableScenes().filter((s) => this.isRequired(s));
+    const closing = this.turnDef()?.closing;
+    if (closing && pending.length === 0 && this.scene(closing) && !this.state.completedScenes.includes(closing)) {
+      // closing scene not yet unlocked (optional scenes remain) still blocks the end of the turn
+      return [this.scene(closing)!];
+    }
+    return pending;
   }
 
   canEndTurn(): boolean {
@@ -124,6 +147,8 @@ export class Game {
 
   completeScene(id: string): void {
     if (!this.state.completedScenes.includes(id)) this.state.completedScenes.push(id);
+    // DATA-SCHEMAS: seen_<scene_id_with_underscores>
+    this.state.flags[`seen_${id.replace(/-/g, '_')}`] = true;
   }
 
   // ---------------------------------------------------------------- turn flow
@@ -190,7 +215,7 @@ export class Game {
     s.newsQueue = [];
     for (const it of chosen) if (!s.printedNews.includes(it.id)) s.printedNews.push(it.id);
     const papers = this.content.papers
-      .map((paper) => ({ paper, items: chosen.filter((i) => i.paper === paper.id).sort((a, b) => b.priority - a.priority) }))
+      .map((paper) => ({ paper, items: chosen.filter((i) => i.paper === paper.id).sort((a, b) => a.priority - b.priority) }))
       .filter((p) => p.items.length > 0);
     // items for unknown papers go to a generic sheet
     const unknown = chosen.filter((i) => !this.content.papers.some((p) => p.id === i.paper));
@@ -217,10 +242,11 @@ export class Game {
       s.turn++;
       return;
     }
+    // chapters without turns are unwritten (todo): the story stops there for now
     const next = this.content.chapters.find((c) => c.id > s.chapter);
-    if (next) {
+    if (next && next.turns.length) {
       s.chapter = next.id;
-      s.turn = Math.min(...next.turns.map((t) => t.turn), 1);
+      s.turn = Math.min(...next.turns.map((t) => t.turn));
     } else {
       s.ended = true;
     }

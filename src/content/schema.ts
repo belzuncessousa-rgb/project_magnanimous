@@ -68,6 +68,10 @@ export interface TurnDef {
   scenes: string[];
   popups: string[];
   news: { paper?: string; id: string }[];
+  /** scene that unlocks after every other scene of the turn and ends the turn */
+  closing?: string;
+  /** subtitle shown under the date */
+  label?: string;
 }
 
 export interface ChapterDef {
@@ -233,11 +237,14 @@ export function normalizeCountries(raw: unknown): CountryInput[] {
       aggressiveness: n(c, d?.aggressiveness ?? 0, 'aggressiveness'),
       weight: n(c, d?.weight ?? 10, 'weight', 'economicWeight', 'gdp', 'nationalGdp'),
       military: n(c, d?.military ?? 20, 'military', 'militaryProwess'),
-      culturalPower: n(c, d?.culturalPower ?? 20, 'culturalPower'),
+      culturalPower: n(c, d?.culturalPower ?? 20, 'culturalPower', 'culture'),
       context: typeof pick(c, 'context') === 'boolean' ? (pick(c, 'context') as boolean) : (d?.context ?? false),
       embargo: pick(c, 'embargo') === true,
     };
   });
+  // GDP given in absolute units (e.g. 28000): rescale economic weight to 0..100 relative to the largest economy
+  const maxW = Math.max(0, ...out.map((c) => c.weight));
+  if (maxW > 100) for (const c of out) c.weight = (100 * c.weight) / maxW;
   for (const d of DEFAULT_COUNTRIES) if (!out.some((c) => c.id === d.id)) out.push({ ...d });
   return out;
 }
@@ -245,8 +252,11 @@ export function normalizeCountries(raw: unknown): CountryInput[] {
 function normalizeActor(a: Obj, kind: ActorKind): ActorInput {
   const id = normId(s(a, 'id') ?? s(a, 'name') ?? 'actor');
   const aliases = strList(pick(a, 'aliases', 'alias'));
-  const short = s(a, 'short', 'abbr', 'acronym');
-  if (short) aliases.push(short);
+  for (const k of ['short', 'abbr', 'acronym']) {
+    const v = s(a, k);
+    if (v) aliases.push(v);
+  }
+  const group = s(a, 'group');
   return {
     id,
     name: s(a, 'name', 'displayName') ?? id,
@@ -260,9 +270,16 @@ function normalizeActor(a: Obj, kind: ActorKind): ActorInput {
     seats: pick(a, 'seats') !== undefined ? n(a, 0, 'seats') : undefined,
     compass: compassOf(pick(a, 'compass')),
     relevance: compassOf(pick(a, 'relevance')),
-    ipi: typeof pick(a, 'ipi') === 'boolean' ? (pick(a, 'ipi') as boolean) : undefined,
+    ipi: typeof pick(a, 'ipi') === 'boolean' ? (pick(a, 'ipi') as boolean) : group ? ['government', 'cabinet', 'party'].includes(group) : undefined,
     aliases,
   };
+}
+
+/** world.regions[].flags: initial flag ids (set to true). */
+function regionFlags(raw: unknown): Record<string, boolean> {
+  const out: Record<string, boolean> = {};
+  for (const r of listOf(raw, 'regions')) for (const f of strList(r.flags)) out[f] = true;
+  return out;
 }
 
 export function normalizeWorld(worldRaw: unknown, charactersRaw: unknown): WorldInput {
@@ -280,7 +297,7 @@ export function normalizeWorld(worldRaw: unknown, charactersRaw: unknown): World
 
   const start = isObj(w.start) ? w.start : {};
   const nation = isObj(w.nation) ? w.nation : {};
-  const taxes = isObj(w.taxes) ? w.taxes : {};
+  const taxes = isObj(w.taxes) ? w.taxes : isObj(nation.taxes) ? nation.taxes : {};
   const resources = isObj(w.resources) ? w.resources : {};
   const player = isObj(w.player) ? w.player : {};
   return {
@@ -290,9 +307,9 @@ export function normalizeWorld(worldRaw: unknown, charactersRaw: unknown): World
     compass: compassOf(pick(player, 'compass') ?? w.compass),
     taxes: { domestic: typeof taxes.domestic === 'number' ? taxes.domestic : undefined, trade: typeof taxes.trade === 'number' ? taxes.trade : undefined },
     resources: Object.fromEntries(['PT', 'FC', 'IPI', 'EPI'].filter((k) => typeof resources[k] === 'number').map((k) => [k, resources[k] as number])),
-    flags: isObj(w.flags) ? (w.flags as Record<string, boolean | number | string>) : undefined,
+    flags: { ...regionFlags(w.regions), ...(isObj(w.flags) ? (w.flags as Record<string, boolean | number | string>) : {}) },
     nation: {
-      culturalPower: typeof nation.culturalPower === 'number' ? nation.culturalPower : undefined,
+      culturalPower: typeof nation.culturalPower === 'number' ? nation.culturalPower : typeof nation.culture === 'number' ? nation.culture : undefined,
       debtInterest: typeof nation.debtInterest === 'number' ? nation.debtInterest : undefined,
     },
     start: { chapter: typeof start.chapter === 'number' ? start.chapter : undefined, turn: typeof start.turn === 'number' ? start.turn : undefined },
@@ -320,6 +337,8 @@ export function normalizeChapters(raw: unknown): ChapterDef[] {
         scenes: strList(pick(t, 'scenes')),
         popups: strList(pick(t, 'popups', 'pops')),
         news: newsRefs(pick(t, 'news', 'editions')),
+        closing: s(t, 'closing'),
+        label: s(t, 'label', 'subtitle'),
       }));
       return { id: n(c, ci + 1, 'id', 'chapter', 'number'), title: s(c, 'title', 'name') ?? `Chapter ${ci + 1}`, turns };
     })

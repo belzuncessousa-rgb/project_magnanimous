@@ -70,10 +70,11 @@ export const TUNING = {
     FC: { min: 1, max: 10, carry: 1 },
     IPI: { min: 1, max: 8, carry: 0.5 },
     EPI: { min: 1, max: 8, carry: 0.5 },
-    /** cost per million inhabitants per turn (same units as output) */
-    perCapitaCost: 0.08,
-    /** RawFC units per 1 FC */
-    fcBracket: 3.5,
+    /** Output units differ between data sets, so FC is calibrated at game start (units-agnostic):
+     *  base cost of the state = this share of the initial tax revenue … */
+    baseCostShare: 0.55,
+    /** … and the FC bracket is chosen so the starting turn yields this many FC. */
+    targetFCIncome: 3,
     /** inherited debt interest as a share of the initial tax revenue (DECISIONS: ≈ 11%) */
     debtInterestShare: 0.11,
     startingFC: 3,

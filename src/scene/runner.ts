@@ -147,7 +147,11 @@ export class SceneRunner {
       if (this.pos.step >= beat.steps.length) {
         const ret = this.returnStack.pop();
         if (ret) this.pos = ret;
-        else this.pos = { beat: this.pos.beat + 1, step: 0 };
+        else if (!beat.steps.some((st) => st.type === 'choices')) {
+          // SCENE-FORMAT: a beat with no choices and no → ends the scene
+          this.end();
+          continue;
+        } else this.pos = { beat: this.pos.beat + 1, step: 0 };
         if (!this.beat()) this.end();
         continue;
       }

@@ -230,4 +230,9 @@ describe('parser: edge cases', () => {
     const s = parseScene('## a\n\n> **A:** "one"\n> **B:** "two"');
     expect(s.beats[0]!.steps.map((x) => (x as { prose: { speaker?: string } }).prose.speaker)).toEqual(['A', 'B']);
   });
+  it('a beat named "end" is a beat, END is the keyword', () => {
+    const s = parseScene('## a\n\nx\n\n→ end\n\n## end\n\n1. **Ok** `[flag: f = true]`\n\n→ END');
+    expect(s.beats[0]!.steps[1]).toMatchObject({ type: 'goto', target: { kind: 'beat', beat: 'end' } });
+    expect(s.beats[1]!.steps[1]).toMatchObject({ type: 'goto', target: { kind: 'end' } });
+  });
 });

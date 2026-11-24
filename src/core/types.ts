@@ -85,7 +85,7 @@ export interface GameState {
   flags: Record<string, FlagValue>;
   resources: Resources;
   taxes: { domestic: number; trade: number };
-  nation: { debtInterest: number; culturalPower: number };
+  nation: { debtInterest: number; culturalPower: number; costPerCapita: number; fcBracket: number };
   completedScenes: string[];
   newsQueue: QueuedNews[];
   printedNews: string[];
