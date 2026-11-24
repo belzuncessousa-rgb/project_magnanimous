@@ -9,6 +9,7 @@ import { KIND_LABEL, int, militaryWord, millions, money, pct1, relationWord, sta
 import { Hud } from './hud';
 import { MapView, OFFMAP, type Geometry, type MarkerSpec } from './map';
 import { showNewspaper } from './newspaper';
+import { tokenFor } from './tokens';
 import { VNView } from './vn';
 
 export class App {
@@ -40,7 +41,7 @@ export class App {
       onTarget: (id) => this.finishTargeting(id),
       onBackground: () => this.hideInfo(),
     });
-    this.map.loadImage('map/kunasai-map.png');
+    this.map.loadImage('map/terrain-small.jpg', 'map/terrain.jpg');
     this.map.setView(this.settings.mapView);
     const player = content.world.actors.find((a) => a.id === 'lara' || /vento/i.test(a.name));
     this.vn = new VNView(() => this.game!.state, { transitions: this.settings.transitions, playerId: player?.id ?? 'lara' });
@@ -195,10 +196,12 @@ export class App {
     if (!g) return;
     this.hud.update(g.state, this.chapterTitle());
     const scenes = g.availableScenes();
+    const foreign = new Set([...this.geo.regions.filter((r) => r.kind === 'country').map((r) => r.id), ...Object.keys(OFFMAP)]);
     const markers: MarkerSpec[] = scenes.map((sc) => ({
       id: sc.id,
       title: sc.meta.title,
       kind: sc.meta.kind,
+      token: tokenFor(sc, foreign),
       at: this.map.locate(sc.meta.location) ?? this.map.locate('capital')!,
       required: g.isRequired(sc),
       locked: g.isLocked(sc),
@@ -211,6 +214,7 @@ export class App {
     clear(this.agenda);
     this.agenda.append(h('div', { class: 'panel-title' }, 'Agenda'));
     if (!scenes.length) this.agenda.append(h('div', { class: 'agenda-empty' }, 'Nothing on your desk.'));
+    this.agenda.classList.toggle('empty', !scenes.length);
     for (const sc of scenes) {
       const locked = g.isLocked(sc);
       this.agenda.append(

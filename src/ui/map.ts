@@ -12,9 +12,16 @@ export interface GeoShape {
   center: Pt;
 }
 
+export interface BorderLine {
+  type: 'coast' | 'internal' | 'international';
+  between: string[];
+  line: Pt[];
+}
+
 export interface Geometry {
   viewBox: { x: number; y: number; w: number; h: number };
   regions: GeoShape[];
+  borders?: BorderLine[];
   points: Record<string, { name: string; at: Pt }>;
 }
 
@@ -24,27 +31,32 @@ export const OFFMAP: Record<string, { at: Pt; name: string; note: string }> = {
   zharan: { at: [1000, 520], name: 'Zharan', note: 'Across the eastern ocean' },
 };
 
+/** Political view: multiplied over the terrain image. Kunasai in warm earth hues, neighbours in muted cool ones. */
 export const POLITICAL_COLORS: Record<string, string> = {
-  tekoku: '#b48a4e',
-  ibicui: '#a5603d',
-  mognagna: '#c9a866',
-  tapira: '#8d7650',
-  ibira: '#6c7c46',
-  veldmoor: '#8b8d9c',
-  tarev: '#977d72',
-  orvane: '#a2987a',
-  arenza: '#7d8e88',
-  selvara: '#879878',
-  torreval: '#9a886b',
-  cabral: '#8a8476',
-  mondrath: '#837a8c',
-  vassel: '#91a0a1',
+  tekoku: '#d38b2c',
+  ibicui: '#b9412a',
+  mognagna: '#e2b43c',
+  tapira: '#8c5627',
+  ibira: '#5e8c2c',
+  veldmoor: '#6f80a8',
+  tarev: '#9c6e8e',
+  orvane: '#7c9c90',
+  arenza: '#5d8ea2',
+  selvara: '#93a66a',
+  torreval: '#a58c68',
+  cabral: '#a7705f',
+  mondrath: '#7b6ba2',
+  vassel: '#6ba3a3',
 };
+
+const linePath = (pts: Pt[]) => 'M' + pts.map(([x, y]) => `${x},${y}`).join('L');
 
 export interface MarkerSpec {
   id: string;
   title: string;
   kind: string;
+  /** token image id in public/map/tokens/ */
+  token?: string;
   at: Pt;
   required: boolean;
   locked: boolean;
@@ -62,6 +74,13 @@ export interface MapCallbacks {
   onMarker(sceneId: string): void;
   onTarget(id: string): void;
   onBackground(): void;
+}
+
+function tokenImage(id: string): SVGImageElement {
+  const img = s('image', { class: 'token', href: `map/tokens/${id}.png`, x: -26, y: -26, width: 52, height: 52 });
+  // CSS fallback (ring + glyph) stays visible when the token art is missing
+  img.addEventListener('error', () => img.remove());
+  return img;
 }
 
 const pathOf = (poly: Pt[]) => 'M' + poly.map(([x, y]) => `${x},${y}`).join('L') + 'Z';
@@ -131,9 +150,11 @@ export class MapView {
       s('g', { class: 'relief', filter: 'url(#organic)' }, ...shapes.map((g) => s('path', { d: pathOf(g.polygon), filter: 'url(#relief)' }))),
       s('g', { class: 'borders', filter: 'url(#organic)' }, ...shapes.map((g) => s('path', { d: pathOf(g.polygon), class: `border-${g.kind}` }))),
     );
-    const image = s('image', { class: 'map-image', x, y, width: w, height: hgt, preserveAspectRatio: 'xMidYMid slice' });
-    const political = s('g', { class: 'layer-political', filter: 'url(#organic)' },
+    const image = s('image', { class: 'map-image', x, y, width: w, height: hgt, preserveAspectRatio: 'none' });
+    const political = s('g', { class: 'layer-political' },
       ...shapes.map((g) => s('path', { d: pathOf(g.polygon), fill: POLITICAL_COLORS[g.id] ?? '#999', class: `pol-${g.kind}` })));
+    const inkBorders = s('g', { class: 'ink-borders' },
+      ...(this.geo.borders ?? []).filter((b) => b.type !== 'coast').map((b) => s('path', { d: linePath(b.line), class: `ink-${b.type}` })));
 
     for (const g of shapes) {
       const p = s('path', { d: pathOf(g.polygon), class: `hot hot-${g.kind}`, 'data-id': g.id });
@@ -167,7 +188,7 @@ export class MapView {
       }
     }
     labels.append(s('text', { class: 'label label-water', x: 160, y: 600 }, 'Gulf of Katanaí'));
-    this.svg.append(defs, sea, terrain, image, political, this.hotLayer, offmap, labels, this.markerLayer);
+    this.svg.append(defs, sea, terrain, image, political, inkBorders, this.hotLayer, offmap, labels, this.markerLayer);
     this.svg.addEventListener('click', (ev) => {
       if (this.dragged) return;
       const t = ev.target as Element;
@@ -175,15 +196,21 @@ export class MapView {
     });
   }
 
-  /** Try to load the painted terrain map; keeps the SVG fallback if it is missing. */
-  loadImage(url: string) {
-    const img = new Image();
-    img.onload = () => {
-      const el = this.svg.querySelector('.map-image');
-      el?.setAttribute('href', url);
+  /** Load the painted terrain map (small version first, then full). Keeps the SVG fallback if both are missing. */
+  loadImage(small: string, full?: string) {
+    const show = (url: string) => {
+      this.svg.querySelector('.map-image')?.setAttribute('href', url);
       this.el.classList.add('has-image');
     };
-    img.src = url;
+    const img = new Image();
+    img.onload = () => {
+      show(small);
+      if (!full || window.innerWidth <= 900) return;
+      const big = new Image();
+      big.onload = () => show(full);
+      big.src = full;
+    };
+    img.src = small;
   }
 
   setView(view: 'terrain' | 'political') {
@@ -209,9 +236,9 @@ export class MapView {
       const key = m.at.join(',');
       const k = perSpot.get(key) ?? 0;
       perSpot.set(key, k + 1);
-      const dx = k === 0 ? 0 : (k % 2 ? 1 : -1) * Math.ceil(k / 2) * 30;
+      const dx = k === 0 ? 0 : (k % 2 ? 1 : -1) * Math.ceil(k / 2) * 50;
       const x = m.at[0] + dx;
-      const y = m.at[1] - 26;
+      const y = m.at[1] - 30;
       const g = s('g', {
         class: `marker kind-${m.kind}${m.required ? ' required' : ''}${m.locked ? ' locked' : ''}`,
         transform: `translate(${x},${y})`,
@@ -220,10 +247,11 @@ export class MapView {
         'aria-label': m.title,
         'data-scene': m.id,
       },
-        s('circle', { class: 'pulse', r: 14 }),
-        s('circle', { class: 'ring', r: 13 }),
-        s('text', { class: 'glyph', y: 5 }, KIND_GLYPH[m.kind] ?? '•'),
-        s('path', { class: 'stem', d: 'M-4,12 L0,20 L4,12Z' }),
+        s('g', { class: 'marker-body' },
+          s('circle', { class: 'pulse', r: 22 }),
+          s('circle', { class: 'ring', r: 21 }),
+          s('text', { class: 'glyph', y: 7 }, KIND_GLYPH[m.kind] ?? '•'),
+          m.token ? tokenImage(m.token) : null),
       );
       const open = () => { if (!m.locked && !this.dragged) this.cb.onMarker(m.id); };
       g.addEventListener('click', (ev) => { ev.stopPropagation(); open(); });
@@ -242,10 +270,16 @@ export class MapView {
   private renderToasts() {
     clear(this.toastLayer);
     for (const t of this.toasts) {
-      const el = h('div', { class: 'map-toast', 'data-id': t.id },
-        h('button', { class: 'toast-x', 'aria-label': 'Dismiss', onclick: () => { this.dismissed.add(t.id); this.setToasts(this.toasts); } }, '×'),
-        t.title ? h('div', { class: 'toast-title' }, t.title) : null,
+      // collapsed to a small titled pin; click to read, × to dismiss for this turn
+      const el = h('div', { class: 'map-toast', 'data-id': t.id, title: 'Click to read' },
+        h('button', { class: 'toast-x', 'aria-label': 'Dismiss', onclick: (ev: Event) => { ev.stopPropagation(); this.dismissed.add(t.id); this.setToasts(this.toasts); } }, '×'),
+        h('div', { class: 'toast-title' }, t.title ?? 'Report'),
         h('div', { class: 'toast-text' }, t.text));
+      el.addEventListener('click', () => {
+        const open = !el.classList.contains('expanded');
+        for (const o of this.toastLayer.querySelectorAll('.map-toast.expanded')) o.classList.remove('expanded');
+        el.classList.toggle('expanded', open);
+      });
       this.toastLayer.append(el);
     }
     this.layoutToasts();
@@ -253,12 +287,16 @@ export class MapView {
 
   private layoutToasts() {
     const els = [...this.toastLayer.children] as HTMLElement[];
+    const perSpot = new Map<string, number>();
     els.forEach((el, i) => {
       const t = this.toasts[i];
       if (!t) return;
+      const key = t.at.join(',');
+      const k = perSpot.get(key) ?? 0;
+      perSpot.set(key, k + 1);
       const p = this.toScreen(t.at);
       el.style.left = `${p.x}px`;
-      el.style.top = `${p.y + 18}px`;
+      el.style.top = `${p.y + 14 + k * 30}px`;
     });
   }
 

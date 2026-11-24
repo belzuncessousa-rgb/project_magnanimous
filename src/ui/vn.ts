@@ -132,6 +132,7 @@ export class VNView {
     el.classList.add('current', 'enter');
     this.log.append(el);
     this.log.scrollTop = this.log.scrollHeight;
+    this.log.classList.toggle('overflow', this.log.scrollHeight > this.log.clientHeight + 4);
     requestAnimationFrame(() => requestAnimationFrame(() => el.classList.remove('enter')));
   }
 
@@ -169,6 +170,7 @@ export class VNView {
   /** Play a runner to its end. Resolves with the next scene id if the scene chains into another. */
   async play(runner: SceneRunner, title: string): Promise<string | undefined> {
     clear(this.log);
+    this.log.classList.remove('overflow');
     clear(this.choices);
     this.rightWho = null;
     this.left.dataset.who = '';
