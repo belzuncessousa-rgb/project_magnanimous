@@ -66,13 +66,69 @@ export const POINTS = {
   strait: { name: 'Mondrath Strait', at: [58, 563] },
 };
 
-const regions = REGIONS.map(r => ({ ...r, polygon: r.pts.split(' ').map(k => { if (!P[k]) throw new Error(k); return P[k]; }) }));
-for (const r of regions) delete r.pts;
+// ---- Organic borders: every edge (pair of control points) gets a deterministic fractal polyline,
+// so two neighbours always share the exact same wiggly border. Coast edges are rougher.
+const edgeCount = new Map();
+const ekey = (a, b) => (a < b ? `${a}|${b}` : `${b}|${a}`);
+for (const r of REGIONS) {
+  const ks = r.pts.split(' ');
+  ks.forEach((k, i) => { const key = ekey(k, ks[(i + 1) % ks.length]); edgeCount.set(key, (edgeCount.get(key) || 0) + 1); });
+}
+function rng(seedStr) {
+  let h = 2166136261; for (const c of seedStr) { h ^= c.charCodeAt(0); h = Math.imul(h, 16777619); }
+  return () => { h += 0x6D2B79F5; let t = h; t = Math.imul(t ^ (t >>> 15), t | 1); t ^= t + Math.imul(t ^ (t >>> 7), t | 61); return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
+}
+function fractal(a, b, rough, rand, depth) {
+  if (depth === 0) return [a, b];
+  const [x1, y1] = a, [x2, y2] = b; const dx = x2 - x1, dy = y2 - y1; const len = Math.hypot(dx, dy);
+  if (len < 6) return [a, b];
+  const off = (rand() - 0.5) * 2 * rough * len;
+  const m = [(x1 + x2) / 2 - (dy / len) * off, (y1 + y2) / 2 + (dx / len) * off];
+  const L = fractal(a, m, rough * 0.92, rand, depth - 1), R = fractal(m, b, rough * 0.92, rand, depth - 1);
+  return L.concat(R.slice(1));
+}
+function smooth(pts) { // one Chaikin pass, endpoints fixed
+  const out = [pts[0]];
+  for (let i = 0; i < pts.length - 1; i++) {
+    const [ax, ay] = pts[i], [bx, by] = pts[i + 1];
+    out.push([ax * 0.75 + bx * 0.25, ay * 0.75 + by * 0.25], [ax * 0.25 + bx * 0.75, ay * 0.25 + by * 0.75]);
+  }
+  out.push(pts[pts.length - 1]); return out;
+}
+const edgeCache = new Map();
+function edgePath(a, b) {
+  const key = ekey(a, b); const forward = a < b;
+  if (!edgeCache.has(key)) {
+    const [p, q] = forward ? [P[a], P[b]] : [P[b], P[a]];
+    const coast = edgeCount.get(key) === 1;
+    const line = smooth(fractal(p, q, coast ? 0.16 : 0.11, rng(key), 5)).map(([x, y]) => [Math.round(x * 10) / 10, Math.round(y * 10) / 10]);
+    edgeCache.set(key, { line, coast });
+  }
+  const { line } = edgeCache.get(key);
+  return forward ? line : [...line].reverse();
+}
+const regions = REGIONS.map(r => {
+  const ks = r.pts.split(' ');
+  for (const k of ks) if (!P[k]) throw new Error(k);
+  const polygon = [];
+  ks.forEach((k, i) => { const seg = edgePath(k, ks[(i + 1) % ks.length]); polygon.push(...seg.slice(0, -1)); });
+  return { id: r.id, name: r.name, kind: r.kind, control: ks.map(k => P[k]), polygon };
+});
+// Borders as separate lines (for rendering): internal Kunasai borders, international borders, coastlines.
+const kunasai = new Set(REGIONS.filter(r => r.kind === 'region').map(r => r.id));
+const owners = new Map();
+for (const r of REGIONS) { const ks = r.pts.split(' '); ks.forEach((k, i) => { const key = ekey(k, ks[(i + 1) % ks.length]); (owners.get(key) || owners.set(key, []).get(key)).push(r.id); }); }
+export const BORDERS = [...owners.entries()].map(([key, ids]) => {
+  const [a, b] = key.split('|');
+  const type = ids.length === 1 ? 'coast' : (ids.every(id => kunasai.has(id)) ? 'internal' : 'international');
+  return { type, between: ids, line: edgePath(a, b) };
+});
 
 const centroid = poly => { let x = 0, y = 0; for (const [a, b] of poly) { x += a; y += b; } return [Math.round(x / poly.length), Math.round(y / poly.length)]; };
 for (const r of regions) r.center = centroid(r.polygon);
 
-writeFileSync(new URL('../public/map/regions.json', import.meta.url), JSON.stringify({ viewBox: VIEWBOX, regions, points: POINTS }, null, 1));
+for (const r of regions) delete r.control;
+writeFileSync(new URL('../public/map/regions.json', import.meta.url), JSON.stringify({ viewBox: VIEWBOX, regions, borders: BORDERS, points: POINTS }));
 
 // Flat layout reference for the painter (no labels, distinct colours).
 const fill = { region: ['#d9b26f', '#c98f5a', '#e0c78a', '#b9a06a', '#7f9f5a'], country: '#bdb6a3' };

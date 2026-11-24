@@ -1,0 +1,50 @@
+[
+  {
+    "id": "c1-arvane-low",
+    "chapter": 1, "turn": 1,
+    "location": "tekoku",
+    "title": "The Arvane at Atiaiaba",
+    "text": "The harbour master at Atiaiaba reports the Arvane almost two metres below its January average. Eleven barges are waiting at the river bar for water that is not coming. The harbour master adds, unasked, that the river 'smells of somewhere else'.",
+    "when": "true"
+  },
+  {
+    "id": "c1-ibira-boats",
+    "chapter": 1, "turn": 1,
+    "location": "ibira",
+    "title": "Lights on the upper Ibira",
+    "text": "Fishermen near the mouth of a tributary report fast boats travelling at night without lights. They have not told the police. They told a priest with a radio programme, who told his listeners, one of whom works for the Ministry of Justice.",
+    "when": "!flag.cartels_watch_loud"
+  },
+  {
+    "id": "c1-ibira-boats-dark",
+    "chapter": 1, "turn": 1,
+    "location": "ibira",
+    "title": "A quiet river",
+    "text": "For the first time in months, no one on the upper Ibira reports boats at night. The fishermen say this is not a good sign. They say the river is quiet the way a dog is quiet before it bites.",
+    "when": "flag.cartels_watch_loud"
+  },
+  {
+    "id": "c1-tamarin-slopes",
+    "chapter": 1, "turn": 1,
+    "location": "ibicui",
+    "title": "Katanaí: the upper slopes",
+    "text": "A municipal census team counts some 1,400 families who have settled on the upper slopes above Vila Tamarin since the harvest — most from Mognagna. They have built in brick, which means they intend to stay. The trunk sewer of the Great Sanitation Works stops well below them.",
+    "when": "true"
+  },
+  {
+    "id": "c1-sugar-bay-trucks",
+    "chapter": 1, "turn": 1,
+    "location": "mognagna",
+    "title": "Water trucks in the sertão",
+    "text": "The dry season has come early to the interior of Mognagna. Governor Porper has ordered water trucks to twelve municipalities and asked, in the same statement, when the federal transfers for April will be confirmed.",
+    "when": "true"
+  },
+  {
+    "id": "c1-st-veldra-haze",
+    "chapter": 1, "turn": 1,
+    "location": "ibicui",
+    "title": "Haze over St. Veldra",
+    "text": "A brown haze sits over St. Veldra for the third day. Hospitals in the old tobacco districts report respiratory admissions well above the seasonal average. Trembolo's new cigarette advertisements, which feature a sunrise, are unaffected.",
+    "when": "true"
+  }
+]
