@@ -40,7 +40,7 @@ Only the **new GDD** in Notion ("📖 GDD — Project Magnanimous") counts. The 
 
 ## Rhythm (topic 1 — closed)
 - Irregular, visible dates. Chapter 1 happens within the first month; later turns can span many months.
-- Each turn: ~4 main interactions the player can do in any order (minister briefings, meetings, decisions, visits)
+- Each turn: an IRREGULAR number (3–6ish) of main interactions the player can do in any order (minister briefings, meetings, decisions, visits)
   + an ambient layer of map pop-ups/incidents (crime activity, river levels, etc.) and small news.
 - Every sector minister (health, education, environment, security...) gets an overview/briefing scene early:
   what is going on, their plans, the crises brewing (brain drain, environmental, etc.) even if payoff comes later.
@@ -81,3 +81,13 @@ Only the **new GDD** in Notion ("📖 GDD — Project Magnanimous") counts. The 
   (Economy 3x3 matrix, Democracy + representation addendum, Corruption, Geopolitics 5 outcomes + Mondrath addendum,
   Social, Security). Term 1 "sets the stage" for term 2 (e.g. a pivot left to run with CV) — not designed yet, not needed now.
 - NOTE: the endings geopolitics fragment calls the Federation "Northern Partnership" — must become southern.
+
+## Cabinet (topic 5 — in progress)
+- See docs/CABINET-NOTION.md for what Notion already defines. Archive may be used as inspiration.
+- Big cabinet on purpose (complex, long game). ~10 ministers.
+- Mertens shows up to collect the alliance price; NOT a plotting VP. OPP prefers to play behind the scenes, wants benefits, not the presidency.
+- No "fire minister" free action. Cabinet changes come late in the term (re-election preparation) or as specific events with costs.
+- PT = "Presidential Time": broad resource (rallies, visits, oversight, meetings...), examples were not exhaustive.
+- Geopolitical lines: Zharan / Federation / isolationism / the regional bloc ("Northern Partnership" = Mercosur-but-stronger,
+  EU-like bloc of Kunasai + neighbours) / in-between neutral "friend of all". The endings page currently uses
+  "Northern Partnership" for the Federation fragment — rename that one; the bloc keeps the name.
