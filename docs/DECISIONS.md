@@ -98,3 +98,21 @@ Only the **new GDD** in Notion ("📖 GDD — Project Magnanimous") counts. The 
   · 6 Housing & sanitation (Luz's unfinished work). Hydro dam and Katanaí port → term 2. Chapter 1 offers 1, 4, 6.
   (Old 5-vs-3 water anti-combo dropped with the dam.)
 - Before asking more design questions: read the full mirrored GDD in docs/gdd/ (many answers are already there).
+
+## Facts confirmed by reading the full mirrored GDD (docs/gdd)
+- Treasury minister = Alexander (surname TBD by Claude). Achievement "That's an order from your commander - tell Alexander to figure it out".
+- Lara is PM party leader; PM congressional (bench) leader = Pelan Avros (Statist faction, corruption scheme). Lara must win the bench.
+- OPP holds VP (Mertens) + two of {Chief of Staff, Planning & Development, Justice & Interior}; J&I is Salgado (PM),
+  so OPP holds Chief of Staff and Planning & Development.
+- Congress seats: PM 24, OPP 20, CP 16, NF 10, CV 5, CA 5, FFF 5 (= 85%; remaining 15% = small parties/independents, to define).
+  PM+OPP = 44%. Even PM+OPP+CV = 49% < 50%.
+- Cartels P1 hook: at the end of the first meeting with the VP and Chief of Staff, CoS briefs Lara on the cartels (monitor
+  quietly / loudly, ignore, soften). Cartels: Red Tree and Blue Piranhas (uneasy truce).
+- Jaguars: imperial-era elite presidential guard; a quick event offers defunding them (−1 survival counter).
+- Early endings: Impeachment (corruption + press freedom irony), Assassination (survival counter 2). Regular: Reelection /
+  Not reelected / Voluntary retirement. Epilogue = campaign speech.
+- Region start values (approval for Lara): Tekoku 15, Ibicuí 41, Mognagna 80, Tapira 25, Ibira 70. Many regional arcs are
+  written in docs/gdd/03-world/3.1-* (Ibicuí decentralisation/strikes, St. Veldra renaming, Tobacco legacy/Trembolo;
+  Mognagna Coronéis, desalination, migration; Tapira drought in P5, transgenics; Ibira infrastructure options, cartels,
+  rare minerals gated by education or foreign concessions, ecotourism).
+- Resources formulas, rest values, taxation are specified in docs/gdd/05-mechanics-reference.
