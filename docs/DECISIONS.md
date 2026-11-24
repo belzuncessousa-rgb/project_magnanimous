@@ -116,3 +116,6 @@ Only the **new GDD** in Notion ("📖 GDD — Project Magnanimous") counts. The 
   Mognagna Coronéis, desalination, migration; Tapira drought in P5, transgenics; Ibira infrastructure options, cartels,
   rare minerals gated by education or foreign concessions, ecotourism).
 - Resources formulas, rest values, taxation are specified in docs/gdd/05-mechanics-reference.
+- CV: backed Lara in the election (PM+CV+OPP electoral coalition) but got no ministry; now votes case by case and charges
+  dearly ("critical support").
+- Congress seats final: PM 24, OPP 20, CP 17, NF 12, FFF 9, CA 8, CV 6, Independents 4 (=100). PM+OPP+CV = 50% (no majority).
