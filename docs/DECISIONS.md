@@ -154,3 +154,13 @@ Only the **new GDD** in Notion ("📖 GDD — Project Magnanimous") counts. The 
   (approval floor at election); CoL collapses, stability ceiling locked, part of regional output becomes illicit (no FC),
   rare earths pay them a toll, corruption bar up (scandal/impeachment ammo); Salgado angry (redline), Federation demands
   cooperation (sovereignty), Tarev pleased, Veldmoor cools, Ibira indigenous more exposed.
+
+## Lara's personal arc (topic 8 — closed)
+- Theme: what power does to an honest person. Keep paths open for all three directions: harden / corrupt / hold the line.
+- "The voice" (italic Thought beats) appears when she compromises; tone shifts with accumulated choices; no UI number.
+- Cast: Amanda Troes (college friend → personal secretary, witness/conscience, records everything);
+  Marco Prestes (old periphery organizer, arrested 3x, near CV, joins the strikes if they fire);
+  Lara's MOTHER (still lives in the Katanaí periphery, refuses to move). The mother may die during term 1 (drama).
+- Personal scenes are part of the story and happen regardless (NO PT cost to watch). Decisions INSIDE them can cost/affect
+  resources: e.g. promising to visit mum more often → later recurring visits cost PT but improve future interactions;
+  she may want to sponsor something with her own money; etc. Personal ↔ political must cross-affect (Claude designs).
