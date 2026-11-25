@@ -1,0 +1,123 @@
+{
+  "chapters": [
+    {
+      "id": 1,
+      "title": "Opening the Curtain",
+      "question": "Who will you be?",
+      "turns": [
+        {
+          "turn": 1,
+          "date": "1 January",
+          "year": 1,
+          "label": "Inauguration Day",
+          "scenes": [
+            "p1-inauguration",
+            "p1-blue-room",
+            "p1-first-night"
+          ],
+          "closing": null,
+          "popups": [
+            "c1-arvane-low",
+            "c1-ibira-boats",
+            "c1-ibira-boats-dark",
+            "c1-tamarin-slopes",
+            "c1-sugar-bay-trucks",
+            "c1-st-veldra-haze"
+          ],
+          "news": [
+            "c1t1-ledger-current",
+            "c1t1-ledger-oath",
+            "c1t1-clarion-silent",
+            "c1t1-clarion-ibicui",
+            "c1t1-voice-silence",
+            "c1t1-voice-tamarin",
+            "c1t1-dispatch-guests",
+            "c1t1-dispatch-sovereign",
+            "c1t1-canopy-arvane"
+          ]
+        },
+        {
+          "turn": 2,
+          "date": "8 January",
+          "year": 1,
+          "label": "The First Week",
+          "scenes": [
+            "p1-treasury-briefing",
+            "p1-health-briefing",
+            "p1-justice-briefing",
+            "p1-defense-jaguars",
+            "p1-lessa-visit"
+          ],
+          "closing": null,
+          "popups": [
+            "c1-piranhas-curfew",
+            "c1-atiaiaba-signatures",
+            "c1-ibira-pumps",
+            "c1-jaguar-crates"
+          ],
+          "news": [
+            "c1t2-ledger-lessa-open",
+            "c1t2-ledger-lessa",
+            "c1t2-ledger-books",
+            "c1t2-clarion-jaguars",
+            "c1t2-clarion-tekoku",
+            "c1t2-voice-families",
+            "c1t2-voice-anteroom",
+            "c1t2-dispatch-fund",
+            "c1t2-canopy-tobacco"
+          ]
+        },
+        {
+          "turn": 3,
+          "date": "26 January",
+          "year": 1,
+          "label": "The End of the First Month",
+          "scenes": [
+            "p1-education-briefing",
+            "p1-avros-bench",
+            "p1-planning-briefing",
+            "p1-tamarin"
+          ],
+          "closing": "p1-great-project",
+          "popups": [
+            "c1-dock-slowdown",
+            "c1-taua-turned-back",
+            "c1-sugar-bay-rain",
+            "c1-strawberry-freeze"
+          ],
+          "news": [
+            "c1t3-ledger-gp1",
+            "c1t3-ledger-gp4",
+            "c1t3-ledger-gp6",
+            "c1t3-clarion-gp1",
+            "c1t3-clarion-gp4",
+            "c1t3-clarion-gp6",
+            "c1t3-voice-gp6",
+            "c1t3-voice-other",
+            "c1t3-voice-celia",
+            "c1t3-dispatch-gp1",
+            "c1t3-dispatch-gp4",
+            "c1t3-dispatch-gp6",
+            "c1t3-canopy-gp1",
+            "c1t3-canopy-mercury"
+          ],
+          "chapterEnd": true
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "A Herculean Task",
+      "question": "Can you govern?",
+      "todo": "Outline in docs/story/BIBLE.md §10. Budget tiers, debt decision, representation reform push, first foreign contacts. March → July.",
+      "turns": []
+    },
+    {
+      "id": 3,
+      "title": "Burdens of Leadership",
+      "question": "Can you survive?",
+      "todo": "Outline in docs/story/BIBLE.md §10. Tax reform discussion; crisis via pressure meters. September → December. Ends with newspaper summary + 'to be continued'.",
+      "turns": []
+    }
+  ]
+}

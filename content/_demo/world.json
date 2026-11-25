@@ -1,0 +1,35 @@
+{
+  "_comment": "DEMO world. Real values belong in content/world.json.",
+  "start": { "chapter": 1, "turn": 1 },
+  "player": { "compass": { "ECON": 2, "WELF": 3, "IDEN": 0, "FORCE": -1, "STRUCT": -2, "RELIG": -1 } },
+  "taxes": { "domestic": 0.3, "trade": 0.1 },
+  "nation": { "culturalPower": 40 },
+  "regions": [
+    { "id": "tekoku",   "name": "Tekoku",   "population": 50,  "approval": 15, "stability": 58, "output": 26, "education": 62, "infrastructure": 64 },
+    { "id": "ibicui",   "name": "Ibicuí",   "population": 100, "approval": 41, "stability": 52, "output": 42, "education": 54, "infrastructure": 58 },
+    { "id": "mognagna", "name": "Mognagna", "population": 70,  "approval": 80, "stability": 44, "output": 11, "education": 34, "infrastructure": 33 },
+    { "id": "tapira",   "name": "Tapira",   "population": 30,  "approval": 25, "stability": 49, "output": 12, "education": 44, "infrastructure": 46 },
+    { "id": "ibira",    "name": "Ibira",    "population": 30,  "approval": 70, "stability": 36, "output": 6,  "education": 29, "infrastructure": 21 }
+  ],
+  "countries": [
+    { "id": "federation", "name": "Arennian Federation", "relation": 4, "trade": 30, "aggressiveness": -4, "weight": 100, "military": 95, "culturalPower": 85 },
+    { "id": "zharan", "name": "Zharan", "relation": 5, "trade": 20, "aggressiveness": -8, "weight": 95, "military": 90, "culturalPower": 60 },
+    { "id": "arenza", "name": "Arenza", "relation": -1, "trade": 8, "aggressiveness": 0, "weight": 40, "military": 45, "culturalPower": 45 }
+  ],
+  "parties": [
+    { "id": "pm",  "name": "Popular Movement", "short": "PM", "seats": 24, "loyalty": 5, "capacity": 60 },
+    { "id": "opp", "name": "Order and Progress Party", "short": "OPP", "seats": 20, "loyalty": 1, "capacity": 58 },
+    { "id": "cp",  "name": "Capital Party", "short": "CP", "seats": 17, "loyalty": -4, "capacity": 55 },
+    { "id": "nf",  "name": "National Front", "short": "NF", "seats": 12, "loyalty": -7, "capacity": 45 },
+    { "id": "fff", "name": "Faith and Family Front", "short": "FFF", "seats": 9, "loyalty": -3, "capacity": 35 },
+    { "id": "ca",  "name": "Civic Alliance", "short": "CA", "seats": 8, "loyalty": 0, "capacity": 30 },
+    { "id": "cv",  "name": "Communist Vanguard", "short": "CV", "seats": 6, "loyalty": 1, "capacity": 25 }
+  ],
+  "factions": [
+    { "id": "cartels", "name": "Cartels", "loyalty": -6, "capacity": 50 },
+    { "id": "unions", "name": "Unions", "loyalty": 4, "capacity": 45 },
+    { "id": "business", "name": "Business Sector", "loyalty": -2, "capacity": 70 },
+    { "id": "armed_forces", "name": "Armed Forces", "loyalty": -1, "capacity": 75 },
+    { "id": "media", "name": "Media", "loyalty": -1, "capacity": 60 }
+  ]
+}

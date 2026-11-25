@@ -1,0 +1,10 @@
+[
+  { "id": "demo_strikes", "scene": "demo-strikes", "threshold": 10, "when": "chapter >= 1",
+    "terms": [
+      { "expr": "55 - col@ibicui", "weight": 0.4 },
+      { "expr": "!flag.demo_labor_compact", "weight": 3 },
+      { "expr": "flag.demo_ignored_unions", "weight": 6 }
+    ],
+    "signals": { "popups": ["demo-strike-rumours"], "news": [{ "paper": "voice", "id": "demo-voice-murmurs" }] }
+  }
+]
