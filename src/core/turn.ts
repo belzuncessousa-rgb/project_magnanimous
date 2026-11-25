@@ -3,6 +3,7 @@
 import { AXES, TUNING, clamp, driftToward } from './tuning';
 import type { Actor, Country, GameState, Region } from './types';
 import { nationalAvg } from './query';
+import { alignmentPenalty, interstateRelevance } from './alignment';
 
 const T = TUNING;
 
@@ -40,9 +41,15 @@ export function outputDeltaPct(r: Region): number {
   return clamp(pct, -T.region.approvalOutputDeltaClamp, T.region.approvalOutputDeltaClamp);
 }
 
+export function regionPenalty(state: GameState, r: Region): number {
+  return alignmentPenalty(state.compass, r.compass, r.relevance);
+}
+
 export function regionRV(state: GameState, r: Region) {
   return {
-    approval: r.base.approval + T.region.approvalStabilityWeight * r.stability + T.region.approvalOutputDeltaWeight * outputDeltaPct(r),
+    approval:
+      r.base.approval + T.region.approvalStabilityWeight * r.stability + T.region.approvalOutputDeltaWeight * outputDeltaPct(r)
+      - T.alignment.kRegion * regionPenalty(state, r),
     stability: r.base.stability + T.region.stabilityApprovalWeight * r.approval - r.popSensitivity * r.population,
     output: r.base.output * outputMultiplier(r) + r.output * reinvestShare(state),
     education: r.base.education,
@@ -52,7 +59,7 @@ export function regionRV(state: GameState, r: Region) {
 
 /** Set Base terms so the current values are exactly at rest (called once at game start). */
 export function calibrateRegion(state: GameState, r: Region): void {
-  r.base.approval = r.approval - T.region.approvalStabilityWeight * r.stability;
+  r.base.approval = r.approval - T.region.approvalStabilityWeight * r.stability + T.alignment.kRegion * regionPenalty(state, r);
   r.base.stability = r.stability - T.region.stabilityApprovalWeight * r.approval + r.popSensitivity * r.population;
   const mult = outputMultiplier(r);
   r.base.output = mult > 0 ? (r.output * (1 - reinvestShare(state))) / mult : 0;
@@ -89,8 +96,20 @@ export function relationFormula(c: Country): number {
   return ((c.trade / Math.max(c.weight, 1)) * T.country.relationTradeWeight);
 }
 
-export function calibrateCountry(c: Country): void {
-  c.base.relation = c.relation - relationFormula(c);
+export function countryPenalty(state: GameState, c: Country): number {
+  return alignmentPenalty(state.compass, c.compass, c.relevance ?? interstateRelevance());
+}
+
+function diploTerm(state: GameState, c: Country): number {
+  return T.alignment.kDiplo * (c.diploSensitivity ?? 1) * countryPenalty(state, c);
+}
+
+export function relationRV(state: GameState, c: Country): number {
+  return c.base.relation + relationFormula(c) - diploTerm(state, c);
+}
+
+export function calibrateCountry(state: GameState, c: Country): void {
+  c.base.relation = c.relation - relationFormula(c) + diploTerm(state, c);
   c.base.aggressiveness = c.aggressiveness;
 }
 
@@ -107,7 +126,7 @@ export function updateCountry(state: GameState, c: Country): void {
   if (state.taxes.trade > T.country.tradeTaxRelationThreshold && !c.context) {
     c.base.relation -= (state.taxes.trade - T.country.tradeTaxRelationThreshold) * T.country.tradeTaxRelationFactor;
   }
-  c.relation = clamp(c.base.relation + relationFormula(c), T.country.relationMin, T.country.relationMax);
+  c.relation = clamp(relationRV(state, c), T.country.relationMin, T.country.relationMax);
   // Rest Values page: CI_drift = (YourCulturalPower − TheirCulturalPower) / 100 per phase.
   c.culturalInfluence = clamp(c.culturalInfluence + (state.nation.culturalPower - c.culturalPower) * T.drift.culturalInfluencePerPower, -10, 10);
   c.aggressiveness = clamp(driftToward(c.aggressiveness, c.base.aggressiveness, T.drift.aggressiveness), -10, 10);
@@ -115,22 +134,12 @@ export function updateCountry(state: GameState, c: Country): void {
 
 // ---------- actors ----------
 
-/** Relevance-weighted mean absolute compass distance between the president and an actor (0..20). */
-export function compassDistance(state: GameState, a: Actor): number {
-  if (!a.compass) return 0;
-  let num = 0;
-  let den = 0;
-  for (const ax of AXES) {
-    const w = a.relevance ? a.relevance[ax] : 0.5;
-    num += w * Math.abs(state.compass[ax] - a.compass[ax]);
-    den += w;
-  }
-  return den > 0 ? num / den : 0;
+export function actorPenalty(state: GameState, a: Actor): number {
+  return alignmentPenalty(state.compass, a.compass, a.relevance);
 }
 
 function compassPenalty(state: GameState, a: Actor): number {
-  const d = compassDistance(state, a);
-  return T.actor.loyaltyCompassFactor * Math.max(0, d - T.actor.loyaltyCompassThreshold);
+  return T.alignment.kLoyalty * (a.sensitivity ?? 1) * actorPenalty(state, a);
 }
 
 export function loyaltyRV(state: GameState, a: Actor): number {
@@ -139,6 +148,7 @@ export function loyaltyRV(state: GameState, a: Actor): number {
 
 export function calibrateActor(state: GameState, a: Actor): void {
   a.base.loyalty = a.loyalty + compassPenalty(state, a);
+  a.alignStart = actorPenalty(state, a);
   a.base.capacity = a.capacity;
 }
 

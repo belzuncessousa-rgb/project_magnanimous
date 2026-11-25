@@ -25,6 +25,8 @@ export interface RegionInput {
   education: number;
   infrastructure: number;
   col?: number;
+  compass?: Compass;
+  relevance?: Compass;
   popSensitivity?: number;
   welfareSensitivity?: number;
 }
@@ -40,6 +42,10 @@ export interface CountryInput {
   culturalPower: number;
   context: boolean;
   embargo?: boolean;
+  culturalInfluence?: number;
+  compass?: Compass;
+  relevance?: Compass;
+  diploSensitivity?: number;
 }
 
 export interface ActorInput {
@@ -55,6 +61,7 @@ export interface ActorInput {
   seats?: number;
   compass?: Compass;
   relevance?: Compass;
+  sensitivity?: number;
   ipi?: boolean;
   aliases?: string[];
 }
@@ -90,6 +97,8 @@ export function createState(world: WorldInput): GameState {
       col: 0,
       popSensitivity: ri.popSensitivity ?? TUNING.region.popSensitivityDefault,
       welfareSensitivity: ri.welfareSensitivity ?? TUNING.region.welfareSensitivityDefault,
+      compass: ri.compass,
+      relevance: ri.relevance,
       base: { approval: 0, stability: 0, output: 0, education: 0, col: 0 },
       prevOutputPerCapita: 0,
     };
@@ -107,7 +116,10 @@ export function createState(world: WorldInput): GameState {
       weight: ci.weight,
       military: ci.military,
       culturalPower: ci.culturalPower,
-      culturalInfluence: 0,
+      culturalInfluence: ci.culturalInfluence ?? 0,
+      compass: ci.compass,
+      relevance: ci.relevance,
+      diploSensitivity: ci.diploSensitivity,
       embargo: !!ci.embargo,
       context: ci.context,
       base: { relation: 0, aggressiveness: 0 },
@@ -128,6 +140,7 @@ export function createState(world: WorldInput): GameState {
       seats: ai.seats,
       compass: ai.compass,
       relevance: ai.relevance,
+      sensitivity: ai.sensitivity,
       ipi: ai.ipi ?? ai.kind !== 'faction',
       base: { loyalty: 0, capacity: 0 },
       aliases: actorAliases(ai.id, ai.name, ai.aliases),
@@ -162,7 +175,7 @@ export function createState(world: WorldInput): GameState {
     ended: false,
   };
   for (const r of Object.values(regions)) calibrateRegion(state, r);
-  for (const c of Object.values(countries)) calibrateCountry(c);
+  for (const c of Object.values(countries)) calibrateCountry(state, c);
   for (const a of Object.values(actors)) calibrateActor(state, a);
   // Money is in bn. Revenue per turn from output and trade; fixed state costs a share of it (held per capita);
   // debt balance chosen so the first interest payment ≈ debtInterestShare of revenue (DECISIONS: ≈ 11%).

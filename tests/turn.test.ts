@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { applyEffect, applyEffects } from '../src/core/effects';
 import { evaluateCrises, crisisPressure, type CrisisDef } from '../src/core/crisis';
 import {
-  compassDistance,
+  actorPenalty,
   formulaEPI,
   formulaFC,
   formulaIPI,
@@ -118,9 +118,9 @@ describe('compass and loyalty', () => {
   it('loyalty rest value falls as the president drifts away', () => {
     const s = testState();
     const sal = s.actors.salgado!;
-    const d0 = compassDistance(s, sal);
+    const d0 = actorPenalty(s, sal);
     s.compass.STRUCT = 8; // authoritarian, Salgado is democratic and cares a lot
-    expect(compassDistance(s, sal)).toBeGreaterThan(d0);
+    expect(actorPenalty(s, sal)).toBeGreaterThan(d0);
     expect(loyaltyRV(s, sal)).toBeLessThan(sal.loyalty);
     simulateTurn(s);
     expect(sal.loyalty).toBeCloseTo(4 - 0.6);

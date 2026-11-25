@@ -221,6 +221,8 @@ export function normalizeRegions(raw: unknown): RegionInput[] {
       col: pick(r, 'col', 'conditionsOfLiving') !== undefined ? n(r, 50, 'col', 'conditionsOfLiving') : undefined,
       popSensitivity: pick(r, 'popSensitivity') !== undefined ? n(r, 0.5, 'popSensitivity') : undefined,
       welfareSensitivity: pick(r, 'welfareSensitivity') !== undefined ? n(r, 1, 'welfareSensitivity') : undefined,
+      compass: compassOf(pick(r, 'compass')),
+      relevance: compassOf(pick(r, 'relevance')),
     };
   });
   for (const [id, g] of Object.entries(GDD_REGIONS)) {
@@ -247,6 +249,10 @@ export function normalizeCountries(raw: unknown): CountryInput[] {
       culturalPower: n(c, d?.culturalPower ?? 20, 'culturalPower', 'culture'),
       context: typeof pick(c, 'context') === 'boolean' ? (pick(c, 'context') as boolean) : (d?.context ?? false),
       embargo: pick(c, 'embargo') === true,
+      culturalInfluence: pick(c, 'culturalInfluence') !== undefined ? n(c, 0, 'culturalInfluence') : undefined,
+      compass: compassOf(pick(c, 'compass')),
+      relevance: compassOf(pick(c, 'relevance')),
+      diploSensitivity: pick(c, 'diploSensitivity') !== undefined ? n(c, 1, 'diploSensitivity') : undefined,
     };
   });
   // GDP given in absolute units (e.g. 28000): rescale economic weight to 0..100 relative to the largest economy
@@ -277,6 +283,7 @@ function normalizeActor(a: Obj, kind: ActorKind): ActorInput {
     seats: pick(a, 'seats') !== undefined ? n(a, 0, 'seats') : undefined,
     compass: compassOf(pick(a, 'compass')),
     relevance: compassOf(pick(a, 'relevance')),
+    sensitivity: pick(a, 'sensitivity') !== undefined ? n(a, 1, 'sensitivity') : undefined,
     ipi: typeof pick(a, 'ipi') === 'boolean' ? (pick(a, 'ipi') as boolean) : group ? ['government', 'cabinet', 'party'].includes(group) : undefined,
     aliases,
   };
