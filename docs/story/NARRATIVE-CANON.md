@@ -1,6 +1,6 @@
 # Narrative canon — author design sessions
 
-Last consolidated: 2026-11-25. Sessions 01–28. Maintained as author interviews continue.
+Last consolidated: 2026-11-25. Sessions 01–29. Maintained as author interviews continue.
 
 ## Authority and workflow
 
@@ -103,9 +103,15 @@ Confirmed: Tekoku separatism and the Mondrath geopolitical crisis are independen
 
 Confirmed: independent regional power brokers with cross-party relationships, especially OPP and PM populists, rather than a single party faction. Retain the [Mognagna GDD](https://app.notion.com/p/36b10ad021588098b6f7d53292b43373) approaches: dismantle through land/judicial reform, tolerate, or empower/negotiate. Author explicitly welcomes critical editorial assessment of plausibility, fun, engagement and production cost, not merely agreement. Design critique/proposals: avoid obvious moral optimization (credible reasons even reform-minded presidents might negotiate with local brokers); reward costly social development with visible human/narrative changes as well as indices; show regional culture, historical significance and enterprise rather than defining Mognagna solely by deprivation. Consider a prominent locally respected Coronel whose patronage simultaneously sustains dependency and provides services/employment where institutions fail. Specific character and events not locked.
 
-## Next design discussion (29)
+## 29 — Tapira, agriculture, and decision design
 
-Review Tapira's existing GDD and identify a meaningful unresolved design question or gameplay weakness before moving on. Maintain critical editorial stance and one question at a time.
+Author correction to session 28: moral complexity does not require morally ambiguous choices. Coronel clientelism is harmful; do not invent redeeming qualities or hidden moral downsides to justify it. Dismantling it is difficult because it consumes fiscal and political resources, threatens entrenched interests and risks power that could otherwise be used to benefit people. Retain existing GDD options. Some decisions can be morally ambiguous, others morally clear but strategically costly; do not overly relativize or complicate. Mognagna should also show its cultural and historical importance, economic potential, sizeable population and potential workforce for industrialization, not just poverty and corruption.
+
+Confirmed Tapira design: preserve the [Tapira GDD](https://app.notion.com/p/36b10ad0215880008b6bd36cd310f8d9) and expand land reform/replacement of established elites as costly options. Distinguish independent but interacting development dimensions: (1) land distribution and political power — agrarian reform, maintaining oligarchic ownership, or further concentration; (2) agricultural technology and modernization, with environmental management affecting agricultural outcomes across ownership arrangements. No forced association between a particular land distribution and technological or environmental policy. Existing drought, bailout, transgenics, trade leverage and elite political influence remain relevant. The established agribusiness elite has genuine financial and political power, making attempts to break, reform or replace it costly. Working implementation idea: use existing education, infrastructure, economic output and environmental flags where feasible rather than unnecessary new indices; specific costs, effects and event sequences TBD. Matrix of possible combinations is conceptual, not six separate scripted paths.
+
+## Next design discussion (30)
+
+Review Ibira's regional GDD and identify an unresolved issue with meaningful gameplay consequences. Continue one question at a time.
 
 ## Implementation backlog (not yet changes)
 
