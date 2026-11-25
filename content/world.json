@@ -5,145 +5,703 @@
     "population": 280,
     "military": 40,
     "culture": 40,
-    "debt": { "creditor": "the Fund", "interest_share_of_revenue": 0.11 },
-    "taxes": { "domestic": 0.30, "trade": 0.10 },
+    "debt": {
+      "creditor": "the Fund",
+      "interest_share_of_revenue": 0.11
+    },
+    "taxes": {
+      "domestic": 0.3,
+      "trade": 0.1
+    },
     "note": "Tax rates are placeholders (GDD gives ranges only)."
   },
-
   "regions": [
     {
-      "id": "tekoku", "name": "Tekoku", "population": 50,
-      "approval": 15, "stability": 100, "output": 250, "education": 75, "infrastructure": 60, "col": 73,
-      "compass": { "ECON": -5, "WELF": -7, "IDEN": 7, "FORCE": 0, "STRUCT": 0, "RELIG": 2 },
-      "relevance": { "ECON": 0.5, "WELF": 0.3, "IDEN": 1.0, "FORCE": 0.2, "STRUCT": 0.7, "RELIG": 0.3 },
-      "flags": ["brain_drain", "river_pollution_watch"],
-      "places": ["Atiaiaba (port)"]
+      "id": "tekoku",
+      "name": "Tekoku",
+      "population": 50,
+      "approval": 15,
+      "stability": 100,
+      "output": 250,
+      "education": 75,
+      "infrastructure": 60,
+      "col": 73,
+      "compass": {
+        "ECON": -5,
+        "WELF": -7,
+        "IDEN": 7,
+        "FORCE": 0,
+        "STRUCT": 0,
+        "RELIG": 2
+      },
+      "relevance": {
+        "ECON": 0.5,
+        "WELF": 0.3,
+        "IDEN": 1.0,
+        "FORCE": 0.2,
+        "STRUCT": 0.7,
+        "RELIG": 0.3
+      },
+      "flags": [
+        "brain_drain",
+        "river_pollution_watch"
+      ],
+      "places": [
+        "Atiaiaba (port)"
+      ]
     },
     {
-      "id": "ibicui", "name": "Ibicuí", "population": 100,
-      "approval": 41, "stability": 80, "output": 630, "education": 72, "infrastructure": 74, "col": 68,
-      "compass": { "ECON": -4, "WELF": 0, "IDEN": -7, "FORCE": -3, "STRUCT": -2, "RELIG": -3 },
-      "relevance": { "ECON": 0.8, "WELF": 0.3, "IDEN": 0.7, "FORCE": 0.2, "STRUCT": 0.1, "RELIG": 0.3 },
-      "flags": ["tobacco_legacy", "periphery_pressure"],
-      "places": ["Katanaí (port megacity)", "St. Veldra (financial megacity)", "Vila Tamarin (Katanaí periphery)"]
+      "id": "ibicui",
+      "name": "Ibicuí",
+      "population": 100,
+      "approval": 41,
+      "stability": 80,
+      "output": 630,
+      "education": 72,
+      "infrastructure": 74,
+      "col": 68,
+      "compass": {
+        "ECON": -4,
+        "WELF": 0,
+        "IDEN": -7,
+        "FORCE": -3,
+        "STRUCT": -2,
+        "RELIG": -3
+      },
+      "relevance": {
+        "ECON": 0.8,
+        "WELF": 0.3,
+        "IDEN": 0.7,
+        "FORCE": 0.2,
+        "STRUCT": 0.1,
+        "RELIG": 0.3
+      },
+      "flags": [
+        "tobacco_legacy",
+        "periphery_pressure"
+      ],
+      "places": [
+        "Katanaí (port megacity)",
+        "St. Veldra (financial megacity)",
+        "Vila Tamarin (Katanaí periphery)"
+      ]
     },
     {
-      "id": "mognagna", "name": "Mognagna", "population": 70,
-      "approval": 80, "stability": 65, "output": 125, "education": 38, "infrastructure": 40, "col": 40,
-      "compass": { "ECON": 4, "WELF": 7, "IDEN": 0, "FORCE": 5, "STRUCT": 1, "RELIG": 5 },
-      "relevance": { "ECON": 0.1, "WELF": 0.8, "IDEN": 0.2, "FORCE": 0.4, "STRUCT": 0.0, "RELIG": 0.5 },
-      "flags": ["coronel_clientelism", "red_desert", "famine_risk"],
-      "places": ["Sugar Bay (capital, cathedral)"]
+      "id": "mognagna",
+      "name": "Mognagna",
+      "population": 70,
+      "approval": 80,
+      "stability": 65,
+      "output": 125,
+      "education": 38,
+      "infrastructure": 40,
+      "col": 40,
+      "compass": {
+        "ECON": 4,
+        "WELF": 7,
+        "IDEN": 0,
+        "FORCE": 5,
+        "STRUCT": 1,
+        "RELIG": 5
+      },
+      "relevance": {
+        "ECON": 0.1,
+        "WELF": 0.8,
+        "IDEN": 0.2,
+        "FORCE": 0.4,
+        "STRUCT": 0.0,
+        "RELIG": 0.5
+      },
+      "flags": [
+        "coronel_clientelism",
+        "red_desert",
+        "famine_risk"
+      ],
+      "places": [
+        "Sugar Bay (capital, cathedral)"
+      ]
     },
     {
-      "id": "tapira", "name": "Tapira", "population": 30,
-      "approval": 25, "stability": 80, "output": 270, "education": 52, "infrastructure": 60, "col": 64,
-      "compass": { "ECON": 0, "WELF": -3, "IDEN": 2, "FORCE": 6, "STRUCT": -4, "RELIG": 8 },
-      "relevance": { "ECON": 0.5, "WELF": 0.1, "IDEN": 0.2, "FORCE": 0.2, "STRUCT": 0.2, "RELIG": 0.5 },
+      "id": "tapira",
+      "name": "Tapira",
+      "population": 30,
+      "approval": 25,
+      "stability": 80,
+      "output": 270,
+      "education": 52,
+      "infrastructure": 60,
+      "col": 64,
+      "compass": {
+        "ECON": 0,
+        "WELF": -3,
+        "IDEN": 2,
+        "FORCE": 6,
+        "STRUCT": -4,
+        "RELIG": 8
+      },
+      "relevance": {
+        "ECON": 0.5,
+        "WELF": 0.1,
+        "IDEN": 0.2,
+        "FORCE": 0.2,
+        "STRUCT": 0.2,
+        "RELIG": 0.5
+      },
       "flags": [],
       "places": []
     },
     {
-      "id": "ibira", "name": "Ibira", "population": 30,
-      "approval": 70, "stability": 30, "output": 50, "education": 20, "infrastructure": 15, "col": 18,
-      "compass": { "ECON": 6, "WELF": 7, "IDEN": 2, "FORCE": -3, "STRUCT": -7, "RELIG": -8 },
-      "relevance": { "ECON": 0.4, "WELF": 0.8, "IDEN": 0.3, "FORCE": 0.4, "STRUCT": 0.8, "RELIG": 0.8 },
-      "flags": ["cartel_presence", "deforestation_controlled"],
+      "id": "ibira",
+      "name": "Ibira",
+      "population": 30,
+      "approval": 70,
+      "stability": 30,
+      "output": 50,
+      "education": 20,
+      "infrastructure": 15,
+      "col": 18,
+      "compass": {
+        "ECON": 6,
+        "WELF": 7,
+        "IDEN": 2,
+        "FORCE": -3,
+        "STRUCT": -7,
+        "RELIG": -8
+      },
+      "relevance": {
+        "ECON": 0.4,
+        "WELF": 0.8,
+        "IDEN": 0.3,
+        "FORCE": 0.4,
+        "STRUCT": 0.8,
+        "RELIG": 0.8
+      },
+      "flags": [
+        "cartel_presence",
+        "deforestation_controlled"
+      ],
       "places": []
     }
   ],
-
   "countries": [
-    { "id": "federation", "name": "Arennian Federation", "position": "south (Moreya), beyond the canal", "onMap": false,
-      "relation": 3, "trade": 150, "culturalInfluence": 6, "aggressiveness": 0, "military": 85, "culture": 72, "gdp": 28000,
-      "compass": { "ECON": -6, "WELF": -5, "IDEN": -1, "FORCE": 0, "STRUCT": -6, "RELIG": 0 },
-      "leader": "ashby", "note": "Values from the Federation page (newer than the 3.1 summary table, which said +4 / aggressiveness -4)." },
-    { "id": "zharan", "name": "Zharan", "position": "east, on Karath", "onMap": false,
-      "relation": 5, "trade": 90, "culturalInfluence": 0, "aggressiveness": -8, "military": 80, "culture": 55, "gdp": 22000,
-      "leader": "kasrai", "note": "Relation and aggressiveness from GDD 3.1; the rest are placeholders." },
-    { "id": "arenza", "name": "Arenza", "position": "behind the eastern belt", "onMap": true,
-      "relation": -1, "trade": 18, "culturalInfluence": 0, "aggressiveness": 0, "military": 45, "culture": 45, "gdp": 1400,
-      "leader": "arguedas", "note": "Relation from GDD 3.1; the rest are placeholders." },
-    { "id": "tarev", "name": "Tarev", "position": "eastern border", "onMap": true,
-      "relation": 0, "trade": 6, "culturalInfluence": -1, "aggressiveness": 2, "military": 25, "culture": 15, "gdp": 220,
-      "leader": "morav", "note": "Placeholders." },
-    { "id": "veldmoor", "name": "Veldmoor", "position": "peninsula north of Tekoku", "onMap": true,
-      "relation": 2, "trade": 22, "culturalInfluence": 2, "aggressiveness": -2, "military": 35, "culture": 60, "gdp": 900,
-      "leader": "varn", "note": "Placeholders." },
-    { "id": "mondrath", "name": "Archduchy of Mondrath", "position": "west, the Strait", "onMap": true,
-      "relation": -4, "trade": 0, "culturalInfluence": -3, "aggressiveness": 0, "military": 45, "culture": 25, "gdp": null,
-      "compass": { "ECON": 4, "WELF": 1, "IDEN": 6, "FORCE": 5, "STRUCT": 7, "RELIG": 4 },
-      "leader": "casimir" },
-    { "id": "vassel", "name": "Vassel", "position": "west, southern half of the Strait", "onMap": true, "context": true },
-    { "id": "orvane", "name": "Orvane", "position": "east-southeast", "onMap": true, "context": true },
-    { "id": "selvara", "name": "Selvara", "position": "southeast, borders Ibira", "onMap": true, "context": true },
-    { "id": "cabral", "name": "Cabral", "position": "southwest", "onMap": true, "context": true },
-    { "id": "torreval", "name": "Torreval", "position": "south, the continental canal", "onMap": true, "context": true }
+    {
+      "id": "federation",
+      "name": "Arennian Federation",
+      "position": "south (Moreya), beyond the canal",
+      "onMap": false,
+      "relation": 3,
+      "trade": 150,
+      "culturalInfluence": 6,
+      "aggressiveness": 0,
+      "military": 85,
+      "culture": 72,
+      "gdp": 28000,
+      "compass": {
+        "ECON": -6,
+        "WELF": -5,
+        "IDEN": -1,
+        "FORCE": 0,
+        "STRUCT": -6,
+        "RELIG": 0
+      },
+      "leader": "ashby",
+      "note": "Values from the Federation page (newer than the 3.1 summary table, which said +4 / aggressiveness -4)."
+    },
+    {
+      "id": "zharan",
+      "name": "Zharan",
+      "position": "east, on Karath",
+      "onMap": false,
+      "relation": 5,
+      "trade": 90,
+      "culturalInfluence": 0,
+      "aggressiveness": -8,
+      "military": 80,
+      "culture": 55,
+      "gdp": 22000,
+      "leader": "kasrai",
+      "note": "Relation and aggressiveness from GDD 3.1; the rest are placeholders."
+    },
+    {
+      "id": "arenza",
+      "name": "Arenza",
+      "position": "behind the eastern belt",
+      "onMap": true,
+      "relation": -1,
+      "trade": 18,
+      "culturalInfluence": 0,
+      "aggressiveness": 0,
+      "military": 45,
+      "culture": 45,
+      "gdp": 1400,
+      "leader": "arguedas",
+      "note": "Relation from GDD 3.1; the rest are placeholders."
+    },
+    {
+      "id": "tarev",
+      "name": "Tarev",
+      "position": "eastern border",
+      "onMap": true,
+      "relation": 0,
+      "trade": 6,
+      "culturalInfluence": -1,
+      "aggressiveness": 2,
+      "military": 25,
+      "culture": 15,
+      "gdp": 220,
+      "leader": "morav",
+      "note": "Placeholders."
+    },
+    {
+      "id": "veldmoor",
+      "name": "Veldmoor",
+      "position": "peninsula north of Tekoku",
+      "onMap": true,
+      "relation": 2,
+      "trade": 22,
+      "culturalInfluence": 2,
+      "aggressiveness": -2,
+      "military": 35,
+      "culture": 60,
+      "gdp": 900,
+      "leader": "varn",
+      "note": "Placeholders."
+    },
+    {
+      "id": "mondrath",
+      "name": "Archduchy of Mondrath",
+      "position": "west, the Strait",
+      "onMap": true,
+      "relation": -4,
+      "trade": 0,
+      "culturalInfluence": -3,
+      "aggressiveness": 0,
+      "military": 45,
+      "culture": 25,
+      "gdp": null,
+      "compass": {
+        "ECON": 4,
+        "WELF": 1,
+        "IDEN": 6,
+        "FORCE": 5,
+        "STRUCT": 7,
+        "RELIG": 4
+      },
+      "leader": "casimir",
+      "relevance": {
+        "ECON": 0.2,
+        "WELF": 0.1,
+        "IDEN": -0.4,
+        "FORCE": -0.4,
+        "STRUCT": 0.1,
+        "RELIG": 0.3
+      }
+    },
+    {
+      "id": "vassel",
+      "name": "Vassel",
+      "position": "west, southern half of the Strait",
+      "onMap": true,
+      "context": true
+    },
+    {
+      "id": "orvane",
+      "name": "Orvane",
+      "position": "east-southeast",
+      "onMap": true,
+      "context": true
+    },
+    {
+      "id": "selvara",
+      "name": "Selvara",
+      "position": "southeast, borders Ibira",
+      "onMap": true,
+      "context": true
+    },
+    {
+      "id": "cabral",
+      "name": "Cabral",
+      "position": "southwest",
+      "onMap": true,
+      "context": true
+    },
+    {
+      "id": "torreval",
+      "name": "Torreval",
+      "position": "south, the continental canal",
+      "onMap": true,
+      "context": true
+    }
   ],
-
   "congress": {
     "total": 100,
     "majority": 51,
     "note": "Unicameral for all votes. The Senate exists only as the subject of the representation reform."
   },
-
   "parties": [
-    { "id": "pm", "name": "Popular Movement", "acronym": "PM", "seats": 24, "leader": "lara", "benchLeader": "avros",
-      "compass": { "ECON": 4, "WELF": 5, "IDEN": -2, "FORCE": -6, "STRUCT": -8, "RELIG": 2 },
-      "relevance": { "ECON": 0.5, "WELF": 0.8, "IDEN": 0.3, "FORCE": 0.2, "STRUCT": 0.5, "RELIG": 0.1 },
-      "voteShare": { "national": 23.8, "tekoku": 6, "ibicui": 23, "mognagna": 45, "tapira": 4, "ibira": 26 },
-      "opinion": 6, "role": "government" },
-    { "id": "opp", "name": "Order and Progress Party", "acronym": "OPP", "seats": 20, "leader": "odel", "benchLeader": "mantel",
-      "compass": { "ECON": 0, "WELF": 0, "IDEN": 0, "FORCE": 0, "STRUCT": -3, "RELIG": 0 },
-      "relevance": { "ECON": 0.1, "WELF": 0.1, "IDEN": 0.1, "FORCE": 0.1, "STRUCT": 0.1, "RELIG": 0.1 },
-      "voteShare": { "national": 20, "tekoku": 20, "ibicui": 20, "mognagna": 20, "tapira": 20, "ibira": 20 },
-      "opinion": 2, "role": "government" },
-    { "id": "cp", "name": "Capital Party", "acronym": "CP", "seats": 17, "leader": "belzens", "benchLeader": "vando",
-      "compass": { "ECON": -7, "WELF": -4, "IDEN": -5, "FORCE": -4, "STRUCT": -3, "RELIG": -5 },
-      "relevance": { "ECON": 1.0, "WELF": 0.5, "IDEN": 0.1, "FORCE": 0.2, "STRUCT": 0.2, "RELIG": 0.1 },
-      "voteShare": { "national": 14.6, "tekoku": 10, "ibicui": 15, "mognagna": 2, "tapira": 45, "ibira": 13 },
-      "opinion": -2, "role": "opposition" },
-    { "id": "nf", "name": "National Front", "acronym": "NF", "seats": 12, "leader": "solano", "benchLeader": "daur",
-      "compass": { "ECON": 3, "WELF": 6, "IDEN": 9, "FORCE": 6, "STRUCT": 2, "RELIG": 4 },
-      "relevance": { "ECON": 0.3, "WELF": 0.5, "IDEN": 0.8, "FORCE": 0.4, "STRUCT": 0.1, "RELIG": 0.2 },
-      "voteShare": { "national": 12.8, "tekoku": 32, "ibicui": 12, "mognagna": 5, "tapira": 4, "ibira": 8 },
-      "opinion": -6, "role": "opposition" },
-    { "id": "fff", "name": "Faith and Family Front", "acronym": "FFF", "seats": 9, "leader": "baal", "benchLeader": "muul",
-      "compass": { "ECON": 3, "WELF": 4, "IDEN": 3, "FORCE": 0, "STRUCT": -4, "RELIG": 9 },
-      "relevance": { "ECON": 0.0, "WELF": 0.3, "IDEN": 0.1, "FORCE": 0.1, "STRUCT": 0.4, "RELIG": 0.9 },
-      "voteShare": { "national": 11.7, "tekoku": 5, "ibicui": 8, "mognagna": 18, "tapira": 22, "ibira": 10 },
-      "opinion": -2, "role": "opposition" },
-    { "id": "ca", "name": "Civic Alliance", "acronym": "CA", "seats": 8, "leader": "telves", "benchLeader": "telves",
-      "compass": { "ECON": -6, "WELF": 0, "IDEN": -5, "FORCE": -6, "STRUCT": 0, "RELIG": -9 },
-      "relevance": { "ECON": 0.2, "WELF": 0.1, "IDEN": 0.3, "FORCE": 0.3, "STRUCT": 0.0, "RELIG": 0.4 },
-      "voteShare": { "national": 10.6, "tekoku": 25, "ibicui": 13, "mognagna": 2, "tapira": 4, "ibira": 5 },
-      "opinion": -2, "role": "opposition" },
-    { "id": "cv", "name": "Communist Vanguard", "acronym": "CV", "seats": 6, "leader": "keln", "benchLeader": "keln",
-      "compass": { "ECON": 9, "WELF": 9, "IDEN": 6, "FORCE": 5, "STRUCT": 6, "RELIG": -4 },
-      "relevance": { "ECON": 0.7, "WELF": 0.7, "IDEN": 0.3, "FORCE": 0.1, "STRUCT": 0.25, "RELIG": 0.1 },
-      "voteShare": { "national": 6.5, "tekoku": 2, "ibicui": 4, "mognagna": 8, "tapira": 1, "ibira": 18 },
-      "opinion": 2, "role": "critical support" },
-    { "id": "independents", "name": "Independents", "acronym": "IND", "seats": 4, "leader": null, "benchLeader": null,
-      "members": ["Joana Ferraz (Mognagna fishers)", "Ulisses Bray (ex-NF, Tekoku)", "Ramiro Quenta (Ibira)", "Ana Sollis (St. Veldra, tobacco health)"],
-      "opinion": 0, "role": "swing" }
+    {
+      "id": "pm",
+      "name": "Popular Movement",
+      "acronym": "PM",
+      "seats": 24,
+      "leader": "lara",
+      "benchLeader": "avros",
+      "compass": {
+        "ECON": 4,
+        "WELF": 5,
+        "IDEN": -2,
+        "FORCE": -6,
+        "STRUCT": -8,
+        "RELIG": 2
+      },
+      "relevance": {
+        "ECON": 0.5,
+        "WELF": 0.8,
+        "IDEN": 0.3,
+        "FORCE": 0.2,
+        "STRUCT": 0.5,
+        "RELIG": 0.1
+      },
+      "voteShare": {
+        "national": 23.8,
+        "tekoku": 6,
+        "ibicui": 23,
+        "mognagna": 45,
+        "tapira": 4,
+        "ibira": 26
+      },
+      "opinion": 6,
+      "role": "government"
+    },
+    {
+      "id": "opp",
+      "name": "Order and Progress Party",
+      "acronym": "OPP",
+      "seats": 20,
+      "leader": "odel",
+      "benchLeader": "mantel",
+      "compass": {
+        "ECON": 0,
+        "WELF": 0,
+        "IDEN": 0,
+        "FORCE": 0,
+        "STRUCT": -3,
+        "RELIG": 0
+      },
+      "relevance": {
+        "ECON": 0.1,
+        "WELF": 0.1,
+        "IDEN": 0.1,
+        "FORCE": 0.1,
+        "STRUCT": 0.1,
+        "RELIG": 0.1
+      },
+      "voteShare": {
+        "national": 20,
+        "tekoku": 20,
+        "ibicui": 20,
+        "mognagna": 20,
+        "tapira": 20,
+        "ibira": 20
+      },
+      "opinion": 2,
+      "role": "government"
+    },
+    {
+      "id": "cp",
+      "name": "Capital Party",
+      "acronym": "CP",
+      "seats": 17,
+      "leader": "belzens",
+      "benchLeader": "vando",
+      "compass": {
+        "ECON": -7,
+        "WELF": -4,
+        "IDEN": -5,
+        "FORCE": -4,
+        "STRUCT": -3,
+        "RELIG": -5
+      },
+      "relevance": {
+        "ECON": 1.0,
+        "WELF": 0.5,
+        "IDEN": 0.1,
+        "FORCE": 0.2,
+        "STRUCT": 0.2,
+        "RELIG": 0.1
+      },
+      "voteShare": {
+        "national": 14.6,
+        "tekoku": 10,
+        "ibicui": 15,
+        "mognagna": 2,
+        "tapira": 45,
+        "ibira": 13
+      },
+      "opinion": -2,
+      "role": "opposition"
+    },
+    {
+      "id": "nf",
+      "name": "National Front",
+      "acronym": "NF",
+      "seats": 12,
+      "leader": "solano",
+      "benchLeader": "daur",
+      "compass": {
+        "ECON": 3,
+        "WELF": 6,
+        "IDEN": 9,
+        "FORCE": 6,
+        "STRUCT": 2,
+        "RELIG": 4
+      },
+      "relevance": {
+        "ECON": 0.3,
+        "WELF": 0.5,
+        "IDEN": 0.8,
+        "FORCE": 0.4,
+        "STRUCT": 0.1,
+        "RELIG": 0.2
+      },
+      "voteShare": {
+        "national": 12.8,
+        "tekoku": 32,
+        "ibicui": 12,
+        "mognagna": 5,
+        "tapira": 4,
+        "ibira": 8
+      },
+      "opinion": -6,
+      "role": "opposition"
+    },
+    {
+      "id": "fff",
+      "name": "Faith and Family Front",
+      "acronym": "FFF",
+      "seats": 9,
+      "leader": "baal",
+      "benchLeader": "muul",
+      "compass": {
+        "ECON": 3,
+        "WELF": 4,
+        "IDEN": 3,
+        "FORCE": 0,
+        "STRUCT": -4,
+        "RELIG": 9
+      },
+      "relevance": {
+        "ECON": 0.0,
+        "WELF": 0.3,
+        "IDEN": 0.1,
+        "FORCE": 0.1,
+        "STRUCT": 0.4,
+        "RELIG": 0.9
+      },
+      "voteShare": {
+        "national": 11.7,
+        "tekoku": 5,
+        "ibicui": 8,
+        "mognagna": 18,
+        "tapira": 22,
+        "ibira": 10
+      },
+      "opinion": -2,
+      "role": "opposition"
+    },
+    {
+      "id": "ca",
+      "name": "Civic Alliance",
+      "acronym": "CA",
+      "seats": 8,
+      "leader": "telves",
+      "benchLeader": "telves",
+      "compass": {
+        "ECON": -6,
+        "WELF": 0,
+        "IDEN": -5,
+        "FORCE": -6,
+        "STRUCT": 0,
+        "RELIG": -9
+      },
+      "relevance": {
+        "ECON": 0.2,
+        "WELF": 0.1,
+        "IDEN": 0.3,
+        "FORCE": 0.3,
+        "STRUCT": 0.0,
+        "RELIG": 0.4
+      },
+      "voteShare": {
+        "national": 10.6,
+        "tekoku": 25,
+        "ibicui": 13,
+        "mognagna": 2,
+        "tapira": 4,
+        "ibira": 5
+      },
+      "opinion": -2,
+      "role": "opposition"
+    },
+    {
+      "id": "cv",
+      "name": "Communist Vanguard",
+      "acronym": "CV",
+      "seats": 6,
+      "leader": "keln",
+      "benchLeader": "keln",
+      "compass": {
+        "ECON": 9,
+        "WELF": 9,
+        "IDEN": 6,
+        "FORCE": 5,
+        "STRUCT": 6,
+        "RELIG": -4
+      },
+      "relevance": {
+        "ECON": 0.7,
+        "WELF": 0.7,
+        "IDEN": 0.3,
+        "FORCE": 0.1,
+        "STRUCT": 0.25,
+        "RELIG": 0.1
+      },
+      "voteShare": {
+        "national": 6.5,
+        "tekoku": 2,
+        "ibicui": 4,
+        "mognagna": 8,
+        "tapira": 1,
+        "ibira": 18
+      },
+      "opinion": 2,
+      "role": "critical support"
+    },
+    {
+      "id": "independents",
+      "name": "Independents",
+      "acronym": "IND",
+      "seats": 4,
+      "leader": null,
+      "benchLeader": null,
+      "members": [
+        "Joana Ferraz (Mognagna fishers)",
+        "Ulisses Bray (ex-NF, Tekoku)",
+        "Ramiro Quenta (Ibira)",
+        "Ana Sollis (St. Veldra, tobacco health)"
+      ],
+      "opinion": 0,
+      "role": "swing"
+    }
   ],
-
   "factions": [
-    { "id": "armed_forces", "name": "Armed Forces", "opinion": -2, "capacity": 70, "suspicion": 20, "face": "cazal", "note": "Values new (GDD template empty)." },
-    { "id": "communion", "name": "The Communion", "opinion": 3, "capacity": 25, "suspicion": 5, "face": "therecio" },
-    { "id": "media", "name": "Media", "opinion": 1, "capacity": 50, "suspicion": 32 },
-    { "id": "business", "name": "Business Sector", "opinion": -1, "capacity": 60, "suspicion": 15, "face": "brandt", "note": "Values new." },
-    { "id": "unions", "name": "Unions", "opinion": 4, "capacity": 55, "suspicion": 5, "face": "sena", "note": "Values new." },
-    { "id": "indigenous", "name": "Indigenous Movement", "opinion": 3, "capacity": 30, "suspicion": 5, "face": "tuyu", "note": "Values new." },
-    { "id": "landless", "name": "Landless Movement", "opinion": 3, "capacity": 35, "suspicion": 10, "face": "arruda", "note": "Values new." },
-    { "id": "cartels", "name": "Cartels", "opinion": -3, "capacity": 73, "suspicion": 15, "groups": ["Red Tree", "Blue Piranhas"] }
+    {
+      "id": "armed_forces",
+      "name": "Armed Forces",
+      "opinion": -2,
+      "capacity": 70,
+      "suspicion": 20,
+      "face": "cazal",
+      "note": "Values new (GDD template empty)."
+    },
+    {
+      "id": "communion",
+      "name": "The Communion",
+      "opinion": 3,
+      "capacity": 25,
+      "suspicion": 5,
+      "face": "therecio"
+    },
+    {
+      "id": "media",
+      "name": "Media",
+      "opinion": 1,
+      "capacity": 50,
+      "suspicion": 32
+    },
+    {
+      "id": "business",
+      "name": "Business Sector",
+      "opinion": -1,
+      "capacity": 60,
+      "suspicion": 15,
+      "face": "brandt",
+      "note": "Values new."
+    },
+    {
+      "id": "unions",
+      "name": "Unions",
+      "opinion": 4,
+      "capacity": 55,
+      "suspicion": 5,
+      "face": "sena",
+      "note": "Values new."
+    },
+    {
+      "id": "indigenous",
+      "name": "Indigenous Movement",
+      "opinion": 3,
+      "capacity": 30,
+      "suspicion": 5,
+      "face": "tuyu",
+      "note": "Values new."
+    },
+    {
+      "id": "landless",
+      "name": "Landless Movement",
+      "opinion": 3,
+      "capacity": 35,
+      "suspicion": 10,
+      "face": "arruda",
+      "note": "Values new."
+    },
+    {
+      "id": "cartels",
+      "name": "Cartels",
+      "opinion": -3,
+      "capacity": 73,
+      "suspicion": 15,
+      "groups": [
+        "Red Tree",
+        "Blue Piranhas"
+      ]
+    }
   ],
-
   "papers": [
-    { "id": "ledger", "name": "The St. Veldra Ledger", "slant": "establishment liberal (CP family)", "owner": "the Ostrander family", "party": "cp" },
-    { "id": "clarion", "name": "The Kunasai Clarion", "slant": "NF tabloid", "owner": "monsoon", "party": "nf" },
-    { "id": "voice", "name": "The Katanaí Voice", "slant": "unions and movements, presses Lara from the left", "owner": "cooperative", "party": null },
-    { "id": "dispatch", "name": "Arvane Dispatch", "slant": "neutral, geopolitics", "owner": null, "party": null },
-    { "id": "canopy", "name": "The Canopy Review", "slant": "neutral, science / health / environment", "owner": null, "party": null }
+    {
+      "id": "ledger",
+      "name": "The St. Veldra Ledger",
+      "slant": "establishment liberal (CP family)",
+      "owner": "the Ostrander family",
+      "party": "cp"
+    },
+    {
+      "id": "clarion",
+      "name": "The Kunasai Clarion",
+      "slant": "NF tabloid",
+      "owner": "monsoon",
+      "party": "nf"
+    },
+    {
+      "id": "voice",
+      "name": "The Katanaí Voice",
+      "slant": "unions and movements, presses Lara from the left",
+      "owner": "cooperative",
+      "party": null
+    },
+    {
+      "id": "dispatch",
+      "name": "Arvane Dispatch",
+      "slant": "neutral, geopolitics",
+      "owner": null,
+      "party": null
+    },
+    {
+      "id": "canopy",
+      "name": "The Canopy Review",
+      "slant": "neutral, science / health / environment",
+      "owner": null,
+      "party": null
+    }
   ]
 }

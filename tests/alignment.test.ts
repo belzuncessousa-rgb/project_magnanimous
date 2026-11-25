@@ -67,7 +67,8 @@ describe('alignment in the game (real content)', () => {
     const after = Object.fromEntries(Object.values(s.regions).map((r) => [r.id, regionRV(s, r).approval]));
     expect(after.tekoku!).toBeGreaterThan(before.tekoku!);
     expect(after.ibicui!).toBeLessThan(before.ibicui!);
-    expect(relationRV(s, s.countries.mondrath!)).toBeGreaterThan(rel0.mondrath); // Mondrath IDEN +6
+    // GDD weights for Mondrath are negative on IDEN/FORCE: a more nationalist Kunasai worries the Archduke (annexation fear)
+    expect(relationRV(s, s.countries.mondrath!)).toBeLessThan(rel0.mondrath);
     expect(relationRV(s, s.countries.federation!)).toBeLessThan(rel0.federation); // Federation IDEN −1
     const delta = Object.fromEntries(Object.keys(before).map((k) => [k, +(after[k]! - before[k]!).toFixed(2)]));
     console.info('[+3 IDEN] approval RV change by region', JSON.stringify(delta),
