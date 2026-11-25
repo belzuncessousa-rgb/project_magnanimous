@@ -376,12 +376,14 @@ export class App {
     this.cancelTargeting();
     this.layer.classList.add('hidden-ui');
     let current: string | undefined = id;
+    let closingDone = false;
     try {
       while (current) {
         const s = g.scene(current);
         if (!s) break;
         const runner = g.startScene(current);
         const next = await this.vn.play(runner, s.meta.title);
+        if (g.turnDef()?.closing === current) closingDone = true;
         g.completeScene(current);
         for (const w of runner.warnings) console.warn(`[scene ${current}]`, w);
         current = next;
@@ -392,6 +394,11 @@ export class App {
       this.layer.classList.remove('hidden-ui');
       saveGame(g.state);
       this.refresh();
+    }
+    // DATA-SCHEMAS: the turn's closing scene ends the turn when finished
+    if (closingDone && g.canEndTurn()) {
+      void this.endTurn();
+      return;
     }
     void this.autoStart();
   }

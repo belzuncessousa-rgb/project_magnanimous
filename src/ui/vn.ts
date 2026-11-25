@@ -43,6 +43,8 @@ export class VNView {
     this.right = h('div', { class: 'portrait portrait-right' });
     const column = h('div', { class: 'vn-column paper' }, this.titleEl, this.log, this.choices);
     this.el = h('div', { class: 'vn', hidden: true }, this.left, column, this.right);
+    // the choice list grows/shrinks below the log: keep the newest block in view
+    if (typeof ResizeObserver !== 'undefined') new ResizeObserver(() => this.scrollToEnd()).observe(this.log);
     column.addEventListener('click', (ev) => {
       if ((ev.target as Element).closest('button')) return;
       this.advance();
@@ -63,6 +65,11 @@ export class VNView {
 
   setOptions(o: Partial<VNOptions>) {
     Object.assign(this.opts, o);
+  }
+
+  private scrollToEnd() {
+    this.log.scrollTop = this.log.scrollHeight;
+    this.log.classList.toggle('overflow', this.log.scrollHeight > this.log.clientHeight + 4);
   }
 
   private advance() {
