@@ -1,6 +1,6 @@
 # Narrative canon — author design sessions
 
-Last consolidated: 2026-11-25. Sessions 01–34. Maintained as author interviews continue.
+Last consolidated: 2026-11-25. Sessions 01–35. Maintained as author interviews continue.
 
 ## Authority and workflow
 
@@ -137,9 +137,13 @@ Working implementation approach: common scene foundations with conditional parti
 
 Confirmed: geopolitical alignment is accumulated through decisions and individual country relationships, not a fixed route selection. Lara can cultivate both superpowers simultaneously, and neutrality can be a successful active strategy. Attempts at alignment may fail: domestic policies incompatible with a prospective partner, conflicting commitments, poor relationships or weak execution may leave Kunasai without either superpower's support. Trading with both is generally less consequential than strategic commitments; exact thresholds and conditions TBD. General game principle: player chooses strategy, not guaranteed outcome. This applies across economic, political, social and diplomatic systems; do not reward ideological consistency alone or treat a chosen direction as automatic success. Existing foreign relational indices and compass remain the basis; reliability, leverage, agreements and compatibility are conceptual factors, not necessarily new tracked resources. Author welcomes multiple focused discussions within complex topics; do not mechanically limit every section to one question. Prioritize meaningful interaction and manageable implementation, then specify mechanics when needed.
 
-## Next design discussion (35)
+## 35 — Superpower identities and demands
 
-Examine the Arennian Federation and Zharan GDD profiles together, identify a consequential unresolved issue about how diplomatic alignment and commitments work, then deepen foreign-policy design as needed.
+Confirmed: the Arennian Federation and Zharan are stylized, more sharply defined fictional analogues of the contemporary US–China rivalry, not literal copies. Both compete for ideological, economic and geopolitical dominance. The Federation emphasizes ideological compatibility, distribution of power, maintaining its sphere of influence and a paternalistic/imperial diplomatic attitude; it also pursues advantageous resource access and restrictions on Zharan's strategic/economic access. Zharan is diplomatically pragmatic and transactional, placing greater emphasis on economic demands, market access, trade, infrastructure and strategic concessions. Its risks include dumping, overly open domestic markets, cheap imports undermining domestic industries and accumulated dependency. These are priorities, not exclusive domains. Preserve cumulative alignment and potential failure from session 34. Proposed examples: affordable technology improving living standards while threatening Strawberry; infrastructure concessions accelerating Ibira development but creating obligations; agricultural exports increasing Tapira income and trade dependence. Both powers can offer genuinely beneficial agreements; avoid making either an obviously correct or uniformly exploitative partner. Exact agreements, pressure thresholds and consequences remain open. Sources: existing [Federation GDD](https://app.notion.com/p/36b10ad0215881e6a4f3fcb8ddcb33ff) and [Zharan GDD](https://app.notion.com/p/36b10ad0215881ef8853fa5963dc6170), whose detailed lore was largely TBD.
+
+## Next design discussion (36)
+
+Resolve how the superpowers' rivalry escalates and how much pressure they can exert during the first term. Distinguish trade and ordinary diplomatic relations from strategic commitments. Continue with foreign-country profiles and concrete negotiations.
 
 ## Implementation backlog (not yet changes)
 
