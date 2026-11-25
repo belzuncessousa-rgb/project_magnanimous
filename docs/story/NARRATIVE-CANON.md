@@ -1,6 +1,6 @@
 # Narrative canon — author design sessions
 
-Last consolidated: 2026-11-25. Sessions 01–33. Maintained as author interviews continue.
+Last consolidated: 2026-11-25. Sessions 01–34. Maintained as author interviews continue.
 
 ## Authority and workflow
 
@@ -133,9 +133,13 @@ Broad outcomes must not be the only branching dimension. The same ending or majo
 
 Working implementation approach: common scene foundations with conditional participants, passages, callbacks and visual assets rather than separate files for every combination. Invest especially in pivotal scenes (endings, cabinet, betrayals, reunions, negotiations and personal milestones); routine scenes still acknowledge relevant history. Track durable facts and relationships, use reusable condition predicates and test contradictory or missing states. Existing scene format and engine support must be audited before deciding implementation; no new feature implemented here. Aim for replayability and distinctive player stories without uncontrolled combinatorial growth.
 
-## Next design discussion (34)
+## 34 — Foreign alignment and execution-dependent strategies
 
-Review foreign policy GDD, beginning with the overall foreign-country framework, and identify a meaningful unresolved question. Continue one question at a time, consulting established lore before asking.
+Confirmed: geopolitical alignment is accumulated through decisions and individual country relationships, not a fixed route selection. Lara can cultivate both superpowers simultaneously, and neutrality can be a successful active strategy. Attempts at alignment may fail: domestic policies incompatible with a prospective partner, conflicting commitments, poor relationships or weak execution may leave Kunasai without either superpower's support. Trading with both is generally less consequential than strategic commitments; exact thresholds and conditions TBD. General game principle: player chooses strategy, not guaranteed outcome. This applies across economic, political, social and diplomatic systems; do not reward ideological consistency alone or treat a chosen direction as automatic success. Existing foreign relational indices and compass remain the basis; reliability, leverage, agreements and compatibility are conceptual factors, not necessarily new tracked resources. Author welcomes multiple focused discussions within complex topics; do not mechanically limit every section to one question. Prioritize meaningful interaction and manageable implementation, then specify mechanics when needed.
+
+## Next design discussion (35)
+
+Examine the Arennian Federation and Zharan GDD profiles together, identify a consequential unresolved issue about how diplomatic alignment and commitments work, then deepen foreign-policy design as needed.
 
 ## Implementation backlog (not yet changes)
 
