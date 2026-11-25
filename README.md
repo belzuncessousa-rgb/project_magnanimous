@@ -15,7 +15,10 @@ npm run build      # tsc --noEmit && vite build -> dist/
 npm run preview    # serve dist/
 ```
 
-Dev only: `http://localhost:5173/?corpus=ch1` plays the chapter-1 test corpus in `tests/fixtures/ch1` instead of `content/`.
+Dev-only URL switches (stripped from production builds):
+- `?corpus=ch1` plays the chapter-1 test corpus in `tests/fixtures/ch1` instead of `content/`;
+- `?corpus=demo` plays only `content/_demo` (exercises budget, vote, readables and tutorial highlights);
+- `?showLocked` (or localStorage `magnanimous.dev.showLocked = 1`) shows `[lock if]` options greyed instead of hiding them.
 
 ## Structure
 
@@ -54,6 +57,17 @@ In dev builds the console lists parse warnings and unresolved references (unknow
 - **Crises**: `content/crises.json` (or `world.json → crises`):
   `{ id, scene, threshold, when, terms: [{expr, weight}], accumulate?, decay?, signalAt?, signals: {popups, news} }`.
   The hidden meter is Σ weight·expr each turn; at the threshold flag `crisis_<id>` is set and the scene becomes available.
+- **Readables**: `content/readables.json` (and `content/popups.json`, same shape): pins on the map for their chapter/turn,
+  click → paper card; optional `flags` set when read. Kinds `reaction | note | report | incident` get distinct icons.
+- **Budget**: `content/ministries.json`; a scene token `[open: budget]` opens the screen. Flags `budget.<ministry>`,
+  `initiative.<id>`; FC per turn and recurring effects apply at each turn update, `once` tokens when first funded.
+- **Votes**: `content/bills.json`; `[vote: <bill-id>]` opens the vote screen (stances in words, whip deals; OPP small /
+  medium / high prices, corrupt deals increment `corruption`, `voice`, `path_corrupt`). Flags `vote.<id>` and
+  `vote.<id>.margin`. Yes = for + leaning + half of undecided; ≥ 51 passes, ≥ 44 passes watered down.
+- **Tutorial**: `[highlight: hud-pt]` (inline or on its own line before a block). Choice costs are hidden until
+  `flag.tutorial_done` (only when some scene sets it), then shown as a ◈ with a tooltip.
+- **Scene flow**: every scene returns to the map. `order` only hides other markers until the forced scenes are done;
+  `→ scene:<id>` unlocks that scene as a marker instead of playing it immediately.
 - **Free actions**: `content/free-actions.json`:
   `{ id, label, description, cost: "1 PT", targets: "regions"|"countries"|[ids], effects: ["[approval +3 @ target]"], cooldown, result, scene? }`.
 

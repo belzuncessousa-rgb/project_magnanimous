@@ -1,6 +1,7 @@
 // REST STATE map: painted image (if present) or styled SVG fallback, hotspots, labels, markers, pan/zoom.
 import { clear, h, s } from './dom';
 import { KIND_GLYPH } from './format';
+import { fanOut, stackPins, type Rect } from './layout';
 
 export type Pt = [number, number];
 
@@ -65,15 +66,19 @@ export interface MarkerSpec {
 export interface MapToast {
   id: string;
   title?: string;
-  text: string;
+  kind: string;
+  read: boolean;
   at: Pt;
 }
+
+const READABLE_ICON: Record<string, string> = { reaction: '❝', note: '✎', report: '▤', incident: '!', popup: '◉' };
 
 export interface MapCallbacks {
   onSelect(id: string, clientX: number, clientY: number): void;
   onMarker(sceneId: string): void;
   onTarget(id: string): void;
   onBackground(): void;
+  onReadable(id: string, clientX: number, clientY: number): void;
 }
 
 function tokenImage(id: string): SVGImageElement {
@@ -97,6 +102,7 @@ export class MapView {
   private toastLayer: HTMLElement;
   private tooltip: HTMLElement;
   private toasts: MapToast[] = [];
+  private markerPos: Pt[] = [];
   private dismissed = new Set<string>();
   private dragged = false;
   private targeting: Set<string> | null = null;
@@ -107,12 +113,12 @@ export class MapView {
   ) {
     this.base = { ...geo.viewBox };
     this.vb = { ...geo.viewBox };
-    this.el = h('div', { class: 'map' });
+    this.el = h('div', { class: 'map', 'data-ui': 'map' });
     this.svg = s('svg', { class: 'map-svg', preserveAspectRatio: 'xMidYMid slice', role: 'img', 'aria-label': 'Map of Kunasai' });
     this.markerLayer = s('g', { class: 'markers' });
-    this.markerSvg = s('svg', { class: 'map-svg marker-svg', preserveAspectRatio: 'xMidYMid slice', 'aria-hidden': 'false' }, this.markerLayer);
+    this.markerSvg = s('svg', { class: 'map-svg marker-svg', preserveAspectRatio: 'xMidYMid slice', 'data-ui': 'markers' }, this.markerLayer);
     this.hotLayer = s('g', { class: 'hotspots' });
-    this.toastLayer = h('div', { class: 'map-toasts' });
+    this.toastLayer = h('div', { class: 'map-toasts', 'data-ui': 'readables' });
     this.tooltip = h('div', { class: 'map-tooltip', hidden: true });
     this.build();
     this.el.append(this.svg, this.toastLayer, this.markerSvg, this.tooltip);
@@ -234,14 +240,11 @@ export class MapView {
 
   setMarkers(markers: MarkerSpec[]) {
     clear(this.markerLayer);
-    const perSpot = new Map<string, number>();
-    for (const m of markers) {
-      const key = m.at.join(',');
-      const k = perSpot.get(key) ?? 0;
-      perSpot.set(key, k + 1);
-      const dx = k === 0 ? 0 : (k % 2 ? 1 : -1) * Math.ceil(k / 2) * 62;
-      const x = m.at[0] + dx;
-      const y = m.at[1] - 36;
+    // fan markers sharing an anchor out, then relax so none overlap
+    const placed = fanOut(markers.map((m) => m.at), 60, 34);
+    this.markerPos = placed;
+    markers.forEach((m, mi) => {
+      const [x, y] = placed[mi]!;
       const g = s('g', {
         class: `marker kind-${m.kind}${m.required ? ' required' : ''}${m.locked ? ' locked' : ''}`,
         transform: `translate(${x},${y})`,
@@ -262,7 +265,8 @@ export class MapView {
       g.addEventListener('mousemove', (ev) => this.showTip(m.locked ? `${m.title} — later` : m.title, ev as MouseEvent));
       g.addEventListener('mouseleave', () => this.hideTip());
       this.markerLayer.append(g);
-    }
+    });
+    this.layoutToasts();
   }
 
   setToasts(list: MapToast[]) {
@@ -273,15 +277,13 @@ export class MapView {
   private renderToasts() {
     clear(this.toastLayer);
     for (const t of this.toasts) {
-      // collapsed to a small titled pin; click to read, × to dismiss for this turn
-      const el = h('div', { class: 'map-toast', 'data-id': t.id, title: 'Click to read' },
-        h('button', { class: 'toast-x', 'aria-label': 'Dismiss', onclick: (ev: Event) => { ev.stopPropagation(); this.dismissed.add(t.id); this.setToasts(this.toasts); } }, '×'),
-        h('div', { class: 'toast-title' }, t.title ?? 'Report'),
-        h('div', { class: 'toast-text' }, t.text));
-      el.addEventListener('click', () => {
-        const open = !el.classList.contains('expanded');
-        for (const o of this.toastLayer.querySelectorAll('.map-toast.expanded')) o.classList.remove('expanded');
-        el.classList.toggle('expanded', open);
+      // a small titled pin; click opens the paper card (App)
+      const el = h('button', { class: `map-toast kind-${t.kind}${t.read ? ' read' : ''}`, 'data-id': t.id, 'data-tip': t.read ? 'Read' : 'Click to read' },
+        h('span', { class: 'toast-icon' }, READABLE_ICON[t.kind] ?? '◉'),
+        h('span', { class: 'toast-title' }, t.title ?? 'Report'));
+      el.addEventListener('click', (ev) => {
+        ev.stopPropagation();
+        this.cb.onReadable(t.id.replace(/^\d+:/, ''), (ev as MouseEvent).clientX, (ev as MouseEvent).clientY);
       });
       this.toastLayer.append(el);
     }
@@ -290,16 +292,22 @@ export class MapView {
 
   private layoutToasts() {
     const els = [...this.toastLayer.children] as HTMLElement[];
-    const perSpot = new Map<string, number>();
+    if (!els.length) return;
+    // markers are obstacles (screen space), pins slide until free
+    const obstacles: Rect[] = this.markerPos.map((p) => {
+      const c = this.toScreen(p);
+      const zoom = this.base.w / this.vb.w;
+      const r = 27 * this.screenScale() / zoom;
+      return { x: c.x - r, y: c.y - r, w: 2 * r, h: 2 * r };
+    });
+    const pins = els.map((el, i) => {
+      const c = this.toScreen(this.toasts[i]!.at);
+      return { at: [c.x, c.y] as Pt, w: el.offsetWidth || 160, h: el.offsetHeight || 24 };
+    });
+    const pos = stackPins(pins, obstacles);
     els.forEach((el, i) => {
-      const t = this.toasts[i];
-      if (!t) return;
-      const key = t.at.join(',');
-      const k = perSpot.get(key) ?? 0;
-      perSpot.set(key, k + 1);
-      const p = this.toScreen(t.at);
-      el.style.left = `${p.x}px`;
-      el.style.top = `${p.y + 14 + k * 30}px`;
+      el.style.left = `${pos[i]![0]}px`;
+      el.style.top = `${pos[i]![1]}px`;
     });
   }
 
@@ -335,6 +343,11 @@ export class MapView {
 
   private hideTip() {
     this.tooltip.hidden = true;
+  }
+
+  /** screen pixels per SVG unit */
+  private screenScale(): number {
+    return this.svg.getScreenCTM()?.a ?? 1;
   }
 
   toScreen([x, y]: Pt): { x: number; y: number } {

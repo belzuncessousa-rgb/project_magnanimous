@@ -5,16 +5,17 @@ import { h } from './dom';
 import { pct1 } from './format';
 
 const TIPS: Record<string, string> = {
-  PT: 'Presidential Time — your personal attention. Refreshes each turn; unused time is lost.',
-  FC: 'Financial Capital — the treasury’s room to spend. Accumulates between turns.',
-  IPI: 'Internal Political Influence — leverage over Congress and institutions. Half carries over.',
-  EPI: 'External Political Influence — leverage abroad. Half carries over.',
-  APP: 'National approval (population-weighted).',
+  PT: 'PT — Presidential Time. Your own hours and attention: visits, rallies, meetings. Refills each turn from approval and stability; unused time is lost.',
+  FC: 'FC — Financial Capital. What the treasury can spend after costs and debt interest. Accumulates between turns; ministry budgets draw on it every turn.',
+  IPI: 'IPI — Internal Political Influence. Leverage over Congress, parties and the cabinet, from their loyalty and capacity. Half carries over.',
+  EPI: 'EPI — External Political Influence. Leverage abroad, weighted by the size of the countries that like you. Half carries over.',
+  APP: 'Approval — national average, weighted by population. Each region has its own; click a region to see it.',
 };
+const UI_ID: Record<string, string> = { PT: 'hud-pt', FC: 'hud-fc', IPI: 'hud-ipi', EPI: 'hud-epi', APP: 'hud-approval' };
 
 export class Hud {
   readonly el: HTMLElement;
-  private date = h('div', { class: 'hud-date' });
+  private date = h('div', { class: 'hud-date', 'data-ui': 'hud-date', 'data-tip': 'The date. Turns are irregular: some cover a week, some a season.' });
   private chapter = h('div', { class: 'hud-chapter' });
   private vals: Record<string, HTMLElement> = {};
 
@@ -23,9 +24,9 @@ export class Hud {
     for (const k of ['PT', 'FC', 'IPI', 'EPI', 'APP']) {
       const v = h('span', { class: 'hud-val' });
       this.vals[k] = v;
-      row.append(h('div', { class: `hud-res res-${k}`, title: TIPS[k] }, h('span', { class: 'hud-key' }, k === 'APP' ? 'Approval' : k), v));
+      row.append(h('div', { class: `hud-res res-${k}`, 'data-tip': TIPS[k], 'data-ui': UI_ID[k], tabindex: 0 }, h('span', { class: 'hud-key' }, k === 'APP' ? 'Approval' : k), v));
     }
-    this.el = h('div', { class: 'hud paper', hidden: true }, h('div', { class: 'hud-top' }, this.chapter, this.date), row);
+    this.el = h('div', { class: 'hud paper', hidden: true, 'data-ui': 'hud' }, h('div', { class: 'hud-top' }, this.chapter, this.date), row);
   }
 
   update(st: GameState, chapterTitle: string) {

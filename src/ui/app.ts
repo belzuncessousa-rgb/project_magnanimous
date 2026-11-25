@@ -9,6 +9,7 @@ import { KIND_LABEL, int, militaryWord, millions, money, pct1, relationWord, sta
 import { Hud } from './hud';
 import { MapView, OFFMAP, type Geometry, type MarkerSpec } from './map';
 import { showNewspaper } from './newspaper';
+import { showBudget, showVote } from './screens';
 import { tokenFor } from './tokens';
 import { VNView } from './vn';
 
@@ -29,6 +30,9 @@ export class App {
   private titleScreen: HTMLElement | null = null;
   private targeting: FreeAction | null = null;
   private busy = false;
+  private hasTutorial = false;
+  private card = h('div', { class: 'readable-card paper', hidden: true });
+  private tip = h('div', { class: 'ui-tip', hidden: true });
 
   constructor(
     private root: HTMLElement,
@@ -39,15 +43,22 @@ export class App {
       onSelect: (id, x, y) => this.showInfo(id, x, y),
       onMarker: (id) => void this.playScene(id),
       onTarget: (id) => this.finishTargeting(id),
-      onBackground: () => this.hideInfo(),
+      onBackground: () => { this.hideInfo(); this.hideCard(); },
+      onReadable: (id, x, y) => this.showReadable(id, x, y),
     });
     this.map.loadImage('map/terrain-small.jpg', 'map/terrain.jpg');
     this.map.setView(this.settings.mapView);
     const player = content.world.actors.find((a) => a.id === 'lara' || /vento/i.test(a.name));
-    this.vn = new VNView(() => this.game!.state, { transitions: this.settings.transitions, playerId: player?.id ?? 'lara' });
+    this.vn = new VNView(() => this.game!.state, { transitions: this.settings.transitions, playerId: player?.id ?? 'lara' }, {
+      onUi: (action, arg) => this.openScreen(action, arg),
+      onHighlight: (ids) => this.setHighlight(ids),
+      showCosts: () => this.tutorialDone(),
+    });
+    // a content set without a tutorial never hides costs
+    this.hasTutorial = content.scenes.some((sc) => sc.source !== undefined && JSON.stringify(sc.beats).includes('tutorial_done'));
     this.applySettings();
 
-    const viewToggle = h('div', { class: 'view-toggle paper', role: 'group', 'aria-label': 'Map view' },
+    const viewToggle = h('div', { class: 'view-toggle paper', role: 'group', 'aria-label': 'Map view', 'data-ui': 'map-toggle' },
       h('button', { 'data-view': 'terrain', onclick: () => this.setView('terrain') }, 'Terrain'),
       h('button', { 'data-view': 'political', onclick: () => this.setView('political') }, 'Political'),
       h('span', { class: 'sep' }),
@@ -56,17 +67,21 @@ export class App {
       h('button', { title: 'Reset view', onclick: () => this.map.resetZoom() }, '⌂'));
     const topLeft = h('div', { class: 'top-left' },
       h('button', { class: 'btn ghost', onclick: () => this.openMenu() }, '☰ Menu'),
-      h('button', { class: 'btn ghost', onclick: () => this.toggleSidebar() }, 'Actions'));
+      h('button', { class: 'btn ghost', 'data-ui': 'actions', 'data-tip': 'Free actions: rallies, envoys, calls — they cost resources', onclick: () => this.toggleSidebar() }, 'Actions'));
+    this.endBtn.dataset.ui = 'end-turn';
+    this.agenda.dataset.ui = 'agenda';
     this.endBtn.addEventListener('click', () => void this.endTurn());
     const bottomRight = h('div', { class: 'bottom-right' }, this.endNote, this.endBtn);
-    this.layer.append(topLeft, this.hud.el, this.agenda, this.sidebar, viewToggle, bottomRight, this.info, this.banner, this.toast);
+    this.layer.append(topLeft, this.hud.el, this.agenda, this.sidebar, viewToggle, bottomRight, this.info, this.card, this.banner, this.toast);
     this.hud.el.hidden = false;
-    root.append(this.map.el, this.layer, this.vn.el);
+    root.append(this.map.el, this.layer, this.vn.el, this.tip);
+    this.bindTooltips();
     this.updateViewToggle();
 
     window.addEventListener('keydown', (ev) => {
       if (ev.key === 'Escape') {
         if (this.targeting) this.cancelTargeting();
+        else if (!this.card.hidden) this.hideCard();
         else if (!this.info.hidden) this.hideInfo();
       }
     });
@@ -132,7 +147,6 @@ export class App {
     this.closeTitle();
     saveGame(this.game.state);
     this.refresh();
-    void this.autoStart();
   }
 
   private continueGame() {
@@ -147,7 +161,6 @@ export class App {
     this.closeTitle();
     this.refresh();
     if (this.game.state.ended) void this.showEnd();
-    else void this.autoStart();
   }
 
   private modal(title: string, body: HTMLElement, onClose?: () => void): HTMLElement {
@@ -197,7 +210,8 @@ export class App {
     this.hud.update(g.state, this.chapterTitle());
     const scenes = g.availableScenes();
     const foreign = new Set([...this.geo.regions.filter((r) => r.kind === 'country').map((r) => r.id), ...Object.keys(OFFMAP)]);
-    const markers: MarkerSpec[] = scenes.map((sc) => ({
+    // forced `order`: later scenes appear on the map only once the forced ones are done (agenda shows them greyed)
+    const markers: MarkerSpec[] = scenes.filter((sc) => !g.isLocked(sc)).map((sc) => ({
       id: sc.id,
       title: sc.meta.title,
       kind: sc.meta.kind,
@@ -208,7 +222,7 @@ export class App {
     }));
     this.map.setMarkers(markers);
     this.map.setToasts(
-      g.activePopups().map((p) => ({ id: `${g.state.turnIndex}:${p.id}`, title: p.title, text: p.text, at: this.map.locate(p.location) ?? this.map.locate('capital')! })),
+      g.activePopups().map((p) => ({ id: `${g.state.turnIndex}:${p.id}`, title: p.title, kind: p.kind, read: g.isRead(p.id), at: this.map.locate(p.location) ?? this.map.locate('capital')! })),
     );
     // agenda
     clear(this.agenda);
@@ -349,22 +363,100 @@ export class App {
     this.map.setSelected(id);
   }
 
+  // ---------------------------------------------------------------- readables, tutorial, tooltips, screens
+
+  private showReadable(id: string, x: number, y: number) {
+    const g = this.game;
+    if (!g || this.busy) return;
+    const p = g.readPopup(id);
+    if (!p) return;
+    this.hideInfo();
+    clear(this.card);
+    const KIND: Record<string, string> = { reaction: 'Reaction', note: 'Note', report: 'Report', incident: 'Incident', popup: 'Dispatch' };
+    this.card.className = `readable-card paper kind-${p.kind}`;
+    this.card.append(
+      h('div', { class: 'info-head' },
+        h('div', {}, h('div', { class: 'info-sub' }, KIND[p.kind] ?? 'Report'), h('h3', {}, p.title ?? '')),
+        h('button', { class: 'x', 'aria-label': 'Close', onclick: () => this.hideCard() }, '×')),
+      h('p', { class: 'readable-text' }, p.text),
+      p.from ? h('div', { class: 'readable-from' }, `— ${p.from}`) : '');
+    this.card.hidden = false;
+    const w = 320;
+    this.card.style.left = `${Math.min(window.innerWidth - w - 16, Math.max(16, x + 16))}px`;
+    this.card.style.top = `${Math.min(window.innerHeight - 260, Math.max(70, y - 30))}px`;
+    saveGame(g.state);
+    this.refresh();
+  }
+
+  private hideCard() {
+    this.card.hidden = true;
+  }
+
+  private tutorialDone(): boolean {
+    return !this.hasTutorial || this.game?.state.flags.tutorial_done === true;
+  }
+
+  private devShowLocked(): boolean {
+    if (!import.meta.env.DEV) return false;
+    try { return new URLSearchParams(location.search).has('showLocked') || localStorage.getItem('magnanimous.dev.showLocked') === '1'; } catch { return false; }
+  }
+
+  /** Tutorial: outline UI elements by `data-ui` id while a block is shown (VN keeps them visible above the dim). */
+  private setHighlight(ids: string[]) {
+    for (const el of this.root.querySelectorAll('.tut-highlight, .tut-visible')) el.classList.remove('tut-highlight', 'tut-visible');
+    this.root.classList.toggle('tutorial-on', ids.length > 0);
+    for (const id of ids) {
+      for (const el of this.root.querySelectorAll<HTMLElement | SVGElement>(`[data-ui="${id}"]`)) {
+        el.classList.add('tut-highlight');
+        // keep the top-level panel that contains it visible
+        let p: Element | null = el;
+        while (p && p.parentElement && p.parentElement !== this.layer && p.parentElement !== this.root) p = p.parentElement;
+        p?.classList.add('tut-visible');
+      }
+    }
+  }
+
+  private bindTooltips() {
+    const show = (el: HTMLElement) => {
+      const t = el.dataset.tip;
+      if (!t) return;
+      this.tip.textContent = t;
+      this.tip.hidden = false;
+      const r = el.getBoundingClientRect();
+      const tw = Math.min(300, this.tip.offsetWidth);
+      let left = r.left + r.width / 2 - tw / 2;
+      left = Math.max(8, Math.min(window.innerWidth - tw - 8, left));
+      const below = r.bottom + 8;
+      this.tip.style.left = `${left}px`;
+      this.tip.style.top = `${below + this.tip.offsetHeight > window.innerHeight - 8 ? r.top - this.tip.offsetHeight - 8 : below}px`;
+    };
+    document.addEventListener('mouseover', (ev) => {
+      const el = (ev.target as Element).closest<HTMLElement>('[data-tip]');
+      if (el) show(el);
+      else this.tip.hidden = true;
+    });
+    document.addEventListener('focusin', (ev) => {
+      const el = (ev.target as Element).closest<HTMLElement>('[data-tip]');
+      if (el) show(el);
+    });
+    document.addEventListener('pointerdown', () => (this.tip.hidden = true));
+  }
+
+  private async openScreen(action: string, arg: string): Promise<void> {
+    const g = this.game;
+    if (!g) return;
+    if (action === 'open' && arg === 'budget') await showBudget(this.root, g.state, this.content.ministries);
+    else if (action === 'vote') await showVote(this.root, g.state, this.content.bills.find((b) => b.id === arg));
+    else console.warn(`[ui] unknown screen ${action}: ${arg}`);
+    saveGame(g.state);
+  }
+
   private hideInfo() {
     this.info.hidden = true;
     this.map.setSelected(null);
   }
 
   // ---------------------------------------------------------------- scenes & turns
-
-  private async autoStart() {
-    const g = this.game;
-    if (!g || this.busy) return;
-    const f = g.forcedScene();
-    if (f) {
-      await new Promise((r) => setTimeout(r, this.settings.transitions ? 1400 : 0));
-      if (this.game === g && !this.busy) await this.playScene(f.id);
-    }
-  }
 
   async playScene(id: string, force = false) {
     const g = this.game;
@@ -375,21 +467,17 @@ export class App {
     this.hideInfo();
     this.cancelTargeting();
     this.layer.classList.add('hidden-ui');
-    let current: string | undefined = id;
     let closingDone = false;
     try {
-      while (current) {
-        const s = g.scene(current);
-        if (!s) break;
-        const runner = g.startScene(current);
-        const next = await this.vn.play(runner, s.meta.title);
-        if (g.turnDef()?.closing === current) closingDone = true;
-        g.completeScene(current);
-        for (const w of runner.warnings) console.warn(`[scene ${current}]`, w);
-        current = next;
-      }
+      // one scene at a time: the player always returns to the map (a `→ scene:` jump unlocks the next marker)
+      const runner = g.startScene(id, { showLocked: this.devShowLocked() });
+      const next = await this.vn.play(runner, sc.meta.title);
+      if (g.turnDef()?.closing === id) closingDone = true;
+      g.completeScene(id, next);
+      for (const w of runner.warnings) console.warn(`[scene ${id}]`, w);
       await this.vn.close();
     } finally {
+      this.setHighlight([]);
       this.busy = false;
       this.layer.classList.remove('hidden-ui');
       saveGame(g.state);
@@ -400,7 +488,6 @@ export class App {
       void this.endTurn();
       return;
     }
-    void this.autoStart();
   }
 
   private async endTurn() {
@@ -422,7 +509,6 @@ export class App {
       return;
     }
     this.refresh();
-    void this.autoStart();
   }
 
   private async showEnd() {

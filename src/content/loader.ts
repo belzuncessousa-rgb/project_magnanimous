@@ -24,7 +24,10 @@ export function loadContent(): ContentBundle {
  */
 export async function loadDevCorpus(): Promise<ContentBundle | null> {
   if (!import.meta.env.DEV) return null;
-  if (new URLSearchParams(location.search).get('corpus') !== 'ch1') return null;
+  const which = new URLSearchParams(location.search).get('corpus');
+  // ?corpus=demo: only content/_demo (exercises budget, votes, readables, highlights)
+  if (which === 'demo') return buildContent(rawContentFiles().filter((f) => f.path.includes('/content/_demo/')));
+  if (which !== 'ch1') return null;
   const mdL = import.meta.glob('/tests/fixtures/ch1/content/**/*.md', { query: '?raw', import: 'default' });
   const jsL = import.meta.glob('/tests/fixtures/ch1/content/**/*.json', { import: 'default' });
   const files: RawFile[] = [];

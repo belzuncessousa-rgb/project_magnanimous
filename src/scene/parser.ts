@@ -103,7 +103,8 @@ class SceneBuilder {
         const neg: ResourceAmounts = {};
         for (const [k, v] of Object.entries(t.amounts)) neg[k as keyof ResourceAmounts] = -(v ?? 0);
         prose.effects.push({ effect: { type: 'resource', amounts: neg }, ...(cond ? { cond } : {}) });
-      } else if (t.kind === 'unknown') this.warn(`unknown token [${t.raw}]`);
+      } else if (t.kind === 'highlight') prose.highlights = [...(prose.highlights ?? []), ...t.ids];
+      else if (t.kind === 'unknown') this.warn(`unknown token [${t.raw}]`);
     }
   }
 
@@ -196,6 +197,8 @@ class SceneBuilder {
         case 'goto':
           choice.gotoRaw = tok.target;
           break;
+        case 'highlight':
+          break;
         case 'unknown':
           this.warn(`unknown token [${tok.raw}] in choice "${label}"`);
           break;
@@ -213,10 +216,18 @@ class SceneBuilder {
     /** the after-block being continued by indented lines */
     let afterBuf: { lines: string[]; quote: boolean } | null = null;
     let skipping = false;
+    /** highlights from a standalone token line apply to the next prose block */
+    let pendingHl: string[] = [];
 
     const pushProse = (raw: string, isQuote: boolean) => {
       const { prose, goto } = this.makeProse(raw, isQuote);
-      if (prose) steps.push({ type: 'prose', prose });
+      if (prose) {
+        if (pendingHl.length) {
+          prose.highlights = [...pendingHl, ...(prose.highlights ?? [])];
+          pendingHl = [];
+        }
+        steps.push({ type: 'prose', prose });
+      }
       if (goto) steps.push({ type: 'goto', target: { kind: 'unresolved', raw: goto }, raw: goto });
     };
     const flushPara = () => {
@@ -342,7 +353,8 @@ class SceneBuilder {
           else if (t.kind === 'goto') {
             if (effects.length) steps.push({ type: 'effects', effects: effects.splice(0) });
             steps.push({ type: 'goto', target: { kind: 'unresolved', raw: t.target }, raw: t.target, ...(cond ? { cond } : {}) });
-          } else if (t.kind === 'unknown') this.warn(`unknown token [${t.raw}]`);
+          } else if (t.kind === 'highlight') pendingHl.push(...t.ids);
+          else if (t.kind === 'unknown') this.warn(`unknown token [${t.raw}]`);
         }
         if (effects.length) steps.push({ type: 'effects', effects });
         continue;

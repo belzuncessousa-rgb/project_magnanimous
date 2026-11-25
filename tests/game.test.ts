@@ -99,7 +99,7 @@ describe('game flow (demo content)', () => {
     const g = Game.newGame(demoBundle());
     const s = g.state;
     expect(s.dateLabel).toBe('1 March — Inauguration Week');
-    expect(g.activePopups().map((p) => p.id)).toEqual(['demo-river']);
+    expect(g.activePopups().map((p) => p.id)).toEqual(['demo-note', 'demo-report', 'demo-reaction', 'demo-river']);
 
     // forced scene first
     expect(g.forcedScene()?.id).toBe('demo-oath');
@@ -153,9 +153,11 @@ describe('game flow (demo content)', () => {
     expect(end2.ended).toBe(false);
     expect(s.chapter).toBe(2);
     expect(s.turn).toBe(1);
-    expect(g.availableScenes().map((x) => x.id)).toEqual(['demo-ambassador']);
-    autoplay(g.startScene('demo-ambassador'));
-    g.completeScene('demo-ambassador');
+    expect(g.availableScenes().map((x) => x.id)).toEqual(['demo-ambassador', 'demo-cabinet']);
+    for (const id of ['demo-ambassador', 'demo-cabinet']) {
+      autoplay(g.startScene(id));
+      g.completeScene(id);
+    }
     const end3 = g.endTurn();
     expect(end3.ended).toBe(true);
     expect(g.canEndTurn()).toBe(false);

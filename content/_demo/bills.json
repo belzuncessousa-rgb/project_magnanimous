@@ -1,0 +1,9 @@
+[
+  { "id": "demo-reform", "title": "[Demo] Representation Reform", "summary": "Rebalance Congress seats by population.",
+    "positions": {
+      "pm": { "base": 0.6 }, "opp": { "base": -0.3 }, "cp": { "base": 0.2 }, "nf": { "base": -0.9 },
+      "fff": { "base": -0.4 }, "ca": { "base": 0.4 }, "cv": { "base": 0.1, "ifs": [{ "when": "flag.demo_labor_compact", "delta": 0.5 }] }
+    },
+    "whip_costs": { "cv": "[cost: 1 FC]" }
+  }
+]

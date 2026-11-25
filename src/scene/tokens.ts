@@ -13,6 +13,7 @@ export type Token =
   | { kind: 'lock'; expr: Expr; raw: string }
   | { kind: 'if'; expr: Expr; raw: string }
   | { kind: 'once' }
+  | { kind: 'highlight'; ids: string[] }
   | { kind: 'goto'; target: string }
   | { kind: 'unknown'; raw: string };
 
@@ -78,6 +79,8 @@ export function parseBracket(inner: string): Token {
   let m: RegExpExecArray | null;
 
   if (/^once$/i.test(s)) return { kind: 'once' };
+  if ((m = /^highlight\s*:\s*(.+)$/i.exec(s))) return { kind: 'highlight', ids: m[1]!.split(/[,\s]+/).filter(Boolean) };
+  if ((m = /^(open|vote)\s*:\s*(\S+)$/i.exec(s))) return { kind: 'effect', effect: { type: 'ui', action: m[1]!.toLowerCase(), arg: m[2]! } };
 
   if ((m = /^(show\s*if|lock\s*if|if|req(?:uires?)?\s*flag|req(?:uires?)?|cost|gain)\s*:\s*(.*)$/i.exec(s))) {
     const key = m[1]!.toLowerCase().replace(/\s+/g, ' ');

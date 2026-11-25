@@ -11,6 +11,8 @@ export interface Prose {
   text: string;
   cond?: Expr;
   effects: CondEffect[];
+  /** tutorial: UI element ids to highlight while this block is shown */
+  highlights?: string[];
 }
 
 export type Target =

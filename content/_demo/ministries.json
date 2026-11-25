@@ -1,0 +1,14 @@
+[
+  { "id": "health", "name": "[Demo] Health & Social Programs", "minister": "Demo minister",
+    "tiers": { "cut": { "fc_per_turn": 0, "effects": "[col -1 @ all]" }, "low": { "fc_per_turn": 1 }, "regular": { "fc_per_turn": 2 } },
+    "initiatives": [
+      { "id": "demo-clinics", "name": "Public clinics", "summary": "Clinics in the peripheries.", "effects_per_turn": "[col +1 @ ibicui]" },
+      { "id": "demo-transfers", "name": "Cash transfers", "summary": "Monthly transfers to poor families.", "effects_per_turn": "[approval +1 @ mognagna]", "once": "[flag: demo_transfers_started = true]" }
+    ] },
+  { "id": "defense", "name": "[Demo] Defense", "minister": "Aldric Voss",
+    "tiers": { "cut": { "fc_per_turn": 0 }, "low": { "fc_per_turn": 1 }, "regular": { "fc_per_turn": 2 }, "high": { "fc_per_turn": 3, "effects": "[stability +1 @ all]" } },
+    "initiatives": [
+      { "id": "demo-border", "name": "Modernise border staff", "summary": "", "effects_per_turn": "[cartels capacity -1]" },
+      { "id": "demo-ballistics", "name": "Ballistics institute", "summary": "" }
+    ] }
+]
