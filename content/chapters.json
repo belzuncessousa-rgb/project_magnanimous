@@ -94,8 +94,91 @@
       "id": 2,
       "title": "A Herculean Task",
       "question": "Can you govern?",
-      "todo": "Outline in docs/story/BIBLE.md §10. Budget tiers, debt decision, representation reform push, first foreign contacts. March → July.",
-      "turns": []
+      "turns": [
+        {
+          "turn": 1,
+          "date": "4 March",
+          "year": 1,
+          "label": "The First Budget",
+          "scenes": [
+            "p2-fund-mission",
+            "p2-budget",
+            "p2-pryce",
+            "p2-contractor",
+            "p2-kesht"
+          ],
+          "closing": null,
+          "popups": [],
+          "news": [
+            "c2t1-ledger-debt-pay",
+            "c2t1-ledger-debt-borrow",
+            "c2t1-ledger-debt-hold",
+            "c2t1-clarion-fund",
+            "c2t1-clarion-pryce",
+            "c2t1-voice-transfers-cut",
+            "c2t1-voice-budget",
+            "c2t1-dispatch-preferences",
+            "c2t1-canopy-rains"
+          ]
+        },
+        {
+          "turn": 2,
+          "date": "21 May",
+          "year": 1,
+          "label": "The Lessa Motion",
+          "scenes": [
+            "p2-reform-push",
+            "p2-sadrah",
+            "p2-site-taua",
+            "p2-site-rail",
+            "p2-site-tamarin",
+            "p2-dry-season",
+            "p2-celia"
+          ],
+          "closing": null,
+          "popups": [],
+          "news": [
+            "c2t2-ledger-reform-for",
+            "c2t2-ledger-reform-against",
+            "c2t2-ledger-reform-sub",
+            "c2t2-ledger-reform-free",
+            "c2t2-clarion-zharan",
+            "c2t2-clarion-tekoku",
+            "c2t2-voice-photo",
+            "c2t2-voice-slopes",
+            "c2t2-dispatch-sadrah",
+            "c2t2-canopy-sertao",
+            "c2t2-canopy-sertao-wait"
+          ]
+        },
+        {
+          "turn": 3,
+          "date": "9 July",
+          "year": 1,
+          "label": "Midsummer",
+          "scenes": [
+            "p2-arguedas",
+            "p2-mondrath",
+            "p2-files",
+            "p2-festival"
+          ],
+          "closing": "p2-reform-vote",
+          "popups": [],
+          "news": [
+            "c2t3-ledger-vote-passed",
+            "c2t3-ledger-vote-watered",
+            "c2t3-ledger-vote-failed",
+            "c2t3-ledger-regional",
+            "c2t3-clarion-vote",
+            "c2t3-clarion-passed",
+            "c2t3-voice-march",
+            "c2t3-dispatch-arenza",
+            "c2t3-dispatch-mondrath",
+            "c2t3-canopy-ibira-river"
+          ],
+          "chapterEnd": true
+        }
+      ]
     },
     {
       "id": 3,

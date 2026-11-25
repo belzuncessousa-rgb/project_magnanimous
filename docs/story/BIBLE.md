@@ -461,3 +461,26 @@ down), monitor loudly (more capacity down, Federation pleased, cartels alert), i
 Ibira). Conceding is not war: conceding leads to cartel **dominance** (quiet streets, controlled votes, collapsing CoL,
 illicit output, a toll on rare earths, a rising corruption bar). War comes from antagonising them without first reducing
 their capacity. Cartel war is too early for chapter 3.
+
+---
+
+## 13. Chapter 2 as written (round 2)
+
+Dates: **4 March** (budget) · **21 May** (the Lessa motion) · **9 July** (midsummer; closing = the vote).
+- T1: `p2-fund-mission` (Anselm Royce; tone flag `fund_tone`) → `p2-budget` (`[open: budget]`; `judicial_target` 1 cartels /
+  2 landowners; `debt_policy` 1 pay principal / 2 borrow from the Fund / 3 status quo) · `p2-pryce` (`pryce_tone`) ·
+  `p2-contractor` (`contractor` 1 national/direct · 2 Arennian partner / mixed / renegotiate Corvel · 3 Zharani / open
+  tender / cancel Corvel) · `p2-kesht` (`informants` 1 arrested / 2 used / 3 moved / 4 left alone; `cartels_provoked`).
+- T2: `p2-reform-push` (final `reform_stance`; `reform_bench_freed`) · `p2-sadrah` (Katanaí; `zharan_financing`) ·
+  one site visit per project (`p2-site-taua` / `p2-site-rail` / `p2-site-tamarin`) · `p2-dry-season` (`famine_relief`
+  1 programme / 2 army / 3 state's problem → `famine_pressure`) · `p2-celia` (Celia faints at church — first sign;
+  `celia_doctor`, `pastor_photo`, `promised_tabernacle_visit`).
+- T3: `p2-arguedas` (St. Veldra; `np_seed` 0–3, the Northern Partnership seed) · `p2-mondrath` (Strait fees;
+  `mondrath_reply`) · `p2-files` (Sugar Bay march; `files_study` / `files_statement` / `files_shelved` — still a seed) ·
+  `p2-festival` (Mognagna Folk Festival; `festival` 0/1/2) · closing `p2-reform-vote` (`[vote: senate_reform]` or
+  `[vote: decentralisation_pact]`; `reform_result` 1 passed / 2 watered / 3 failed / 4–6 same for the substitute) and
+  Amanda's half-year reading of the notebook.
+New names: **Halvard Minerals** (Arennian mining firm), **Ivone** (Celia's neighbour, speaking character), **Pastor
+Ezequiel** (Tabernacle pastor in Vila Tamarin, unseen).
+Data: `content/ministries.json` (tier effects apply every turn; Regular funds every initiative, so GDD high-tier
+initiatives became High-tier effects), `content/bills.json`.

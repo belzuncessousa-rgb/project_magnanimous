@@ -1,0 +1,126 @@
+[
+  {
+    "id": "defense", "name": "Defense", "minister": "Aldric Voss",
+    "note": "GDD Defense page. Engine: Regular funds every initiative, so the GDD's high-tier Domestic Security Deployment is the High tier's own per-turn effect. Tier effects apply every turn.",
+    "tiers": {
+      "cut": { "fc_per_turn": 0, "effects": "[voss loyalty -1] [armed_forces opinion -0.5] [voss capacity -3]" },
+      "low": { "fc_per_turn": 0.3, "effects": "[voss loyalty -0.3]" },
+      "regular": { "fc_per_turn": 0.6, "effects": "[voss loyalty +0.3]" },
+      "high": { "fc_per_turn": 1.0, "effects": "[voss loyalty +0.5] [cartels capacity -2] [stability +0.5 @ ibira] [col -0.3 @ ibira] [flag: domestic_security = true]" }
+    },
+    "initiatives": [
+      { "id": "ballistics_institute", "name": "Ballistics Institute of Technology",
+        "summary": "A military research institute. Raises education in Tekoku and military strength over time.",
+        "effects_per_turn": "[education +0.5 @ tekoku] [flag: military_prowess += 0.3]", "once": "[+1 FORCE]" },
+      { "id": "border_staff", "name": "Modernise Border Staff",
+        "summary": "New boats, posts and equipment for the border units, especially in Ibira.",
+        "effects_per_turn": "[cartels capacity -1] [infrastructure +0.5 @ ibira]", "once": "[+1 FORCE] [+1 IDEN]" }
+    ]
+  },
+  {
+    "id": "justice", "name": "Justice, Interior & Labour", "minister": "Renata Salgado",
+    "note": "GDD Justice page. Judicial Strengthening's target (cartels or landowners) is chosen in p2-budget (flag judicial_target = 1 cartels / 2 landowners); per-turn effects use it.",
+    "tiers": {
+      "cut": { "fc_per_turn": 0, "effects": "[salgado loyalty -1] [salgado capacity -3]" },
+      "low": { "fc_per_turn": 0.3, "effects": "" },
+      "regular": { "fc_per_turn": 0.7, "effects": "[salgado loyalty +0.3]" }
+    },
+    "initiatives": [
+      { "id": "judicial", "name": "Judicial Strengthening",
+        "summary": "More prosecutors, judges and police in one area: the cartels (Ibira and the city peripheries) or the big landowners (Tapira and Mognagna).",
+        "effects_per_turn": "[cartels capacity -1] [stability +0.3 @ ibira] [col +0.3 @ mognagna]", "once": "[flag: survival_bonus += 1] [landless opinion +1]" },
+      { "id": "anticorruption", "name": "Anti-Corruption Department",
+        "summary": "An autonomous department that investigates public officials. It will look into the Capital Party's links with the cartels and the scheme involving Pelan Avros and OPP members.",
+        "effects_per_turn": "[avros suspicion +3] [vando suspicion +3] [cartels suspicion +2]", "once": "[flag: anticorruption_formed = true] [salgado capacity +5] [ca opinion +1] [avros loyalty -2]" },
+      { "id": "labor_compact", "name": "Labour Rights and Compact",
+        "summary": "A formal negotiation with the unions on wages and rights. Reduces the risk of strikes in Katanaí.",
+        "effects_per_turn": "[col +0.5 @ ibicui] [unions opinion +0.3]", "once": "[+1 WELF] [cv opinion +1] [cp opinion -1] [business opinion -1] [flag: labor_compact = true]" }
+    ]
+  },
+  {
+    "id": "intelligence", "name": "Intelligence", "minister": "Darian Kesht",
+    "note": "GDD Intelligence page. Cutting intelligence lowers the survival counter (GDD 7.2).",
+    "tiers": {
+      "cut": { "fc_per_turn": 0, "effects": "[kesht loyalty -1] [flag: intelligence_cut = true]" },
+      "low": { "fc_per_turn": 0.3, "effects": "" },
+      "regular": { "fc_per_turn": 0.6, "effects": "[kesht loyalty +0.5]" }
+    },
+    "initiatives": [
+      { "id": "foreign_shielding", "name": "Foreign Intelligence Shielding",
+        "summary": "Monitors foreign intelligence operations in Kunasai and identifies who is behind them.",
+        "effects_per_turn": "", "once": "[flag: alien_intelligence = true]" },
+      { "id": "domestic_monitoring", "name": "Domestic Monitoring Department",
+        "summary": "Surveillance capacity inside the country, including protection equipment for the President.",
+        "effects_per_turn": "[media suspicion +1]", "once": "[+2 STRUCT] [flag: domestic_monitoring = true]" }
+    ]
+  },
+  {
+    "id": "planning", "name": "Planning & Development", "minister": "Tobias Marne",
+    "note": "Round 2 decision: in term 1 the Planning budget pays for the great project chosen in chapter 1 plus municipal works. High tier = accelerated schedule. Cutting Planning pauses the great project.",
+    "tiers": {
+      "cut": { "fc_per_turn": 0, "effects": "[marne loyalty -1] [opp opinion -0.5] [flag: project_paused = true]" },
+      "low": { "fc_per_turn": 0.5, "effects": "" },
+      "regular": { "fc_per_turn": 1.0, "effects": "[marne loyalty +0.3]" },
+      "high": { "fc_per_turn": 1.5, "effects": "[marne loyalty +0.5] [flag: project_progress += 1] [flag: corruption += 0.2]" }
+    },
+    "initiatives": [
+      { "id": "great_project_works", "name": "The great project",
+        "summary": "Construction of the project chosen in January, at normal pace.",
+        "effects_per_turn": "[flag: project_progress += 1]", "once": "[flag: project_started = true]" },
+      { "id": "municipal_works", "name": "Municipal works programme",
+        "summary": "Small roads, drainage and repairs requested by mayors across the country. Popular with deputies.",
+        "effects_per_turn": "[infrastructure +0.5 @ mognagna, ibira] [pm opinion +0.2] [opp opinion +0.2]", "once": "" }
+    ]
+  },
+  {
+    "id": "health", "name": "Health & Social Programmes", "minister": "Owin Dara",
+    "note": "GDD Health page. Cutting the ministry crosses Dara's redline (transfers in Mognagna).",
+    "tiers": {
+      "cut": { "fc_per_turn": 0, "effects": "[dara loyalty -2] [pm opinion -0.5] [approval -1 @ mognagna, ibira] [flag: transfers_cut = true]" },
+      "low": { "fc_per_turn": 0.4, "effects": "" },
+      "regular": { "fc_per_turn": 0.8, "effects": "[dara loyalty +0.3]" }
+    },
+    "initiatives": [
+      { "id": "public_health", "name": "Public Health System",
+        "summary": "New hospitals and clinics where there are none, with staff and medicines. Slow results; addresses tobacco-related illness and famine risk.",
+        "effects_per_turn": "[col +0.4 @ mognagna, ibira, ibicui]", "once": "[+1 STRUCT] [flag: public_health = true]" },
+      { "id": "transfers", "name": "Social Assistance and Transfers",
+        "summary": "Cash transfers to poor families, mainly in Mognagna and Ibira. Immediate effect on living conditions.",
+        "effects_per_turn": "[col +0.6 @ mognagna, ibira] [approval +0.3 @ mognagna, ibira]", "once": "[+1 WELF] [dara loyalty +1] [ca opinion -1] [flag: transfers_funded = true]" }
+    ]
+  },
+  {
+    "id": "education", "name": "Education", "minister": "Helena Kaval",
+    "note": "GDD Education page.",
+    "tiers": {
+      "cut": { "fc_per_turn": 0, "effects": "[kaval loyalty -1] [ca opinion -0.5]" },
+      "low": { "fc_per_turn": 0.3, "effects": "" },
+      "regular": { "fc_per_turn": 0.6, "effects": "[kaval loyalty +0.3]" }
+    },
+    "initiatives": [
+      { "id": "basic_education", "name": "Basic Education Expansion",
+        "summary": "Teachers and schools in Mognagna and Ibira. Results over many years; weakens local strongmen over time.",
+        "effects_per_turn": "[education +0.5 @ mognagna, ibira]", "once": "[+1 WELF] [cv opinion +1]" },
+      { "id": "higher_ed", "name": "Higher Education and Research",
+        "summary": "Universities, laboratories and research grants. Slows the departure of graduates; needed for clean mining in Ibira.",
+        "effects_per_turn": "[education +0.5 @ tekoku, ibicui] [flag: research += 1]", "once": "[ca opinion +1] [approval +2 @ tekoku] [kaval loyalty +1]" }
+    ]
+  },
+  {
+    "id": "chief_of_staff", "name": "Chief of Staff", "minister": "Livia Harvan",
+    "note": "GDD leaves Chief of Staff initiatives undefined; these two are new (round 2).",
+    "tiers": {
+      "cut": { "fc_per_turn": 0, "effects": "[livia loyalty -0.5]" },
+      "low": { "fc_per_turn": 0.2, "effects": "" },
+      "regular": { "fc_per_turn": 0.4, "effects": "[livia loyalty +0.3]" }
+    },
+    "initiatives": [
+      { "id": "coalition_office", "name": "Coalition Liaison Office",
+        "summary": "Staff who manage daily relations with the parties and deputies. Makes congressional deals easier.",
+        "effects_per_turn": "[opp opinion +0.2] [pm opinion +0.2]", "once": "[gain: 1 IPI]" },
+      { "id": "culture_fund", "name": "Culture and Festivals Fund",
+        "summary": "Money for national and regional festivals and museums. Allows investment at the Mognagna Folk Festival and the Veldran Heritage Festival.",
+        "effects_per_turn": "[flag: cultural_power += 0.2]", "once": "[flag: culture_fund = true]" }
+    ]
+  }
+]

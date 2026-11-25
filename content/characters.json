@@ -888,5 +888,15 @@
     "group": "foreign",
     "country": "federation",
     "portrait": "royce"
+  },
+  {
+    "id": "ivone",
+    "name": "Ivone",
+    "short": "Ivone",
+    "role": "Celia's neighbour in Vila Tamarin",
+    "group": "personal",
+    "party": null,
+    "base": "ibicui",
+    "portrait": "ivone"
   }
 ]
