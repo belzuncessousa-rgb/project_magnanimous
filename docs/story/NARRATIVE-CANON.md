@@ -1,6 +1,6 @@
 # Narrative canon — author design sessions
 
-Last consolidated: 2026-11-25. Sessions 01–39. Maintained as author interviews continue.
+Last consolidated: 2026-11-25. Sessions 01–40. Maintained as author interviews continue.
 
 ## Authority and workflow
 
@@ -169,9 +169,13 @@ Author proposes an Arenzan election storyline: an initially abrasive/distrustful
 
 Each member country should provide a distinctive contribution or bonus reflecting its strengths, beyond aggregate economic size. The technologically advanced country (Veldmoor) may contribute knowledge/research growth for members; other benefits TBD. Potential examples: Arenzan agriculture/trade, Vassel maritime access, Kunasai industrial and resource capacity. Prefer existing indices, flags and conditional opportunities over an independent alliance economic simulation unless necessary. Exact membership eligibility, bonuses, institutions and mechanics remain provisional.
 
-## Next design discussion (40)
+## 40 — Veldmoor
 
-Review Veldmoor's existing GDD and clarify its role in Kunasai's development and the multilateral alliance, then continue with unresolved foreign policy questions. Avoid premature detailed mechanics.
+Confirmed: Veldmoor is a small, wealthy, highly educated, technologically advanced democracy in Arvane (Kunasai's continent, already established in the Foreign Countries GDD). Switzerland is an illustrative reference for its international position, not a literal copy. Its foreign policy is genuinely values-oriented toward scientific cooperation, environmental responsibility, human rights and multilateralism, but not indiscriminately altruistic: it has high standards for partners and pursues its own interests. Lara's actual governance record should matter more than symbolic gestures. Potential technological/research cooperation offers an alternative to superpower dependency, at smaller scale. Veldmoor is a potentially valuable alliance member through distinctive scientific/knowledge contributions. Exact eligibility standards, deals, historical identity and domestic politics TBD. Working diplomatic contrast: Federation emphasizes alignment, Zharan concessions, Veldmoor standards; none is exclusively motivated by that one factor. See [Veldmoor GDD](https://app.notion.com/p/36b10ad0215881578b27caed22de05c7).
+
+## Next design discussion (41)
+
+Return to Mondrath as promised in session 27, reviewing its GDD and clarifying first-term diplomatic escalation and resolution independently of Tekoku separatism. Respect the no-open-war gameplay boundary.
 
 ## Implementation backlog (not yet changes)
 
