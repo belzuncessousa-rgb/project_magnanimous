@@ -494,5 +494,161 @@
     "title": "Queues in the Strait",
     "when": "true",
     "text": "Shipping agents report longer waits for pilots in the Mondrathi part of the Strait. Some ships bound for Katanaí are choosing to wait for the cheaper Vassel pilots."
+  },
+  {
+    "id": "sig-strikes-vote",
+    "chapter": 3,
+    "turn": 1,
+    "location": "katanai",
+    "kind": "incident",
+    "title": "Talk of a strike at the port",
+    "when": "crisis.strikes.meter >= 5.4",
+    "text": "At a meeting in a church hall above Vila Tamarin, several hundred port workers voted to 'prepare for action' before the end of the year. The union confederation was not invited. Marco Prestes attended and did not speak."
+  },
+  {
+    "id": "sig-impasse-motions",
+    "chapter": 3,
+    "turn": 1,
+    "location": "capital",
+    "kind": "report",
+    "title": "Procedural motions in Congress",
+    "when": "crisis.impasse.meter >= 4.2",
+    "text": "Congress spent three sessions this week on procedural motions. Deputies on both sides of the representation question are using them to delay votes. The Secretary of Congress warns that next year's budget review may not be scheduled in time.",
+    "from": "Secretary of Congress"
+  },
+  {
+    "id": "sig-avros-leak",
+    "chapter": 3,
+    "turn": 1,
+    "location": "capital",
+    "kind": "report",
+    "title": "A question from a journalist",
+    "when": "crisis.avros.meter >= 5.4",
+    "text": "A reporter from the St. Veldra Ledger has asked the press office whether the President knew that the Anti-Corruption Department was investigating 'a senior PM deputy from Mognagna'. The press office has not replied.",
+    "from": "Presidential press office"
+  },
+  {
+    "id": "i7-night-buses",
+    "chapter": 3,
+    "turn": 1,
+    "location": "katanai",
+    "kind": "incident",
+    "title": "Night buses withdrawn",
+    "when": "true",
+    "text": "Two bus companies have stopped night services to the upper slopes of Katanaí after drivers were threatened. Workers on night shifts at the port now walk home in groups."
+  },
+  {
+    "id": "i7-atiaiaba-protest",
+    "chapter": 3,
+    "turn": 1,
+    "location": "atiaiaba",
+    "kind": "incident",
+    "title": "Weekend protest in Atiaiaba",
+    "when": "!(flag.reform_result == 1 || flag.reform_result == 4)",
+    "text": "Several thousand people marched in Atiaiaba on Saturday under the banner 'Count the North'. National Front flags were the most common. Senator Lessa did not attend."
+  },
+  {
+    "id": "rep7-harvest",
+    "chapter": 3,
+    "turn": 1,
+    "location": "tapira-mines",
+    "kind": "report",
+    "title": "Harvest estimate",
+    "when": "true",
+    "text": "The Ministry of Agriculture expects a good grain harvest in Tapira this year, about four percent above last year. The interior of Mognagna will produce less than half of a normal year.",
+    "from": "Ministry of Agriculture"
+  },
+  {
+    "id": "n8-arenza-commission",
+    "chapter": 3,
+    "turn": 2,
+    "location": "arenza",
+    "kind": "note",
+    "title": "Letter from Arenza",
+    "when": "flag.np_seed >= 1",
+    "text": "Dear President Vento, the joint commission met for the first time in Arenza last week and agreed to harmonise customs forms by spring. It is a small thing. I believe small things are how we start. — Tomás Arguedas",
+    "from": "President Tomás Arguedas"
+  },
+  {
+    "id": "i8-sugarbay-rain",
+    "chapter": 3,
+    "turn": 2,
+    "location": "sugar-bay",
+    "kind": "incident",
+    "title": "The rains return",
+    "when": "true",
+    "text": "Heavy rain has fallen across Mognagna for a week, the first since March in the interior. Some families who left for Katanaí are returning to plant."
+  },
+  {
+    "id": "i8-taua-camp",
+    "chapter": 3,
+    "turn": 2,
+    "location": "taua-hills",
+    "kind": "incident",
+    "title": "Night patrols on the Tauá road",
+    "when": "flag.road_protected",
+    "text": "Federal police now patrol the new road below the Tauá Hills at night. Fishermen say the fast boats have moved to another tributary."
+  },
+  {
+    "id": "r8-katanai-hospital",
+    "chapter": 3,
+    "turn": 2,
+    "location": "katanai",
+    "kind": "reaction",
+    "title": "Katanaí General",
+    "when": "flag.celia_public_ward",
+    "text": "Patients and staff at Katanaí General say the President's mother was treated like everyone else in the ward. A second nurse has since been added to the night shift."
+  },
+  {
+    "id": "r8-katanai-military",
+    "chapter": 3,
+    "turn": 2,
+    "location": "katanai",
+    "kind": "reaction",
+    "title": "Katanaí General",
+    "when": "flag.celia_privileged",
+    "text": "Patients at Katanaí General watched the President's mother being moved to the military hospital in the capital. Several told reporters they understood. One said she would like the same plane for her own mother."
+  },
+  {
+    "id": "r9-tamarin-pipe",
+    "chapter": 3,
+    "turn": 3,
+    "location": "vila-tamarin",
+    "kind": "reaction",
+    "title": "The pipe reaches the street",
+    "when": "flag.great_project == 6 && !flag.project_paused",
+    "text": "The main sewer line of the sanitation works reached Celia Vento's street in Vila Tamarin this month. The neighbours held a small party. Somebody took down the sign that said 'Works will resume soon'."
+  },
+  {
+    "id": "n9-veldmoor",
+    "chapter": 3,
+    "turn": 3,
+    "location": "veldmoor",
+    "kind": "note",
+    "title": "Season's greetings from Veldmoor",
+    "when": "true",
+    "text": "Dear President Vento, warm greetings for the end of the year. Our Academy has selected the first twenty Kunasaian researchers. We hope they will come home with good ideas. — Ottilie Varn",
+    "from": "Prime Minister Ottilie Varn"
+  },
+  {
+    "id": "n9-mondrath",
+    "chapter": 3,
+    "turn": 3,
+    "location": "mondrath",
+    "kind": "note",
+    "title": "Note from Mondrath",
+    "when": "true",
+    "text": "The Chancellery of His Highness the Archduke of Mondrath conveys the season's greetings to the President of the Republic of Kunasai.",
+    "from": "The Chancellery of the Archduchy of Mondrath"
+  },
+  {
+    "id": "i9-port",
+    "chapter": 3,
+    "turn": 3,
+    "location": "katanai",
+    "kind": "incident",
+    "title": "Christmas at the port",
+    "when": "!flag.strike_unresolved && !flag.crisis_strikes",
+    "text": "The port of Katanaí handled a record number of containers in December, according to the Port Authority."
   }
 ]

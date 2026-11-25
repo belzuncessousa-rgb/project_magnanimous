@@ -898,5 +898,15 @@
     "party": null,
     "base": "ibicui",
     "portrait": "ivone"
+  },
+  {
+    "id": "ramos",
+    "name": "Lúcia Ramos",
+    "short": "Dr. Ramos",
+    "role": "Doctor, Katanaí General Hospital",
+    "group": "personal",
+    "party": null,
+    "base": "ibicui",
+    "portrait": "ramos"
   }
 ]

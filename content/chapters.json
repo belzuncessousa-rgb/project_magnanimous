@@ -184,8 +184,73 @@
       "id": 3,
       "title": "Burdens of Leadership",
       "question": "Can you survive?",
-      "todo": "Outline in docs/story/BIBLE.md §10. Tax reform discussion; crisis via pressure meters. September → December. Ends with newspaper summary + 'to be continued'.",
-      "turns": []
+      "turns": [
+        {
+          "turn": 1,
+          "date": "15 September",
+          "year": 1,
+          "label": "Autumn Session",
+          "scenes": [
+            "p3-tax-reform",
+            "p3-strawberry",
+            "p3-project-incident"
+          ],
+          "closing": null,
+          "popups": [],
+          "news": [
+            "c3t1-ledger-tax-1",
+            "c3t1-ledger-tax-2",
+            "c3t1-ledger-tax-3",
+            "c3t1-ledger-tax-none",
+            "c3t1-clarion-tax",
+            "c3t1-clarion-strawberry",
+            "c3t1-voice-slopes",
+            "c3t1-dispatch-phones",
+            "c3t1-canopy-mercury"
+          ]
+        },
+        {
+          "turn": 2,
+          "date": "3 November",
+          "year": 1,
+          "label": "November",
+          "scenes": [
+            "p3-celia-ill",
+            "p3-marco"
+          ],
+          "closing": null,
+          "popups": [],
+          "news": [
+            "c3t2-voice-strike",
+            "c3t2-ledger-strike",
+            "c3t2-clarion-strike",
+            "c3t2-ledger-impasse",
+            "c3t2-clarion-impasse",
+            "c3t2-ledger-avros",
+            "c3t2-voice-celia",
+            "c3t2-dispatch-fund",
+            "c3t2-canopy-rains"
+          ]
+        },
+        {
+          "turn": 3,
+          "date": "18 December",
+          "year": 1,
+          "label": "The End of the First Year",
+          "scenes": [],
+          "closing": "p3-year-end",
+          "popups": [],
+          "news": [
+            "c3t3-ledger-year",
+            "c3t3-clarion-year",
+            "c3t3-voice-year",
+            "c3t3-dispatch-year",
+            "c3t3-canopy-year"
+          ],
+          "chapterEnd": true,
+          "gameEnd": true
+        }
+      ]
     }
   ]
 }

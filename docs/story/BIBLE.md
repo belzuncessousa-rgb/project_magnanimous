@@ -484,3 +484,23 @@ New names: **Halvard Minerals** (Arennian mining firm), **Ivone** (Celia's neigh
 Ezequiel** (Tabernacle pastor in Vila Tamarin, unseen).
 Data: `content/ministries.json` (tier effects apply every turn; Regular funds every initiative, so GDD high-tier
 initiatives became High-tier effects), `content/bills.json`.
+
+## 14. Chapter 3 as written (round 2)
+
+Dates: **15 September** · **3 November** · **18 December** (closing; last playable turn → "to be continued").
+- T1: `p3-tax-reform` (fixed; `tax_direction` 1 progressive / 2 lower & simpler / 3 modest / 0 none → `[vote: tax_reform]`;
+  tax tokens apply only if it passes) · `p3-strawberry` (Martin Works; `strawberry_protected` / `_research` / `_open`) ·
+  `p3-project-incident` (one incident per great project; `cartel_toll`, `trench_hushed`, `project_delayed`).
+- T2: `p3-celia-ill` (Celia hospitalised in Katanaí General — recovers, must not live alone; `celia_privileged` /
+  `celia_public_ward`, `stayed_with_celia`, `celia_carer` / `celia_neighbours`) · `p3-marco` (only if the strikes have not
+  fired; palliatives lower the meter).
+- Crises (content/crises.json, evaluated at each turn end from chapter 3; signals are readables gated on the meter):
+  `p3-crisis-strikes` (Katanaí; `[vote: strike_package]` / decree / force — Marco's 4th arrest / personal mediation;
+  `strike_outcome`), `p3-crisis-impasse` (two variants: Lessa's bloc obstructs, or the losers obstruct a passed reform;
+  `impasse_outcome`), `p3-crisis-avros` (only with the Anti-Corruption Department; Salgado resigns if Avros is shielded;
+  `avros_outcome`).
+- T3: closing `p3-year-end` — Mertens' goodbye, Amanda reads the year back, Celia staying at the Residence if she was ill,
+  the voice's end-of-year tone.
+New names: **Dr. Lúcia Ramos** (Katanaí General), **Dorival Sena** speaks for the first time (union confederation).
+Tuning: strikes threshold 7.5 (fires when the periphery is neglected: no labour compact, no project 6, no palliatives);
+impasse 7; Avros 9 (fires reliably once the department runs a few turns with Salgado loyal).
