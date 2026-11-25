@@ -340,9 +340,29 @@ Naming: snake_case. Booleans unless stated. Counters use `+= 1`.
 - Cartels: `cartels_watch_quiet` / `cartels_watch_loud` / `cartels_ignored` / `cartels_softened`.
 - Personal: `amanda_records` (1 keep everything / 2 not everything / 3 asked why), `mother_visits_promised`,
   `promised_mother_street`, `mother_asked_to_move`.
-- Chapter 1 later turns (phase 2): `fontes_hole_known`, `jaguars_defunded`, `files_petition` (1 received / 2 letter / 3 declined),
-  `lessa_met`, `reform_stance` (0 none / 1 open / 2 sceptical / 3 opposed), `great_project` (1 / 4 / 6),
-  `seen_<scene>` flags set at each scene's end.
+- Blue Room extras: `blueroom_topics`, `fontes_private` / `fontes_public`, `separate_reports`, `transfers_promised`,
+  `marne_prefers_railway`.
+- Treasury (T2): `fontes_hole_known`; how it was told: `hole_public` / `hole_quiet` / `hole_castelar` / `alexander_ordered`
+  (achievement hook); Corvel file: `corvel_to_salgado` / `corvel_held` / `corvel_costed`; Fund stance preview:
+  `no_more_fund` / `projects_first`.
+- Health (T2): `health_system_lean` / `transfers_lean`, `promised_no_hunger`, `tobacco_bill_interest` / `tobacco_deferred`.
+- Justice (T2): `avros_envelope` (1 opened / 2 held closed / 3 taken by Lara), `files_petition` (1 received / 2 letter /
+  3 declined), `delmar_acknowledged`, `delmar_time_asked`.
+- Defense (T2): `jaguars_defunded` (survival −1) / `jaguars_trimmed` / `jaguars_kept`, `files_promise_voss`.
+- Representation (T2): `lessa_met`, `reform_stance` (0 none / 1 open / 2 sceptical / 3 opposed / 4 compromise),
+  `decentralisation_seed`.
+- Bench (T3): `amendments` (1 published / 2 quiet / 3 refused / 4 deferred), `shielded_avros`, `warned_avros`.
+- Education (T3): `education_floor_first`. Planning (T3): `planning_seen` (count).
+- Vila Tamarin (T3): `celia_savings` (1 kept / 2 to Marco's kitchen + Lara promises the street / 3 Celia pays for the street →
+  Voice front page), `marco_deadline`, `warned_marco`, `tamarin_names`.
+- Great project (T3 closing): `great_project` (1 / 4 / 6) + `project_rare_earths` / `project_railway` / `project_sanitation`,
+  `luz_works_resumed`, `promised_on_time`, `chapter1_complete`.
+- `seen_<scene_id>` flags are set by each scene's last choice where later content depends on them.
+
+**Chapter-1 places and props (new):** the **Tauá Hills** (rare-earth deposit, Ibira; Indigenous land on two sides, cartel
+river on the third) · the **Six O'Clock Kitchen** (Marco) · **annex nine** (Corvel's unit prices) · the Treasury drawer
+labelled *PAST* · the sign *WORKS RESUME SOON* (someone added *WHEN?*) · **Anselm Royce**, head of the Fund's March review
+mission · Dona Ivone (Celia's neighbour with the bigger television) · Dona Severina (sells lunch at the dock gate).
 
 ---
 
