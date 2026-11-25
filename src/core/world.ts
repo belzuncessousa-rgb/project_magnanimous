@@ -167,6 +167,8 @@ export function createState(world: WorldInput): GameState {
   const revenue = taxRevenue(state);
   const pop = Object.values(regions).reduce((s, r) => s + r.population, 0);
   state.nation.debtInterest = world.nation?.debtInterest ?? revenue * TUNING.resources.debtInterestShare;
+  state.nation.baseRevenue = revenue;
+  state.nation.debtShare = revenue > 0 ? state.nation.debtInterest / revenue : TUNING.resources.debtInterestShare;
   state.nation.costPerCapita = pop > 0 ? (revenue * TUNING.resources.baseCostShare) / pop : 0;
   const net = revenue - pop * state.nation.costPerCapita - state.nation.debtInterest;
   state.nation.fcBracket = net > 0 ? net / (TUNING.resources.targetFCIncome + 0.5) : 1;

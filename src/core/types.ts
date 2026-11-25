@@ -85,7 +85,15 @@ export interface GameState {
   flags: Record<string, FlagValue>;
   resources: Resources;
   taxes: { domestic: number; trade: number };
-  nation: { debtInterest: number; culturalPower: number; costPerCapita: number; fcBracket: number };
+  nation: {
+    debtInterest: number;
+    culturalPower: number;
+    costPerCapita: number;
+    fcBracket: number;
+    /** interest as a share of the initial revenue (debtInterest = debtShare * baseRevenue) */
+    debtShare?: number;
+    baseRevenue?: number;
+  };
   completedScenes: string[];
   newsQueue: QueuedNews[];
   printedNews: string[];

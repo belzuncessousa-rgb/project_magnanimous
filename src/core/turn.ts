@@ -202,5 +202,28 @@ export function simulateTurn(state: GameState): void {
     state.cooldowns[k] = Math.max(0, (state.cooldowns[k] ?? 0) - 1);
     if (state.cooldowns[k] === 0) delete state.cooldowns[k];
   }
+  debtTurn(state);
   refreshResources(state);
+}
+
+/** Debt policy effects on the interest share (applied before the new turn's FC income). */
+export function debtTurn(state: GameState): void {
+  const D = T.debt;
+  const n = state.nation;
+  n.baseRevenue ??= taxRevenue(state);
+  n.debtShare ??= n.baseRevenue > 0 ? n.debtInterest / n.baseRevenue : T.resources.debtInterestShare;
+  const policy = Number(state.flags.debt_policy) || 0;
+  if (policy === 1) {
+    state.resources.FC = Math.max(0, state.resources.FC - D.payDownFCPerTurn);
+    n.debtShare -= D.payDownSharePerYear / D.turnsPerYear;
+  } else if (policy === 2) {
+    if (state.chapter >= D.borrowFromChapter && !state.flags.debt_borrow_interest) {
+      state.flags.debt_borrow_interest = true;
+      n.debtShare += D.borrowShareIncrease;
+    }
+  } else if (policy === 3) {
+    n.debtShare += D.statusQuoSharePerYear / D.turnsPerYear;
+  }
+  n.debtShare = Math.max(D.minShare, n.debtShare);
+  n.debtInterest = n.debtShare * n.baseRevenue;
 }
