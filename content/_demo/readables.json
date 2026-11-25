@@ -1,0 +1,5 @@
+[
+  { "id": "demo-note", "chapter": 1, "turn": 1, "location": "vila-tamarin", "kind": "note", "title": "A note from Amanda", "from": "Amanda", "text": "[DEMO] Your mother called. Twice.", "flags": { "demo_read_note": true } },
+  { "id": "demo-report", "chapter": 1, "turn": 1, "location": "capital", "kind": "report", "title": "Morning summary", "text": "[DEMO] Ministries report in. Nothing is on fire. Yet." },
+  { "id": "demo-reaction", "chapter": 1, "turn": 1, "location": "katanai", "kind": "reaction", "title": "Voices in Katanaí", "text": "[DEMO] 'She is one of us. Let's see how long that lasts.'" }
+]

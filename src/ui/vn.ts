@@ -192,6 +192,8 @@ export class VNView {
     this.rightWho = null;
     this.left.dataset.who = '';
     this.right.dataset.who = '';
+    clear(this.left);
+    clear(this.right);
     this.titleEl.textContent = title;
     const first = runner.scene.meta.portraits[0];
     if (first) this.rightWho = first;
