@@ -1,6 +1,6 @@
 # Narrative canon — author design sessions
 
-Last consolidated: 2026-11-25. Sessions 01–36. Maintained as author interviews continue.
+Last consolidated: 2026-11-25. Sessions 01–37. Maintained as author interviews continue.
 
 ## Authority and workflow
 
@@ -149,9 +149,13 @@ Both superpowers are willing to push for Kunasai's submission, not merely mutual
 
 Author recalled Zharan's connection to cartels through Tarev (consistent with established Tarev/cartel material). Nature and degree of Zharan's direct involvement remain to be clarified. Author prefers freely elaborating by voice; assistant should extract relevant decisions, examples and uncertainties, not require rigid answers.
 
-## Next design discussion (37)
+## 37 — Tarev and international security cooperation
 
-Tarev: clarify whether Zharan knowingly supports cartel-linked actors directly or benefits through its client state's tolerated criminal networks. The [Tarev GDD](https://app.notion.com/p/36b10ad02158816e98abe0119c4305e4) leaves the detailed regime, dependency and pressure mechanisms largely TBD. Keep discussion focused on narrative role and avoid unnecessarily multiplying foreign arcs.
+Confirmed: Zharan knowingly tolerates cartel-linked actors within Tarev because maintaining strategic influence over its client state takes priority over combating organized crime. Do not establish Zharan as directly commanding the cartels. Both superpowers can offer assistance against the cartels. Working differentiation: Federation intelligence, equipment, financial investigations, training and security cooperation in exchange for possible military/geopolitical commitments; Zharan pressure on Tarev, intelligence and regional cooperation in exchange for possible economic/strategic concessions. These are illustrative offers, not fixed agreements. International assistance should complement domestic institutional capacity rather than guarantee success. Preserve independent security strategies and cumulative diplomatic obligations. Exact conditions, effects and costs remain open. Tarev's detailed regime and history are still TBD.
+
+## Next design discussion (38)
+
+Review the existing Arenza GDD and resolve a meaningful uncertainty regarding regional multilateralism, rivalry or bloc formation. Continue focused discussion of important foreign relationships.
 
 ## Implementation backlog (not yet changes)
 
