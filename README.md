@@ -16,7 +16,7 @@ npm run preview    # serve dist/
 ```
 
 Dev-only URL switches (stripped from production builds):
-- `?corpus=ch1` plays the chapter-1 test corpus in `tests/fixtures/ch1` instead of `content/`;
+- `?corpus=main` plays the content snapshot in `tests/fixtures/main` instead of `content/`;
 - `?corpus=demo` plays only `content/_demo` (exercises budget, vote, readables and tutorial highlights);
 - `?showLocked` (or localStorage `magnanimous.dev.showLocked = 1`) shows `[lock if]` options greyed instead of hiding them.
 
@@ -34,7 +34,7 @@ src/scene/               scene parser (SCENE-FORMAT + Notion pages) and the scen
 src/content/             content discovery (import.meta.glob), lenient schema normalisation, cross-reference validation
 src/game/                turn flow (availability, forced order, closing scene, newspapers, pop-ups, free actions), save/load
 src/ui/                  DOM UI: title, map (terrain/political, markers, pins, pan/zoom), VN mode, HUD, newspaper
-tests/                   vitest suites + fixtures (Inauguration Notion page, repo-format sample, ch1 corpus snapshot)
+tests/                   vitest suites + fixtures (Inauguration Notion page, repo-format sample, content snapshot from main)
 ```
 
 ## How content is loaded
@@ -46,7 +46,7 @@ scene exists. JSON is normalised leniently (`src/content/schema.ts`): arrays or 
 (`opinion`/`loyalty`, `culture`/`culturalPower`, `gdp`, `acronym`…), missing regions/countries filled from GDD defaults.
 
 In dev builds the console lists parse warnings and unresolved references (unknown regions, characters, news ids…).
-`npm test` runs the same checks against `tests/fixtures/ch1`.
+`npm test` runs the same checks against `tests/fixtures/main`.
 
 ## Adding content
 
