@@ -1,6 +1,6 @@
 # Narrative canon — author design sessions
 
-Last consolidated: 2026-11-25. Sessions 01–31. Maintained as author interviews continue.
+Last consolidated: 2026-11-25. Sessions 01–32. Maintained as author interviews continue.
 
 ## Authority and workflow
 
@@ -119,9 +119,13 @@ Author delegated indigenous design: establish some legally recognized indigenous
 
 Confirmed distinction: Red Tree emphasizes territorial control, production and illegal extraction in remote/rural areas; its objective is freedom to operate with minimal state interference or accommodating agreements, NOT sovereignty, separatism or establishing a government. Blue Piranhas emphasizes financial power, trafficking, laundering and institutional influence, seeking protection and impunity. Both are violent criminal organizations with an uneasy truce. Preserve the [Cartels GDD](https://app.notion.com/p/37110ad0215881a89e42d93c32d25bf4), including nationwide consequences regardless of Ibira investment, cross-party corruption, Tarev connections and foreign cooperation. Author supports distinctive identities and asks that design be tested for engagement and implementability. Retain ability to defeat both or one; preserve potential cooperation with one against the other. Proposed outcomes include both defeated, either defeated, accommodation, or failure. Defeating one need not require cooperation with the other. Working implementation proposal: separate existing opinion, capacity-to-act and suspicion attributes for each, shared authored arc with conditional scenes and outcomes rather than independent campaigns or a criminal economy simulation. Exact mechanics, triggers, costs and definition of defeat remain open; downstream scene consistency is principal implementation risk. Do not assume eradication of all crime.
 
-## Next design discussion (32)
+## 32 — First-term closure and second-term transformations
 
-Determine what defeating a cartel means within the first term (dismantled organization vs weakened residual networks), with emphasis on satisfying payoff and manageable scope. Consult existing GDD before subsequent questions.
+Confirmed: Lara can completely dismantle both Red Tree and Blue Piranhas as major organizations in the first term; this does not eliminate all crime. Each major first-term arc should reach a recognizable finale, even when unsuccessful. Surviving cartels may be substantially stronger and become a major problem for the next administration. Tekoku separatism and Mondrath remain distinct interacting arcs with possible first-term territorial loss. Distinguish arcs capable of definitive first-term resolution from progressive development arcs and naturally long-term transformations (cultural change, radical changes of government). Firm author constraint: democracy cannot end in the first term; a definitive regime transition belongs to the second term. First-term institutional weakening, consolidation of executive power and preparation for radical transformations remain possible, within that constraint. Assassination, removal from office and territorial loss remain possible first-term outcomes. Exact thresholds, arc finales, institutional safeguards and mechanics TBD. The conclusive/progressive/transformative taxonomy is a working editorial framework, not a rigid classification of every arc.
+
+## Next design discussion (33)
+
+Review the existing GDD for environmental policy and its cross-regional consequences before asking a focused unresolved question. Maintain first-term closure and manageable scope.
 
 ## Implementation backlog (not yet changes)
 
