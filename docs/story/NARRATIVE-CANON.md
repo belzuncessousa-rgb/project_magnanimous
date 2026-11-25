@@ -1,6 +1,6 @@
 # Narrative canon — author design sessions
 
-Last consolidated: 2026-11-25. Sessions 01–26. Maintained as author interviews continue.
+Last consolidated: 2026-11-25. Sessions 01–27. Maintained as author interviews continue.
 
 ## Authority and workflow
 
@@ -95,9 +95,13 @@ Working implementation proposal, not final: modular draft composed of provisions
 
 Preserve the existing [Tekoku GDD](https://app.notion.com/p/36b10ad0215880c0a953e31afded3b35): initially Tekoku sees itself as an integral part of Kunasai, with strong regional identity and representation grievances; very low approval and stability can trigger separatism, and hostile/aggressive Mondrath may support it. Fiscal resentment, Veldran identity, latent racism, internal migration and representation disputes are existing contributing factors. Integrate this arc with the PEC rather than replacing the GDD. Confirmed author decision: actual Tekoku independence can occur within Lara's first term. Working proposal: exceptional accumulated crisis (or negotiated concession), escalating from discontent to political mobilization, constitutional confrontation and possible foreign involvement; potential outcomes reconciliation, autonomy, unresolved crisis or independence. Map, national fiscal/economic aggregation, legislature, elections, technology, diplomacy and later content must accommodate territorial loss. A separate diplomatic entity is a provisional implementation idea, not locked: the [Mondrath GDD](https://app.notion.com/p/36b10ad0215881818a8fc242bc2db107) already contemplates Tekoku seeking union with Mondrath. Exact secession outcomes, conditions, timing and mechanical design remain open. Consult relevant GDD pages before each new design question; do not ask the author to restate settled lore.
 
-## Next design discussion (27)
+## 27 — The Veldran question
 
-Clarify whether first-term secession can culminate in an independent Tekoku, union with Mondrath, or either. Existing Mondrath GDD provides the historical and cultural basis for union; its later reverse-unification possibilities are separate. Continue focused questions on unresolved topics.
+Confirmed: Tekoku separatism and the Mondrath geopolitical crisis are independent arcs that can intersect and amplify one another. Either can occur without the other. Tekoku can secede in the first term as an independent republic OR join Mondrath, depending on circumstances. Preserve the existing Mondrath GDD's historical and cultural relationship and potential reverse reunification with Kunasai in a later term. Do not predetermine foreign intervention or annexation merely because separatism triggers. Exact conditions and geopolitical outcomes remain to be designed. Revisit Mondrath during the foreign-policy design discussion.
+
+## Next design discussion (28)
+
+Review the remaining regional GDD pages, beginning with Mognagna, for unresolved narrative questions. Avoid restating established lore.
 
 ## Implementation backlog (not yet changes)
 
