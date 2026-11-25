@@ -1,6 +1,6 @@
 # Narrative canon — author design sessions
 
-Last consolidated: 2026-11-25. Sessions 01–27. Maintained as author interviews continue.
+Last consolidated: 2026-11-25. Sessions 01–28. Maintained as author interviews continue.
 
 ## Authority and workflow
 
@@ -99,9 +99,13 @@ Preserve the existing [Tekoku GDD](https://app.notion.com/p/36b10ad0215880c0a953
 
 Confirmed: Tekoku separatism and the Mondrath geopolitical crisis are independent arcs that can intersect and amplify one another. Either can occur without the other. Tekoku can secede in the first term as an independent republic OR join Mondrath, depending on circumstances. Preserve the existing Mondrath GDD's historical and cultural relationship and potential reverse reunification with Kunasai in a later term. Do not predetermine foreign intervention or annexation merely because separatism triggers. Exact conditions and geopolitical outcomes remain to be designed. Revisit Mondrath during the foreign-policy design discussion.
 
-## Next design discussion (28)
+## 28 — Mognagna and the Coronels
 
-Review the remaining regional GDD pages, beginning with Mognagna, for unresolved narrative questions. Avoid restating established lore.
+Confirmed: independent regional power brokers with cross-party relationships, especially OPP and PM populists, rather than a single party faction. Retain the [Mognagna GDD](https://app.notion.com/p/36b10ad021588098b6f7d53292b43373) approaches: dismantle through land/judicial reform, tolerate, or empower/negotiate. Author explicitly welcomes critical editorial assessment of plausibility, fun, engagement and production cost, not merely agreement. Design critique/proposals: avoid obvious moral optimization (credible reasons even reform-minded presidents might negotiate with local brokers); reward costly social development with visible human/narrative changes as well as indices; show regional culture, historical significance and enterprise rather than defining Mognagna solely by deprivation. Consider a prominent locally respected Coronel whose patronage simultaneously sustains dependency and provides services/employment where institutions fail. Specific character and events not locked.
+
+## Next design discussion (29)
+
+Review Tapira's existing GDD and identify a meaningful unresolved design question or gameplay weakness before moving on. Maintain critical editorial stance and one question at a time.
 
 ## Implementation backlog (not yet changes)
 
