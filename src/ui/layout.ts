@@ -69,10 +69,20 @@ export function stackPins(pins: { at: P; w: number; h: number }[], obstacles: Re
     const p = pins[i]!;
     const base: Rect = { x: p.at[0] - p.w / 2, y: p.at[1] + 12, w: p.w, h: p.h };
     let found: Rect = base;
-    for (let step = 0; step < 80; step++) {
-      const dy = (step % 2 === 0 ? 1 : -1) * Math.ceil(step / 2) * (p.h / 2 + pad);
-      const cand = { ...base, y: base.y + dy };
-      if (!placed.some((r) => hit(r, cand, pad))) { found = cand; break; }
+    // search outward from the anchor: rings of candidates (closest free slot wins)
+    const step = Math.max(p.h, 12) + pad;
+    search: for (let ring = 0; ring < 40; ring++) {
+      const cands: Rect[] = ring === 0 ? [base] : [];
+      if (ring > 0) {
+        const n = 8 * ring;
+        for (let j = 0; j < n; j++) {
+          const a = (j / n) * Math.PI * 2 + Math.PI / 2; // start below the anchor
+          cands.push({ ...base, x: base.x + Math.cos(a) * ring * step * (p.w > 3 * p.h ? 1.6 : 1), y: base.y + Math.sin(a) * ring * step });
+        }
+      }
+      for (const cand of cands) {
+        if (!placed.some((r) => hit(r, cand, pad))) { found = cand; break search; }
+      }
     }
     placed.push(found);
     res[i] = [found.x, found.y];

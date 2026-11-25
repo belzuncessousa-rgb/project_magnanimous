@@ -276,9 +276,11 @@ export class MapView {
 
   private renderToasts() {
     clear(this.toastLayer);
+    // many items at once: icon-only pins, titles on hover (the agenda lists them too)
+    this.toastLayer.classList.toggle('compact', this.toasts.length > 6);
     for (const t of this.toasts) {
       // a small titled pin; click opens the paper card (App)
-      const el = h('button', { class: `map-toast kind-${t.kind}${t.read ? ' read' : ''}`, 'data-id': t.id, 'data-tip': t.read ? 'Read' : 'Click to read' },
+      const el = h('button', { class: `map-toast kind-${t.kind}${t.read ? ' read' : ''}`, 'data-id': t.id, 'data-tip': `${t.title ?? 'Report'}${t.read ? ' (read)' : ''}`, 'aria-label': t.title ?? 'Report' },
         h('span', { class: 'toast-icon' }, READABLE_ICON[t.kind] ?? '◉'),
         h('span', { class: 'toast-title' }, t.title ?? 'Report'));
       el.addEventListener('click', (ev) => {

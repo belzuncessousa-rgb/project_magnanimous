@@ -31,6 +31,7 @@ export class App {
   private targeting: FreeAction | null = null;
   private busy = false;
   private hasTutorial = false;
+  private agendaReadsOpen = false;
   private card = h('div', { class: 'readable-card paper', hidden: true });
   private tip = h('div', { class: 'ui-tip', hidden: true });
 
@@ -228,13 +229,24 @@ export class App {
     clear(this.agenda);
     this.agenda.append(h('div', { class: 'panel-title' }, 'Agenda'));
     if (!scenes.length) this.agenda.append(h('div', { class: 'agenda-empty' }, 'Nothing on your desk.'));
-    this.agenda.classList.toggle('empty', !scenes.length);
+    const unread = g.activePopups().filter((p) => !g.isRead(p.id));
+    this.agenda.classList.toggle('empty', !scenes.length && !unread.length);
     for (const sc of scenes) {
       const locked = g.isLocked(sc);
       this.agenda.append(
         h('button', { class: `agenda-item kind-${sc.meta.kind}${locked ? ' locked' : ''}`, disabled: locked, onclick: () => void this.playScene(sc.id) },
           h('span', { class: 'agenda-kind' }, (g.isRequired(sc) ? '● ' : '○ ') + (KIND_LABEL[sc.meta.kind] ?? sc.meta.kind)),
           h('span', { class: 'agenda-title' }, sc.meta.title)));
+    }
+    // unread readables (the map pins become icon-only when there are many)
+    if (unread.length) {
+      const list = h('details', { class: 'agenda-reads', 'data-ui': 'readables-list' },
+        h('summary', {}, `On your desk · ${unread.length} unread`),
+        ...unread.map((p) =>
+          h('button', { class: 'agenda-read', onclick: (ev: Event) => { const r = (ev.currentTarget as HTMLElement).getBoundingClientRect(); this.showReadable(p.id, r.left - 340, r.top); } }, p.title ?? 'Report')));
+      if (unread.length <= 6 || this.agendaReadsOpen) list.setAttribute('open', '');
+      list.addEventListener('toggle', () => (this.agendaReadsOpen = (list as HTMLDetailsElement).open));
+      this.agenda.append(list);
     }
     // end turn
     const pending = g.pendingRequired().length;
