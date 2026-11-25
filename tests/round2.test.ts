@@ -49,7 +49,7 @@ function bundle(extra: RawFile[] = []) {
       data: [
         {
           id: 'health', name: 'Health', minister: 'x',
-          tiers: { cut: { fc_per_turn: 0, effects: '[col -1 @ all]' }, low: { fc_per_turn: 1 }, regular: { fc_per_turn: 2 }, high: { fc_per_turn: 3 } },
+          tiers: { cut: { fc_per_turn: 0, effects: '[col -1 @ all]' }, low: { fc_per_turn: 2.5 }, regular: { fc_per_turn: 5 }, high: { fc_per_turn: 7.5 } },
           initiatives: [
             { id: 'clinics', name: 'Clinics', summary: '', effects_per_turn: '[col +1 @ all]', once: '[flag: clinics_opened = true]' },
             { id: 'transfers', name: 'Transfers', summary: '', effects_per_turn: '[approval +1 @ all]' },
@@ -62,7 +62,7 @@ function bundle(extra: RawFile[] = []) {
       data: [{
         id: 'reform', title: 'Reform', summary: '',
         positions: { pm: { base: 0.8 }, opp: { base: -0.2, ifs: [{ when: 'flag.opp_price_1 == 1', delta: 0.5 }] }, cv: 0.3, cp: -0.8, nf: -1, fff: -0.5, ca: 0.1 },
-        whip_costs: { ca: '[cost: 1 FC]' },
+        whip_costs: { ca: '[cost: 10 FC]' },
       }],
     },
     {
@@ -158,9 +158,9 @@ describe('round 2: budget', () => {
     expect(g.state.flags['initiative.transfers']).toBe(false);
     expect(g.state.flags.clinics_opened).toBe(true);
     expect(currentBudget(g.state, c.ministries).health).toEqual({ tier: 'low', initiative: 'clinics' });
-    expect(budgetCostPerTurn(c.ministries, currentBudget(g.state, c.ministries))).toBe(1);
+    expect(budgetCostPerTurn(c.ministries, currentBudget(g.state, c.ministries))).toBe(2.5);
     const col = g.state.regions.ibicui!.col;
-    g.state.resources.FC = 5;
+    g.state.resources.FC = 50;
     for (const id of ['a', 'b']) { play(g.startScene(id)); g.completeScene(id); }
     g.endTurn();
     expect(g.state.regions.ibicui!.col).toBeGreaterThan(col);
@@ -182,18 +182,18 @@ describe('round 2: congress votes', () => {
     expect(p.yes).toBe(24 + 6 + 4 + 2);
     expect(stanceOf(0.15)).toBe('leaning');
     expect(whipOptions(bill, 'opp').map((d) => d.id)).toEqual(['small', 'medium-ipi', 'medium-fc', 'high']);
-    expect(whipOptions(bill, 'ca')[0]).toMatchObject({ id: 'deal', cost: { FC: 1 } });
+    expect(whipOptions(bill, 'ca')[0]).toMatchObject({ id: 'deal', cost: { FC: 10 } });
 
     g.state.resources = { PT: 3, FC: 1, IPI: 0, EPI: 1 };
     expect(resolveVote(g.state, bill, { opp: 'high' })).toBeNull(); // unaffordable
-    g.state.resources = { PT: 3, FC: 6, IPI: 2, EPI: 1 };
+    g.state.resources = { PT: 3, FC: 60.5, IPI: 2, EPI: 1 };
     const r = resolveVote(g.state, bill, { opp: 'high', ca: 'deal' })!;
     expect(r.result).toBe('passed');
     expect(g.state.flags['vote.reform']).toBe('passed');
     expect(g.state.flags['vote.reform.margin']).toBe(r.yes - 50);
     expect(g.state.flags.corruption).toBe(1);
     expect(g.state.flags.opp_ministry_promised).toBe(true);
-    expect(g.state.resources.FC).toBe(2);
+    expect(g.state.resources.FC).toBeCloseTo(20.5);
   });
 
   it('conditional positions (ifs) and failed / watered results', () => {

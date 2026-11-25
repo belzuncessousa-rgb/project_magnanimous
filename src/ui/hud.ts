@@ -2,11 +2,12 @@
 import { nationalApproval } from '../core/query';
 import type { GameState } from '../core/types';
 import { h } from './dom';
-import { pct1 } from './format';
+import { bn, pct1 } from './format';
+import { TUNING } from '../core/tuning';
 
 const TIPS: Record<string, string> = {
   PT: 'PT — Presidential Time. Your own hours and attention: visits, rallies, meetings. Refills each turn from approval and stability; unused time is lost.',
-  FC: 'FC — Financial Capital. What the treasury can spend after costs and debt interest. Accumulates between turns; ministry budgets draw on it every turn.',
+  FC: 'FC — Financial Capital, in billions. The treasury\'s free money: tax revenue minus the fixed costs of the state and debt interest, every turn. It accumulates; ministry budgets draw on it.',
   IPI: 'IPI — Internal Political Influence. Leverage over Congress, parties and the cabinet, from their loyalty and capacity. Half carries over.',
   EPI: 'EPI — External Political Influence. Leverage abroad, weighted by the size of the countries that like you. Half carries over.',
   APP: 'Approval — national average, weighted by population. Each region has its own; click a region to see it.',
@@ -42,12 +43,12 @@ export class Hud {
       }
     };
     set('PT', String(Math.floor(st.resources.PT)));
-    set('FC', String(Math.floor(st.resources.FC)));
+    set('FC', bn(st.resources.FC));
     const fcBox = this.vals.FC!.parentElement!;
     const debt = st.nation.debt ?? 0;
     const paid = st.nation.debtPaid;
-    fcBox.setAttribute('data-tip', `${TIPS.FC} Public debt: ${debt.toFixed(1)} FC.` +
-      (paid ? ` Last turn: ${paid.interest.toFixed(1)} FC interest${paid.principal ? `, ${paid.principal.toFixed(1)} FC principal` : ''}.` : ''));
+    fcBox.setAttribute('data-tip', `${TIPS.FC} Public debt: ${bn(debt)}.` +
+      (paid ? ` Last turn: ${bn(paid.interest)} interest${paid.principal ? `, ${bn(paid.principal)} principal` : ''}.` : ` Interest: ${bn(debt * TUNING.debt.interestRatePerTurn)} per turn.`));
     set('IPI', String(Math.floor(st.resources.IPI)));
     set('EPI', String(Math.floor(st.resources.EPI)));
     set('APP', pct1(nationalApproval(st)));

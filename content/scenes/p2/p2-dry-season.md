@@ -37,9 +37,9 @@ Governor Julio Porper meets you at the town hall. He is a PM governor in his sev
 
 ## decide
 
-1. **"An emergency programme: water, food and seed for the forty towns."** `[cost: 2 FC]` `[approval +5 @ mognagna]` `[col +2 @ mognagna]` `[dara loyalty +2]` `[porper loyalty +2]` `[flag: famine_relief = 1]`
+1. **"An emergency programme: water, food and seed for the forty towns."** `[cost: 20 FC]` `[approval +5 @ mognagna]` `[col +2 @ mognagna]` `[dara loyalty +2]` `[porper loyalty +2]` `[flag: famine_relief = 1]`
    ↳ > **Julio Porper:** "Thank you. I'll have the lists ready tomorrow."
-2. **"The army can deliver water and food. It's cheaper and faster."** `[cost: 1 FC]` `[approval +3 @ mognagna]` `[voss loyalty +1]` `[+1 FORCE]` `[flag: famine_relief = 2]`
+2. **"The army can deliver water and food. It's cheaper and faster."** `[cost: 10 FC]` `[approval +3 @ mognagna]` `[voss loyalty +1]` `[+1 FORCE]` `[flag: famine_relief = 2]`
    ↳ > **Owin Dara:** "People here remember the army. Some of them fondly. That's not my concern today."
 3. **"The state government must use its own funds first. We'll help if it gets worse."** `[porper loyalty -2]` `[dara loyalty -1]` `[approval -3 @ mognagna]` `[flag: famine_relief = 3]` `[flag: famine_pressure = true]`
    ↳ > **Julio Porper:** "The state has no funds, Madam President. But I'll tell them you said so."

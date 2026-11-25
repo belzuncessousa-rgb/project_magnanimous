@@ -34,7 +34,7 @@ Mertens comes to see you with Livia.
    ↳ > **Livia Harvan:** "She'll accept, because it's a victory she can announce. She'll also know it's a delay."
 3. **"Wait them out. The public will tire of a closed Congress before we do."** `[flag: impasse_outcome = 3]` `[stability -4 @ tekoku]` `[approval -3 @ tekoku]` `[nf opinion -1]` `[flag: path_harden += 1]`
    ↳ > **Caio Mertens:** "Possibly. Possibly the public will blame whoever is president."
-4. **"Ask Odel what it would cost for the OPP to break the obstruction with procedure."** `[cost: 2 IPI, 1 FC]` `[flag: impasse_outcome = 4]` `[opp opinion +2]` `[flag: corruption += 1]` `[flag: voice += 1]`
+4. **"Ask Odel what it would cost for the OPP to break the obstruction with procedure."** `[cost: 2 IPI, 10 FC]` `[flag: impasse_outcome = 4]` `[opp opinion +2]` `[flag: corruption += 1]` `[flag: voice += 1]`
    ↳ > **Caio Mertens:** "He'll ask for the Ports ministry if we ever create one. And a few things before that. I'll arrange it."
    ↳ *Congress has to work. How it is made to work is a detail.*
 
@@ -46,7 +46,7 @@ Mertens comes to see you with Livia.
 
 > **Livia Harvan:** "Governor Porper says the poor states will 'never accept being silenced'. There were demonstrations in Sugar Bay."
 
-1. **"Compensate the poorer states: a regional development fund, written into law."** `[cost: 2 FC]` `[flag: impasse_outcome = 5]` `[approval +4 @ mognagna, ibira]` `[pm opinion +2]` `[porper loyalty +2]`
+1. **"Compensate the poorer states: a regional development fund, written into law."** `[cost: 20 FC]` `[flag: impasse_outcome = 5]` `[approval +4 @ mognagna, ibira]` `[pm opinion +2]` `[porper loyalty +2]`
    ↳ > **Caio Mertens:** "That will bring most of your deputies back. Avros will claim the credit."
 2. **"Talk to Avros directly. Whatever he wants."** `[flag: impasse_outcome = 6]` `[avros loyalty +2]` `[pm opinion +2]` `[flag: corruption += 1]` `[flag: shielded_avros = true]` `[flag: voice += 1]`
    ↳ > **Livia Harvan:** "What he wants is for Renata's department to slow down. You should know that before you call him."

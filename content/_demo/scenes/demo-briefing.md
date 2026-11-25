@@ -36,5 +36,5 @@ portraits: [salgado]
 
 > **Renata Salgado:** "The unions want a seat at the table. It will cost money."
 
-1. **Fund the compact** `[cost: 1 FC]` `[flag: demo_labor_compact = true]` `[unions opinion +2]`
+1. **Fund the compact** `[cost: 10 FC]` `[flag: demo_labor_compact = true]` `[unions opinion +2]`
 2. **"Not yet."** `[flag: demo_ignored_unions = true]` `[unions opinion -2]`

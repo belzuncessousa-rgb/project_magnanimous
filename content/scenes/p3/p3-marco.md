@@ -37,9 +37,9 @@ Dorival Sena is there too. He is the president of the National Workers' Confeder
 
 ## decide
 
-1. **"Temporary housing, a bus service and a clinic on the slopes, starting this month."** `[cost: 2 FC]` `[col +2 @ ibicui]` `[unions opinion +2]` `[marco loyalty +1]` `[flag: strike_palliatives = true]`
+1. **"Temporary housing, a bus service and a clinic on the slopes, starting this month."** `[cost: 20 FC]` `[col +2 @ ibicui]` `[unions opinion +2]` `[marco loyalty +1]` `[flag: strike_palliatives = true]`
    ↳ > **Dorival Sena:** "That buys time. Maybe a lot of it."
-2. **"Free meals through community kitchens like this one, paid by the state."** `[cost: 1 FC]` `[marco loyalty +2]` `[unions opinion +1]` `[flag: strike_palliatives = true]`
+2. **"Free meals through community kitchens like this one, paid by the state."** `[cost: 10 FC]` `[marco loyalty +2]` `[unions opinion +1]` `[flag: strike_palliatives = true]`
    ↳ > **Marco Prestes:** "That's a start. It's not a pipe."
 3. **"I'll ask Renata to open wage talks for the port immediately."** `[salgado loyalty +1]` `[unions opinion +1]` `[flag: port_talks = true]`
    ↳ > **Dorival Sena:** "Talks help if they finish."

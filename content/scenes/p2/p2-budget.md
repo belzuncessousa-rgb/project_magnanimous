@@ -71,9 +71,9 @@ The Blue Room again. Livia has put a single sheet in front of each minister: the
 
 > **Alexander Fontes:** "The Fund is the only lender available to us at the moment. Other options might exist in a few years, depending on how things go."
 
-1. **"We start paying back the principal."** `[cost: 1 FC]` `[flag: debt_policy = 1]` `[federation relation +1]` `[fontes loyalty +2]` `[-1 WELF]`
+1. **"We start paying back the principal."** `[flag: debt_policy = 1]` `[federation relation +1]` `[fontes loyalty +2]` `[-1 WELF]` `[open: debt]`
    ↳ > **Alexander Fontes:** "Good. It will be tight. But in four years the interest will be smaller, and that matters more than anything else on this sheet."
-2. **"We borrow more, and accept the conditions."** `[gain: 3 FC]` `[flag: debt_policy = 2]` `[federation relation +1]` `[fontes loyalty -2]` `[-1 IDEN]` `[-1 ECON]`
+2. **"We borrow more, and accept the conditions."** `[flag: debt_policy = 2]` `[federation relation +1]` `[fontes loyalty -2]` `[-1 IDEN]` `[-1 ECON]` `[open: debt]`
    ↳ > **Alexander Fontes:** "I'll prepare the agreement. The conditions will include a spending ceiling and the sale of at least one state company. You'll be asked which one."
    ↳ `[if: flag.no_more_fund]` > **Alexander Fontes:** "You told me in January you didn't want this. I noted it. I'll note this too."
 3. **"We continue as we are for now."** `[flag: debt_policy = 3]` `[fontes loyalty -1]`

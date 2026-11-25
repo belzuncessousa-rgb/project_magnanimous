@@ -13,7 +13,7 @@ background: blue-room
 ---
 
 ⚙️ The first budget (CABINET-NOTION / GDD Ministries & Cabinet). Livia conducts, Fontes explains the money. `[open: budget]` opens the budget screen (tiers per ministry from content/ministries.json). Afterwards: the Judicial Strengthening target (if funded), the debt decision (DECISIONS: pay principal / borrow more from the Fund / status quo), reactions.
-⚙️ Debt recurring effects need engine support (not expressible as tokens): debt_policy 1 = pay principal (≈ −0.5 FC per turn, interest share falls 1 point per year); 2 = borrow more (+3 FC now, interest share +2 points from chapter 4); 3 = status quo.
+⚙️ Debt (engine, src/core/turn.ts debtService): the debt is a balance in FC; every turn a fixed % of the balance is paid as interest (TUNING.debt.interestRatePerTurn). debt_policy 1 = also pay principal each turn (balance falls → next interest falls); 2 = the balance grows by the amount borrowed (cash given here); 3 = interest only.
 
 ## opening
 
@@ -71,9 +71,9 @@ The Blue Room again. Livia has put a single sheet in front of each minister: the
 
 > **Alexander Fontes:** "The Fund is the only lender available to us at the moment. Other options might exist in a few years, depending on how things go."
 
-1. **"We start paying back the principal."** `[cost: 1 FC]` `[flag: debt_policy = 1]` `[federation relation +1]` `[fontes loyalty +2]` `[-1 WELF]`
+1. **"We start paying back the principal."** `[flag: debt_policy = 1]` `[federation relation +1]` `[fontes loyalty +2]` `[-1 WELF]` `[open: debt]`
    ↳ > **Alexander Fontes:** "Good. It will be tight. But in four years the interest will be smaller, and that matters more than anything else on this sheet."
-2. **"We borrow more, and accept the conditions."** `[gain: 3 FC]` `[flag: debt_policy = 2]` `[federation relation +1]` `[fontes loyalty -2]` `[-1 IDEN]` `[-1 ECON]`
+2. **"We borrow more, and accept the conditions."** `[flag: debt_policy = 2]` `[federation relation +1]` `[fontes loyalty -2]` `[-1 IDEN]` `[-1 ECON]` `[open: debt]`
    ↳ > **Alexander Fontes:** "I'll prepare the agreement. The conditions will include a spending ceiling and the sale of at least one state company. You'll be asked which one."
    ↳ `[if: flag.no_more_fund]` > **Alexander Fontes:** "You told me in January you didn't want this. I noted it. I'll note this too."
 3. **"We continue as we are for now."** `[flag: debt_policy = 3]` `[fontes loyalty -1]`

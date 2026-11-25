@@ -127,8 +127,8 @@ export function whipOptions(bill: Bill, party: string): WhipDeal[] {
     return [
       { id: 'small', label: 'A small favour', cost: small, delta: 0.35 },
       { id: 'medium-ipi', label: 'A real concession', cost: { IPI: 2 }, delta: 0.6 },
-      { id: 'medium-fc', label: 'Money for their districts', cost: { FC: 2 }, delta: 0.6, ...corrupt },
-      { id: 'high', label: 'A ministry, later', cost: { FC: 3 }, delta: 1, flags: { opp_ministry_promised: true }, ...corrupt },
+      { id: 'medium-fc', label: 'Money for their districts', cost: { FC: 20 }, delta: 0.6, ...corrupt },
+      { id: 'high', label: 'A ministry, later', cost: { FC: 30 }, delta: 1, flags: { opp_ministry_promised: true }, ...corrupt },
     ];
   }
   const own = bill.whipCosts[party];

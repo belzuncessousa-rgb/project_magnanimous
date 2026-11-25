@@ -53,7 +53,7 @@ The Zharani special envoy, Nima Sadrah, asked to meet you in Katanaí rather tha
 
 ## answer
 
-1. **"We accept in principle. Prepare a memorandum."** `[gain: 2 FC]` `[zharan relation +3]` `[federation relation -2]` `[-1 IDEN]` `[flag: zharan_financing = true]`
+1. **"We accept in principle. Prepare a memorandum."** `[gain: 20 FC]` `[zharan relation +3]` `[federation relation -2]` `[-1 IDEN]` `[flag: zharan_financing = true]`
    ↳ > **Nima Sadrah:** "Thank you. The memorandum will be with Minister Aroun this week."
    ↳ `[if: flag.contractor == 2]` > **Celeste Aroun:** "We'll have to explain this to Halvard Minerals, and to Ambassador Pryce."
 2. **"We'll study it. No commitments yet."** `[zharan relation +1]` `[aroun loyalty +1]` `[flag: zharan_financing_studied = true]`

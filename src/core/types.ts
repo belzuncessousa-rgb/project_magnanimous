@@ -89,7 +89,10 @@ export interface GameState {
     debtInterest: number;
     culturalPower: number;
     costPerCapita: number;
-    fcBracket: number;
+    /** legacy (pre-billions saves) */
+    fcBracket?: number;
+    /** principal paid every turn (bn), set on the debt screen */
+    amortization?: number;
     /** outstanding public debt, in FC */
     debt?: number;
     /** FC paid last turn: interest and principal (for UI) */

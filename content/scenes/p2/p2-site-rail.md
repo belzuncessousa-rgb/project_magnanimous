@@ -41,7 +41,7 @@ The Governor of Tapira, Arturo Trembolo, meets you there. He is in his sixties, 
 
 1. **"The engineers' route. Stations where the engineers put them."** `[arturo loyalty -2]` `[cp opinion -1]` `[fontes loyalty +1]` `[flag: rail_route = 1]` `[flag: path_hold += 1]`
    ↳ > **Arturo Trembolo:** "As you wish. The farmers will remember who chose for them."
-2. **"The Governor's route. We need Tapira on our side."** `[cost: 1 FC]` `[arturo loyalty +3]` `[cp opinion +2]` `[approval +2 @ tapira]` `[flag: corruption += 1]` `[flag: rail_route = 2]` `[flag: voice += 1]`
+2. **"The Governor's route. We need Tapira on our side."** `[cost: 10 FC]` `[arturo loyalty +3]` `[cp opinion +2]` `[approval +2 @ tapira]` `[flag: corruption += 1]` `[flag: rail_route = 2]` `[flag: voice += 1]`
    ↳ > **Arturo Trembolo:** "Thank you, Madam President. Tapira won't forget."
    ↳ *A tenth more, for a railway that will last a century. And Tapira's deputies will vote with you in July.*
 3. **"Public hearings in each town before the route is fixed."** `[arturo loyalty -1]` `[approval +1 @ tapira]` `[flag: rail_route = 3]`

@@ -52,7 +52,7 @@ The treatment plant of the Great Sanitation Works stands on the waterfront west 
 
 1. **"Ask Renata's people to audit everything on this site."** `[salgado loyalty +1]` `[mertens loyalty -1]` `[flag: site_audit = true]` `[flag: path_hold += 1]`
    ↳ > **Alexander Fontes:** "That will slow things down for a month and protect us for years."
-2. **"Pay what it takes to move faster. People have waited long enough."** `[cost: 1 FC]` `[approval +3 @ ibicui]` `[flag: project_progress += 1]` `[flag: corruption += 1]` `[flag: voice += 1]`
+2. **"Pay what it takes to move faster. People have waited long enough."** `[cost: 10 FC]` `[approval +3 @ ibicui]` `[flag: project_progress += 1]` `[flag: corruption += 1]` `[flag: voice += 1]`
    ↳ > **Tobias Marne:** "I'll tell them."
    ↳ *Every week the pipe doesn't move, another family waits. The money will be accounted for later.*
 3. **"I'll come back every month to see the progress myself."** `[cost: 1 PT]` `[approval +2 @ ibicui]` `[marne loyalty +1]` `[flag: site_visits = true]`

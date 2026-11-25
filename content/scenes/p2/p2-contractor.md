@@ -34,9 +34,9 @@ Marne and Fontes meet you at the Ministry of Planning. Marne has a folder for ea
 1. **"The national consortium."** `[flag: contractor = 1]` `[opp opinion +2]` `[marne loyalty +2]` `[flag: corruption += 1]` `[flag: project_progress += 1]`
    ↳ > **Tobias Marne:** "They'll be on site within a month."
    ↳ > **Alexander Fontes:** "I'll want monthly accounts from them."
-2. **"The state company with Halvard Minerals."** `[cost: 1 FC]` `[flag: contractor = 2]` `[federation relation +2]` `[zharan relation -1]` `[flag: clean_extraction = true]`
+2. **"The state company with Halvard Minerals."** `[cost: 10 FC]` `[flag: contractor = 2]` `[federation relation +2]` `[zharan relation -1]` `[flag: clean_extraction = true]`
    ↳ > **Tobias Marne:** "It will be slower to negotiate. Ambassador Pryce will be pleased."
-3. **"The state company with the Zharani partner."** `[gain: 1 FC]` `[flag: contractor = 3]` `[zharan relation +2]` `[federation relation -2]` `[flag: zharan_in_ibira = true]`
+3. **"The state company with the Zharani partner."** `[gain: 10 FC]` `[flag: contractor = 3]` `[zharan relation +2]` `[federation relation -2]` `[flag: zharan_in_ibira = true]`
    ↳ > **Tobias Marne:** "They'll build the road fast. They'll also want a long contract for the ore."
 
 → close
@@ -51,7 +51,7 @@ Marne and Fontes meet you at the Ministry of Planning. Marne has a folder for ea
 
 1. **"Direct contracts with the Kunasaian firms."** `[flag: contractor = 1]` `[opp opinion +2]` `[marne loyalty +2]` `[flag: corruption += 1]` `[flag: project_progress += 1]`
    ↳ > **Tobias Marne:** "The first section can start in June."
-2. **"An open international tender."** `[gain: 1 FC]` `[flag: contractor = 3]` `[zharan relation +1]` `[unions opinion -1]` `[marne loyalty -1]`
+2. **"An open international tender."** `[gain: 10 FC]` `[flag: contractor = 3]` `[zharan relation +1]` `[unions opinion -1]` `[marne loyalty -1]`
    ↳ > **Tobias Marne:** "Then the Zharani will win it. I'd prepare the unions for that."
 3. **"The mixed model."** `[flag: contractor = 2]` `[unions opinion +1]` `[fontes loyalty +1]`
    ↳ > **Tobias Marne:** "It will take three more months to write the rules. But nobody will be able to say we gave it away."
@@ -68,7 +68,7 @@ Marne and Fontes meet you at the Ministry of Planning. Marne has a folder for ea
 
 1. **"Renegotiate. Every price in annex nine."** `[flag: contractor = 2]` `[fontes loyalty +2]` `[mertens loyalty -1]` `[flag: path_hold += 1]`
    ↳ > **Alexander Fontes:** "Good. I'll lead it myself. Expect them to complain to the newspapers."
-2. **"Pay their prices. People have waited eight years."** `[cost: 1 FC]` `[flag: contractor = 1]` `[flag: corruption += 1]` `[flag: project_progress += 1]` `[approval +2 @ ibicui]` `[flag: voice += 1]`
+2. **"Pay their prices. People have waited eight years."** `[cost: 10 FC]` `[flag: contractor = 1]` `[flag: corruption += 1]` `[flag: project_progress += 1]` `[approval +2 @ ibicui]` `[flag: voice += 1]`
    ↳ > **Tobias Marne:** "The crews can be back on the hill in two weeks."
    ↳ *The people on the hill don't care about annex nine. They care about the pipe.*
 3. **"Cancel the contract and tender the rest."** `[flag: contractor = 3]` `[salgado loyalty +1]` `[approval -2 @ ibicui]` `[flag: corvel_lawsuit = true]`

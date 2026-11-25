@@ -40,7 +40,7 @@ Iracema Tuyú is waiting at the camp. She is the spokeswoman of the Ibira People
 1. **"A formal consultation. The work waits until it's done."** `[indigenous opinion +3]` `[tuyu loyalty +3]` `[marne loyalty -1]` `[approval +2 @ ibira]` `[flag: taua_consulted = true]` `[flag: path_hold += 1]`
    ↳ > **Iracema Tuyú:** "Thank you. I'll tell the villages."
    ↳ > **Tobias Marne:** "I'll tell the contractor to slow down."
-2. **"The work continues, and we'll negotiate compensation at the same time."** `[cost: 1 FC]` `[indigenous opinion +1]` `[tuyu loyalty +1]` `[flag: project_progress += 1]`
+2. **"The work continues, and we'll negotiate compensation at the same time."** `[cost: 10 FC]` `[indigenous opinion +1]` `[tuyu loyalty +1]` `[flag: project_progress += 1]`
    ↳ > **Iracema Tuyú:** "Money is better than nothing. It isn't what they asked for."
 3. **"The mine is a national priority. It goes ahead on schedule."** `[indigenous opinion -3]` `[tuyu loyalty -3]` `[flag: project_progress += 1]` `[flag: taua_forced = true]` `[flag: path_harden += 1]`
    ↳ > **Iracema Tuyú:** "Then I'll tell them that too."

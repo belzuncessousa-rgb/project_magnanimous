@@ -5,19 +5,64 @@
     "summary": "Distributes senators by population instead of three per state. Ibicuí and Tekoku gain senators; Mognagna, Ibira and Tapira lose them.",
     "note": "Seats 100. With the government 'open' (reform_stance 1) it passes narrowly; against it, it fails. OPP is against by redline.",
     "positions": {
-      "pm": { "base": -0.2, "ifs": [
-        { "when": "flag.reform_stance == 1", "delta": 0.3 },
-        { "when": "flag.reform_stance == 2 || flag.reform_stance == 3", "delta": -0.5 },
-        { "when": "flag.reform_bench_freed", "delta": 0.2 } ] },
-      "opp": { "base": -0.7 },
-      "cp": { "base": 0.2, "ifs": [ { "when": "flag.great_project == 4", "delta": -0.2 } ] },
-      "nf": { "base": 0.7 },
-      "fff": { "base": -0.2 },
-      "ca": { "base": 0.9 },
-      "cv": { "base": -0.4, "ifs": [ { "when": "flag.reform_stance == 1 && flag.labor_compact", "delta": 0.3 } ] },
-      "independents": { "base": 0.0 }
+      "pm": {
+        "base": -0.2,
+        "ifs": [
+          {
+            "when": "flag.reform_stance == 1",
+            "delta": 0.3
+          },
+          {
+            "when": "flag.reform_stance == 2 || flag.reform_stance == 3",
+            "delta": -0.5
+          },
+          {
+            "when": "flag.reform_bench_freed",
+            "delta": 0.2
+          }
+        ]
+      },
+      "opp": {
+        "base": -0.7
+      },
+      "cp": {
+        "base": 0.2,
+        "ifs": [
+          {
+            "when": "flag.great_project == 4",
+            "delta": -0.2
+          }
+        ]
+      },
+      "nf": {
+        "base": 0.7
+      },
+      "fff": {
+        "base": -0.2
+      },
+      "ca": {
+        "base": 0.9
+      },
+      "cv": {
+        "base": -0.4,
+        "ifs": [
+          {
+            "when": "flag.reform_stance == 1 && flag.labor_compact",
+            "delta": 0.3
+          }
+        ]
+      },
+      "independents": {
+        "base": 0.0
+      }
     },
-    "whip_costs": { "fff": "1 IPI", "independents": "1 IPI", "cv": "2 IPI", "cp": "1 IPI, 1 PT", "opp": "[cost: 2 IPI, 2 FC]" }
+    "whip_costs": {
+      "fff": "1 IPI",
+      "independents": "1 IPI",
+      "cv": "2 IPI",
+      "cp": "1 IPI, 1 PT",
+      "opp": "[cost: 2 IPI, 20 FC]"
+    }
   },
   {
     "id": "decentralisation_pact",
@@ -25,47 +70,167 @@
     "summary": "Instead of changing the Senate, transfers powers and a fixed share of federal revenue to the five states.",
     "note": "Only voted if reform_stance == 4 (the government's compromise).",
     "positions": {
-      "pm": { "base": 0.5 },
-      "opp": { "base": 0.0, "ifs": [ { "when": "flag.opp_price_1 == 1 || flag.opp_price_1 == 2", "delta": 0.2 } ] },
-      "cp": { "base": 0.0 },
-      "nf": { "base": -0.3 },
-      "fff": { "base": 0.0 },
-      "ca": { "base": -0.5 },
-      "cv": { "base": -0.1 },
-      "independents": { "base": 0.1 }
+      "pm": {
+        "base": 0.5
+      },
+      "opp": {
+        "base": 0.0,
+        "ifs": [
+          {
+            "when": "flag.opp_price_1 == 1 || flag.opp_price_1 == 2",
+            "delta": 0.2
+          }
+        ]
+      },
+      "cp": {
+        "base": 0.0
+      },
+      "nf": {
+        "base": -0.3
+      },
+      "fff": {
+        "base": 0.0
+      },
+      "ca": {
+        "base": -0.5
+      },
+      "cv": {
+        "base": -0.1
+      },
+      "independents": {
+        "base": 0.1
+      }
     },
-    "whip_costs": { "opp": "1 IPI", "fff": "1 IPI", "cp": "1 IPI, 1 PT", "independents": "1 IPI" }
+    "whip_costs": {
+      "opp": "1 IPI",
+      "fff": "1 IPI",
+      "cp": "1 IPI, 1 PT",
+      "independents": "1 IPI"
+    }
   },
   {
     "id": "tax_reform",
     "title": "Tax Reform Act",
     "summary": "Changes the national tax rates. Its content depends on the direction chosen with the Treasury (flag tax_direction: 1 progressive, 2 lower and simpler, 3 modest adjustment).",
     "positions": {
-      "pm": { "base": 0.3, "ifs": [ { "when": "flag.tax_direction == 1", "delta": 0.4 }, { "when": "flag.tax_direction == 2", "delta": -0.6 } ] },
-      "opp": { "base": 0.0 },
-      "cp": { "base": -0.6, "ifs": [ { "when": "flag.tax_direction == 2", "delta": 1.2 }, { "when": "flag.tax_direction == 3", "delta": 0.4 } ] },
-      "nf": { "base": -0.3, "ifs": [ { "when": "flag.tax_direction == 1", "delta": 0.2 } ] },
-      "fff": { "base": -0.2, "ifs": [ { "when": "flag.tax_direction == 2", "delta": 0.5 } ] },
-      "ca": { "base": -0.2, "ifs": [ { "when": "flag.tax_direction == 3", "delta": 0.5 } ] },
-      "cv": { "base": -0.4, "ifs": [ { "when": "flag.tax_direction == 1", "delta": 1.2 } ] },
-      "independents": { "base": 0.0 }
+      "pm": {
+        "base": 0.3,
+        "ifs": [
+          {
+            "when": "flag.tax_direction == 1",
+            "delta": 0.4
+          },
+          {
+            "when": "flag.tax_direction == 2",
+            "delta": -0.6
+          }
+        ]
+      },
+      "opp": {
+        "base": 0.0
+      },
+      "cp": {
+        "base": -0.6,
+        "ifs": [
+          {
+            "when": "flag.tax_direction == 2",
+            "delta": 1.2
+          },
+          {
+            "when": "flag.tax_direction == 3",
+            "delta": 0.4
+          }
+        ]
+      },
+      "nf": {
+        "base": -0.3,
+        "ifs": [
+          {
+            "when": "flag.tax_direction == 1",
+            "delta": 0.2
+          }
+        ]
+      },
+      "fff": {
+        "base": -0.2,
+        "ifs": [
+          {
+            "when": "flag.tax_direction == 2",
+            "delta": 0.5
+          }
+        ]
+      },
+      "ca": {
+        "base": -0.2,
+        "ifs": [
+          {
+            "when": "flag.tax_direction == 3",
+            "delta": 0.5
+          }
+        ]
+      },
+      "cv": {
+        "base": -0.4,
+        "ifs": [
+          {
+            "when": "flag.tax_direction == 1",
+            "delta": 1.2
+          }
+        ]
+      },
+      "independents": {
+        "base": 0.0
+      }
     },
-    "whip_costs": { "opp": "1 IPI", "fff": "1 IPI", "independents": "1 IPI", "cv": "2 IPI", "cp": "2 IPI" }
+    "whip_costs": {
+      "opp": "1 IPI",
+      "fff": "1 IPI",
+      "independents": "1 IPI",
+      "cv": "2 IPI",
+      "cp": "2 IPI"
+    }
   },
   {
     "id": "strike_package",
     "title": "Katanaí Emergency Package",
     "summary": "Emergency housing, transport and a temporary wage supplement for port and periphery workers in Ibicuí, negotiated to end the strikes.",
     "positions": {
-      "pm": { "base": 0.6 },
-      "opp": { "base": 0.0 },
-      "cp": { "base": -0.6 },
-      "nf": { "base": -0.3 },
-      "fff": { "base": 0.2 },
-      "ca": { "base": -0.4 },
-      "cv": { "base": 0.8, "ifs": [ { "when": "flag.strike_force_used", "delta": -1.2 } ] },
-      "independents": { "base": 0.1 }
+      "pm": {
+        "base": 0.6
+      },
+      "opp": {
+        "base": -0.2
+      },
+      "cp": {
+        "base": -0.6
+      },
+      "nf": {
+        "base": -0.3
+      },
+      "fff": {
+        "base": -0.05
+      },
+      "ca": {
+        "base": -0.4
+      },
+      "cv": {
+        "base": 0.8,
+        "ifs": [
+          {
+            "when": "flag.strike_force_used",
+            "delta": -1.2
+          }
+        ]
+      },
+      "independents": {
+        "base": 0.1
+      }
     },
-    "whip_costs": { "opp": "1 IPI", "fff": "1 IPI", "independents": "1 IPI", "nf": "2 IPI" }
+    "whip_costs": {
+      "opp": "1 IPI",
+      "fff": "1 IPI",
+      "independents": "1 IPI",
+      "nf": "2 IPI"
+    }
   }
 ]

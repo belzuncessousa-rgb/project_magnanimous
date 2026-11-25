@@ -5,11 +5,11 @@ import { validateContent } from '../content/validate';
 import { Game } from '../game/game';
 import { deleteSave, loadGame, loadSettings, saveGame, saveSettings, type Settings } from '../game/save';
 import { clear, h } from './dom';
-import { KIND_LABEL, int, militaryWord, millions, money, pct1, relationWord, stabilityWord } from './format';
+import { KIND_LABEL, costText, int, militaryWord, millions, money, pct1, relationWord, stabilityWord } from './format';
 import { Hud } from './hud';
 import { MapView, OFFMAP, type Geometry, type MarkerSpec } from './map';
 import { showNewspaper } from './newspaper';
-import { showBudget, showVote } from './screens';
+import { showBudget, showDebt, showVote } from './screens';
 import { tokenFor } from './tokens';
 import { VNView } from './vn';
 
@@ -266,7 +266,7 @@ export class App {
     const list = g.freeActions();
     if (!list.length) this.sidebar.append(h('div', { class: 'agenda-empty' }, 'No actions available.'));
     for (const v of list) {
-      const cost = Object.entries(v.action.cost).filter(([, n]) => n).map(([k, n]) => `${n} ${k}`).join(' · ');
+      const cost = costText(v.action.cost);
       this.sidebar.append(
         h('button', { class: 'fa-item', disabled: !v.available || this.busy, onclick: () => this.startAction(v.action) },
           h('span', { class: 'fa-label' }, v.action.label, v.action.targeted ? h('span', { class: 'fa-target' }, ' ⌖') : null),
@@ -458,6 +458,7 @@ export class App {
     const g = this.game;
     if (!g) return;
     if (action === 'open' && arg === 'budget') await showBudget(this.root, g.state, this.content.ministries);
+    else if (action === 'open' && arg === 'debt') await showDebt(this.root, g.state);
     else if (action === 'vote') await showVote(this.root, g.state, this.content.bills.find((b) => b.id === arg));
     else console.warn(`[ui] unknown screen ${action}: ${arg}`);
     saveGame(g.state);

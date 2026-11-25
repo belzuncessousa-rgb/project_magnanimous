@@ -4,6 +4,7 @@ import type { GameState } from '../core/types';
 import type { ChoiceOption, SceneRunner } from '../scene/runner';
 import type { Prose } from '../scene/types';
 import { clear, h, initials, inlineMd, wait } from './dom';
+import { costText } from './format';
 
 export interface VNHooks {
   /** `[open: …]` / `[vote: …]` tokens: show the screen, resolve when done */
@@ -27,8 +28,7 @@ interface Who {
 }
 
 function costLabel(o: ChoiceOption): string {
-  const parts = Object.entries(o.choice.cost).filter(([, v]) => v).map(([k, v]) => `${v} ${k}`);
-  return parts.join(' · ');
+  return costText(o.choice.cost);
 }
 
 export class VNView {

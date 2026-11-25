@@ -27,7 +27,7 @@ Marne asks for an urgent meeting at the Ministry of Planning. Salgado is with hi
 
 > **Renata Salgado:** "It's almost certainly the Red Tree. A road through the forest means police on the river. They're sending a message."
 
-1. **"Federal police on the road, as long as it takes."** `[cost: 1 FC]` `[cartels capacity -2]` `[cartels suspicion +10]` `[flag: project_progress += 1]` `[flag: road_protected = true]`
+1. **"Federal police on the road, as long as it takes."** `[cost: 10 FC]` `[cartels capacity -2]` `[cartels suspicion +10]` `[flag: project_progress += 1]` `[flag: road_protected = true]`
    ↳ > **Renata Salgado:** "I'll send a unit next week."
 2. **"Pause the road until we have a plan for the river."** `[flag: project_delayed = true]` `[marne loyalty -1]`
    ↳ > **Tobias Marne:** "A pause in the forest means the forest takes the road back. But all right."
@@ -45,7 +45,7 @@ Marne asks for an urgent meeting at the Ministry of Planning. Salgado is with hi
 
 1. **"A full investigation. Work stops at that site until it's finished."** `[unions opinion +2]` `[salgado loyalty +1]` `[flag: project_delayed = true]` `[flag: path_hold += 1]`
    ↳ > **Tobias Marne:** "Three months lost on that bridge. It's the right decision."
-2. **"Compensate the families and restart quickly, with new inspections."** `[cost: 1 FC]` `[unions opinion +1]` `[flag: project_progress += 1]`
+2. **"Compensate the families and restart quickly, with new inspections."** `[cost: 10 FC]` `[unions opinion +1]` `[flag: project_progress += 1]`
    ↳ > **Renata Salgado:** "I'll still want to know who signed off the crane."
 3. **"Blame the contractor publicly and change contractor on that section."** `[show if: flag.contractor == 1]` `[opp opinion -1]` `[marne loyalty -2]` `[approval +2 @ tapira]` `[flag: path_harden += 1]`
    ↳ > **Tobias Marne:** "They're friends of the OPP. Odel will hear about it."
@@ -60,7 +60,7 @@ Marne asks for an urgent meeting at the Ministry of Planning. Salgado is with hi
 
 1. **"Rebuild the houses at the contractor's cost, and audit every trench on the line."** `[salgado loyalty +1]` `[approval +2 @ ibicui]` `[flag: project_delayed = true]` `[flag: path_hold += 1]`
    ↳ > **Renata Salgado:** "Corvel will go to court about the cost. We'll win."
-2. **"The government pays for the houses now. We'll argue with the contractor later."** `[cost: 1 FC]` `[approval +3 @ ibicui]` `[flag: project_progress += 1]`
+2. **"The government pays for the houses now. We'll argue with the contractor later."** `[cost: 10 FC]` `[approval +3 @ ibicui]` `[flag: project_progress += 1]`
    ↳ > **Tobias Marne:** "The families will have their houses back by Christmas."
 3. **"Keep it quiet. Repair the houses and keep working."** `[flag: project_progress += 1]` `[flag: corruption += 1]` `[flag: trench_hushed = true]` `[flag: voice += 1]`
    ↳ > **Renata Salgado:** "I can't keep it quiet, Madam President. I can only not make it loud."

@@ -42,7 +42,7 @@ Livia has gathered Salgado, Mertens, Voss and Dorival Sena in the Blue Room.
 ## decide
 
 1. **"An emergency package. Take it to Congress today."** `→ vote`
-2. **"I'll decree what the Treasury can pay for. Congress can debate it later."** `[cost: 3 FC]` `[col +2 @ ibicui]` `[unions opinion +2]` `[cp opinion -2]` `[+1 STRUCT]` `[flag: strike_outcome = 2]` `→ marco`
+2. **"I'll decree what the Treasury can pay for. Congress can debate it later."** `[cost: 30 FC]` `[col +2 @ ibicui]` `[unions opinion +2]` `[cp opinion -2]` `[+1 STRUCT]` `[flag: strike_outcome = 2]` `→ marco`
    ↳ > **Renata Salgado:** "It's legal, for ninety days. After that it needs Congress."
 3. **"Reopen the port. Police first, the army if necessary."** `[flag: strike_force_used = true]` `[flag: strike_outcome = 3]` `[stability +5 @ ibicui]` `[approval -6 @ ibicui]` `[approval +2 @ tekoku, tapira]` `[unions opinion -4]` `[cv opinion -4]` `[marco loyalty -4]` `[+2 FORCE]` `[+1 STRUCT]` `[flag: path_harden += 2]` `→ force`
 4. **"I'm going to the port to talk to them myself."** `[once]` `[cost: 2 PT]` `[marco loyalty +1]` `[unions opinion +1]` `[flag: lara_at_gates = true]` `→ gates`

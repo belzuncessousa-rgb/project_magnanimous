@@ -10,6 +10,7 @@ import { Game } from '../src/game/game';
 import type { SceneRunner } from '../src/scene/runner';
 import { applyBudget, resolveVote, whipOptions, type BudgetChoice } from '../src/game/politics';
 import { TIERS } from '../src/content/schema';
+import { applyDebtPolicy, debtLimits } from '../src/game/debt';
 
 /** What the UI does for `[open: budget]` / `[vote: id]`, with random picks. */
 function resolveUi(g: Game, action: string, arg: string, rnd: (n: number) => number) {
@@ -22,6 +23,10 @@ function resolveUi(g: Game, action: string, arg: string, rnd: (n: number) => num
       choices[m.id] = { tier, initiative: tier === 'low' ? m.initiatives[rnd(Math.max(1, m.initiatives.length))]?.id : undefined };
     }
     applyBudget(g.state, c.ministries, choices);
+  } else if (action === 'open' && arg === 'debt') {
+    const pol = (Number(g.state.flags.debt_policy) || 1 + rnd(3)) as 1 | 2 | 3;
+    const lim = debtLimits(g.state);
+    applyDebtPolicy(g.state, pol, pol === 1 ? rnd(Math.floor(lim.payDownMax) + 1) : pol === 2 ? rnd(Math.floor(lim.borrowMax) + 1) : 0);
   } else if (action === 'vote') {
     const bill = c.bills.find((b) => b.id === arg);
     if (!bill) throw new Error(`unknown bill ${arg}`);
@@ -155,5 +160,18 @@ describe('content corpus (main)', () => {
     if (unvisited.length) console.log('UNVISITED', JSON.stringify(unvisited));
     expect(unvisited).toEqual([]);
     expect([...warns]).toEqual([]);
+  });
+});
+
+describe('debt screen in the content', () => {
+  const c = buildContent(corpus());
+  it('p2-budget opens the debt screen from the pay-down and borrow choices, with the policy already set', () => {
+    const sc = c.scenes.find((x) => x.id === 'p2-budget')!;
+    const beat = sc.beats.find((b) => b.id === 'debt')!;
+    const choices = beat.steps.flatMap((st) => (st.type === 'choices' ? st.choices : []));
+    const ui = choices.map((ch) => ch.effects.filter((e) => e.effect.type === 'ui').map((e) => (e.effect as { arg: string }).arg));
+    expect(ui).toEqual([['debt'], ['debt'], []]);
+    const fcTokens = choices.flatMap((ch) => ch.effects.filter((e) => e.effect.type === 'resource'));
+    expect(fcTokens).toEqual([]);
   });
 });

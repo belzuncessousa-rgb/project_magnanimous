@@ -141,3 +141,15 @@ high=FC + ministry promise), then resolves. Result flag `vote.<bill-id> = passed
 `content/crises.json`: `[{ id, scene, threshold, from_chapter?, signals: [{ at, readable }], pressure: [{ expr, weight }] }]`
 — pressure is recomputed each turn update as Σ weight·value(expr); crossing `threshold` makes `scene` available
 (kind crisis); crossing each `signals.at` publishes that readable/news item.
+
+### Debt screen (round 4)
+`[open: debt]` opens the debt screen. Money (FC) is in billions. Options: pay down the principal (slider: bn per
+turn, up to 25% of the discretionary income), borrow more from the Fund (slider: one-off amount up to 15% of the
+balance; cash now, balance grows), status quo. Live preview of balance, next interest and treasury.
+If the scene has already set `flag debt_policy` (1 pay down / 2 borrow / 3 status quo), only that option is shown,
+so the choice's prose and reactions stay consistent. The engine keeps `debt_policy` and stores the pay-down amount
+(`nation.amortization`); interest = 4% of the balance every turn.
+
+### Money units (round 4)
+`FC` in `[cost: …]`, `[gain: …]`, `fc_per_turn` and `whip_costs` is money in **billions** and may have decimals
+(`[cost: 12.5 FC]`). 1 old FC ≈ 10 bn.

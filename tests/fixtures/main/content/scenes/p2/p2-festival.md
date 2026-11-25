@@ -44,9 +44,9 @@ The festival is held in the main square of a market town in the sertão. It is v
 
 > **Livia Harvan:** "The Culture Fund could pay for a permanent stage and the regional music school the Governor asked for."
 
-1. **"Fund the stage and the school."** `[show if: flag.culture_fund]` `[cost: 1 FC]` `[approval +3 @ mognagna]` `[porper loyalty +2]` `[flag: cultural_power += 1]`
+1. **"Fund the stage and the school."** `[show if: flag.culture_fund]` `[cost: 10 FC]` `[approval +3 @ mognagna]` `[porper loyalty +2]` `[flag: cultural_power += 1]`
    ↳ > **Julio Porper:** "They'll name it after you, whether you want it or not."
-2. **"Fund a smaller grant for the festival itself."** `[cost: 1 FC]` `[approval +1 @ mognagna]` `[porper loyalty +1]`
+2. **"Fund a smaller grant for the festival itself."** `[cost: 10 FC]` `[approval +1 @ mognagna]` `[porper loyalty +1]`
    ↳ > **Julio Porper:** "Thank you. Next year will be bigger."
 3. **"No money this year. Being here is enough."**
    ↳ > **Julio Porper:** "Being here was a lot, Madam President."

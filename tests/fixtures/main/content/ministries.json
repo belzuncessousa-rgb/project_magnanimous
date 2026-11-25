@@ -4,9 +4,9 @@
     "note": "GDD Defense page. Engine: Regular funds every initiative, so the GDD's high-tier Domestic Security Deployment is the High tier's own per-turn effect. Tier effects apply every turn.",
     "tiers": {
       "cut": { "fc_per_turn": 0, "effects": "[voss loyalty -1] [armed_forces opinion -0.5] [voss capacity -3]" },
-      "low": { "fc_per_turn": 0.3, "effects": "[voss loyalty -0.3]" },
-      "regular": { "fc_per_turn": 0.6, "effects": "[voss loyalty +0.3]" },
-      "high": { "fc_per_turn": 1.0, "effects": "[voss loyalty +0.5] [cartels capacity -2] [stability +0.5 @ ibira] [col -0.3 @ ibira] [flag: domestic_security = true]" }
+      "low": { "fc_per_turn": 3, "effects": "[voss loyalty -0.3]" },
+      "regular": { "fc_per_turn": 6, "effects": "[voss loyalty +0.3]" },
+      "high": { "fc_per_turn": 10, "effects": "[voss loyalty +0.5] [cartels capacity -2] [stability +0.5 @ ibira] [col -0.3 @ ibira] [flag: domestic_security = true]" }
     },
     "initiatives": [
       { "id": "ballistics_institute", "name": "Ballistics Institute of Technology",
@@ -22,8 +22,8 @@
     "note": "GDD Justice page. Judicial Strengthening's target (cartels or landowners) is chosen in p2-budget (flag judicial_target = 1 cartels / 2 landowners); per-turn effects use it.",
     "tiers": {
       "cut": { "fc_per_turn": 0, "effects": "[salgado loyalty -1] [salgado capacity -3]" },
-      "low": { "fc_per_turn": 0.3, "effects": "" },
-      "regular": { "fc_per_turn": 0.7, "effects": "[salgado loyalty +0.3]" }
+      "low": { "fc_per_turn": 3, "effects": "" },
+      "regular": { "fc_per_turn": 7, "effects": "[salgado loyalty +0.3]" }
     },
     "initiatives": [
       { "id": "judicial", "name": "Judicial Strengthening",
@@ -42,8 +42,8 @@
     "note": "GDD Intelligence page. Cutting intelligence lowers the survival counter (GDD 7.2).",
     "tiers": {
       "cut": { "fc_per_turn": 0, "effects": "[kesht loyalty -1] [flag: intelligence_cut = true]" },
-      "low": { "fc_per_turn": 0.3, "effects": "" },
-      "regular": { "fc_per_turn": 0.6, "effects": "[kesht loyalty +0.5]" }
+      "low": { "fc_per_turn": 3, "effects": "" },
+      "regular": { "fc_per_turn": 6, "effects": "[kesht loyalty +0.5]" }
     },
     "initiatives": [
       { "id": "foreign_shielding", "name": "Foreign Intelligence Shielding",
@@ -59,9 +59,9 @@
     "note": "Round 2 decision: in term 1 the Planning budget pays for the great project chosen in chapter 1 plus municipal works. High tier = accelerated schedule. Cutting Planning pauses the great project.",
     "tiers": {
       "cut": { "fc_per_turn": 0, "effects": "[marne loyalty -1] [opp opinion -0.5] [flag: project_paused = true]" },
-      "low": { "fc_per_turn": 0.5, "effects": "" },
-      "regular": { "fc_per_turn": 1.0, "effects": "[marne loyalty +0.3]" },
-      "high": { "fc_per_turn": 1.5, "effects": "[marne loyalty +0.5] [flag: project_progress += 1] [flag: corruption += 0.2]" }
+      "low": { "fc_per_turn": 5, "effects": "" },
+      "regular": { "fc_per_turn": 10, "effects": "[marne loyalty +0.3]" },
+      "high": { "fc_per_turn": 15, "effects": "[marne loyalty +0.5] [flag: project_progress += 1] [flag: corruption += 0.2]" }
     },
     "initiatives": [
       { "id": "great_project_works", "name": "The great project",
@@ -77,8 +77,8 @@
     "note": "GDD Health page. Cutting the ministry crosses Dara's redline (transfers in Mognagna).",
     "tiers": {
       "cut": { "fc_per_turn": 0, "effects": "[dara loyalty -2] [pm opinion -0.5] [approval -1 @ mognagna, ibira] [flag: transfers_cut = true]" },
-      "low": { "fc_per_turn": 0.4, "effects": "" },
-      "regular": { "fc_per_turn": 0.8, "effects": "[dara loyalty +0.3]" }
+      "low": { "fc_per_turn": 4, "effects": "" },
+      "regular": { "fc_per_turn": 8, "effects": "[dara loyalty +0.3]" }
     },
     "initiatives": [
       { "id": "public_health", "name": "Public Health System",
@@ -94,8 +94,8 @@
     "note": "GDD Education page.",
     "tiers": {
       "cut": { "fc_per_turn": 0, "effects": "[kaval loyalty -1] [ca opinion -0.5]" },
-      "low": { "fc_per_turn": 0.3, "effects": "" },
-      "regular": { "fc_per_turn": 0.6, "effects": "[kaval loyalty +0.3]" }
+      "low": { "fc_per_turn": 3, "effects": "" },
+      "regular": { "fc_per_turn": 6, "effects": "[kaval loyalty +0.3]" }
     },
     "initiatives": [
       { "id": "basic_education", "name": "Basic Education Expansion",
@@ -111,8 +111,8 @@
     "note": "GDD leaves Chief of Staff initiatives undefined; these two are new (round 2).",
     "tiers": {
       "cut": { "fc_per_turn": 0, "effects": "[livia loyalty -0.5]" },
-      "low": { "fc_per_turn": 0.2, "effects": "" },
-      "regular": { "fc_per_turn": 0.4, "effects": "[livia loyalty +0.3]" }
+      "low": { "fc_per_turn": 2, "effects": "" },
+      "regular": { "fc_per_turn": 4, "effects": "[livia loyalty +0.3]" }
     },
     "initiatives": [
       { "id": "coalition_office", "name": "Coalition Liaison Office",

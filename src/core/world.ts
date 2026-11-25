@@ -149,7 +149,7 @@ export function createState(world: WorldInput): GameState {
       domestic: world.taxes?.domestic ?? TUNING.taxes.domesticDefault,
       trade: world.taxes?.trade ?? TUNING.taxes.tradeDefault,
     },
-    nation: { debtInterest: 0, culturalPower: world.nation?.culturalPower ?? 40, costPerCapita: 0, fcBracket: 1 },
+    nation: { debtInterest: 0, culturalPower: world.nation?.culturalPower ?? 40, costPerCapita: 0 },
     completedScenes: [],
     newsQueue: [],
     printedNews: [],
@@ -164,20 +164,18 @@ export function createState(world: WorldInput): GameState {
   for (const r of Object.values(regions)) calibrateRegion(state, r);
   for (const c of Object.values(countries)) calibrateCountry(c);
   for (const a of Object.values(actors)) calibrateActor(state, a);
+  // Money is in bn. Revenue per turn from output and trade; fixed state costs a share of it (held per capita);
+  // debt balance chosen so the first interest payment ≈ debtInterestShare of revenue (DECISIONS: ≈ 11%).
   const revenue = taxRevenue(state);
   const pop = Object.values(regions).reduce((s, r) => s + r.population, 0);
-  // Interest at start ≈ debtInterestShare of revenue (DECISIONS). Revenue is converted to FC with the bracket,
-  // then the balance is chosen so that balance × rate = that interest.
   const startInterest = world.nation?.debtInterest ?? revenue * TUNING.resources.debtInterestShare;
   state.nation.baseRevenue = revenue;
-  state.nation.debtInterest = 0; // interest is paid in FC from the balance each turn (see debtService)
+  state.nation.debtInterest = 0; // interest is paid from the balance each turn (see debtService)
   state.nation.costPerCapita = pop > 0 ? (revenue * TUNING.resources.baseCostShare) / pop : 0;
-  const net = revenue - pop * state.nation.costPerCapita - startInterest;
-  state.nation.fcBracket = net > 0 ? net / (TUNING.resources.targetFCIncome + 0.5) : 1;
-  state.nation.debt = (startInterest / state.nation.fcBracket) / TUNING.debt.interestRatePerTurn;
+  state.nation.debt = startInterest / TUNING.debt.interestRatePerTurn;
   state.resources = {
     PT: world.resources?.PT ?? formulaPT(state),
-    FC: world.resources?.FC ?? Math.max(TUNING.resources.startingFC, formulaFC(state)),
+    FC: world.resources?.FC ?? TUNING.resources.startingFC,
     IPI: world.resources?.IPI ?? formulaIPI(state),
     EPI: world.resources?.EPI ?? formulaEPI(state),
   };

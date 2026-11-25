@@ -162,11 +162,12 @@ export function taxRevenue(state: GameState): number {
 
 export function rawFC(state: GameState): number {
   const pop = Object.values(state.regions).reduce((s, r) => s + r.population, 0);
-  return taxRevenue(state) - pop * state.nation.costPerCapita - state.nation.debtInterest;
+  return taxRevenue(state) - pop * state.nation.costPerCapita - (state.nation.debtInterest ?? 0);
 }
 
 export function formulaFC(state: GameState): number {
-  return clamp(Math.floor(rawFC(state) / Math.max(state.nation.fcBracket, 1e-9)), T.resources.FC.min, T.resources.FC.max);
+  // money in bn per turn before debt service (can be negative in a deficit)
+  return rawFC(state);
 }
 
 export function formulaIPI(state: GameState): number {
@@ -212,21 +213,24 @@ export function debtInterestDue(state: GameState): number {
 }
 
 /**
- * Debt service for this turn (mutates the balance):
+ * Debt service for this turn (mutates the balance), in bn:
  * - interest = rate × balance (always);
- * - principal = amortizationPerTurn while debt_policy = 1, capped by the balance;
- * - debt_policy = 2 adds borrowAmount to the balance once (the scene already gave the cash).
+ * - principal while debt_policy = 1: nation.amortization (set on the debt screen), else the tuning default;
+ *   capped by the balance;
+ * - debt_policy = 2 without the debt screen: borrow the default amount once (cash now, balance grows).
  */
 export function debtService(state: GameState): { interest: number; principal: number } {
   const n = state.nation;
   const D = T.debt;
   n.debt ??= 0;
-  if (Number(state.flags.debt_policy) === 2 && !state.flags.debt_borrowed) {
+  const policy = Number(state.flags.debt_policy) || 0;
+  if (policy === 2 && !state.flags.debt_borrowed) {
     state.flags.debt_borrowed = true;
     n.debt += D.borrowAmount;
+    state.resources.FC += D.borrowAmount;
   }
   const interest = debtInterestDue(state);
-  const principal = Number(state.flags.debt_policy) === 1 ? Math.min(D.amortizationPerTurn, n.debt) : 0;
+  const principal = policy === 1 ? Math.max(0, Math.min(n.amortization ?? D.amortizationPerTurn, n.debt)) : 0;
   n.debt = Math.max(0, n.debt - principal);
   n.debtPaid = { interest, principal };
   return n.debtPaid;

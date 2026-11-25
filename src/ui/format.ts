@@ -32,6 +32,15 @@ export function stabilityWord(v: number): string {
 export const pct1 = (v: number) => `${v.toFixed(1)}%`;
 export const int = (v: number) => `${Math.round(v)}`;
 export const money = (v: number) => `$${v.toFixed(v < 10 ? 1 : 0)}bn`;
+/** FC is money in billions: always one decimal */
+export const bn = (v: number) => `${v.toFixed(1)} bn`;
+/** Resource costs for buttons/tooltips: "12.5 bn · 1 IPI" */
+export function costText(c: Partial<Record<string, number>>): string {
+  return Object.entries(c)
+    .filter(([, v]) => v)
+    .map(([k, v]) => (k === 'FC' ? bn(v!) : `${+v!.toFixed(1)} ${k}`))
+    .join(' · ');
+}
 export const millions = (v: number) => `${Math.round(v)}M`;
 
 export const KIND_LABEL: Record<string, string> = {

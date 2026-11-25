@@ -67,28 +67,34 @@ export const TUNING = {
 
   resources: {
     PT: { min: 2, max: 8, carry: 0 },
-    FC: { min: 1, max: 10, carry: 1 },
+    /** FC is money in billions (continuous): no per-turn clamp, only a floor of 0 on the balance */
+    FC: { carry: 1 },
     IPI: { min: 1, max: 8, carry: 0.5 },
     EPI: { min: 1, max: 8, carry: 0.5 },
-    /** Output units differ between data sets, so FC is calibrated at game start (units-agnostic):
-     *  base cost of the state = this share of the initial tax revenue … */
-    baseCostShare: 0.55,
-    /** … and the FC bracket is chosen so the starting turn yields this many FC. */
-    targetFCIncome: 3,
+    /** Revenue per turn = Σ regional output (bn/month) × domestic tax + trade × trade tax.
+     *  Fixed state costs (salaries, pensions, running costs) = this share of the initial revenue, held per capita.
+     *  0.81 leaves ≈ 35 bn/turn of discretionary money after debt interest with the GDD data. */
+    baseCostShare: 0.81,
     /** inherited debt interest as a share of the initial tax revenue (DECISIONS: ≈ 11%) */
     debtInterestShare: 0.11,
-    startingFC: 3,
+    /** treasury cash at inauguration, bn */
+    startingFC: 30,
   },
 
   /** Public debt (DECISIONS / author): a balance in FC; every turn a fixed % of the balance is paid as interest.
    *  Amortising lowers the balance, so next turn's interest is lower. Borrowing raises it. */
   debt: {
     /** interest paid each turn as a fraction of the outstanding balance */
-    interestRatePerTurn: 0.02,
-    /** principal paid each turn while debt_policy = 1 (pay down) */
-    amortizationPerTurn: 1,
-    /** extra balance taken on when debt_policy = 2 (borrow more) — the scene gives the same FC as cash */
-    borrowAmount: 3,
+    interestRatePerTurn: 0.04,
+    /** default principal per turn (bn) for debt_policy = 1 when the debt screen was not used */
+    amortizationPerTurn: 10,
+    /** default amount (bn) for debt_policy = 2 when the debt screen was not used (cash and balance) */
+    borrowAmount: 30,
+    /** debt screen sliders: pay-down max = share of discretionary income per turn, borrow max = share of balance */
+    payDownMaxShareOfIncome: 0.25,
+    payDownStep: 0.5,
+    borrowMaxShareOfBalance: 0.15,
+    borrowStep: 1,
   },
 
   crisis: {
