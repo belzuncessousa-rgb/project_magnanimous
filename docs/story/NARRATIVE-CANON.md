@@ -1,6 +1,6 @@
 # Narrative canon — author design sessions
 
-Last consolidated: 2026-11-25. Sessions 01–32. Maintained as author interviews continue.
+Last consolidated: 2026-11-25. Sessions 01–33. Maintained as author interviews continue.
 
 ## Authority and workflow
 
@@ -123,9 +123,19 @@ Confirmed distinction: Red Tree emphasizes territorial control, production and i
 
 Confirmed: Lara can completely dismantle both Red Tree and Blue Piranhas as major organizations in the first term; this does not eliminate all crime. Each major first-term arc should reach a recognizable finale, even when unsuccessful. Surviving cartels may be substantially stronger and become a major problem for the next administration. Tekoku separatism and Mondrath remain distinct interacting arcs with possible first-term territorial loss. Distinguish arcs capable of definitive first-term resolution from progressive development arcs and naturally long-term transformations (cultural change, radical changes of government). Firm author constraint: democracy cannot end in the first term; a definitive regime transition belongs to the second term. First-term institutional weakening, consolidation of executive power and preparation for radical transformations remain possible, within that constraint. Assassination, removal from office and territorial loss remain possible first-term outcomes. Exact thresholds, arc finales, institutional safeguards and mechanics TBD. The conclusive/progressive/transformative taxonomy is a working editorial framework, not a rigid classification of every arc.
 
-## Next design discussion (33)
+## 33 — Environmental policy and scene-level reactivity
 
-Review the existing GDD for environmental policy and its cross-regional consequences before asking a focused unresolved question. Maintain first-term closure and manageable scope.
+Confirmed: environmental conservation is a comparatively subtle system, with gradual indirect and interconnected effects rather than its own mandatory national crisis. Preserve regional environmental arcs, including Ibira deforestation, downstream river pollution, Tapira agricultural vulnerability and Mognagna water scarcity. Earlier conservation/exploitation decisions change existing later events and economic outcomes. Accelerate real-world timescales sufficiently for meaningful four-year gameplay. Players may underestimate or ignore conservation; provide credible warning signs through reports, dialogue and news without revealing all consequences. Exact mechanics, magnitude and timings TBD.
+
+### Author direction — extensive scene personalization
+
+Broad outcomes must not be the only branching dimension. The same ending or major scene should have meaningful conditional participants, dialogue, relationships, references to earlier decisions and presentation details. Author example: corrupt wealthy Lara leaves a country in crisis to live in a tropical paradise; depending on earlier schemes and surviving relationships she might be alone, accompanied by the leader of Blue Piranhas or Red Tree, or other associates, sharing cigars and conversation. More than one relevant companion may appear. The exile ending is not restricted to cartel corruption; other corruption routes remain to be designed. Do not make companionship automatic merely because a deal occurred; account for survival, availability, relationship and circumstances. Do not impose Lara's private emotional interpretation. The example illustrates intended depth across the game, not just endings.
+
+Working implementation approach: common scene foundations with conditional participants, passages, callbacks and visual assets rather than separate files for every combination. Invest especially in pivotal scenes (endings, cabinet, betrayals, reunions, negotiations and personal milestones); routine scenes still acknowledge relevant history. Track durable facts and relationships, use reusable condition predicates and test contradictory or missing states. Existing scene format and engine support must be audited before deciding implementation; no new feature implemented here. Aim for replayability and distinctive player stories without uncontrolled combinatorial growth.
+
+## Next design discussion (34)
+
+Review foreign policy GDD, beginning with the overall foreign-country framework, and identify a meaningful unresolved question. Continue one question at a time, consulting established lore before asking.
 
 ## Implementation backlog (not yet changes)
 
