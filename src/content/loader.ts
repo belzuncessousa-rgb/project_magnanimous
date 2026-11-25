@@ -19,7 +19,7 @@ export function loadContent(): ContentBundle {
 }
 
 /**
- * DEV ONLY: `?corpus=ch1` loads the chapter-1 integration corpus from tests/fixtures/ch1 instead of /content.
+ * DEV ONLY: `?corpus=main` loads the chapter-1 integration corpus from tests/fixtures/main instead of /content.
  * Dead-code-eliminated from production builds.
  */
 export async function loadDevCorpus(): Promise<ContentBundle | null> {
@@ -27,12 +27,12 @@ export async function loadDevCorpus(): Promise<ContentBundle | null> {
   const which = new URLSearchParams(location.search).get('corpus');
   // ?corpus=demo: only content/_demo (exercises budget, votes, readables, highlights)
   if (which === 'demo') return buildContent(rawContentFiles().filter((f) => f.path.includes('/content/_demo/')));
-  if (which !== 'ch1') return null;
-  const mdL = import.meta.glob('/tests/fixtures/ch1/content/**/*.md', { query: '?raw', import: 'default' });
-  const jsL = import.meta.glob('/tests/fixtures/ch1/content/**/*.json', { import: 'default' });
+  if (which !== 'main') return null;
+  const mdL = import.meta.glob('/tests/fixtures/main/content/**/*.md', { query: '?raw', import: 'default' });
+  const jsL = import.meta.glob('/tests/fixtures/main/content/**/*.json', { import: 'default' });
   const files: RawFile[] = [];
   for (const [p, f] of [...Object.entries(mdL), ...Object.entries(jsL)]) {
-    files.push({ path: p.replace('/tests/fixtures/ch1', ''), data: await f() });
+    files.push({ path: p.replace('/tests/fixtures/main', ''), data: await f() });
   }
   return buildContent(files);
 }

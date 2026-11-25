@@ -1,0 +1,256 @@
+{
+  "chapters": [
+    {
+      "id": 1,
+      "title": "Opening the Curtain",
+      "question": "Who will you be?",
+      "turns": [
+        {
+          "turn": 1,
+          "date": "1 January",
+          "year": 1,
+          "label": "Inauguration Day",
+          "scenes": [
+            "p1-inauguration",
+            "p1-blue-room",
+            "p1-panorama",
+            "p1-tutorial",
+            "p1-first-night"
+          ],
+          "closing": null,
+          "popups": [],
+          "news": [
+            "c1t1-ledger-current",
+            "c1t1-ledger-oath",
+            "c1t1-clarion-silent",
+            "c1t1-clarion-ibicui",
+            "c1t1-voice-silence",
+            "c1t1-voice-tamarin",
+            "c1t1-dispatch-guests",
+            "c1t1-dispatch-sovereign",
+            "c1t1-canopy-arvane"
+          ]
+        },
+        {
+          "turn": 2,
+          "date": "8 January",
+          "year": 1,
+          "label": "The First Week",
+          "scenes": [
+            "p1-treasury-briefing",
+            "p1-health-briefing",
+            "p1-justice-briefing",
+            "p1-defense-jaguars",
+            "p1-lessa-visit"
+          ],
+          "closing": null,
+          "popups": [],
+          "news": [
+            "c1t2-ledger-lessa-open",
+            "c1t2-ledger-lessa",
+            "c1t2-ledger-books",
+            "c1t2-clarion-jaguars",
+            "c1t2-clarion-tekoku",
+            "c1t2-voice-families",
+            "c1t2-voice-anteroom",
+            "c1t2-dispatch-fund",
+            "c1t2-canopy-tobacco"
+          ]
+        },
+        {
+          "turn": 3,
+          "date": "26 January",
+          "year": 1,
+          "label": "The End of the First Month",
+          "scenes": [
+            "p1-education-briefing",
+            "p1-avros-bench",
+            "p1-planning-briefing",
+            "p1-tamarin"
+          ],
+          "closing": "p1-great-project",
+          "popups": [],
+          "news": [
+            "c1t3-ledger-gp1",
+            "c1t3-ledger-gp4",
+            "c1t3-ledger-gp6",
+            "c1t3-clarion-gp1",
+            "c1t3-clarion-gp4",
+            "c1t3-clarion-gp6",
+            "c1t3-voice-gp6",
+            "c1t3-voice-other",
+            "c1t3-voice-celia",
+            "c1t3-dispatch-gp1",
+            "c1t3-dispatch-gp4",
+            "c1t3-dispatch-gp6",
+            "c1t3-canopy-gp1",
+            "c1t3-canopy-mercury"
+          ],
+          "chapterEnd": true
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "A Herculean Task",
+      "question": "Can you govern?",
+      "turns": [
+        {
+          "turn": 1,
+          "date": "4 March",
+          "year": 1,
+          "label": "The First Budget",
+          "scenes": [
+            "p2-fund-mission",
+            "p2-budget",
+            "p2-pryce",
+            "p2-contractor",
+            "p2-kesht"
+          ],
+          "closing": null,
+          "popups": [],
+          "news": [
+            "c2t1-ledger-debt-pay",
+            "c2t1-ledger-debt-borrow",
+            "c2t1-ledger-debt-hold",
+            "c2t1-clarion-fund",
+            "c2t1-clarion-pryce",
+            "c2t1-voice-transfers-cut",
+            "c2t1-voice-budget",
+            "c2t1-dispatch-preferences",
+            "c2t1-canopy-rains"
+          ]
+        },
+        {
+          "turn": 2,
+          "date": "21 May",
+          "year": 1,
+          "label": "The Lessa Motion",
+          "scenes": [
+            "p2-reform-push",
+            "p2-sadrah",
+            "p2-site-taua",
+            "p2-site-rail",
+            "p2-site-tamarin",
+            "p2-dry-season",
+            "p2-celia"
+          ],
+          "closing": null,
+          "popups": [],
+          "news": [
+            "c2t2-ledger-reform-for",
+            "c2t2-ledger-reform-against",
+            "c2t2-ledger-reform-sub",
+            "c2t2-ledger-reform-free",
+            "c2t2-clarion-zharan",
+            "c2t2-clarion-tekoku",
+            "c2t2-voice-photo",
+            "c2t2-voice-slopes",
+            "c2t2-dispatch-sadrah",
+            "c2t2-canopy-sertao",
+            "c2t2-canopy-sertao-wait"
+          ]
+        },
+        {
+          "turn": 3,
+          "date": "9 July",
+          "year": 1,
+          "label": "Midsummer",
+          "scenes": [
+            "p2-arguedas",
+            "p2-mondrath",
+            "p2-files",
+            "p2-festival"
+          ],
+          "closing": "p2-reform-vote",
+          "popups": [],
+          "news": [
+            "c2t3-ledger-vote-passed",
+            "c2t3-ledger-vote-watered",
+            "c2t3-ledger-vote-failed",
+            "c2t3-ledger-regional",
+            "c2t3-clarion-vote",
+            "c2t3-clarion-passed",
+            "c2t3-voice-march",
+            "c2t3-dispatch-arenza",
+            "c2t3-dispatch-mondrath",
+            "c2t3-canopy-ibira-river"
+          ],
+          "chapterEnd": true
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Burdens of Leadership",
+      "question": "Can you survive?",
+      "turns": [
+        {
+          "turn": 1,
+          "date": "15 September",
+          "year": 1,
+          "label": "Autumn Session",
+          "scenes": [
+            "p3-tax-reform",
+            "p3-strawberry",
+            "p3-project-incident"
+          ],
+          "closing": null,
+          "popups": [],
+          "news": [
+            "c3t1-ledger-tax-1",
+            "c3t1-ledger-tax-2",
+            "c3t1-ledger-tax-3",
+            "c3t1-ledger-tax-none",
+            "c3t1-clarion-tax",
+            "c3t1-clarion-strawberry",
+            "c3t1-voice-slopes",
+            "c3t1-dispatch-phones",
+            "c3t1-canopy-mercury"
+          ]
+        },
+        {
+          "turn": 2,
+          "date": "3 November",
+          "year": 1,
+          "label": "November",
+          "scenes": [
+            "p3-celia-ill",
+            "p3-marco"
+          ],
+          "closing": null,
+          "popups": [],
+          "news": [
+            "c3t2-voice-strike",
+            "c3t2-ledger-strike",
+            "c3t2-clarion-strike",
+            "c3t2-ledger-impasse",
+            "c3t2-clarion-impasse",
+            "c3t2-ledger-avros",
+            "c3t2-voice-celia",
+            "c3t2-dispatch-fund",
+            "c3t2-canopy-rains"
+          ]
+        },
+        {
+          "turn": 3,
+          "date": "18 December",
+          "year": 1,
+          "label": "The End of the First Year",
+          "scenes": [],
+          "closing": "p3-year-end",
+          "popups": [],
+          "news": [
+            "c3t3-ledger-year",
+            "c3t3-clarion-year",
+            "c3t3-voice-year",
+            "c3t3-dispatch-year",
+            "c3t3-canopy-year"
+          ],
+          "chapterEnd": true,
+          "gameEnd": true
+        }
+      ]
+    }
+  ]
+}

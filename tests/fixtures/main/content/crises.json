@@ -1,0 +1,175 @@
+[
+  {
+    "id": "strikes",
+    "scene": "p3-crisis-strikes",
+    "threshold": 7.5,
+    "from_chapter": 3,
+    "note": "Ibicuí periphery and port strikes. Computed at each turn end from chapter 3 (not accumulated). With no labour compact, no sanitation project and no palliatives the value is ~8.5 (fires); the labour compact, project 6 or palliatives each pull it below the threshold.",
+    "signals": [
+      {
+        "at": 0.6,
+        "readable": "sig-strikes-vote"
+      }
+    ],
+    "pressure": [
+      {
+        "expr": "flag.periphery_pressure",
+        "weight": 3
+      },
+      {
+        "expr": "70 - col@ibicui",
+        "weight": 0.3
+      },
+      {
+        "expr": "!flag.labor_compact",
+        "weight": 3
+      },
+      {
+        "expr": "!(flag.great_project == 6)",
+        "weight": 2
+      },
+      {
+        "expr": "flag.transfers_cut",
+        "weight": 2
+      },
+      {
+        "expr": "flag.famine_relief == 3",
+        "weight": 2
+      },
+      {
+        "expr": "45 - approval@ibicui",
+        "weight": 0.2
+      },
+      {
+        "expr": "-opinion.cv",
+        "weight": 0.4
+      },
+      {
+        "expr": "-opinion.unions",
+        "weight": 0.3
+      },
+      {
+        "expr": "flag.warned_marco",
+        "weight": 1
+      },
+      {
+        "expr": "flag.strike_palliatives",
+        "weight": -4
+      },
+      {
+        "expr": "flag.port_talks",
+        "weight": -1.5
+      },
+      {
+        "expr": "flag.site_visits",
+        "weight": -1
+      },
+      {
+        "expr": "flag.marco_deadline && !flag.labor_compact",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "id": "impasse",
+    "scene": "p3-crisis-impasse",
+    "threshold": 7,
+    "from_chapter": 3,
+    "note": "Representation impasse. Either Lessa's bloc obstructs (reform failed / refused) or the losers obstruct (reform passed). The decentralisation substitute defuses it.",
+    "signals": [
+      {
+        "at": 0.6,
+        "readable": "sig-impasse-motions"
+      }
+    ],
+    "pressure": [
+      {
+        "expr": "flag.reform_failed",
+        "weight": 4
+      },
+      {
+        "expr": "flag.reform_result == 1",
+        "weight": 3
+      },
+      {
+        "expr": "flag.reform_result == 2",
+        "weight": 2
+      },
+      {
+        "expr": "flag.reform_result == 4 || flag.reform_result == 5",
+        "weight": -3
+      },
+      {
+        "expr": "20 - approval@tekoku",
+        "weight": 0.15
+      },
+      {
+        "expr": "-opinion.nf",
+        "weight": 0.3
+      },
+      {
+        "expr": "flag.opp_price_1 == 3 || flag.opp_price_1 == 4",
+        "weight": 1.5
+      },
+      {
+        "expr": "-loyalty.mertens",
+        "weight": 0.5
+      },
+      {
+        "expr": "-loyalty.lessa",
+        "weight": 0.5
+      },
+      {
+        "expr": "flag.tax_failed",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "id": "avros",
+    "scene": "p3-crisis-avros",
+    "threshold": 9,
+    "when": "chapter >= 3 && flag.anticorruption_formed",
+    "note": "Avros scandal. Only if Salgado's Anti-Corruption Department was funded (DECISIONS).",
+    "signals": [
+      {
+        "at": 0.6,
+        "readable": "sig-avros-leak"
+      }
+    ],
+    "pressure": [
+      {
+        "expr": "flag.initiative.anticorruption",
+        "weight": 4
+      },
+      {
+        "expr": "suspicion.avros",
+        "weight": 0.1
+      },
+      {
+        "expr": "loyalty.salgado",
+        "weight": 0.4
+      },
+      {
+        "expr": "flag.avros_envelope == 1",
+        "weight": 2
+      },
+      {
+        "expr": "flag.corvel_to_salgado",
+        "weight": 1
+      },
+      {
+        "expr": "flag.amendments == 2",
+        "weight": 1
+      },
+      {
+        "expr": "flag.shielded_avros",
+        "weight": -3
+      },
+      {
+        "expr": "flag.warned_avros",
+        "weight": -1
+      }
+    ]
+  }
+]
