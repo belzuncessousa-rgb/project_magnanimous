@@ -188,3 +188,18 @@ Only the **new GDD** in Notion ("📖 GDD — Project Magnanimous") counts. The 
 - Sporadic free action: give an interview/exclusive to a paper (PT cost).
 
 ## Status: design round 1 complete (topics 1–9). Next: build engine + map + P1 content.
+
+## Author feedback round 1 (after playing P1-S1/S2)
+- Writing rules captured in docs/story/STYLE-GUIDE.md (mandatory): less drama, fewer names early, no dramatic
+  antithesis closers, proper character introductions, meetings conducted by CoS/VP with mandatory overview then
+  optional informational follow-ups, ministers don't jump ahead, Treasury overview must explain the economy.
+- New scene: political panorama briefing by VP Mertens + Chief of Staff (blunt, practical): Congress composition,
+  each party's power/what it represents/relation to Lara, how OPP works.
+- Tutorial right AFTER the first cabinet meeting (not after the speech): explains the interface, PT/FC/IPI/EPI, before
+  any cost is shown. Later: costs shown as hover tooltips.
+- Locked options must be hidden until available (no greyed options).
+- Always return to the map between scenes; never auto-chain scenes. Between scenes: optional small readables
+  (regional reactions to the speech per region/city, congratulation notes from neighbours — not newspaper).
+- Tokens must sit where the event happens (named points in regions.json).
+- Inauguration speech UI and dialogue UI will be redesigned later; keep for now.
+- Scope now: rewrite chapter 1 with this feedback and continue through chapter 3.
