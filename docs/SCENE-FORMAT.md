@@ -102,3 +102,42 @@ Unknown flags are false/0.
 - `content/news/*.md` — newspaper items (front-matter: paper, when, priority; body: headline + short text).
 - `content/popups.json` — ambient map pop-ups (id, location, when, text).
 - `content/free-actions.json` — free actions (id, label, cost, targeted?, valid targets, effects tokens, when, cooldown).
+
+## Additions (round 2)
+
+### Locations
+`location:` should be where the event happens: a point id from `public/map/regions.json` `points`
+(capital, katanai, st-veldra, vila-tamarin, atiaiaba, sugar-bay, mognagna-sertao, tapira-mines, upper-ibira,
+taua-hills, strait), a region id, or a country id. Optional `token:` front-matter picks the marker icon
+(congress, palace, education, health, treasury, project, security, foreign, personal, news, strike, crisis).
+
+### Tutorial highlights
+`[highlight: <ui-id>]` on a prose line (or as a standalone token line) highlights a UI element while that block is
+shown. ui-ids: `hud`, `hud-pt`, `hud-fc`, `hud-ipi`, `hud-epi`, `hud-approval`, `hud-date`, `map`, `map-toggle`,
+`markers`, `readables`, `actions`, `agenda`, `end-turn`. Flag `tutorial_done` is set by the tutorial scene;
+the engine hides costs on choices until `flag.tutorial_done`.
+
+### Readables (small optional items on the map between scenes)
+`content/readables.json`: array of `{ id, chapter, turn, location, kind: "reaction"|"note"|"report"|"incident",
+title, from?, when?, text }`. Shown as small pins at `location`; clicking opens a short paper card. No choices, no
+effects (except an optional `flags` object set when read). Existing `content/popups.json` items are treated the same.
+
+### Ministries & budget (chapter 2)
+`content/ministries.json`: `[{ id, name, minister, tiers: { cut: {fc_per_turn, effects}, low:{...}, regular:{...},
+high?:{...} }, initiatives: [{ id, name, summary, effects_per_turn: "<tokens>", once?: "<tokens>" }] }]`.
+A scene token `[open: budget]` opens the budget screen; the player picks a tier per ministry and, for Low, which
+initiative. Result flags: `budget.<ministry> = cut|low|regular|high`, `initiative.<id> = true`.
+Recurring effects apply each turn update; FC per turn is deducted at turn start.
+
+### Congress votes
+`content/bills.json`: `[{ id, title, summary, positions: { <party>: { base: -1..1, ifs?: [{ when, delta }] } },
+whip_costs?: { <party>: "<cost tokens>" } }]`. Seats come from world.json. Token `[vote: <bill-id>]` in a scene
+opens the vote screen: shows the projected count per party (as words: for / leaning / undecided / against), lets the
+player spend IPI/FC/PT on whip deals per party (OPP prices per GDD: small=IPI, medium=more IPI or FC with corruption,
+high=FC + ministry promise), then resolves. Result flag `vote.<bill-id> = passed|watered|failed`, and
+`vote.<bill-id>.margin` = yes seats − 50.
+
+### Crises
+`content/crises.json`: `[{ id, scene, threshold, from_chapter?, signals: [{ at, readable }], pressure: [{ expr, weight }] }]`
+— pressure is recomputed each turn update as Σ weight·value(expr); crossing `threshold` makes `scene` available
+(kind crisis); crossing each `signals.at` publishes that readable/news item.
