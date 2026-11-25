@@ -1,6 +1,6 @@
 # Narrative canon — author design sessions
 
-Last consolidated: 2026-11-25. Sessions 01–37. Maintained as author interviews continue.
+Last consolidated: 2026-11-25. Sessions 01–38. Maintained as author interviews continue.
 
 ## Authority and workflow
 
@@ -153,9 +153,17 @@ Author recalled Zharan's connection to cartels through Tarev (consistent with es
 
 Confirmed: Zharan knowingly tolerates cartel-linked actors within Tarev because maintaining strategic influence over its client state takes priority over combating organized crime. Do not establish Zharan as directly commanding the cartels. Both superpowers can offer assistance against the cartels. Working differentiation: Federation intelligence, equipment, financial investigations, training and security cooperation in exchange for possible military/geopolitical commitments; Zharan pressure on Tarev, intelligence and regional cooperation in exchange for possible economic/strategic concessions. These are illustrative offers, not fixed agreements. International assistance should complement domestic institutional capacity rather than guarantee success. Preserve independent security strategies and cumulative diplomatic obligations. Exact conditions, effects and costs remain open. Tarev's detailed regime and history are still TBD.
 
-## Next design discussion (38)
+## 38 — Arenza and the multilateral alliance
 
-Review the existing Arenza GDD and resolve a meaningful uncertainty regarding regional multilateralism, rivalry or bloc formation. Continue focused discussion of important foreign relationships.
+Confirmed: Kunasai and Arenza have a longstanding historical rivalry for continental political/economic leadership. Arenza is a proud, substantial regional economy, smaller than Kunasai but not overwhelmingly so; historical Brazil–Argentina rivalry and a closer modern economic scale such as Brazil–Mexico are illustrative inspirations, not literal analogues or numerical targets. Arenza already trades with the Federation and would prefer that established relationship to subordination to Kunasai. Agricultural competition (especially cattle and overlapping exports) is a potential domestic obstacle; trade concessions to Arenza can antagonize Tapira agribusiness. Other competing economic sectors and precise historical disputes TBD.
+
+Multilateralism may have the greatest overall long-term potential, earned by being the hardest strategy to execute well. It need not yield the highest immediate economic gains. Superpower support can also be used to leverage domestic development and later reduce dependence; alignments are not irrevocable. A successful regional alliance may become a third global geopolitical pole, especially in a second term, even before economic parity with either superpower. Eventual economic parity late in a second term is a possibility, not a guaranteed or calibrated outcome.
+
+Arenza is essential to founding the alliance. Other countries must be convinced to join individually; its ultimate success depends on membership and meaningful cooperation. Kunasai may naturally be the leading member due to its size and influence, but the alliance must be genuinely multilateral/federalist in spirit, with negotiated decisions and respect for other members' autonomy. If Lara tries to dominate it or use it as a personal sphere of influence, expansion stalls and Arenza may refuse or withdraw. Agreements benefiting partners more than Kunasai in the short term can be necessary, including politically costly compromises with competing economic interests. Avoid reducing formation to one diplomatic relationship threshold. Working proposal: meaningful intermediate outcomes (bilateral cooperation, limited bloc, expanded cohesive alliance) so imperfect execution is not automatically failure; no hidden perfect dialogue sequence. First-term bloc formation is a substantial achievement; global-pole development primarily longer-term. Official name, institutions, accession conditions, membership, precise trade disputes and mechanics TBD. "Northern Alliance" is only an illustrative name.
+
+## Next design discussion (39)
+
+Deepen the alliance design with a focused unresolved question about its initial institutional depth and first-term milestones. Check existing foreign-relations GDD and repository material before assuming mechanics; then discuss other countries and their potential membership as relevant.
 
 ## Implementation backlog (not yet changes)
 
