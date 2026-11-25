@@ -20,6 +20,9 @@ export interface Region {
   welfareSensitivity: number;
   /** calibration constants so the starting state is at rest + accumulated "Events" modifiers */
   base: { approval: number; stability: number; output: number; education: number; col: number };
+  /** what the region's people believe and care about (alignment with the president moves approval) */
+  compass?: Compass;
+  relevance?: Compass;
   /** per-capita output last turn (for Δ(Output/Population)%) */
   prevOutputPerCapita: number;
 }
@@ -39,6 +42,9 @@ export interface Country {
   /** context neighbours: newspaper/map only, excluded from EPI */
   context: boolean;
   base: { relation: number; aggressiveness: number };
+  compass?: Compass;
+  relevance?: Compass;
+  diploSensitivity?: number;
 }
 
 export type ActorKind = 'character' | 'party' | 'faction';
@@ -58,6 +64,10 @@ export interface Actor {
   relevance?: Compass;
   /** counts towards IPI */
   ipi: boolean;
+  /** multiplies TUNING.alignment.kLoyalty */
+  sensitivity?: number;
+  /** alignment penalty at game start (votes compare against it) */
+  alignStart?: number;
   base: { loyalty: number; capacity: number };
   aliases: string[];
 }

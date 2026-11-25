@@ -49,12 +49,6 @@ export const TUNING = {
     tradeTaxRelationFactor: 8,
   },
 
-  actor: {
-    /** loyalty penalty per point of weighted compass distance beyond the threshold */
-    loyaltyCompassFactor: 0.8,
-    loyaltyCompassThreshold: 3,
-  },
-
   taxes: {
     domesticDefault: 0.3,
     tradeDefault: 0.1,
@@ -98,6 +92,22 @@ export const TUNING = {
     payDownStep: 0.5,
     borrowMaxShareOfBalance: 0.15,
     borrowStep: 1,
+  },
+
+  /** Alignment (src/core/alignment.ts): penalty = Σ w·|player − entity|^exponent / Σ|w|; each use subtracts
+   *  k × (penalty now − penalty at game start) from its rest value. */
+  alignment: {
+    exponent: 1.4,
+    /** region approval RV per point of penalty */
+    kRegion: 0.6,
+    /** personal loyalty RV per point (× the actor's `sensitivity` if given) */
+    kLoyalty: 0.25,
+    /** diplomatic relation RV per point (× the country's `diploSensitivity` if given) */
+    kDiplo: 0.15,
+    /** vote position (−1..1) per point of change */
+    kVote: 0.03,
+    /** countries without relevance: Identity 3, Force 2, Power(STRUCT) 2, Religion 1, Economic 1, Welfare 0 — normalised */
+    interstateRelevance: { ECON: 0.33, WELF: 0, IDEN: 1, FORCE: 0.67, STRUCT: 0.67, RELIG: 0.33 },
   },
 
   crisis: {

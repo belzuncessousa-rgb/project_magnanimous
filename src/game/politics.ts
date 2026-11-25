@@ -1,6 +1,8 @@
 // Budget (content/ministries.json) and Congress votes (content/bills.json). Pure, no DOM.
 import { applyEffects, canAfford, pay, type ResourceAmounts } from '../core/effects';
 import { test } from '../core/query';
+import { actorPenalty } from '../core/turn';
+import { TUNING } from '../core/tuning';
 import type { GameState } from '../core/types';
 import type { Bill, Ministry, Tier } from '../content/schema';
 
@@ -146,6 +148,8 @@ export function projectVote(state: GameState, bill: Bill, deals: Record<string, 
     const pos = bill.positions[a.id] ?? { base: 0, ifs: [] };
     let p = pos.base;
     for (const f of pos.ifs) if (test(state, f.when)) p += f.delta;
+    // alignment: moving toward the party's compass since the start of the game wins support, away loses it
+    if (a.alignStart !== undefined) p += TUNING.alignment.kVote * (a.alignStart - actorPenalty(state, a));
     const dealId = deals[a.id];
     if (dealId) p += whipOptions(bill, a.id).find((d) => d.id === dealId)?.delta ?? 0;
     p = Math.max(-1, Math.min(1, p));
