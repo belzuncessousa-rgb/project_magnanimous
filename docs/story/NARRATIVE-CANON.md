@@ -1,6 +1,6 @@
 # Narrative canon — author design sessions
 
-Last consolidated: 2026-11-25. Sessions 01–38. Maintained as author interviews continue.
+Last consolidated: 2026-11-25. Sessions 01–39. Maintained as author interviews continue.
 
 ## Authority and workflow
 
@@ -161,9 +161,17 @@ Multilateralism may have the greatest overall long-term potential, earned by bei
 
 Arenza is essential to founding the alliance. Other countries must be convinced to join individually; its ultimate success depends on membership and meaningful cooperation. Kunasai may naturally be the leading member due to its size and influence, but the alliance must be genuinely multilateral/federalist in spirit, with negotiated decisions and respect for other members' autonomy. If Lara tries to dominate it or use it as a personal sphere of influence, expansion stalls and Arenza may refuse or withdraw. Agreements benefiting partners more than Kunasai in the short term can be necessary, including politically costly compromises with competing economic interests. Avoid reducing formation to one diplomatic relationship threshold. Working proposal: meaningful intermediate outcomes (bilateral cooperation, limited bloc, expanded cohesive alliance) so imperfect execution is not automatically failure; no hidden perfect dialogue sequence. First-term bloc formation is a substantial achievement; global-pole development primarily longer-term. Official name, institutions, accession conditions, membership, precise trade disputes and mechanics TBD. "Northern Alliance" is only an illustrative name.
 
-## Next design discussion (39)
+## 39 — Alliance institutions, Arenzan elections and membership contributions
 
-Deepen the alliance design with a focused unresolved question about its initial institutional depth and first-term milestones. Check existing foreign-relations GDD and repository material before assuming mechanics; then discuss other countries and their potential membership as relevant.
+Confirmed institutional progression: first term can reach (I) bilateral Kunasai–Arenza cooperation, (II) formal alliance foundation, (III) accession of additional countries (most successful first-term outcome). Second term may reach (IV) common market and coordinated foreign policy, (V) supranational institutions and collective security, resembling EU-style voluntary pooling of sovereignty. Later expansion beyond the original region to other multilateralist countries is possible. These are design milestones, not necessarily a literal level counter or fixed linear sequence.
+
+Author proposes an Arenzan election storyline: an initially abrasive/distrustful candidate (not the incumbent) can develop into an enthusiastic supporter and personal friend of Lara depending on their interactions, including polite personal notes, public congratulations, endorsements and visible character development. Their principal opponent is more nationalist/isolationist and less inclined toward integration. Lara may have opportunities for involvement or interference of varying degrees; methods, consequences, election outcomes, timing, candidates and incumbent remain TBD. Working narrative principle: introduce the relationship early, distinguish personal friendship from national interests, and let changes appear through correspondence, meetings, news and social media. Do not make alliance formation or a particular Arenzan election result automatic.
+
+Each member country should provide a distinctive contribution or bonus reflecting its strengths, beyond aggregate economic size. The technologically advanced country (Veldmoor) may contribute knowledge/research growth for members; other benefits TBD. Potential examples: Arenzan agriculture/trade, Vassel maritime access, Kunasai industrial and resource capacity. Prefer existing indices, flags and conditional opportunities over an independent alliance economic simulation unless necessary. Exact membership eligibility, bonuses, institutions and mechanics remain provisional.
+
+## Next design discussion (40)
+
+Review Veldmoor's existing GDD and clarify its role in Kunasai's development and the multilateral alliance, then continue with unresolved foreign policy questions. Avoid premature detailed mechanics.
 
 ## Implementation backlog (not yet changes)
 
