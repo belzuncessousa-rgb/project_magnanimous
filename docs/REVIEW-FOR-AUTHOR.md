@@ -30,3 +30,13 @@ Curto e só o que importa. Detalhes completos em docs/story/BIBLE.md.
 ## Onde está o quê
 - `main`: motor (em construção), mapa, tokens, P1-S1 + 2 cenas.
 - branch `wip/content-ch1`: o resto do capítulo 1 (10 cenas, escolha da grande obra no fim).
+
+## Rodada 2 (capítulos 1–3 reescritos/escritos com o seu feedback)
+Decisões novas para olhar:
+1. Senado (15 senadores) só aprova juízes, tratados e mudanças no pacto federativo; leis ordinárias e a reforma de representação são votadas no Congresso.
+2. Planejamento: no 1º mandato paga a grande obra escolhida + obras municipais; cortar o orçamento pausa a obra. Rede Fluvial e Água de Mognagna ficam como grandes obras futuras.
+3. Escolher a descentralização manda ao voto o projeto do governo (Regional Powers Act) em vez da moção da Lessa.
+4. Celia: pode aparecer num boletim da igreja (Tabernacle), ir pro hospital militar ou ficar no hospital público, e ir morar na Residência depois da internação. Sobrevive até o fim do capítulo 3.
+5. Marco pode ser preso pela 4ª vez se a Lara liberar o porto à força.
+6. Crises do capítulo 3 dependem de vários fatores: greves em Ibicuí (~2 em 10 partidas), impasse da reforma (~3 em 10), escândalo do Avros (só se a anticorrupção da Salgado foi financiada).
+Personagens novos: Ivone (vizinha da Celia), Dra. Lúcia Ramos (Hospital Geral de Katanaí), Pastor Ezequiel (Tabernacle da Vila Tamarin), Halvard Minerals (mineradora arenniana).
