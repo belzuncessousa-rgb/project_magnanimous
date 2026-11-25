@@ -1,6 +1,6 @@
 # Narrative canon — author design sessions
 
-Last consolidated: 2026-11-25. Sessions 01–24. Maintained as author interviews continue.
+Last consolidated: 2026-11-25. Sessions 01–25. Maintained as author interviews continue.
 
 ## Authority and workflow
 
@@ -83,9 +83,17 @@ Keep identities legible. Do not give every party a full spectrum of factions. PM
 
 Equal state representation (three senators per state) was a deliberate founding compromise of democratization to protect smaller/poorer states. Existing populations: Ibicuí 100M, Mognagna 70M, Tekoku 50M, Tapira 30M, Ibira 30M. Equal Senate shares 20% each. Reform is a challenge to a democratic founding agreement, not simply correction of an obvious error. Ibicuí and Tekoku seek more representation; weaker regions fear losing institutional leverage and resources. Retain existing potential population-weight, GDP-weight and decentralization approaches from GDD as material to develop; exact procedure, powers and choices not finalized. Existing implementation treats ordinary Congress votes as unicameral and Senate as ratifier of federal pact changes; reconcile constitutional powers before writing this arc. Existing Senator Lessa as a face is provisional until character work.
 
-## Next design discussion (25)
+## 25 — Federalism and the constitutional amendment package (PEC)
 
-Federalism and distribution of powers/resources between states and central government. Then continue with focused outstanding worldbuilding topics (regional identities and pressures, foreign relations, social factions, specific historical details as needed), character profiles/relationships, overarching term arcs and chapter plans, writing calibration and scene production. Do not require decisions on every detail before proceeding. Revisit mechanics at relevant arc design points.
+Confirmed: relatively centralized federation with elected governors, state legislatures/administrations, most tax revenue collected federally, substantial dependence on federal transfers and major projects, and wealthy states' resentment of redistribution. Exact fiscal and administrative competences still need design. Separatism is a potential arc, to be developed.
+
+Author proposes incorporating Senate representation and regional autonomy into a broader cross-subject constitutional amendment package (working name PEC). The constitutional reform goes to the Senate, together with other major constitutional provisions. During actual party negotiations Lara can compromise on the contents and formulation of the amendment, alter or drop provisions desired by particular parties, or accept other demands as part of an agreement. Do not reduce this to an isolated representation choice or a generic purchase of votes.
+
+Working implementation proposal, not final: modular draft composed of provisions, revised through authored negotiation scenes and visible for consultation between meetings. Potential subjects include Senate representation (equal/population/GDP), federalism, tax collection/transfers, executive powers, electoral eligibility/rules, institutional safeguards and cultural/regional rights. Illustrative bargaining positions only: CP fiscal autonomy, CV opposition to GDP weighting and interest in social guarantees, CA meritocratic administration, OPP protection of electoral influence and prosecution red lines, NF executive/military powers. Exact demands, interactions, gates, thresholds, timing, voting procedure, scope and consequences remain undecided; design together with the Congress overhaul. Separatism may motivate constitutional bargaining or be aggravated by its outcome. Do not imply the player must pass a PEC to complete the term.
+
+## Next design discussion (26)
+
+Tekoku separatism: establish the starting nature of the movement and conditions for escalation, then continue with focused outstanding regional, foreign and social-faction questions before character and term-arc design. Revisit mechanics at relevant arc design points.
 
 ## Implementation backlog (not yet changes)
 
