@@ -1,6 +1,6 @@
 # Narrative canon — author design sessions
 
-Last consolidated: 2026-11-25. Sessions 01–30. Maintained as author interviews continue.
+Last consolidated: 2026-11-25. Sessions 01–31. Maintained as author interviews continue.
 
 ## Authority and workflow
 
@@ -115,9 +115,13 @@ Author direction: Ibira's exceptional natural wealth brings responsibility, risk
 
 Author delegated indigenous design: establish some legally recognized indigenous territories dating from democratization, with inadequately enforced boundaries and protections and unresolved claims. Focus on a limited number of meaningful decisions about territorial rights, consultation over concessions/projects, services/security, culture and religious freedom. Indigenous communities are not homogeneous or uniformly opposed to development. Integrate these into the three strands rather than a fourth large arc. Specific rights, characters and events remain provisional. Preserve infrastructure choices but differentiate their purpose: fluvial national integration, airports access/tourism, rail industry/minerals/international links, roads basic connectivity; no need for a long separate storyline for every investment. Exact spillovers, triggers, security and conservation mechanics remain undecided. Author encourages constructive disagreement, especially on gameplay engagement and scope.
 
-## Next design discussion (31)
+## 31 — Cartel identities and outcomes
 
-Review existing cartel/security material before asking about an unresolved national crime design question. Preserve the distinction between optional Ibira economic investment and unavoidable national security/environmental responsibilities.
+Confirmed distinction: Red Tree emphasizes territorial control, production and illegal extraction in remote/rural areas; its objective is freedom to operate with minimal state interference or accommodating agreements, NOT sovereignty, separatism or establishing a government. Blue Piranhas emphasizes financial power, trafficking, laundering and institutional influence, seeking protection and impunity. Both are violent criminal organizations with an uneasy truce. Preserve the [Cartels GDD](https://app.notion.com/p/37110ad0215881a89e42d93c32d25bf4), including nationwide consequences regardless of Ibira investment, cross-party corruption, Tarev connections and foreign cooperation. Author supports distinctive identities and asks that design be tested for engagement and implementability. Retain ability to defeat both or one; preserve potential cooperation with one against the other. Proposed outcomes include both defeated, either defeated, accommodation, or failure. Defeating one need not require cooperation with the other. Working implementation proposal: separate existing opinion, capacity-to-act and suspicion attributes for each, shared authored arc with conditional scenes and outcomes rather than independent campaigns or a criminal economy simulation. Exact mechanics, triggers, costs and definition of defeat remain open; downstream scene consistency is principal implementation risk. Do not assume eradication of all crime.
+
+## Next design discussion (32)
+
+Determine what defeating a cartel means within the first term (dismantled organization vs weakened residual networks), with emphasis on satisfying payoff and manageable scope. Consult existing GDD before subsequent questions.
 
 ## Implementation backlog (not yet changes)
 
