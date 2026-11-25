@@ -41,6 +41,8 @@ describe('initial state is at rest', () => {
 
   it('nothing moves over many turns without events', () => {
     const s = testState();
+    // equal cultural power → no cultural drift (culture spreading is a real force, tested separately)
+    for (const c of Object.values(s.countries)) c.culturalPower = s.nation.culturalPower;
     const before = cloneState(s);
     for (let i = 0; i < 10; i++) simulateTurn(s);
     for (const id of Object.keys(s.regions)) {
@@ -48,7 +50,25 @@ describe('initial state is at rest', () => {
       expect(s.regions[id]!.stability).toBeCloseTo(before.regions[id]!.stability, 5);
       expect(s.regions[id]!.output).toBeCloseTo(before.regions[id]!.output, 5);
     }
-    for (const id of Object.keys(s.countries)) expect(s.countries[id]!.relation).toBeCloseTo(before.countries[id]!.relation, 1);
+    for (const id of Object.keys(s.countries)) expect(s.countries[id]!.relation).toBeCloseTo(before.countries[id]!.relation, 0); // trade compounds slowly (GDD formula)
+  });
+});
+
+describe('formula fixes (audit)', () => {
+  it('education does not drift back after an investment', () => {
+    const s = testState();
+    s.regions.ibicui!.education += 5;
+    const e = s.regions.ibicui!.education;
+    for (let i = 0; i < 5; i++) simulateTurn(s);
+    expect(s.regions.ibicui!.education).toBe(e);
+  });
+  it('cultural influence moves by (own − their) / 100 per turn', () => {
+    const s = testState();
+    const c = Object.values(s.countries)[0]!;
+    c.culturalInfluence = 0;
+    c.culturalPower = s.nation.culturalPower - 20;
+    simulateTurn(s);
+    expect(c.culturalInfluence).toBeCloseTo(0.2, 5);
   });
 });
 

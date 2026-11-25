@@ -76,7 +76,7 @@ export function updateRegion(state: GameState, r: Region): void {
   const prevOpc = outputPerCapita(r);
   r.approval = clamp(driftToward(r.approval, clamp(rv.approval, 0, 100), T.drift.approval), 0, 100);
   r.stability = clamp(driftToward(r.stability, clamp(rv.stability, 0, 100), T.drift.stability), 0, 100);
-  r.education = clamp(driftToward(r.education, clamp(rv.education, 0, 100), T.drift.education), 0, 100);
+  // Education: decision/event only (no drift, no rest value).
   r.output = Math.max(0, r.output + (rv.output - r.output) * T.drift.outputFraction);
   r.prevOutputPerCapita = prevOpc;
   // CoL: no drift, follows its formula
@@ -108,8 +108,8 @@ export function updateCountry(state: GameState, c: Country): void {
     c.base.relation -= (state.taxes.trade - T.country.tradeTaxRelationThreshold) * T.country.tradeTaxRelationFactor;
   }
   c.relation = clamp(c.base.relation + relationFormula(c), T.country.relationMin, T.country.relationMax);
-  const ciTarget = clamp((state.nation.culturalPower - c.culturalPower) / 10, -10, 10);
-  c.culturalInfluence = driftToward(c.culturalInfluence, ciTarget, T.drift.culturalInfluence);
+  // Rest Values page: CI_drift = (YourCulturalPower − TheirCulturalPower) / 100 per phase.
+  c.culturalInfluence = clamp(c.culturalInfluence + (state.nation.culturalPower - c.culturalPower) * T.drift.culturalInfluencePerPower, -10, 10);
   c.aggressiveness = clamp(driftToward(c.aggressiveness, c.base.aggressiveness, T.drift.aggressiveness), -10, 10);
 }
 

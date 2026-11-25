@@ -11,11 +11,13 @@ export const TUNING = {
   drift: {
     approval: 1,
     stability: 0.6,
-    education: 0.4,
+    /** Education is decision/event only (GDD): it never drifts. */
+    education: 0,
     aggressiveness: 0.6,
     loyalty: 0.6,
     capacity: 1,
-    culturalInfluence: 1,
+    /** Cultural influence (Rest Values page): CI += (own Cultural Power − theirs) / 100 every turn. */
+    culturalInfluencePerPower: 0.01,
     /** Output has no drift rate in the GDD: it closes this fraction of the gap to its RV each turn. */
     outputFraction: 0.25,
   },
@@ -30,8 +32,9 @@ export const TUNING = {
     welfareSensitivityDefault: 1,
     /** CoL weights: education, infrastructure, output per capita (normalised), stability */
     col: { education: 0.35, infrastructure: 0.3, outputPerCapita: 0.25, stability: 0.1 },
-    /** output per capita (output / population M) that maps to 100 on the CoL scale */
-    colOutputPerCapitaRef: 1.0,
+    /** output per capita (bn/month per million people) that maps to 100 on the CoL scale.
+     *  GDD start: Tapira 9.0 → 90, Ibicuí 6.3 → 63, Tekoku 5.0 → 50, Mognagna 1.8 → 18, Ibira 1.7 → 17. */
+    colOutputPerCapitaRef: 10,
   },
 
   country: {

@@ -35,3 +35,9 @@
 4. Drift conflitante no GDD: lealdade (0.6/turno na tabela × 3/fase na fórmula) e agressividade (0.6 × 2/fase).
    O motor usa 0.6 nos dois.
 5. Juros/turno não dependem da duração do turno (turnos irregulares).
+
+## Correções aplicadas
+- (1) Educação não tem mais drift: só muda por decisão/evento.
+- (2) CoL: produção per capita normalizada por 10 bn/mês por milhão = 100 (Tapira 90, Ibicuí 63, Tekoku 50, Mognagna 18, Ibira 17).
+- (3) Influência cultural: versão da página Rest Values — CI += (Poder Cultural próprio − deles)/100 por turno, limitado a ±10.
+- FC: mesmas fórmulas do GDD (Receita = Produção×imposto doméstico + Comércio×imposto de comércio; Custo base = População × custo per capita; FC = Receita − Custo base), sem o "bracket"/teto de 1–10 e menos o serviço da dívida (juros + amortização). O custo per capita é calibrado no início (81% da receita), porque o GDD não dá o valor.
