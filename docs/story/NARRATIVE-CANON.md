@@ -1,6 +1,6 @@
 # Narrative canon — author design sessions
 
-Last consolidated: 2026-11-25. Sessions 01–35. Maintained as author interviews continue.
+Last consolidated: 2026-11-25. Sessions 01–36. Maintained as author interviews continue.
 
 ## Authority and workflow
 
@@ -141,9 +141,17 @@ Confirmed: geopolitical alignment is accumulated through decisions and individua
 
 Confirmed: the Arennian Federation and Zharan are stylized, more sharply defined fictional analogues of the contemporary US–China rivalry, not literal copies. Both compete for ideological, economic and geopolitical dominance. The Federation emphasizes ideological compatibility, distribution of power, maintaining its sphere of influence and a paternalistic/imperial diplomatic attitude; it also pursues advantageous resource access and restrictions on Zharan's strategic/economic access. Zharan is diplomatically pragmatic and transactional, placing greater emphasis on economic demands, market access, trade, infrastructure and strategic concessions. Its risks include dumping, overly open domestic markets, cheap imports undermining domestic industries and accumulated dependency. These are priorities, not exclusive domains. Preserve cumulative alignment and potential failure from session 34. Proposed examples: affordable technology improving living standards while threatening Strawberry; infrastructure concessions accelerating Ibira development but creating obligations; agricultural exports increasing Tapira income and trade dependence. Both powers can offer genuinely beneficial agreements; avoid making either an obviously correct or uniformly exploitative partner. Exact agreements, pressure thresholds and consequences remain open. Sources: existing [Federation GDD](https://app.notion.com/p/36b10ad0215881e6a4f3fcb8ddcb33ff) and [Zharan GDD](https://app.notion.com/p/36b10ad0215881ef8853fa5963dc6170), whose detailed lore was largely TBD.
 
-## Next design discussion (36)
+## 36 — Cold war, submission and diplomatic risk
 
-Resolve how the superpowers' rivalry escalates and how much pressure they can exert during the first term. Distinguish trade and ordinary diplomatic relations from strategic commitments. Continue with foreign-country profiles and concrete negotiations.
+Confirmed: no open international war during regular first-term gameplay, including no open war between the superpowers. Economic warfare, diplomatic confrontation, technological restrictions, espionage, threats and indirect rivalry remain possible; do not equate proxy pressure with open warfare. A war with the Archduchy of Mondrath may be a terminal first-term development/ending, not a playable military campaign. Dedicated war mechanics are deferred to a possible second-term game, not committed to scope.
+
+Both superpowers are willing to push for Kunasai's submission, not merely mutually advantageous trade. Zharan's rapid rise and economic dominance should feel genuinely threatening despite its more pragmatic diplomatic manner. Careful, reasonably legible negotiation and compromise can produce mutual benefits and preserve autonomy; repeated concessions to either or both can produce effective foreign domination, potentially akin to recolonization despite formal sovereignty. Economic prosperity and sovereignty can diverge. No requirement for a hidden optimal decision sequence or for every choice to be equally defensible/effective: some choices have immediate upsides but disastrous cumulative costs. Exact sovereignty indicators and mechanics TBD. Independent international events can generate opportunities and pressures regardless of Lara's decisions; scope and events provisional.
+
+Author recalled Zharan's connection to cartels through Tarev (consistent with established Tarev/cartel material). Nature and degree of Zharan's direct involvement remain to be clarified. Author prefers freely elaborating by voice; assistant should extract relevant decisions, examples and uncertainties, not require rigid answers.
+
+## Next design discussion (37)
+
+Tarev: clarify whether Zharan knowingly supports cartel-linked actors directly or benefits through its client state's tolerated criminal networks. The [Tarev GDD](https://app.notion.com/p/36b10ad02158816e98abe0119c4305e4) leaves the detailed regime, dependency and pressure mechanisms largely TBD. Keep discussion focused on narrative role and avoid unnecessarily multiplying foreign arcs.
 
 ## Implementation backlog (not yet changes)
 
