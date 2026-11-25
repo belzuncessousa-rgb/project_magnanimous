@@ -9,4 +9,4 @@ priority: 1
 
 # Mines and Rails. The Slopes Can Wait?
 
-The government's first great project is a fine thing for somebody. On the upper slopes of Katanaí, fourteen hundred families from Mognagna are still waiting for a pipe, a school and a reason to stay calm. The dockers' union met on Thursday. Nobody said the word "strike". Everybody heard it.
+The government's first great project is a fine thing for somebody. On the upper slopes of Katanaí, fourteen hundred families from Mognagna are still waiting for a pipe, a school and a reason to stay calm. The dockers' union met on Thursday. The word "strike" was not used, but several speakers mentioned the possibility.

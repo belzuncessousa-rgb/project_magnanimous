@@ -8,8 +8,10 @@ Scene file syntax: `docs/SCENE-FORMAT.md`. Data file shapes: `docs/story/DATA-SC
 
 ## 0. Voice and house rules
 
-- English. Second person, present tense. The narrator is anonymous, dry and observational — closer to a political novel than a
-  thriller. It notices; it never editorialises. It may be quietly funny about rooms, furniture, protocol, weather.
+- **`docs/story/STYLE-GUIDE.md` overrides this section.** Plain, informative narration; no "dramatic closer" or antithesis
+  sentences; no personified rooms or objects; proper introductory paragraph for each character when they first matter;
+  meetings conducted by Livia, Mertens or Amanda (overview first, informational follow-ups, no forced decisions).
+- English. Second person, present tense. The narrator is anonymous and observational. It never editorialises.
 - NPCs speak short and precise. Two or three sentences is a long speech. Nobody monologues except Lara on a balcony.
 - Lara speaks in full sentences. She was a lawyer and an organiser; she argues, she does not quip.
 - Thoughts are italic paragraphs, no quotes. "The voice" (§3) is a special kind of thought.
@@ -237,7 +239,9 @@ Voice: "The Arennians will be charming. Count your fingers afterwards."
 
 ## 5. Congress, parties, the bench
 
-Unicameral Congress for all votes (the Senate exists only as the subject of the representation reform).
+Unicameral Congress for all ordinary votes. The **Senate** (3 senators per state, 15 in all) approves judges and treaties and
+must ratify changes to the federal pact; it does not vote on ordinary laws. How it is apportioned is the subject of the
+representation reform, which itself is voted in Congress (round 2 choice; see p1-panorama, p1-lessa-visit).
 
 | Party | Seats | Leader | Bench leader | Notes |
 |---|---|---|---|---|
@@ -378,9 +382,15 @@ crisis. Ends with the great-project choice.
 
 **Turn 1 — 1 January (Inauguration Day).**
 1. `p1-inauguration` (fixed, first) — the author's address. The compass starts to move; skipped topics have witnesses.
-2. `p1-blue-room` (fixed) — the first cabinet meeting. Ministers as people with agendas; Fontes hints at the hole; Mertens
-   collects the first OPP price (the Katanaí Port Authority); Livia's cartel briefing and choice.
-3. `p1-first-night` (personal) — the Residence; Amanda and her notebooks; a call from Celia; the voice, first heard.
+2. `p1-blue-room` (fixed) — first cabinet meeting, conducted by Livia: overview by groups (economy, social, state, foreign),
+   optional informational follow-ups, no decisions; Fontes flags the debt for a separate meeting. Ends with Livia's
+   cartel briefing (GDD).
+3. `p1-panorama` (fixed) — Mertens + Livia: Congress seat by seat, each party, how OPP prices things; the first OPP price
+   (the Katanaí Port Authority) as a worked example.
+4. `p1-tutorial` (fixed) — Amanda explains the interface; sets `tutorial_done` (no costs shown before it).
+5. `p1-first-night` (personal) — the Residence; Amanda's notebook; a call from Celia; the voice.
+Readables (content/readables.json): regional reactions to the speech (vary with address flags), notes from Arenza,
+Veldmoor, Mondrath (cold), Tarev, the Federation embassy and the Zharani mission, and incidents.
 News: first editions of all five papers react to the address.
 
 **Turn 2 — 8 January (the first full week).** Any order:

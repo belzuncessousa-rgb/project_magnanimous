@@ -9,4 +9,4 @@ priority: 3
 
 # Ibira Peoples' Council Asks to Be Consulted on Tauá
 
-Iracema Tuyú, spokeswoman for the Ibira Peoples' Council, has asked the government for formal consultation before any survey of the Tauá Hills, citing two rivers and eleven villages within the proposed concession. Geologists consulted by the Review agree the deposit is exceptional. Hydrologists agree the rivers drain north into the Ibira — and from there, eventually, to Tekoku.
+Iracema Tuyú, spokeswoman for the Ibira Peoples' Council, has asked the government for formal consultation before any survey of the Tauá Hills, citing two rivers and eleven villages within the proposed concession. Geologists consulted by the Review agree the deposit is exceptional. The rivers in the area drain into the Ibira, which flows north to Tekoku.

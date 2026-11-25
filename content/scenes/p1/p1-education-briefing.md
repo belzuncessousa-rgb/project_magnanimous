@@ -4,71 +4,75 @@ chapter: 1
 turn: 3
 title: The Graduating Class
 kind: briefing
-location: tekoku
+location: atiaiaba
+token: education
 portraits: [kaval]
 background: university-hall
 ---
 
-⚙️ Education briefing, staged as a visit to the Federal University of Tekoku in Atiaiaba (Lara's worst region: approval 15). Seeds: Basic Education Expansion vs. Higher Ed & Research (ch2 tier), brain drain, Strawberry, the rare-earths clean-extraction gate. Kaval's personal arc: her son in Veldra.
+⚙️ Education meeting, held as a visit to the Federal University of Tekoku in Atiaiaba (Lara's weakest region). Overview of the two programmes for the chapter-2 budget (basic schooling vs. universities and research), emigration of graduates, Strawberry, and the link to Ibira's rare earths. Kaval's son is in Veldra.
 
 ## opening
 
-The Federal University of Tekoku was a monastery before it was a university, and in the great hall the students still sit on the monks' benches. The windows are Veldran glass, green and slightly warped, so that the city outside looks as if it were underwater.
+Atiaiaba is the largest city of Tekoku, on the north coast, where the two great rivers reach the sea. The Federal University occupies a former monastery in the old town. The main hall still has the monks' wooden benches.
 
-Helena Kaval meets you at the door without ceremony. She was rector here for eight years. The porters still call her Rector, and she has stopped correcting them.
+Helena Kaval meets you at the gate. The porters greet her as "Rector", her old title, and she lets them.
 
-> **Helena Kaval:** "Welcome to the only room in Tekoku that voted for you. Narrowly. Don't let it go to your head."
-
-> **Helena Kaval:** "The graduating class in physics. Sixty-one. I asked them, privately, how many have a ticket to Veldra or Moreya. Thirty-four raised their hands. Six more didn't, and I know they lied."
+> **Helena Kaval:** "Welcome, Madam President. This is the physics class that graduates this year. Sixty-one students. I asked them privately how many already have a job offer in Veldra or Moreya. Thirty-four said yes."
 
 → class
 
 ## class
 
-The students stand when you come in, some quickly, some slowly enough to make a point. A young woman in the front row keeps her arms folded the entire time. Kaval says she has a scholarship offer from a laboratory in Moreya, and a grandmother in Mognagna.
+The students stand up when you come in. A young woman in the front row keeps her arms crossed. Kaval tells you quietly that she has an offer from a laboratory in Moreya, and that her grandmother lives in Mognagna.
 
-> **Helena Kaval:** "Say something to them. Not a speech. They've had speeches."
+> **Helena Kaval:** "Would you say a few words to them? Short is fine."
 
-1. **"Stay. I can't promise you salaries yet. I can promise you a country that needs you."** `[approval +2 @ tekoku]` `[kaval loyalty +1]` `[+1 IDEN]`
-   ↳ A few of them write it down. One of them, at the back, writes it down and then crosses it out. You can't tell which part.
-2. **"Go. Learn everything. Then come back, and we'll be ready for you."** `[approval +1 @ tekoku]` `[-1 IDEN]` `[kaval loyalty +1]`
-   ↳ The young woman in the front row unfolds her arms. It is not applause, but in Tekoku it may be the local equivalent.
-3. **"Some of you will leave. My first duty is the child in Mognagna who never got as far as this room."** `[+1 WELF]` `[approval -3 @ tekoku]` `[approval +2 @ mognagna]` `[kaval loyalty -1]` `[flag: education_floor_first = true]`
-   ↳ The hall goes very quiet. The young woman in the front row looks, for the first time, directly at you. You can't tell whether she is angry or relieved that somebody said it.
+1. **"Stay if you can. I can't promise better salaries yet, but this country needs you."** `[approval +2 @ tekoku]` `[kaval loyalty +1]` `[+1 IDEN]`
+   ↳ Some of them write it down. Most just listen.
+2. **"If you go, learn everything you can, and then come back. We'll try to be ready for you."** `[approval +1 @ tekoku]` `[-1 IDEN]` `[kaval loyalty +1]`
+   ↳ The young woman in the front row uncrosses her arms.
+3. **"Some of you will leave. My first duty is to the children who never got as far as this room."** `[+1 WELF]` `[approval -3 @ tekoku]` `[approval +2 @ mognagna]` `[kaval loyalty -1]` `[flag: education_floor_first = true]`
+   ↳ The hall goes quiet. The young woman in the front row looks directly at you for the first time.
 
 ## office
 
-Afterwards, in the rector's old office, Kaval pours two glasses of something from a Veldran bottle and does not ask whether you want one.
+Afterwards, in her old office, Kaval gives you the overview.
 
-> **Helena Kaval:** "Two things I can do. Raise the floor — teachers and schools in Mognagna and Ibira, results in fifteen years, which is to say, under someone else. Or extend the top — laboratories, research, the people in that hall. Results in five, mostly here."
+> **Helena Kaval:** "In the budget, Education can fund two programmes. One is basic schooling: teachers and schools in Mognagna and Ibira, where many children leave school early. The results take fifteen years to show."
 
-> **Helena Kaval:** "The left wants the floor. Tekoku wants the top. Strawberry wants the top and would like it free. Martin Works has already emailed me twice."
+> **Helena Kaval:** "The other is universities and research: laboratories, salaries for researchers, grants. That keeps people like the students you just met. The results come faster, but mostly here in Tekoku and in Ibicuí."
 
-> **Helena Kaval:** "And Marne will tell you there's a fortune in rare earths under Ibira. There is. To take it out without poisoning the river you need engineers you don't have. They're in that hall, packing."
+> **Helena Kaval:** "The left of your party will want the schools first. Tekoku and the businesses here will want the universities. We'll decide in March."
 
-1. **"If you had to cut one, which?"**
-   ↳ > **Helena Kaval:** "Neither. Then the top, because the floor can't leave the country. That's the cruel answer. It's also the correct one, which is why I hate it."
-2. **"What does Martin Works want, exactly?"**
-   ↳ > **Helena Kaval:** "Graduates, cheap. And a law that says foreign phones pay more at the border than his. He'll call it national pride. It's very good pride. It has quarterly targets."
-3. **"Which would you choose, if it were your son?"**
-   ↳ She puts her glass down.
-   ↳ > **Helena Kaval:** "My son is in Veldra. He left two years ago. He answers my messages on Sundays, briefly, in Veldran, which he knows I find funny. So you'd have to ask somebody else's mother."
+→ questions
+
+## questions
+
+1. **"What does Strawberry want from us?"** `[once]` `→ questions`
+   ↳ > **Helena Kaval:** "Strawberry is our largest electronics company. Its chief executive, Martin Works, has written to me twice. He wants more engineering graduates, and he wants higher import taxes on foreign phones."
+2. **"What does this have to do with the minerals in Ibira?"** `[once]` `→ questions`
+   ↳ > **Helena Kaval:** "Tobias will tell you about the rare earths. To mine them without poisoning the rivers, you need engineers and chemists we mostly don't have. Many of them are in that hall, planning to leave."
+3. **"Is there a way to do both programmes?"** `[once]` `→ questions`
+   ↳ > **Helena Kaval:** "With enough money. If we only have money for one, I'd keep the universities, because the schools can't move abroad and the graduates can. I don't like that answer, but I think it's right."
+4. **"Thank you, Helena."** `→ son`
 
 ## son
 
-*You think of your own mother, who has never once answered a message on a Sunday, because she calls instead.*
+She pours two small glasses of a Veldran liqueur from a bottle on the shelf.
 
-1. **Ask her about her son** `[kaval loyalty +1]`
-   ↳ > "What does he do there?"
-   ↳ > **Helena Kaval:** "Materials science. Batteries. Exactly the thing Ibira's rare earths are for. The irony isn't lost on me. It's just not much use."
-2. **Keep it to business**
-   ↳ She nods, as if grateful, and refills the glasses.
+> **Helena Kaval:** "Forgive me. It's a habit from this office."
+
+1. **Ask about her family** `[kaval loyalty +1]`
+   ↳ > **Helena Kaval:** "My son lives in Veldra. He left two years ago. He works on batteries, which is what Ibira's rare earths are used for. He writes to me on Sundays."
+2. **Keep to work**
+   ↳ She nods, and you talk about the budget calendar until your car arrives.
 3. **Tell her about your mother**
-   ↳ You tell her about Celia and the telephone. Kaval laughs — a real laugh, short and surprised, the first you've heard from her.
-   ↳ > **Helena Kaval:** "Then she and I would get on terribly. Bring her to Tekoku one day. She'd hate it."
+   ↳ You tell her about Celia, who phones instead of writing and refuses to move to the capital. Kaval laughs.
+   ↳ > **Helena Kaval:** "She sounds like my mother. Bring her to Tekoku one day."
 
 ## close
 
-1. **Leave Atiaiaba before the evening papers** `[flag: seen_education_briefing = true]`
+1. **Leave for the airport** `[flag: seen_education_briefing = true]`
 
 → END

@@ -9,4 +9,4 @@ priority: 1
 
 # One Kunasaian, One Weight
 
-Senator Augusta Lessa has renewed her nine-year campaign to apportion the Senate by population, under which Ibicuí, home to a hundred million Kunasaians, would no longer carry the same three senators as states a third of its size. Tekoku's deputies are reported to be signing her motion "faster than she can print it". The palace has not yet said anything memorable on the subject. The Ledger suspects it will have to.
+Senator Augusta Lessa has renewed her nine-year campaign to apportion the Senate by population, under which Ibicuí, home to a hundred million Kunasaians, would no longer carry the same three senators as states a third of its size. Tekoku's deputies are reported to be signing her motion "faster than she can print it". The palace has not taken a public position.

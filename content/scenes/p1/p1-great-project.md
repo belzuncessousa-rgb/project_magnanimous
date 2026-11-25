@@ -2,93 +2,80 @@
 id: p1-great-project
 chapter: 1
 turn: 3
-title: The First Signature
+title: The First Great Project
 kind: fixed
 location: capital
+token: project
 when: "flag.seen_planning_briefing"
-portraits: [mertens, livia, fontes, marne]
+portraits: [livia, fontes, marne, mertens]
 background: blue-room-night
 ---
 
-⚙️ Closing scene of chapter 1 (chapters.json `closing`). The chapter's main decision: the first great project — 1 Rare-earth mining (Ibira) · 4 National Railway Integration · 6 Housing & sanitation (Luz's works, Corvel). Writes `great_project` = 1 / 4 / 6. Projects never fail; follow-ups begin in chapter 2 (contractor, oversight, incidents).
-⚙️ Effects are deliberately modest here; the real weight arrives through follow-ups, the Zharan envoy (ch2), combos (1+4 mineral exports; 6+security weakens cartels in the peripheries) and the ch3 pressure meters (6 eases the Ibicuí strikes).
+⚙️ Closing scene of chapter 1 (chapters.json `closing`). Main decision of the chapter: the first great project — 1 rare-earth mining (Ibira) · 4 national railway · 6 housing and sanitation (Luz's works, Corvel). Writes `great_project` = 1 / 4 / 6. Livia conducts; each minister gives one factual summary on request. Projects never fail; follow-ups begin in chapter 2.
 
 ## opening
 
-The Blue Room at night is a different room. The air conditioning has given up. Someone has opened a window, and the sound of the capital comes in — not traffic, because New Veldrania was designed not to have any, but the long hum of a city with too much space between its people.
+It is evening in the Blue Room. Livia has called a short meeting with the ministers involved: Fontes for the money, Marne for the works, and Mertens for Congress. Three folders are on the table in front of your chair.
 
-Four of them are waiting. Mertens at your right. Livia with three identical folders. Fontes with his calculator, its paper roll curled on the table like a sleeping animal. Marne, without his hard hat, which makes him look like someone else's uncle.
-
-> **Livia Harvan:** "Three folders, Madam President. One signature. The press office has three statements drafted. I'd like to know which one to send before the eleven o'clock news, if that's not too much to ask."
+> **Livia Harvan:** "Madam President, the purpose of this meeting is to record your decision on the first great project, so that the Treasury and Planning can start preparing the budget. Each minister can give you a short summary if you'd like one."
 
 → counsel
 
 ## counsel
 
-> **Caio Mertens:** "May I say one thing, as the messenger. Odel has no preference. Odel would only ask that whichever it is, it is built by Kunasaians who know how to build. He has a list of Kunasaians."
+1. **"Alexander, the costs."** `[once]` `→ counsel`
+   ↳ > **Alexander Fontes:** "The mine is the most expensive to start, and could bring the most revenue in the long term. The railway is expensive and takes the longest. The sanitation works are the cheapest, because half is built, but the Corvel contract has to be dealt with."
+2. **"Livia, the politics."** `[once]` `→ counsel`
+   ↳ > **Livia Harvan:** "The mine will interest the Federation and Zharan, and worry the indigenous communities and the environmental groups. The railway is popular in Tapira, where you have little support. The sanitation works are popular in Katanaí, but they will remind everyone of President Luz."
+3. **"Tobias, the work."** `[once]` `→ counsel`
+   ↳ > **Tobias Marne:** "All three can be done. The mine needs a road first. The railway needs years. The sanitation works need the contract settled. My ministry is ready for any of them."
+4. **"Caio, Congress."** `[once]` `→ counsel`
+   ↳ > **Caio Mertens:** "None of them needs a vote this year, only money in the budget. The OPP will want to know who builds it."
+5. **"I've heard enough. I'm ready to decide."** `→ choice`
 
-> **Alexander Fontes:** "And I'd only ask that whichever it is, it's paid for in a currency we actually have."
+## choice | The Decision
 
-> **Tobias Marne:** "And I'd only ask that it isn't nothing. Nothing is the most expensive project of all. Nothing costs you the whole term."
-
-1. **"Alexander. In one sentence, the cost."**
-   ↳ > **Alexander Fontes:** "The mine costs the most and pays back the most, eventually, to somebody. The railway costs a great deal for a long time. The works cost the least, because the rest was stolen in advance."
-2. **"Livia. In one sentence, the politics."**
-   ↳ > **Livia Harvan:** "The mine pleases the Arennians and the Zharani and worries everybody in Ibira. The railway pleases Tapira, which never votes for you. The works please Katanaí, which already did — and remind everyone of Tercilio."
-3. **"Tobias. In one sentence, the work."**
-   ↳ > **Tobias Marne:** "A hole in a hill, a line across a country, or a pipe up a hill. I can do all three. You can only sign one."
-4. **Say nothing, and look at the folders**
-   ↳ They let you look. Even Marne. Somewhere in the building a cleaner's radio is playing a love song from the dictatorship years, the kind everybody pretends not to know the words to.
-
-## choice | The Signature
-
-You uncap the pen Livia left at your place on your first day. It has been there, at its slight angle, every day since.
+You open the three folders one more time.
 
 1. **The rare earths of Ibira** `[flag: great_project = 1]` `[flag: project_rare_earths = true]` `[+1 ECON]` `[approval +3 @ ibira]` `[approval +2 @ tekoku]` `[indigenous opinion -2]` `[business opinion +2]` `[cartels suspicion +5]` `[federation relation +1]` `[zharan relation +1]` `[marne loyalty +1]`
-   ↳ > **Tobias Marne:** "The Tauá Hills. I'll need a road before I need a mine. And I'll need somebody to talk to the people who live there before the bulldozers do."
-   ↳ > **Livia Harvan:** "The Arennian ambassador will ask for a meeting tomorrow. So will the Zharani. They'll both say 'congratulations' and mean 'how much'."
-   ↳ > **Alexander Fontes:** "And the Fund will ask who owns the ore. I'd like to have an answer before they do."
-   ↳ *Under the hills there is more than ore. There are villages, and rivers, and the Red Tree's barges. You knew that when you signed. You are almost sure you knew it.*
+   ↳ > **Tobias Marne:** "Then we'll start with the road. And someone needs to talk to the communities around the Tauá Hills before any machines arrive."
+   ↳ > **Livia Harvan:** "The Arennian and Zharani embassies will both ask for meetings this week."
+   ↳ > **Alexander Fontes:** "The Fund will ask who owns the ore. I'd like an answer before they ask."
 2. **The national railway** `[flag: great_project = 4]` `[flag: project_railway = true]` `[approval +3 @ tapira, mognagna]` `[approval +1 @ tekoku]` `[business opinion +2]` `[cp opinion +1]` `[unions opinion +1]` `[marne loyalty +3]` `[fontes loyalty -1]`
-   ↳ Marne stands up, which nobody expects, and then sits down again, embarrassed, which everybody does.
-   ↳ > **Tobias Marne:** "Thank you, Madam President. You won't ride it. Your grandchildren will. They'll complain it's late."
-   ↳ > **Alexander Fontes:** "It will be late. That's the one forecast I'd stake the Treasury on."
-   ↳ > **Livia Harvan:** "Arturo Trembolo will call to thank you. He'll want a station. Possibly two."
-   ↳ *Slow. Diffuse. Nobody will thank you for years. That is what you always said you wanted: work that outlasts the applause.*
-3. **The sanitation works — finish what Luz started** `[flag: great_project = 6]` `[flag: project_sanitation = true]` `[flag: luz_works_resumed = true]` `[+1 WELF]` `[approval +5 @ ibicui]` `[unions opinion +2]` `[pm opinion +1]` `[media opinion -1]` `[fontes loyalty +1]`
-   ↳ > **Alexander Fontes:** "The cheapest and the dirtiest. In that order. I'll start on annex nine tomorrow."
-   ↳ > **Caio Mertens:** "Corvel will want to discuss it. They'll want to discuss it with someone senior."
-   ↳ `[if: flag.corvel_to_salgado]` > **Livia Harvan:** "Renata will want to discuss it too. With subpoenas."
-   ↳ `[if: flag.promised_mother_street]` *Three hundred metres of pipe. You promised the hill. Now the whole country gets the hill's sewer, and nobody, not even Amanda, can say it was only for your mother.*
-   ↳ `[if: !flag.promised_mother_street]` *A million and a half people. One of them is seventy-four and keeps her funeral money in a biscuit tin. You did not sign it for her. You will spend four years explaining that.*
+   ↳ > **Tobias Marne:** "Thank you, Madam President. It will take years, but it will be used for a long time."
+   ↳ > **Alexander Fontes:** "It will also cost more than planned. Railways always do. I'll plan for that."
+   ↳ > **Livia Harvan:** "The Governor of Tapira will call to thank you, and to ask where the stations will be."
+3. **The sanitation works** `[flag: great_project = 6]` `[flag: project_sanitation = true]` `[flag: luz_works_resumed = true]` `[+1 WELF]` `[approval +5 @ ibicui]` `[unions opinion +2]` `[pm opinion +1]` `[media opinion -1]` `[fontes loyalty +1]`
+   ↳ > **Alexander Fontes:** "The cheapest option, and the most difficult contract. I'll start on the Corvel prices tomorrow."
+   ↳ > **Caio Mertens:** "Corvel will want to discuss it with someone senior."
+   ↳ `[if: flag.corvel_to_salgado]` > **Livia Harvan:** "Renata will also want to discuss it with them."
+   ↳ `[if: flag.promised_mother_street]` *You promised your mother's street a sewer. Now the whole periphery will get one. You will be asked whether that was the reason.*
+   ↳ `[if: !flag.promised_mother_street]` *A million and a half people will get proper sewage. Your mother is one of them. People will ask whether that was the reason.*
 
 ## statement
 
-> **Livia Harvan:** "Thank you. The statement goes at eleven. Do you want to add a line of your own?"
+> **Livia Harvan:** "The press office will issue a statement tonight. Would you like to add anything?"
 
 1. **"Say it will be finished on time and on budget."** `[flag: promised_on_time = true]` `[flag: voice += 1]`
-   ↳ > **Alexander Fontes:** "Nothing in this country has ever been finished on time and on budget, Madam President. Including the budget."
-   ↳ > "Then we'll be the first."
-   ↳ Fontes writes something on his paper roll. You will find out in March that it was the date.
-2. **"Say it will be honest. Not fast, not cheap. Honest."** `[flag: path_hold += 1]` `[fontes loyalty +1]`
-   ↳ > **Livia Harvan:** "'Honest' doesn't test well."
-   ↳ > "Send it anyway."
-3. **"No line. Let the work speak."** `[flag: path_harden += 1]`
-   ↳ > **Livia Harvan:** "The work can't speak, Madam President. The opposition can. But I'll send it as it is."
+   ↳ > **Alexander Fontes:** "I'd advise against promising that, Madam President."
+   ↳ > "Say it anyway."
+2. **"Say we'll publish every contract and every cost."** `[flag: promised_transparency = true]` `[flag: path_hold += 1]` `[fontes loyalty +1]` `[mertens loyalty -1]`
+   ↳ > **Caio Mertens:** "The OPP's builders won't like that."
+   ↳ > **Livia Harvan:** "I'll add it."
+3. **"No additions. The project speaks for itself."** `[flag: path_harden += 1]`
+   ↳ > **Livia Harvan:** "Then it goes out as drafted."
 
 ## end-of-month
 
-They leave in the order they arrived. Mertens last, buttoning his jacket.
+The ministers leave. Mertens is the last to go.
 
-> **Caio Mertens:** "A good month, Madam President. Odel thinks so too. You'll find he's always more generous in the first month."
+> **Caio Mertens:** "A good first month, Madam President. Odel thinks so too."
 
-Alone, you sit at the long table under the blue curtains. The paper roll Fontes left behind has one line on it, in his small neat hand. It is a number. You do not know what it measures. You suspect you will.
+You stay at the table for a while. On the television in the corner, the evening news reads out the statement about the project.
 
-Outside, the eleven o'clock news begins, and somewhere a statement you approved is read aloud by a voice that is not yours.
-
-1. **Close the folder** `[flag: seen_great_project = true]` `[flag: chapter1_complete = true]`
-   ↳ `[if: flag.path_hold >= 3]` *It was a month of saying no, mostly. You are tired in the way you used to be tired after a long hearing that you lost on the facts and won on the principle.*
-   ↳ `[if: flag.path_harden >= 3]` *It was a month of deciding. You have become fast at it. Faster than you meant to. Amanda noticed on Tuesday and didn't say anything, which is how you know she noticed.*
-   ↳ `[if: flag.voice >= 3]` *Just this once. Just a little more. Just until the work is done. The work has barely started.*
+1. **Close the folders** `[flag: seen_great_project = true]` `[flag: chapter1_complete = true]`
+   ↳ `[if: flag.path_hold >= 3]` *You said no to a lot of people this month. You are tired.*
+   ↳ `[if: flag.path_harden >= 3]` *You made a lot of decisions quickly this month. Amanda has noticed. She hasn't said anything.*
+   ↳ `[if: flag.voice >= 3]` *Just this once, just a little more, just until the work is done. The work has barely started.*
 
 → END

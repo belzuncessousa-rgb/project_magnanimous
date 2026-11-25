@@ -13,17 +13,12 @@
           "scenes": [
             "p1-inauguration",
             "p1-blue-room",
+            "p1-panorama",
+            "p1-tutorial",
             "p1-first-night"
           ],
           "closing": null,
-          "popups": [
-            "c1-arvane-low",
-            "c1-ibira-boats",
-            "c1-ibira-boats-dark",
-            "c1-tamarin-slopes",
-            "c1-sugar-bay-trucks",
-            "c1-st-veldra-haze"
-          ],
+          "popups": [],
           "news": [
             "c1t1-ledger-current",
             "c1t1-ledger-oath",
@@ -49,12 +44,7 @@
             "p1-lessa-visit"
           ],
           "closing": null,
-          "popups": [
-            "c1-piranhas-curfew",
-            "c1-atiaiaba-signatures",
-            "c1-ibira-pumps",
-            "c1-jaguar-crates"
-          ],
+          "popups": [],
           "news": [
             "c1t2-ledger-lessa-open",
             "c1t2-ledger-lessa",
@@ -79,12 +69,7 @@
             "p1-tamarin"
           ],
           "closing": "p1-great-project",
-          "popups": [
-            "c1-dock-slowdown",
-            "c1-taua-turned-back",
-            "c1-sugar-bay-rain",
-            "c1-strawberry-freeze"
-          ],
+          "popups": [],
           "news": [
             "c1t3-ledger-gp1",
             "c1t3-ledger-gp4",

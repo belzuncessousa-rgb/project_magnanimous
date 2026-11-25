@@ -9,4 +9,4 @@ priority: 2
 
 # NOT ONE WORD FOR OUR SOLDIERS!
 
-While the giants of the world sharpen their knives, the new President of Kunasai stood on the balcony of the Republic and had NOTHING to say to the men and women who guard it — or worse, lectured them! THE WATCHMAN asks: who will defend the Strait? Who will defend Tekoku? Not, it seems, the President. General Voss, standing behind her, kept his silence. THE WATCHMAN understands. Some silences are louder than speeches.
+While the giants of the world sharpen their knives, the new President of Kunasai stood on the balcony of the Republic and had NOTHING to say to the men and women who guard it — or worse, lectured them! THE WATCHMAN asks: who will defend the Strait? Who will defend Tekoku? Not, it seems, the President. General Voss, standing behind her, kept his silence. THE WATCHMAN will be watching.

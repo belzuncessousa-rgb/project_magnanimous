@@ -5,222 +5,184 @@ turn: 1
 title: The Blue Room
 kind: fixed
 location: capital
+token: palace
 order: 2
-portraits: [mertens, livia, fontes, marne, salgado, kesht, voss, dara, kaval, aroun]
+portraits: [livia, mertens, fontes, marne, dara, kaval, salgado, voss, kesht, aroun]
 background: blue-room
 ---
 
-⚙️ P1-S2. First cabinet meeting. Goals: every minister is a person with an agenda; Fontes hints at the hole (no numbers that sound like a score); Mertens collects the first OPP price; Livia Harvan closes with the cartel briefing (GDD: end of the first meeting with the VP and Chief of Staff).
-⚙️ Structure: opening → table hub (at least two exchanges before adjourning) → the price (Mertens) → the cartels (Livia).
+⚙️ P1-S2, rewritten for STYLE-GUIDE §3–4. Livia Harvan conducts. Mandatory overview by groups (economy → social → state and security → foreign affairs); each group has optional informational follow-ups and nothing is decided. Nobody recommends a great project. The OPP price moved to p1-panorama. The cartel briefing (GDD) closes the scene.
+⚙️ No resource costs here (the tutorial comes after this scene and the panorama).
 
 ## opening
 
-The Blue Room is colder than you expected. The curtains are blue, the carpet is blue, and the air conditioning was installed during the dictatorship by someone who believed in it.
+The Blue Room is the cabinet room of the palace. It has a long table, blue curtains and portraits of former presidents along one wall. It is cold, because the air conditioning is set very low.
 
-The cabinet is already seated. Every one of them is watching how you walk in.
+The ministers are already seated when you come in. They stand up, and you ask them to sit.
 
-Livia Harvan, your Chief of Staff, has put a folder at your place, a pen beside it at a slight angle, and a glass of water without ice. She is the youngest person at the table and the only one who knows where everything is.
+At the far end of the table, a woman in a grey suit is arranging folders in front of each chair. This is Livia Harvan, your Chief of Staff. She runs the President's office: your diary, who gets to see you, and the paperwork between you and the ministries. She also manages relations with the parties in the coalition. She is in her late thirties, from Ibicuí, and she comes from the OPP. Her uncle, Odel Harvan, leads that party. She has a reputation for being very well organised.
 
-Alexander Fontes, Treasury, has brought a calculator — the old kind, with a paper roll. Tobias Marne, Planning and Development, is laughing at something nobody said. Renata Salgado and Darian Kesht, Justice and Intelligence, have been seated side by side. Someone arranged that, and both of them have noticed.
+Caio Mertens, your vice president, sits on your right. He will attend most cabinet meetings but rarely speak in them. His work is mainly in Congress.
 
-General Aldric Voss sits as if the chair were a position he had been ordered to hold. Owin Dara, Health, is reading a message on his phone and does not need to tell you who sent it. Helena Kaval, Education, is the only one who brought a book. Celeste Aroun, Exterior, greets you in three words and makes them sound like a treaty.
+> **Livia Harvan:** "Good afternoon, Madam President. With your permission, I'll run this first meeting."
 
-Caio Mertens sits at your right hand, where protocol put him. He has the look of a man who has attended a great many first meetings.
+> **Livia Harvan:** "The purpose is simple. Each minister will give you a short overview of their area: where things stand, and what we will need to discuss in the first months. Nothing needs to be decided today. Each area will have its own meeting with you later."
 
-1. **"Please, sit. Nobody stands for me in this room."** `[-1 STRUCT]`
-   ↳ They sit. Voss sits last, and only because everyone else has.
-2. **Wait, standing, until they settle on their own** `[+1 STRUCT]`
-   ↳ It takes eleven seconds. Livia counts them, you suspect, because she looks up at exactly the moment the last chair stops moving.
-3. **"Let's start with the bad news. Every room has some."** `[flag: blueroom_bad_news_first = true]`
-   ↳ Marne laughs again. This time somebody joins him. It is not Fontes.
+1. **"Go ahead, Livia."**
+   ↳ She nods and opens the first folder.
+2. **"Before we start: thank you all for being here. We have a lot to do."**
+   ↳ A few ministers nod. Livia waits a moment, then opens the first folder.
+3. **"How long will this take?"**
+   ↳ > **Livia Harvan:** "About two hours, if everyone keeps to time. I've asked them to."
 
-## table
+## economy | The Economy
 
-⚙️ Hub. Each exchange once. "Adjourn" unlocks after two exchanges.
+> **Livia Harvan:** "We'll start with the economy. Treasury first, then Planning."
 
-1. **"Alexander. How bad is it?"** `[once]` `[flag: blueroom_topics += 1]` `→ fontes`
-2. **"Renata, Darian. You two will have to work together."** `[once]` `[flag: blueroom_topics += 1]` `→ salgado-kesht`
-3. **"Owin, Tobias. You'll both want money. Tell me for what."** `[once]` `[flag: blueroom_topics += 1]` `→ dara-marne`
-4. **"General. Helena. Celeste. Anything I should hear today?"** `[once]` `[flag: blueroom_topics += 1]` `→ others`
-5. **"That's enough for a first day."** `[lock if: flag.blueroom_topics < 2]` `→ adjourn`
+Alexander Fontes is the Minister of the Treasury. He will help you with the budget, taxes and public debt. He is about sixty, thin, with reading glasses he takes on and off while he talks. He was deputy governor of the Central Bank some years ago and taught economics after that. He is not a member of any party. He has an old desk calculator in front of him, the kind that prints on a paper roll.
 
-## fontes
+> **Alexander Fontes:** "Madam President. In brief: the economy is not in crisis, but it is not growing. Output has been almost flat for two years. Prices are stable. Unemployment is high in the cities and higher in the interior."
 
-Fontes takes off his glasses, which you will learn is what he does instead of sighing.
+> **Alexander Fontes:** "Most of our revenue comes from taxes on economic activity, and more than half of that activity is in Ibicuí. The second source is taxes on trade, mostly through the port of Katanaí. Tapira's farming and Tekoku's industry and services make up most of the rest."
 
-> **Alexander Fontes:** "Bad enough that I'd rather show you on paper than say it in front of eleven people."
+> **Alexander Fontes:** "On the spending side, the largest items are salaries and pensions, then health and social programmes, then interest on the public debt."
 
-> **Alexander Fontes:** "The numbers we campaigned on were the previous government's numbers. The previous government was an optimist."
+> **Alexander Fontes:** "One item needs your attention soon: the debt. I would like a separate meeting with you next week to go through it properly."
 
-> **Tobias Marne:** "Optimism is a renewable resource."
+Tobias Marne is the Minister of Planning and Development. His ministry plans and runs the large public works: roads, railways, water, housing. He is a civil engineer in his late fifties, a big man with a loud voice, and a former mayor of a river town in Tapira. He belongs to the OPP. He has brought rolled-up maps and keeps one hand on them.
 
-> **Alexander Fontes:** "Not at the Fund, it isn't."
+> **Tobias Marne:** "Madam President. Planning has a number of large projects studied and ready. Three of them are ready for a decision this month. I'll present them to you properly at a separate meeting, with the files."
 
-1. **"Then show me on paper. This week."** `[fontes loyalty +1]` `[flag: fontes_private = true]`
-   ↳ He writes a date on the corner of his folder and turns it so you can see it. It is the eighth.
-2. **"Say it here. Everyone at this table will have to carry it."** `[fontes loyalty -1]` `[flag: fontes_public = true]`
-   ↳ > **Alexander Fontes:** "Before we buy a single pencil, a ninth of everything we collect goes to interest."
-   ↳ Dara puts his phone face down on the table. Kaval closes her book on one finger, keeping the page.
-   ↳ > **Caio Mertens:** "I'd suggest that figure doesn't leave this room."
-   ↳ > **Alexander Fontes:** "It's in the Fund's annual report, Mr. Vice President. It left the room some time ago."
-3. **"Is there anything in there I should be afraid of?"**
-   ↳ > **Alexander Fontes:** "A loan, a contract and a consortium. You'll recognise the consortium."
-   ↳ *You do. Corvel. The trunk sewer that stops three streets before your mother's house.*
+> **Tobias Marne:** "For today: the country needs investment in infrastructure, almost everywhere. Ibira has very little. The rail network was mostly built a long time ago. The cities have grown faster than their water and sewage systems."
 
-→ table
+→ economy-q
 
-## salgado-kesht
+## economy-q
 
-> **Renata Salgado:** "We've worked together before."
+⚙️ Optional follow-ups: information only.
 
-> **Darian Kesht:** "Once. She tried to subpoena my service."
+1. **"Alexander, why has growth stalled?"** `[once]` `→ economy-q`
+   ↳ > **Alexander Fontes:** "Several reasons. Investment fell during the last government's scandal. Credit is expensive because of the debt. And our exports are mostly food and raw materials, so we depend on prices we don't control."
+2. **"Which regions produce what?"** `[once]` `→ economy-q`
+   ↳ > **Alexander Fontes:** "Ibicuí has industry, finance and services, and the main port. Tekoku has technology, finance and some industry. Tapira has grain and cattle, and it exports a great deal. Mognagna has cotton, textiles and small farming. Ibira produces very little that is recorded."
+   ↳ > **Alexander Fontes:** "Ibira may have more under the ground. Tobias will tell you about that."
+3. **"Tobias, what are the three projects?"** `[once]` `→ economy-q`
+   ↳ > **Tobias Marne:** "A rare-earth mine in Ibira, a national railway, and completing the sanitation works in the peripheries of Ibicuí. Each has advantages and problems. I'd rather go through them with the files."
+4. **"Thank you both. Let's continue."**
 
-> **Renata Salgado:** "And you sent me forty boxes of blank paper."
+## social | Health and Education
 
-> **Darian Kesht:** "Classified blank paper."
+> **Livia Harvan:** "Next, the social ministries. Health and Social Programmes, then Education."
 
-Somebody at the far end of the table coughs to cover a laugh. Neither of them looks at the other.
+Owin Dara is the Minister of Health and Social Programmes. His ministry runs the public hospitals and clinics, and also the cash transfers that many poor families depend on. He is in his sixties, from Mognagna, and worked for many years as a doctor in a public hospital in Sugar Bay before going into politics. He is a PM member and close to the party's leader in Congress, Pelan Avros. He was reading a message on his phone when Livia called his name. He puts it away.
 
-1. **"Renata leads where the law is concerned. Darian supports her."** `[salgado loyalty +2]` `[kesht loyalty -2]` `[-1 STRUCT]`
-   ↳ Kesht inclines his head by perhaps a centimetre. It is the most expensive centimetre you will see all day.
-2. **"The safety of the state is Darian's call. Renata, give him room."** `[kesht loyalty +2]` `[salgado loyalty -2]` `[+1 STRUCT]`
-   ↳ > **Renata Salgado:** "Room is the one thing his service has never been short of."
-3. **"You'll both report to me. Separately."** `[salgado loyalty +1]` `[kesht loyalty +1]` `[flag: separate_reports = true]` `[flag: path_harden += 1]`
-   ↳ > **Darian Kesht:** "Separately is how I prefer it."
-   ↳ > **Renata Salgado:** "Separately is how things get lost."
-   ↳ Livia writes something down. You suspect it is the word *meetings*, twice.
+> **Owin Dara:** "Madam President. Two areas. Hospitals and clinics are underfunded everywhere and missing in many places, especially in Mognagna and Ibira. The transfer programmes are what keep many families in those regions fed."
 
-→ table
+> **Owin Dara:** "The current transfers are funded until April. After that they need to be renewed in the budget. And the dry season has started early in Mognagna, which we need to watch."
 
-## dara-marne
+Helena Kaval is the Minister of Education. Her ministry is responsible for schools and public universities. She is in her fifties, from Tekoku, and was rector of the Federal University of Tekoku in Atiaiaba for eight years. She does not belong to a party. She has a book open on the table in front of her and closes it when she starts speaking.
 
-> **Owin Dara:** "The Mognagna transfers run out in April unless someone signs. That's not a plan, Madam President. It's a date."
+> **Helena Kaval:** "Madam President. Education in Kunasai is very unequal. In Tekoku and Ibicuí, most young people finish school. In Mognagna and Ibira, many don't. At the other end, our best graduates are leaving for Veldra and Moreya, because the jobs and salaries are better there."
 
-> **Tobias Marne:** "And I have three projects that will make this country forget it ever had a debt."
+> **Helena Kaval:** "In the first months we'll need to discuss where to put our money: schools in the poorer regions, or universities and research. I'd like to do that with you in more detail."
 
-> **Alexander Fontes:** "It will not forget."
+→ social-q
 
-1. **"Owin, the transfers will be signed. Bring me the papers."** `[+1 WELF]` `[dara loyalty +2]` `[fontes loyalty -1]` `[approval +2 @ mognagna]` `[flag: transfers_promised = true]`
-   ↳ > **Owin Dara:** "Pelan will be pleased."
-   ↳ Fontes writes a number on his paper roll and tears it off and folds it into his pocket.
-   ↳ *You had not asked whether Pelan would be pleased.*
-2. **"Nothing gets signed until Alexander has shown me the books."** `[dara loyalty -1]` `[fontes loyalty +1]` `[-1 WELF]`
-   ↳ > **Owin Dara:** "I'll tell Sugar Bay you're reading."
-   ↳ He says it pleasantly. It is not meant pleasantly.
-3. **"Tobias, if it were your own money, which of the three would you build?"** `[marne loyalty +1]` `[flag: marne_prefers_railway = true]`
-   ↳ > **Tobias Marne:** "None. That's why it's called public works."
-   ↳ He waits for the laugh, gets half of one, and leans in.
-   ↳ > **Tobias Marne:** "The railway. Everybody uses a railway. Even the people who vote against you."
+## social-q
 
-→ table
+1. **"Owin, how many families depend on the transfers?"** `[once]` `→ social-q`
+   ↳ > **Owin Dara:** "About one in three in Mognagna, and more in Ibira. In Ibicuí it's mostly the peripheries of the big cities."
+2. **"Helena, how many graduates are we losing?"** `[once]` `→ social-q`
+   ↳ > **Helena Kaval:** "Nobody counts it properly. My estimate is about a third of our engineers and scientists, within five years of graduating."
+3. **"Owin, how serious is the dry season?"** `[once]` `→ social-q`
+   ↳ > **Owin Dara:** "Too early to say. If the rains come in March, it will be a hard year. If they don't, it could be much worse. I'll keep you informed."
+4. **"Thank you. Next."**
 
-## others
+## state | Justice, Defense and Intelligence
 
-> **Aldric Voss:** "Nothing today, Madam President. The army is where you left it."
+> **Livia Harvan:** "Now the ministries of the state. Justice, Interior and Labour; then Defense; then Intelligence."
 
-> "I haven't left it anywhere yet."
+Renata Salgado is the Minister of Justice, Interior and Labour. It is a large ministry: the federal police, the prisons, relations with the courts, relations between the federal government and the states, and labour law and the unions. She is in her fifties and had a long career as a judge before the PM invited her to join the party. She sits very straight and speaks from short notes.
 
-> **Aldric Voss:** "Then it is exactly where it was."
+> **Renata Salgado:** "Madam President. Three areas need attention. Organised crime is strong in Ibira and in the peripheries of the big cities. Corruption cases from the last two governments are still open, and some of them reach people in Congress. And the unions want a formal negotiation on wages and labour rights."
 
-> **Helena Kaval:** "Only that my rectors have read your speech and want to know which part was about them."
+> **Renata Salgado:** "There is also a petition from the families of people who disappeared under the dictatorship. They are asking for the military archives to be opened. I'd like to discuss that with you separately."
 
-> **Celeste Aroun:** "And the Arennian ambassador has asked for a meeting. He asked before the speech. He will ask again after it, in a slightly different tone."
+Aldric Voss is the Minister of Defense. He is responsible for the armed forces and the borders, and for the Jaguar Guard, which protects the President. He is a retired general in his sixties, and he is not a member of any party. He wears a dark suit but sits as if he were in uniform.
 
-1. **"Tell the ambassador he'll have his meeting when we have something to say."** `[federation relation -1]` `[aroun loyalty +1]` `[+1 IDEN]`
-   ↳ > **Celeste Aroun:** "I'll put it more warmly. He'll hear it exactly as you said it."
-2. **"See him this week, Celeste. Find out what he wants before he tells me."** `[aroun loyalty +1]` `[federation relation +1]`
-   ↳ > **Celeste Aroun:** "He'll want what they always want. The question is what he'll call it."
-3. **"Helena, tell your rectors: all of it."** `[kaval loyalty +1]` `[approval +1 @ tekoku]`
-   ↳ > **Helena Kaval:** "They'll ask for that in writing. Academics."
-   ↳ Voss, across the table, looks as if he has been told that the army is also expected to read.
+> **Aldric Voss:** "Madam President. The armed forces are in reasonable order. Our equipment is old, particularly on the borders with Tarev and in Ibira, where patrols are difficult. I will present a list of needs for the budget. That's all for today."
 
-→ table
+Darian Kesht is the Minister of Intelligence. His ministry gathers information on threats to the state, from abroad and at home. He is in his fifties and spent thirty years in the intelligence service before becoming minister. He is a member of the National Front, an opposition party; he was kept in the post because the service trusts him. He has no papers in front of him.
+
+> **Darian Kesht:** "Madam President. Foreign services are active in Kunasai, as they always are. The cartels have people inside some state institutions. I would prefer to brief you on details in private."
+
+→ state-q
+
+## state-q
+
+1. **"Renata, how strong are the cartels?"** `[once]` `→ state-q`
+   ↳ > **Renata Salgado:** "Strong enough to control some territory in Ibira and some neighbourhoods in the cities. There are two large groups. Livia has a briefing on them for you after this meeting."
+2. **"General, what is the Jaguar Guard, exactly?"** `[once]` `→ state-q`
+   ↳ > **Aldric Voss:** "A guard unit older than the republic. About three hundred and forty people. They protect the President and the palace. The ceremonial armour is expensive, and the Treasury has asked about it before."
+3. **"Darian, why private?"** `[once]` `→ state-q`
+   ↳ > **Darian Kesht:** "Because some of what I know comes from sources that could be identified. I'll ask Livia for a time."
+   ↳ Livia makes a note without looking up.
+4. **"Understood. Let's continue."**
+
+## exterior | Foreign Affairs
+
+> **Livia Harvan:** "Last, Exterior."
+
+Celeste Aroun is the Minister of Exterior, in charge of embassies and relations with other governments. She is in her sixties and a career diplomat; she was ambassador to Arenza and to the Arennian Federation. She speaks slowly and precisely.
+
+> **Celeste Aroun:** "Madam President. Our relations are stable but not close. The Arennian Federation and Zharan both want to know which way this government will lean. Both ambassadors have asked for meetings. Arenza, our neighbour, has been cool with us for years. Mondrath has said nothing, which is normal for Mondrath."
+
+> **Celeste Aroun:** "Several governments will send messages of congratulation in the next days. I'll pass them to you. Nothing needs to be decided yet."
+
+→ exterior-q
+
+## exterior-q
+
+1. **"Why do both ambassadors want to see me so soon?"** `[once]` `→ exterior-q`
+   ↳ > **Celeste Aroun:** "The Federation will want to talk about the debt and about Ibira's minerals. Zharan will want to talk about investment. Each will want to be first."
+2. **"Why is Arenza cool with us?"** `[once]` `→ exterior-q`
+   ↳ > **Celeste Aroun:** "Old rivalry. A border war a century ago, and competition for trade since then. It can change, but slowly."
+3. **"Thank you, Celeste."**
 
 ## adjourn
 
-> **Livia Harvan:** "Thank you, everyone. The President has another meeting."
+> **Livia Harvan:** "Thank you, everyone. That's the overview. My office will schedule each of you for a separate meeting with the President over the next weeks."
 
-You did not know you had another meeting. The ministers rise. Marne claps Fontes on the shoulder on his way out; Fontes looks at the shoulder afterwards, as if checking it for damage. Dara is already on the phone before the door closes. Salgado and Kesht leave by the same door, two seconds apart.
+The ministers collect their papers and leave. Fontes and Marne leave together, talking. Dara is on his phone again before he reaches the door. Mertens stays in his seat, and so does Livia.
 
-Caio Mertens does not move. Neither does Livia.
+> **Livia Harvan:** "Madam President, one more thing before you go, and the Vice President will want to brief you on Congress afterwards. It's about the cartels."
 
-> **Caio Mertens:** "A small thing, before the big things."
-
-He folds his hands on the table. He has good hands, the kind that have signed a great deal and carried very little.
-
-> **Caio Mertens:** "Odel asks — and I'm only the messenger — that the Port Authority at Katanaí go to someone from our side. And some forty posts below it. Customs, berthing, inspection. Nothing anyone reads about."
-
-Pier Nine was at Katanaí. Everyone at the table knows it. Nobody says it.
-
-> **Livia Harvan:** "By our standards, Madam President, it's a modest opening."
-
-> "And what does Caio Mertens want? Apart from Odel."
-
-He considers the question as if no one had asked it in some years.
-
-> **Caio Mertens:** "To be useful. I've been vice-something three times. Nobody remembers a vice-anything unless it goes wrong."
-
-→ price
-
-## price
-
-1. **"Give Odel the port."** `[opp opinion +2]` `[mertens loyalty +2]` `[gain: 1 IPI]` `[flag: opp_price_1 = 1]` `[flag: opp_port_authority = true]` `[flag: corruption += 1]` `[flag: voice += 1]` `[flag: path_corrupt += 1]`
-   ↳ > **Caio Mertens:** "He'll be grateful. For about a month. For Odel, that's a long time."
-   ↳ *A port needs a director. Someone was always going to be named. It may as well be someone who owes you.*
-2. **"The forty posts, yes. The port stays with a career officer."** `[cost: 1 IPI]` `[mertens loyalty +1]` `[opp opinion +1]` `[flag: opp_price_1 = 2]`
-   ↳ > **Caio Mertens:** "Odel will call that half."
-   ↳ > "Tell him it's the better half."
-   ↳ Livia almost smiles. She writes the forty posts down as if she already had the list. She does.
-3. **"Nobody gets the port. Tell Odel I'll pay for votes, not for buildings."** `[opp opinion -2]` `[mertens loyalty -1]` `[flag: opp_price_1 = 3]` `[flag: path_hold += 1]`
-   ↳ > **Caio Mertens:** "I'll tell him. He'll say you'll pay for both in the end, and that buildings are cheaper."
-   ↳ He does not seem offended. He seems to be making a note of the date.
-4. **"Ask me again after the budget."** `[mertens loyalty -1]` `[flag: opp_price_1 = 4]`
-   ↳ > **Caio Mertens:** "Of course. Though Odel finds that prices rise in the spring."
+→ cartels
 
 ## cartels
 
-Mertens rises and buttons his jacket.
+She takes a folder with no title from the bottom of her pile.
 
-> **Caio Mertens:** "I'll leave you to Livia. She has the interesting folder."
+> **Livia Harvan:** "There are two large criminal organisations in Kunasai. The Red Tree controls most of the smuggling on the rivers of Ibira. The Blue Piranhas are younger and operate mainly in the peripheries of the big cities. Since last autumn they have had an informal truce: the rivers for one, the cities for the other."
 
-When he is gone, Livia slides a second folder across the table. It has no title, which in this building is a title of its own.
+> **Livia Harvan:** "In November, a federal police operation on the upper Ibira had to be cancelled. Someone warned the smugglers a day in advance. Darian believes the leak came from inside a state office. He'll give you names when you see him."
 
-> **Livia Harvan:** "Two things about Ibira you won't read in the papers."
+> **Livia Harvan:** "The question for now is what attitude we take in the first months. The police and the ministries will follow your lead."
 
-> **Livia Harvan:** "First. The Red Tree and the Blue Piranhas have kept a truce since the autumn. The rivers to the Tree, the city peripheries to the Piranhas. Nobody signed it, so everybody keeps it."
+1. **"Watch them closely, without announcing it."** `[cartels suspicion +10]` `[cartels capacity -3]` `[+1 STRUCT]` `[flag: cartels_watch_quiet = true]`
+   ↳ > **Livia Harvan:** "Understood. I'll tell Renata and Darian. It will be done quietly."
+2. **"Watch them, and make it public that we are."** `[cartels capacity -5]` `[cartels suspicion +20]` `[federation relation +1]` `[+1 FORCE]` `[approval +2 @ tekoku, tapira]` `[flag: cartels_watch_loud = true]`
+   ↳ > **Livia Harvan:** "The Arennian embassy will welcome that. The cartels will notice quickly, and they may become more careful or more aggressive. We'll see which."
+3. **"Not now. We have other priorities in the first month."** `[flag: cartels_ignored = true]`
+   ↳ > **Livia Harvan:** "Understood. Things stay as they are for now. I'll keep the file up to date."
+4. **"Reduce the pressure for now. I don't want a confrontation in the first month."** `[cartels suspicion -10]` `[cartels capacity +5]` `[col -2 @ ibira]` `[-1 FORCE]` `[flag: cartels_softened = true]` `[flag: voice += 1]`
+   ↳ > **Livia Harvan:** "Understood. Some operations will be postponed. People in Ibira will notice."
+   ↳ *You will deal with Ibira properly once the budget is clear. A month or two.*
 
-> **Livia Harvan:** "Second. A federal police operation on the upper Ibira was cancelled in November. Someone warned the boats a day early."
+## close
 
-> "Who?"
+> **Livia Harvan:** "Thank you. The Vice President is ready when you are. He'll take you through Congress."
 
-> **Livia Harvan:** "Darian has a list. Darian always has a list. He wanted to bring it himself. I told him you'd had a long day."
-
-*You notice that she decided that for you. You notice, too, that you are grateful.*
-
-> **Livia Harvan:** "They'll be watching how you begin. So — how do you want to begin?"
-
-1. **"Watch them. Quietly. I want to know before they know I know."** `[cartels suspicion +10]` `[cartels capacity -3]` `[+1 STRUCT]` `[flag: cartels_watch_quiet = true]`
-   ↳ > **Livia Harvan:** "Quietly is what we're good at. I'll tell Darian he can have his meeting. Next week."
-2. **"Watch them, and make sure they know we're watching."** `[cartels capacity -5]` `[cartels suspicion +20]` `[federation relation +1]` `[+1 FORCE]` `[approval +2 @ tekoku, tapira]` `[flag: cartels_watch_loud = true]`
-   ↳ > **Livia Harvan:** "The Arennians will love it. The boats will notice by Friday."
-   ↳ She does not say which of those she thinks matters more.
-3. **"Not now. We have a hole to fill first."** `[flag: cartels_ignored = true]`
-   ↳ > **Livia Harvan:** "Then I'll file it under 'first'. It's a thick file."
-4. **"Ease off. I won't start a war in my first month."** `[cartels suspicion -10]` `[cartels capacity +5]` `[col -2 @ ibira]` `[-1 FORCE]` `[flag: cartels_softened = true]` `[flag: voice += 1]`
-   ↳ > **Livia Harvan:** "Nobody said war, Madam President."
-   ↳ > "Nobody ever does, at the start."
-   ↳ *You will look at Ibira properly once the books are open. A month. Two at most. Nobody dies of a month.*
-
-## dusk
-
-When you look up from the folder, the room is darker. Someone has drawn the blue curtains against the evening, and you did not see who.
-
-Livia gathers both folders, leaves you the pen.
-
-> **Livia Harvan:** "Your secretary is waiting at the Residence. She says she has brought her own notebook, and that you'd understand."
-
-You do.
-
-1. **Go home, such as it is** `[flag: seen_blue_room = true]`
+1. **Leave the Blue Room** `[flag: seen_blue_room = true]`
 
 → END

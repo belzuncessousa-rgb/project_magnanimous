@@ -9,4 +9,4 @@ priority: 1
 
 # Finishing Luz's Folly
 
-The President has chosen to complete the Great Sanitation Works begun by Tercilio Luz, financed by the Fund and abandoned with half its pipes in the ground. It is the cheapest option because, as the Treasury minister reportedly put it, "the expensive part was stolen in advance". The Corvel Consortium's contract remains in force. The Ledger awaits, with interest, the President's explanation of how a government can finish a crime without completing it.
+The President has chosen to complete the Great Sanitation Works begun by Tercilio Luz, financed by the Fund and abandoned with half its pipes in the ground. It is the cheapest option because half of the work is done. The Corvel Consortium's contract remains in force. The Ledger will follow how the government handles the contract.

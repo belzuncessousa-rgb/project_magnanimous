@@ -4,73 +4,83 @@ chapter: 1
 turn: 2
 title: Sugar Bay General
 kind: briefing
-location: mognagna
+location: sugar-bay
+token: health
 portraits: [dara]
 background: hospital-corridor
 ---
 
-⚙️ Health & Social Programs briefing, staged as a visit to Sugar Bay General with Owin Dara. Seeds: Social Assistance vs. Public Health System (ch2 budget tier), famine risk in the dry season, the tobacco fallout in Katanaí (Ana Sollis' bill). Small decisions only.
+⚙️ Health & Social Programmes meeting, held as a visit to Sugar Bay General Hospital with Owin Dara. Overview of the two possible programmes (public health system vs. cash transfers) for the chapter-2 budget, the dry season in Mognagna, and tobacco-related illness in Ibicuí. Follow-ups are informational; the only decisions are small (a public statement, a reply to a deputy).
 
 ## opening
 
-Sugar Bay General was built by the dictatorship, painted by the first democratic government, and has not been painted since. The corridors are wide enough for two stretchers to pass. Today there are three, and nobody is passing.
+Sugar Bay is the capital of Mognagna, on the coast. Sugar Bay General is its largest public hospital, built about fifty years ago. The corridors are wide and crowded. Patients wait on plastic chairs and on stretchers along the walls.
 
-Owin Dara walks you through it the way other men show you their gardens. He knows the cleaners by name. He knows which lift works on Thursdays.
+Owin Dara meets you at the entrance. He worked here as a doctor for twenty years before he went into politics, and many of the staff greet him by name as you walk through.
 
-> **Owin Dara:** "This is the good hospital, Madam President. I wanted you to see the good one first."
+> **Owin Dara:** "Thank you for coming, Madam President. This is one of the better hospitals in the region. I thought you should see it before we talk about the others."
 
-A woman on a plastic chair, holding a baby asleep against her shoulder, recognises you, and does not get up, because getting up would wake the baby.
+A young woman holding a sleeping baby recognises you. She stays seated so as not to wake the child.
 
-> **Owin Dara:** "She'll have walked from the bus at five. The transfer card is in her pocket. If it stops in April, she stops coming here and starts going to the pastor."
+> **Owin Dara:** "She probably took the first bus this morning. Most people here are on the transfer programme. The payments are funded until April."
 
-1. **Kneel down and speak to her**
-   ↳ She tells you, quietly, about the baby's fever, the bus, the queue. She does not ask you for anything. When you stand up, Dara is looking at you with something between approval and professional curiosity.
-2. **Ask Dara what she would ask, if she could**
-   ↳ > **Owin Dara:** "Whether the card still works in April. They always ask that first. Then the fever."
-3. **Keep walking. There will be a hundred like her by the end of the corridor**
-   ↳ There are more than a hundred. Dara does not stop counting, so neither do you.
+1. **Stop and talk to her**
+   ↳ She tells you about her baby's fever and the long wait. She doesn't ask you for anything. Dara waits until you have finished.
+2. **Ask Dara what people here usually ask about**
+   ↳ > **Owin Dara:** "Whether the transfers will continue after April. Then about the waiting times."
+3. **Keep walking with Dara**
+   ↳ You walk to the end of the corridor. There are many more people waiting.
 
 ## office
 
-His old office at the end of the wing has a window onto the bay and a cabinet full of files that are not, strictly, still his.
+Dara's old office is at the end of the wing, with a window onto the bay. He offers you a chair and stays standing.
 
-> **Owin Dara:** "Two things I can do with money. Build a health system — real hospitals, staffed, in places that have never had one. Ten years before you see it."
+> **Owin Dara:** "Here is the overview. In the budget, my ministry can fund two kinds of programme."
 
-> **Owin Dara:** "Or keep the transfers alive. Next month you see it. Next year you see it. In ten years you see the same queue, but nobody died in it."
+> **Owin Dara:** "The first is a proper public health system: new hospitals and clinics, staff, medicines, in the places that don't have them. It costs a lot and takes years before people feel the difference."
 
-> **Owin Dara:** "A hospital is a promise. A transfer is lunch."
+> **Owin Dara:** "The second is the cash transfers. They keep poor families fed now, especially in Mognagna and Ibira. People feel the difference the same month. But in ten years the hospitals will be the same as today."
 
-1. **"We'll need both. Which one dies first if we can only fund one?"**
-   ↳ > **Owin Dara:** "The hospital. It always does. It can't vote yet."
-2. **"Mognagna has had lunch for forty years. It deserves the promise."** `[dara loyalty -1]` `[+1 STRUCT]` `[flag: health_system_lean = true]`
-   ↳ > **Owin Dara:** "Mognagna would like both, Madam President. Mognagna has been told 'deserves' before."
-3. **"Then lunch comes first. People can't wait ten years hungry."** `[dara loyalty +1]` `[+1 WELF]` `[flag: transfers_lean = true]`
-   ↳ > **Owin Dara:** "Pelan says the same. He says it with less sincerity, but he says it."
+> **Owin Dara:** "We'll need to decide how much of each in March. I wanted you to see this place first."
+
+→ office-q
+
+## office-q
+
+1. **"How much do the transfers cost compared to the hospitals?"** `[once]` `→ office-q`
+   ↳ > **Owin Dara:** "The transfers cost less each year, but you pay them every year. The hospitals cost more at the start and then less. Fontes has the exact figures."
+2. **"Which regions need hospitals most?"** `[once]` `→ office-q`
+   ↳ > **Owin Dara:** "Ibira, by far. Then the interior of Mognagna. And the peripheries of the big cities in Ibicuí, which are growing faster than any clinic can keep up with."
+3. **"What would you do, if it were only up to you?"** `[once]` `→ office-q`
+   ↳ > **Owin Dara:** "Keep the transfers and build what we can. I've seen what happens when transfers stop. I'd rather not see it again."
+4. **"Thank you. What else should I know?"** `→ dry-season`
 
 ## dry-season
 
-> **Owin Dara:** "And it's dry early. Porper has water trucks in twelve municipalities. If the rains fail in March, it's not a queue, it's a famine. We haven't had one in twenty years. People here remember the last one better than they remember the dictatorship."
+> **Owin Dara:** "The dry season. It started early this year. The governor, Julio Porper, has sent water trucks to twelve towns in the interior. If the rains come in March, it will be a difficult year. If they don't, there is a risk of hunger in some areas. The last time that happened was twenty years ago."
 
-> **Owin Dara:** "The press are outside. They'll want one sentence."
+> **Owin Dara:** "There are journalists outside. They will want a sentence from you."
 
 1. **"Nobody in Mognagna will go hungry while I'm in office."** `[approval +3 @ mognagna]` `[dara loyalty +2]` `[fontes loyalty -1]` `[flag: promised_no_hunger = true]`
-   ↳ The sentence goes out at eleven and is on every radio in the sertão by noon. Fontes, you learn later, heard it in his car and pulled over.
-2. **"We are preparing for the dry season, and we'll be honest about the cost."** `[approval +1 @ mognagna]` `[fontes loyalty +1]`
-   ↳ The sentence is accurate. It plays on the evening news after a clip of Porper saying something warmer.
-3. **"I came to listen today. The decisions come with the budget."** `[dara loyalty -1]`
-   ↳ > **Owin Dara:** "They'll write that you came, and they'll write that you left."
+   ↳ The sentence is on the radio across the region by noon. That evening Fontes calls Amanda to ask whether it was a policy or a sentence.
+2. **"We're preparing for the dry season, and we'll be honest about what it costs."** `[approval +1 @ mognagna]` `[fontes loyalty +1]`
+   ↳ The statement is reported accurately, after a longer interview with Governor Porper.
+3. **"I came to listen today. Decisions will come with the budget."** `[dara loyalty -1]`
+   ↳ > **Owin Dara:** "They'll report that you came and listened. Some of them will say that's all you did."
 
 ## tobacco
 
-On the way out he gives you a single sheet of paper. A graph. One line goes up at a steady angle, like a road climbing a hill.
+On the way out, Dara hands you a sheet of paper with a graph on it.
 
-> **Owin Dara:** "Respiratory admissions in the old tobacco districts of Katanaí and St. Veldra. Not my region. Not my problem, if I were a different kind of minister. Deputy Sollis has a bill on advertising and taxes. Nobody in Congress will touch it. Trembolo funds half of Congress."
+> **Owin Dara:** "One more thing, from Ibicuí. Hospital admissions for lung and breathing problems in the old tobacco-growing districts of Katanaí and St. Veldra. They've gone up every year for ten years."
 
-1. **"Tell Deputy Sollis I'll read her bill. Personally."** `[cp opinion -1]` `[approval +1 @ ibicui]` `[flag: tobacco_bill_interest = true]` `[flag: seen_health_briefing = true]`
-   ↳ > **Owin Dara:** "She'll frame the letter. She frames everything."
-2. **"Not this year. I can't open a war with the Trembolos in my first month."** `[flag: tobacco_deferred = true]` `[flag: seen_health_briefing = true]`
-   ↳ He folds the graph in half and puts it back in his pocket, where you suspect it lives.
-3. **"Keep this graph. Bring it back when it's steeper."** `[flag: path_harden += 1]` `[flag: seen_health_briefing = true]`
-   ↳ > **Owin Dara:** "It's always steeper, Madam President. That's what graphs are for."
+> **Owin Dara:** "An independent deputy, Ana Sollis, has a bill to restrict tobacco advertising and raise the tax on it. Congress hasn't scheduled it. The Trembolo family, who own the largest tobacco company, have a lot of friends in Congress."
+
+1. **"Tell Deputy Sollis I'll read her bill."** `[cp opinion -1]` `[approval +1 @ ibicui]` `[flag: tobacco_bill_interest = true]` `[flag: seen_health_briefing = true]`
+   ↳ > **Owin Dara:** "She'll be pleased. Nobody in government has said that to her before."
+2. **"Not this year. I can't take on the Trembolos now."** `[flag: tobacco_deferred = true]` `[flag: seen_health_briefing = true]`
+   ↳ He folds the graph and puts it back in his pocket.
+3. **"Keep watching these numbers and bring them back to me."** `[flag: path_harden += 1]` `[flag: seen_health_briefing = true]`
+   ↳ > **Owin Dara:** "I will. Every quarter."
 
 → END
