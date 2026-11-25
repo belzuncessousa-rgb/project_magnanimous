@@ -1,6 +1,6 @@
 # Narrative canon — author design sessions
 
-Last consolidated: 2026-11-25. Sessions 01–40. Maintained as author interviews continue.
+Last consolidated: 2026-11-25. Sessions 01–41. Maintained as author interviews continue.
 
 ## Authority and workflow
 
@@ -173,9 +173,13 @@ Each member country should provide a distinctive contribution or bonus reflectin
 
 Confirmed: Veldmoor is a small, wealthy, highly educated, technologically advanced democracy in Arvane (Kunasai's continent, already established in the Foreign Countries GDD). Switzerland is an illustrative reference for its international position, not a literal copy. Its foreign policy is genuinely values-oriented toward scientific cooperation, environmental responsibility, human rights and multilateralism, but not indiscriminately altruistic: it has high standards for partners and pursues its own interests. Lara's actual governance record should matter more than symbolic gestures. Potential technological/research cooperation offers an alternative to superpower dependency, at smaller scale. Veldmoor is a potentially valuable alliance member through distinctive scientific/knowledge contributions. Exact eligibility standards, deals, historical identity and domestic politics TBD. Working diplomatic contrast: Federation emphasizes alignment, Zharan concessions, Veldmoor standards; none is exclusively motivated by that one factor. See [Veldmoor GDD](https://app.notion.com/p/36b10ad0215881578b27caed22de05c7).
 
-## Next design discussion (41)
+## 41 — Mondrath's diplomatic ceiling and conditional intervention
 
-Return to Mondrath as promised in session 27, reviewing its GDD and clarifying first-term diplomatic escalation and resolution independently of Tekoku separatism. Respect the no-open-war gameplay boundary.
+Confirmed: retain the independent but interacting Mondrath and Tekoku crises. Mondrath primarily wants to be left alone; Lara's best ordinary first-term relationship is peaceful coexistence and modest economic integration, not deep integration or an expansionist alliance. Its reaction to separatism depends on its hostility toward Kunasai, strength/capacity, and Tekoku's separatist conditions. A hostile but weakened Mondrath may support independent Tekoku without absorbing it; a hostile and strong Mondrath may support secession and subsequent union with Mondrath if Tekoku is also sufficiently antagonized. A neutral/friendly Mondrath has little incentive to intervene. These are conditional possibilities, not automatic outcomes; Tekokuan preferences and circumstances still matter. Antagonizing Mondrath and weakening its capacity are distinct. Preserve the existing [Mondrath GDD](https://app.notion.com/p/36b10ad0215881818a8fc242bc2db107), including strait constraints, and session 36's no-playable-open-war boundary. Working implementation: leverage existing foreign relations, aggressiveness and strength indices plus Tekoku's regional conditions; exact thresholds and mechanics TBD.
+
+## Next design discussion (42)
+
+Clarify the Strait's economic/diplomatic crisis and consequences within the no-open-war first-term scope, then close foundational foreign policy and move to domestic factions and institutions.
 
 ## Implementation backlog (not yet changes)
 
