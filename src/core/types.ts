@@ -93,7 +93,7 @@ export interface GameState {
   shownPopups: string[];
   /** pop-ups on the map this turn */
   activePopups: string[];
-  crisis: Record<string, { meter: number; fired: boolean; signalled: boolean }>;
+  crisis: Record<string, { meter: number; fired: boolean; signalled: boolean; steps?: number[] }>;
   cooldowns: Record<string, number>;
   freeActionsUsed: Record<string, number>;
   ended: boolean;

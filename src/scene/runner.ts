@@ -18,7 +18,14 @@ export interface ChoiceOption {
 export type RunnerOutput =
   | { type: 'prose'; prose: Prose }
   | { type: 'choices'; options: ChoiceOption[] }
-  | { type: 'end'; nextScene?: string };
+  | { type: 'end'; nextScene?: string }
+  /** a `[open: …]` / `[vote: …]` token asks the UI to show a screen; call next() when it is done */
+  | { type: 'ui'; action: string; arg: string };
+
+export interface RunnerOptions {
+  /** show `[lock if]` / unmet `[req]` options greyed instead of hiding them (dev toggle) */
+  showLocked?: boolean;
+}
 
 interface Pos {
   beat: number;
@@ -41,6 +48,7 @@ export class SceneRunner {
   private pendingJump: Target | null = null;
   private awaiting: ChoiceOption[] | null = null;
   private ended = false;
+  private uiQueue: { action: string; arg: string }[] = [];
   private nextScene?: string;
   readonly warnings: string[] = [];
   /** choices made, as "beat:n" (useful for tests/analytics) */
@@ -49,10 +57,11 @@ export class SceneRunner {
   constructor(
     readonly scene: Scene,
     readonly state: GameState,
+    readonly options: RunnerOptions = {},
   ) {}
 
   private ctx(): ApplyContext {
-    return { sceneId: this.scene.id, warn: (m) => this.warnings.push(m) };
+    return { sceneId: this.scene.id, warn: (m) => this.warnings.push(m), onUi: (action, arg) => this.uiQueue.push({ action, arg }) };
   }
 
   private beat(i = this.pos.beat): Beat | undefined {
@@ -119,6 +128,7 @@ export class SceneRunner {
         if (r.expr && !test(this.state, r.expr, { sceneId: this.scene.id })) locked = true;
         if (r.amounts && !canAfford(this.state, r.amounts)) locked = true;
       }
+      if (locked && !this.options.showLocked) return;
       out.push({ index, choice: c, locked, affordable: canAfford(this.state, c.cost) });
     });
     return out;
@@ -127,6 +137,8 @@ export class SceneRunner {
   next(): RunnerOutput {
     if (this.awaiting) return { type: 'choices', options: this.awaiting };
     for (let guard = 0; guard < 10000; guard++) {
+      const ui = this.uiQueue.shift();
+      if (ui) return { type: 'ui', ...ui };
       if (this.queue.length) {
         const p = this.queue.shift()!;
         if (this.play(p)) return { type: 'prose', prose: p };

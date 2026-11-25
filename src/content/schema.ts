@@ -35,8 +35,13 @@ export interface NewsItem {
   repeat: boolean;
 }
 
+/** Readables (content/readables.json) and ambient pop-ups (content/popups.json) share this shape. */
 export interface Popup {
   id: string;
+  kind: 'reaction' | 'note' | 'report' | 'incident' | 'popup';
+  from?: string;
+  /** flags set when the player opens it */
+  flags?: Record<string, boolean | number | string>;
   title?: string;
   text: string;
   location?: string;
@@ -88,6 +93,8 @@ export interface ContentBundle {
   popups: Popup[];
   freeActions: FreeAction[];
   crises: CrisisDef[];
+  ministries: Ministry[];
+  bills: Bill[];
   papers: Paper[];
   warnings: string[];
   /** which categories fell back to content/_demo */
@@ -335,7 +342,7 @@ export function normalizeChapters(raw: unknown): ChapterDef[] {
         turn: n(t, ti + 1, 'turn', 'id', 'number'),
         date: s(t, 'date', 'dateLabel', 'label') ?? `Turn ${ti + 1}`,
         scenes: strList(pick(t, 'scenes')),
-        popups: strList(pick(t, 'popups', 'pops')),
+        popups: [...strList(pick(t, 'popups', 'pops')), ...strList(pick(t, 'readables'))],
         news: newsRefs(pick(t, 'news', 'editions')),
         closing: s(t, 'closing'),
         label: s(t, 'label', 'subtitle'),
@@ -400,9 +407,14 @@ export function parseNewsFile(path: string, src: string): NewsItem[] {
   return [{ ...common, id, headline, text: bodyLines.join('\n').trim() }];
 }
 
-export function normalizePopups(raw: unknown): Popup[] {
-  return listOf(raw, 'popups').map((p) => ({
+const READABLE_KINDS = ['reaction', 'note', 'report', 'incident'];
+
+export function normalizePopups(raw: unknown, key = 'popups'): Popup[] {
+  return listOf(raw, key).map((p) => ({
     id: s(p, 'id') ?? 'popup',
+    kind: (READABLE_KINDS.includes(s(p, 'kind') ?? '') ? s(p, 'kind') : 'popup') as Popup['kind'],
+    from: s(p, 'from'),
+    flags: isObj(pick(p, 'flags')) ? (pick(p, 'flags') as Record<string, boolean>) : undefined,
     title: s(p, 'title'),
     text: s(p, 'text', 'body') ?? '',
     location: s(p, 'location', 'at', 'region'),
@@ -466,8 +478,11 @@ export function normalizeCrises(raw: unknown): CrisisDef[] {
     id: s(c, 'id') ?? 'crisis',
     scene: s(c, 'scene'),
     threshold: n(c, 10, 'threshold'),
-    when: s(c, 'when'),
-    terms: listOf(pick(c, 'terms', 'inputs')).map((t) => ({ expr: s(t, 'expr', 'expression') ?? '0', weight: n(t, 1, 'weight', 'w') })),
+    when: s(c, 'when') ?? (pick(c, 'from_chapter', 'fromChapter') !== undefined ? `chapter >= ${n(c, 1, 'from_chapter', 'fromChapter')}` : undefined),
+    terms: listOf(pick(c, 'terms', 'inputs', 'pressure')).map((t) => ({ expr: s(t, 'expr', 'expression') ?? '0', weight: n(t, 1, 'weight', 'w') })),
+    steps: Array.isArray(pick(c, 'signals'))
+      ? listOf(pick(c, 'signals')).map((g) => ({ at: n(g, 0.6, 'at'), publish: [...strList(pick(g, 'readable', 'readables', 'popup')), ...strList(pick(g, 'news'))] }))
+      : undefined,
     accumulate: pick(c, 'accumulate') === true,
     decay: n(c, 0, 'decay'),
     signalAt: pick(c, 'signalAt') !== undefined ? n(c, 0.6, 'signalAt') : undefined,
@@ -512,7 +527,7 @@ export function buildContent(files: RawFile[]): ContentBundle {
 
   // story-bound demo files (chapters, news, pop-ups, crises) are only used together with the demo scenes
   const realScenes = real.some((f) => /^\/content\/scenes\/.*\.md$/.test(f.path));
-  const storyBound = new Set(['chapters', 'news', 'popups', 'crises']);
+  const storyBound = new Set(['chapters', 'news', 'popups', 'readables', 'crises', 'ministries', 'bills']);
   function choose(cat: string, test: (p: string) => boolean): RawFile[] {
     const r = real.filter((f) => test(f.path.replace(/^\/content\//, '')));
     if (r.length) return r;
@@ -543,11 +558,140 @@ export function buildContent(files: RawFile[]): ContentBundle {
   if (!chapters.length || chapters.every((c) => !c.turns.length)) chapters = deriveChapters(scenes);
 
   const news = choose('news', (p) => p.startsWith('news/') && p.endsWith('.md')).flatMap((f) => parseNewsFile(f.path, String(f.data)));
-  const popups = normalizePopups(jsonOf('popups', 'popups.json'));
+  const popups = [...normalizePopups(jsonOf('readables', 'readables.json'), 'readables'), ...normalizePopups(jsonOf('popups', 'popups.json'))];
+  const ministries = normalizeMinistries(jsonOf('ministries', 'ministries.json'), (m) => warnings.push(m));
+  const bills = normalizeBills(jsonOf('bills', 'bills.json'), (m) => warnings.push(m));
   const freeActions = normalizeFreeActions(jsonOf('free-actions', 'free-actions.json'), (m) => warnings.push(m));
   const crisesRaw = jsonOf('crises', 'crises.json') ?? (isObj(worldRaw) ? worldRaw.crises : undefined);
   const crises = normalizeCrises(crisesRaw);
   const papers = normalizePapers(isObj(worldRaw) ? worldRaw.papers : undefined);
 
-  return { world, scenes, chapters, news, popups, freeActions, crises, papers, warnings, demo };
+  return { world, scenes, chapters, news, popups, freeActions, crises, papers, ministries, bills, warnings, demo };
+}
+
+// ------------------------------------------------------------------------------------------------
+// ministries (budget screen) & bills (congress votes)
+
+export type Tier = 'cut' | 'low' | 'regular' | 'high';
+export const TIERS: Tier[] = ['cut', 'low', 'regular', 'high'];
+
+export interface Initiative {
+  id: string;
+  name: string;
+  summary: string;
+  perTurn: CondEffect[];
+  once: CondEffect[];
+}
+
+export interface Ministry {
+  id: string;
+  name: string;
+  minister?: string;
+  tiers: Partial<Record<Tier, { fc: number; effects: CondEffect[]; label?: string }>>;
+  initiatives: Initiative[];
+}
+
+export interface BillPosition {
+  base: number;
+  ifs: { when: string; delta: number }[];
+}
+
+export interface Bill {
+  id: string;
+  title: string;
+  summary: string;
+  positions: Record<string, BillPosition>;
+  /** per party: cost of the plain whip deal (tokens like "1 IPI" or "[cost: 2 FC]") */
+  whipCosts: Record<string, ResourceAmounts>;
+}
+
+/** Parse a token string ("[approval +1 @ all] [flag: x = true]") into effects. */
+export function effectsFromTokens(src: unknown, warn: (m: string) => void, where: string): CondEffect[] {
+  const out: CondEffect[] = [];
+  let cond: CondEffect['cond'];
+  for (const span of tokensFrom(src)) {
+    for (const t of parseTokenSpan(span.replace(/`/g, ''))) {
+      if (t.kind === 'effect') out.push(cond ? { effect: t.effect, cond } : { effect: t.effect });
+      else if (t.kind === 'if') cond = t.expr;
+      else if (t.kind === 'gain') out.push({ effect: { type: 'resource', amounts: t.amounts } });
+      else if (t.kind === 'cost') {
+        const neg: ResourceAmounts = {};
+        for (const [k, v] of Object.entries(t.amounts)) neg[k as keyof ResourceAmounts] = -(v ?? 0);
+        out.push({ effect: { type: 'resource', amounts: neg } });
+      } else warn(`${where}: unsupported token`);
+    }
+  }
+  return out;
+}
+
+function costOf(v: unknown): ResourceAmounts | undefined {
+  if (typeof v === 'number') return { FC: v };
+  if (typeof v === 'string') {
+    const inner = /\[\s*cost\s*:\s*([^\]]+)\]/i.exec(v)?.[1] ?? v;
+    return parseAmounts(inner.replace(/[[\]`]/g, ''));
+  }
+  if (isObj(v)) {
+    const out: ResourceAmounts = {};
+    for (const [k, x] of Object.entries(v)) if (typeof x === 'number') out[k.toUpperCase() as keyof ResourceAmounts] = x;
+    return out;
+  }
+  return undefined;
+}
+
+export function normalizeMinistries(raw: unknown, warn: (m: string) => void): Ministry[] {
+  return listOf(raw, 'ministries').map((m) => {
+    const id = s(m, 'id') ?? 'ministry';
+    const tiersRaw = isObj(pick(m, 'tiers')) ? (pick(m, 'tiers') as Obj) : {};
+    const tiers: Ministry['tiers'] = {};
+    for (const t of TIERS) {
+      const tr = tiersRaw[t];
+      if (tr === undefined || tr === null) continue;
+      const o = isObj(tr) ? tr : { fc_per_turn: tr };
+      tiers[t] = {
+        fc: n(o, 0, 'fc_per_turn', 'fcPerTurn', 'fc', 'cost'),
+        effects: effectsFromTokens(pick(o, 'effects', 'effects_per_turn'), warn, `ministry ${id}/${t}`),
+        label: s(o, 'label', 'summary'),
+      };
+    }
+    return {
+      id,
+      name: s(m, 'name') ?? id,
+      minister: s(m, 'minister'),
+      tiers,
+      initiatives: listOf(pick(m, 'initiatives')).map((i) => ({
+        id: s(i, 'id') ?? 'initiative',
+        name: s(i, 'name', 'title') ?? s(i, 'id') ?? '',
+        summary: s(i, 'summary', 'description') ?? '',
+        perTurn: effectsFromTokens(pick(i, 'effects_per_turn', 'effectsPerTurn', 'effects'), warn, `initiative ${s(i, 'id')}`),
+        once: effectsFromTokens(pick(i, 'once'), warn, `initiative ${s(i, 'id')}`),
+      })),
+    };
+  });
+}
+
+export function normalizeBills(raw: unknown, warn: (m: string) => void): Bill[] {
+  return listOf(raw, 'bills').map((b) => {
+    const id = s(b, 'id') ?? 'bill';
+    const positions: Record<string, BillPosition> = {};
+    const pr = pick(b, 'positions');
+    if (isObj(pr)) {
+      for (const [party, v] of Object.entries(pr)) {
+        const o = isObj(v) ? v : { base: v };
+        positions[normId(party)] = {
+          base: n(o, 0, 'base'),
+          ifs: listOf(pick(o, 'ifs', 'if', 'modifiers')).map((x) => ({ when: s(x, 'when', 'if') ?? 'false', delta: n(x, 0, 'delta') })),
+        };
+      }
+    }
+    const whipCosts: Record<string, ResourceAmounts> = {};
+    const wc = pick(b, 'whip_costs', 'whipCosts');
+    if (isObj(wc)) {
+      for (const [party, v] of Object.entries(wc)) {
+        const c = costOf(v);
+        if (c) whipCosts[normId(party)] = c;
+        else warn(`bill ${id}: cannot read whip cost for ${party}`);
+      }
+    }
+    return { id, title: s(b, 'title', 'name') ?? id, summary: s(b, 'summary', 'description') ?? '', positions, whipCosts };
+  });
 }

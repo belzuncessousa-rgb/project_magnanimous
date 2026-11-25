@@ -17,7 +17,9 @@ export type Effect =
   | { type: 'tax'; which: 'domestic' | 'trade'; delta: number }
   | { type: 'news'; paper?: string; id: string }
   | { type: 'popup'; id: string }
-  | { type: 'embargo'; country: string; value: boolean };
+  | { type: 'embargo'; country: string; value: boolean }
+  /** UI request: `[open: budget]` → {action:'open', arg:'budget'}, `[vote: bill]` → {action:'vote', arg:'bill'} */
+  | { type: 'ui'; action: string; arg: string };
 
 /** An effect gated by an optional `[if: expr]`. */
 export interface CondEffect {
@@ -29,6 +31,8 @@ export interface ApplyContext extends ResolveExtra {
   /** substitution for the `target` placeholder (free actions) */
   target?: string;
   warn?: (msg: string) => void;
+  /** receives `ui` effects (the scene runner turns them into a pause for the UI) */
+  onUi?: (action: string, arg: string) => void;
 }
 
 const LOYALTY = { min: -10, max: 10 };
@@ -132,6 +136,9 @@ export function applyEffect(state: GameState, e: Effect, ctx: ApplyContext = {})
       return;
     case 'popup':
       if (!state.popupQueue.includes(e.id)) state.popupQueue.push(e.id);
+      return;
+    case 'ui':
+      ctx.onUi?.(e.action, e.arg);
       return;
     case 'embargo': {
       const id = resolveCountry(state, sub(e.country, ctx));

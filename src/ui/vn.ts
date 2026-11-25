@@ -5,6 +5,15 @@ import type { ChoiceOption, SceneRunner } from '../scene/runner';
 import type { Prose } from '../scene/types';
 import { clear, h, initials, inlineMd, wait } from './dom';
 
+export interface VNHooks {
+  /** `[open: …]` / `[vote: …]` tokens: show the screen, resolve when done */
+  onUi?: (action: string, arg: string) => Promise<void>;
+  /** tutorial highlights for the block on screen ([] clears) */
+  onHighlight?: (ids: string[]) => void;
+  /** costs are hidden until the tutorial is done, then shown as a tooltip */
+  showCosts?: () => boolean;
+}
+
 export interface VNOptions {
   transitions: boolean;
   /** player character id (portrait on the left) */
@@ -35,6 +44,7 @@ export class VNView {
   constructor(
     private state: () => GameState,
     private opts: VNOptions,
+    private hooks: VNHooks = {},
   ) {
     this.titleEl = h('div', { class: 'vn-title' });
     this.log = h('div', { class: 'vn-log', 'aria-live': 'polite' });
@@ -155,16 +165,16 @@ export class VNView {
     return new Promise((res) => {
       options.forEach((o, i) => {
         const disabled = o.locked || !o.affordable;
-        const cost = costLabel(o);
+        const cost = this.hooks.showCosts?.() === false ? '' : costLabel(o);
         const btn = h('button', {
           class: `choice${o.locked ? ' locked' : ''}${!o.affordable ? ' unaffordable' : ''}${o.choice.spoken ? ' spoken' : ''}`,
           disabled,
-          title: o.locked ? 'Not available' : !o.affordable ? 'Not enough resources' : undefined,
+          'data-tip': o.locked ? 'Not available' : cost ? (o.affordable ? `Costs ${cost}` : `Not enough resources — costs ${cost}`) : !o.affordable ? 'Not enough resources' : undefined,
         },
           h('span', { class: 'num' }, `${i + 1}.`),
           h('span', { class: 'label', html: inlineMd(o.choice.label) }),
           o.locked ? h('span', { class: 'lock', 'aria-label': 'locked' }, '🔒︎') : null,
-          cost ? h('span', { class: 'cost' }, cost) : null);
+          cost ? h('span', { class: 'cost-dot', 'aria-label': `costs ${cost}` }, '◈') : null);
         btn.addEventListener('click', () => {
           clear(this.choices);
           res(o);
@@ -193,11 +203,18 @@ export class VNView {
     let nextScene: string | undefined;
     for (;;) {
       const out = runner.next();
+      if (out.type === 'ui') {
+        this.hooks.onHighlight?.([]);
+        await this.hooks.onUi?.(out.action, out.arg);
+        continue;
+      }
       if (out.type === 'prose') {
+        this.hooks.onHighlight?.(out.prose.highlights ?? []);
         this.setSpeaker(out.prose);
         await this.appendBlock(this.block(out.prose));
         await this.waitAdvance();
       } else if (out.type === 'choices') {
+        this.hooks.onHighlight?.([]);
         const o = await this.waitChoice(out.options);
         runner.choose(o.index);
         const echo = o.choice.spoken
@@ -206,8 +223,9 @@ export class VNView {
         if (o.choice.spoken) this.setSpeaker({ role: 'speech', text: '', effects: [] });
         await this.appendBlock(echo);
       } else {
+        this.hooks.onHighlight?.([]);
         nextScene = out.nextScene;
-        if (!nextScene) await this.waitAdvance('Return to the map');
+        await this.waitAdvance('Return to the map');
         break;
       }
     }

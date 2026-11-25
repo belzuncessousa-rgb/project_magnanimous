@@ -117,10 +117,10 @@ describe('runner: repo-format fixture', () => {
     if (d.out.type !== 'choices') throw new Error();
     const byLabel = Object.fromEntries(d.out.options.map((o) => [o.choice.label, o]));
     expect(byLabel['Bribe the clerk']).toBeUndefined(); // show if false
-    expect(byLabel['Call in a favour']!.locked).toBe(true); // lock if !met_dara
+    expect(byLabel['Call in a favour']).toBeUndefined(); // lock if !met_dara → hidden by default
     expect(byLabel['Spend a long evening']!.affordable).toBe(false);
-    expect(byLabel['Ask Salgado']!.locked).toBe(true);
-    expect(r.choose(byLabel['Call in a favour']!.index)).toBe(false);
+    expect(byLabel['Ask Salgado']).toBeUndefined(); // unmet req → hidden
+    expect(r.choose(3)).toBe(false); // not offered
     expect(r.choose(byLabel['Spend a long evening']!.index)).toBe(false);
 
     pick(r, '"I want the fiscal pact by Friday."');
@@ -211,5 +211,30 @@ describe('runner: misc', () => {
     pick(r, 'Go');
     expect(r.next()).toMatchObject({ type: 'prose', prose: { text: 'B text.' } });
     expect(r.next().type).toBe('end');
+  });
+  it('dev toggle shows locked options greyed', () => {
+    const s = testState();
+    const r = new SceneRunner(load('repo-format.md'), s, { showLocked: true });
+    const d = drain(r);
+    if (d.out.type !== 'choices') throw new Error();
+    const byLabel = Object.fromEntries(d.out.options.map((o) => [o.choice.label, o]));
+    expect(byLabel['Call in a favour']!.locked).toBe(true);
+    expect(byLabel['Ask Salgado']!.locked).toBe(true);
+    expect(r.choose(byLabel['Call in a favour']!.index)).toBe(false);
+  });
+  it('[open: …] and [vote: …] pause the runner for the UI', () => {
+    const s = testState();
+    const r = new SceneRunner(parseScene('## a\n\nBudget time. `[open: budget]`\n\n1. **Call the vote** `[vote: reform]`\n\nAfter.'), s);
+    expect(r.next()).toMatchObject({ type: 'prose' });
+    expect(r.next()).toEqual({ type: 'ui', action: 'open', arg: 'budget' });
+    pick(r, 'Call the vote');
+    expect(r.next()).toEqual({ type: 'ui', action: 'vote', arg: 'reform' });
+    expect(r.next()).toMatchObject({ type: 'prose', prose: { text: 'After.' } });
+  });
+  it('highlights attach to prose (inline and standalone)', () => {
+    const sc = parseScene('## a\n\n`[highlight: hud-pt]`\n\nThis is your time. `[highlight: hud]`\n\nPlain.');
+    const steps = sc.beats[0]!.steps;
+    expect(steps[0]).toMatchObject({ type: 'prose', prose: { highlights: ['hud-pt', 'hud'] } });
+    expect((steps[1] as { prose: { highlights?: string[] } }).prose.highlights).toBeUndefined();
   });
 });

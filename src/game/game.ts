@@ -8,7 +8,8 @@ import { simulateTurn } from '../core/turn';
 import type { GameState } from '../core/types';
 import { createState, STATE_VERSION } from '../core/world';
 import type { ChapterDef, ContentBundle, FreeAction, NewsItem, Paper, Popup, TurnDef } from '../content/schema';
-import { SceneRunner } from '../scene/runner';
+import { SceneRunner, type RunnerOptions } from '../scene/runner';
+import { budgetTurn } from './politics';
 import type { Scene } from '../scene/types';
 
 export interface Edition {
@@ -70,6 +71,8 @@ export class Game {
   isAvailable(sc: Scene): boolean {
     const s = this.state;
     if (s.completedScenes.includes(sc.id)) return false;
+    // unlocked by a `→ scene:<id>` jump from a finished scene: available now, played from the map
+    if (s.flags[`unlocked.${sc.id}`]) return test(s, sc.meta.when, { sceneId: sc.id });
     const td = this.turnDef();
     if (td?.closing === sc.id) {
       // closing scene: only once every other scene of the turn has been played
@@ -139,13 +142,15 @@ export class Game {
 
   // ---------------------------------------------------------------- scenes
 
-  startScene(id: string): SceneRunner {
+  startScene(id: string, opts: RunnerOptions = {}): SceneRunner {
     const sc = this.scene(id);
     if (!sc) throw new Error(`Unknown scene ${id}`);
-    return new SceneRunner(sc, this.state);
+    return new SceneRunner(sc, this.state, opts);
   }
 
-  completeScene(id: string): void {
+  /** Mark a scene played. A chained `→ scene:<id>` is not auto-played: it becomes available on the map. */
+  completeScene(id: string, nextScene?: string): void {
+    if (nextScene && this.scene(nextScene)) this.state.flags[`unlocked.${nextScene}`] = true;
     if (!this.state.completedScenes.includes(id)) this.state.completedScenes.push(id);
     // DATA-SCHEMAS: seen_<scene_id_with_underscores>
     this.state.flags[`seen_${id.replace(/-/g, '_')}`] = true;
@@ -165,6 +170,19 @@ export class Game {
 
   popup(id: string): Popup | undefined {
     return this.content.popups.find((p) => p.id === id);
+  }
+
+  /** Player opened a readable: remember it and set its optional flags. */
+  readPopup(id: string): Popup | undefined {
+    const p = this.popup(id);
+    if (!p) return undefined;
+    this.state.flags[`read.${id}`] = true;
+    for (const [k, v] of Object.entries(p.flags ?? {})) this.state.flags[k] = v;
+    return p;
+  }
+
+  isRead(id: string): boolean {
+    return this.state.flags[`read.${id}`] === true;
   }
 
   activePopups(): Popup[] {
@@ -227,6 +245,7 @@ export class Game {
   endTurn(): EndTurnResult {
     const edition = this.collectEdition();
     simulateTurn(this.state);
+    budgetTurn(this.state, this.content.ministries);
     const firedCrises = evaluateCrises(this.state, this.content.crises);
     this.advance();
     if (!this.state.ended) this.startTurn();

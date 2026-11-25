@@ -26,6 +26,9 @@ export interface CrisisDef {
   /** absolute meter value (or fraction of threshold if <= 1) at which signals are queued */
   signalAt?: number;
   signals?: { popups?: string[]; news?: { paper?: string; id: string }[] };
+  /** round-2 format: each step publishes readables / news ids when the meter reaches `at`
+   *  (absolute meter value, or a fraction of the threshold when ≤ 1) */
+  steps?: { at: number; publish: string[] }[];
   /** extra flags set when the crisis fires */
   flags?: Record<string, boolean | number | string>;
 }
@@ -45,6 +48,7 @@ export function evaluateCrises(state: GameState, defs: CrisisDef[]): string[] {
   const fired: string[] = [];
   for (const def of defs) {
     const c = (state.crisis[def.id] ??= { meter: 0, fired: false, signalled: false });
+    c.steps ??= [];
     if (c.fired) continue;
     if (!test(state, def.when)) continue;
     const p = crisisPressure(state, def);
@@ -56,6 +60,16 @@ export function evaluateCrises(state: GameState, defs: CrisisDef[]): string[] {
         : def.signalAt <= 1
           ? def.threshold * def.signalAt
           : def.signalAt;
+    (def.steps ?? []).forEach((st, i) => {
+      const at = st.at <= 1 ? st.at * def.threshold : st.at;
+      if (c.steps!.includes(i) || c.meter < at) return;
+      c.steps!.push(i);
+      // an id may be a readable/pop-up or a news item; the game ignores ids unknown to each queue
+      for (const id of st.publish) {
+        if (!state.popupQueue.includes(id)) state.popupQueue.push(id);
+        state.newsQueue.push({ id });
+      }
+    });
     if (c.meter >= def.threshold) {
       c.fired = true;
       state.flags[crisisFlag(def.id)] = true;
