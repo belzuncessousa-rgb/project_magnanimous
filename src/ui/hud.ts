@@ -43,6 +43,11 @@ export class Hud {
     };
     set('PT', String(Math.floor(st.resources.PT)));
     set('FC', String(Math.floor(st.resources.FC)));
+    const fcBox = this.vals.FC!.parentElement!;
+    const debt = st.nation.debt ?? 0;
+    const paid = st.nation.debtPaid;
+    fcBox.setAttribute('data-tip', `${TIPS.FC} Public debt: ${debt.toFixed(1)} FC.` +
+      (paid ? ` Last turn: ${paid.interest.toFixed(1)} FC interest${paid.principal ? `, ${paid.principal.toFixed(1)} FC principal` : ''}.` : ''));
     set('IPI', String(Math.floor(st.resources.IPI)));
     set('EPI', String(Math.floor(st.resources.EPI)));
     set('APP', pct1(nationalApproval(st)));

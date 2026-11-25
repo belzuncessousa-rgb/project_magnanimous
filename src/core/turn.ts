@@ -183,12 +183,13 @@ export function formulaEPI(state: GameState): number {
   return clamp(Math.floor((sum / cs.length) * 10), T.resources.EPI.min, T.resources.EPI.max);
 }
 
-/** New-turn resources with carryover rules: PT 0%, FC 100% (+income), IPI/EPI 50%. */
+/** New-turn resources with carryover rules: PT 0%, FC 100% (+income − debt service), IPI/EPI 50%. */
 export function refreshResources(state: GameState): void {
   const R = T.resources;
   const r = state.resources;
+  const service = debtService(state);
   r.PT = formulaPT(state) + Math.floor(r.PT * R.PT.carry);
-  r.FC = r.FC * R.FC.carry + formulaFC(state);
+  r.FC = Math.max(0, r.FC * R.FC.carry + formulaFC(state) - service.interest - service.principal);
   r.IPI = Math.min(R.IPI.max * 2, formulaIPI(state) + Math.floor(r.IPI * R.IPI.carry));
   r.EPI = Math.min(R.EPI.max * 2, formulaEPI(state) + Math.floor(r.EPI * R.EPI.carry));
 }
@@ -202,28 +203,31 @@ export function simulateTurn(state: GameState): void {
     state.cooldowns[k] = Math.max(0, (state.cooldowns[k] ?? 0) - 1);
     if (state.cooldowns[k] === 0) delete state.cooldowns[k];
   }
-  debtTurn(state);
   refreshResources(state);
 }
 
-/** Debt policy effects on the interest share (applied before the new turn's FC income). */
-export function debtTurn(state: GameState): void {
-  const D = T.debt;
+/** Interest due this turn: a fixed share of the outstanding balance. */
+export function debtInterestDue(state: GameState): number {
+  return (state.nation.debt ?? 0) * T.debt.interestRatePerTurn;
+}
+
+/**
+ * Debt service for this turn (mutates the balance):
+ * - interest = rate × balance (always);
+ * - principal = amortizationPerTurn while debt_policy = 1, capped by the balance;
+ * - debt_policy = 2 adds borrowAmount to the balance once (the scene already gave the cash).
+ */
+export function debtService(state: GameState): { interest: number; principal: number } {
   const n = state.nation;
-  n.baseRevenue ??= taxRevenue(state);
-  n.debtShare ??= n.baseRevenue > 0 ? n.debtInterest / n.baseRevenue : T.resources.debtInterestShare;
-  const policy = Number(state.flags.debt_policy) || 0;
-  if (policy === 1) {
-    state.resources.FC = Math.max(0, state.resources.FC - D.payDownFCPerTurn);
-    n.debtShare -= D.payDownSharePerYear / D.turnsPerYear;
-  } else if (policy === 2) {
-    if (state.chapter >= D.borrowFromChapter && !state.flags.debt_borrow_interest) {
-      state.flags.debt_borrow_interest = true;
-      n.debtShare += D.borrowShareIncrease;
-    }
-  } else if (policy === 3) {
-    n.debtShare += D.statusQuoSharePerYear / D.turnsPerYear;
+  const D = T.debt;
+  n.debt ??= 0;
+  if (Number(state.flags.debt_policy) === 2 && !state.flags.debt_borrowed) {
+    state.flags.debt_borrowed = true;
+    n.debt += D.borrowAmount;
   }
-  n.debtShare = Math.max(D.minShare, n.debtShare);
-  n.debtInterest = n.debtShare * n.baseRevenue;
+  const interest = debtInterestDue(state);
+  const principal = Number(state.flags.debt_policy) === 1 ? Math.min(D.amortizationPerTurn, n.debt) : 0;
+  n.debt = Math.max(0, n.debt - principal);
+  n.debtPaid = { interest, principal };
+  return n.debtPaid;
 }

@@ -174,9 +174,10 @@ describe('resources', () => {
   it('carryover: PT 0%, FC 100%, IPI/EPI 50%', () => {
     const s = testState();
     s.resources = { PT: 7, FC: 4, IPI: 4, EPI: 3 };
+    const interest = (s.nation.debt ?? 0) * TUNING.debt.interestRatePerTurn;
     refreshResources(s);
     expect(s.resources.PT).toBe(formulaPT(s));
-    expect(s.resources.FC).toBe(4 + formulaFC(s));
+    expect(s.resources.FC).toBeCloseTo(4 + formulaFC(s) - interest);
     expect(s.resources.IPI).toBe(formulaIPI(s) + 2);
     expect(s.resources.EPI).toBe(formulaEPI(s) + 1);
   });

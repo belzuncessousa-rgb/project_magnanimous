@@ -203,3 +203,10 @@ Only the **new GDD** in Notion ("📖 GDD — Project Magnanimous") counts. The 
 - Tokens must sit where the event happens (named points in regions.json).
 - Inauguration speech UI and dialogue UI will be redesigned later; keep for now.
 - Scope now: rewrite chapter 1 with this feedback and continue through chapter 3.
+
+## Debt model (author correction)
+- The debt is a balance tracked in FC. Each turn a FIXED % of the outstanding balance is paid as interest.
+  Paying principal lowers the balance, so the next turn's interest is lower. Borrowing raises the balance.
+  Purely arithmetic, minimal flags (only `debt_policy` from the chapter-2 decision). Constants in TUNING.debt;
+  starting balance calibrated so the first interest ≈ 11% of revenue. FC tooltip in the HUD shows the balance and
+  last turn's interest/principal.

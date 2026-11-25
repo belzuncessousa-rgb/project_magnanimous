@@ -90,8 +90,10 @@ export interface GameState {
     culturalPower: number;
     costPerCapita: number;
     fcBracket: number;
-    /** interest as a share of the initial revenue (debtInterest = debtShare * baseRevenue) */
-    debtShare?: number;
+    /** outstanding public debt, in FC */
+    debt?: number;
+    /** FC paid last turn: interest and principal (for UI) */
+    debtPaid?: { interest: number; principal: number };
     baseRevenue?: number;
   };
   completedScenes: string[];

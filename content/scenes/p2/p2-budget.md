@@ -13,7 +13,7 @@ background: blue-room
 ---
 
 ⚙️ The first budget (CABINET-NOTION / GDD Ministries & Cabinet). Livia conducts, Fontes explains the money. `[open: budget]` opens the budget screen (tiers per ministry from content/ministries.json). Afterwards: the Judicial Strengthening target (if funded), the debt decision (DECISIONS: pay principal / borrow more from the Fund / status quo), reactions.
-⚙️ Debt recurring effects need engine support (not expressible as tokens): debt_policy 1 = pay principal (≈ −0.5 FC per turn, interest share falls 1 point per year); 2 = borrow more (+3 FC now, interest share +2 points from chapter 4); 3 = status quo.
+⚙️ Debt (engine, src/core/turn.ts debtService): the debt is a balance in FC; every turn a fixed % of the balance is paid as interest (TUNING.debt.interestRatePerTurn). debt_policy 1 = also pay principal each turn (balance falls → next interest falls); 2 = the balance grows by the amount borrowed (cash given here); 3 = interest only.
 
 ## opening
 

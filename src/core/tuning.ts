@@ -80,20 +80,15 @@ export const TUNING = {
     startingFC: 3,
   },
 
-  /** Debt policy (flag debt_policy, set in the chapter-2 budget scene; designer note in p2-budget.md). */
+  /** Public debt (DECISIONS / author): a balance in FC; every turn a fixed % of the balance is paid as interest.
+   *  Amortising lowers the balance, so next turn's interest is lower. Borrowing raises it. */
   debt: {
-    /** turns in a game year (chapters 1–3 = one year, 9 turns) */
-    turnsPerYear: 9,
-    /** floor for the interest share */
-    minShare: 0.03,
-    /** 1 = pay down principal: FC paid every turn, interest share falls this much per year */
-    payDownFCPerTurn: 0.5,
-    payDownSharePerYear: 0.01,
-    /** 2 = borrow more (+3 FC now via the scene token): interest share rises once, from this chapter on */
-    borrowShareIncrease: 0.02,
-    borrowFromChapter: 4,
-    /** 3 = status quo: interest share creeps up this much per year */
-    statusQuoSharePerYear: 0.0025,
+    /** interest paid each turn as a fraction of the outstanding balance */
+    interestRatePerTurn: 0.02,
+    /** principal paid each turn while debt_policy = 1 (pay down) */
+    amortizationPerTurn: 1,
+    /** extra balance taken on when debt_policy = 2 (borrow more) — the scene gives the same FC as cash */
+    borrowAmount: 3,
   },
 
   crisis: {
