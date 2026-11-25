@@ -61,9 +61,19 @@ export const REGIONS = [
   { id: 'vassel', name: 'Vassel', kind: 'country', pts: 'M6 M5 M4 R20 R19 R18 R17 V1 V2 V3 V4 V5 V6 V7 V8' },
 ];
 
+// Named places scenes can use as `location:` (map anchors for event tokens).
 export const POINTS = {
-  capital: { name: 'New Veldrania', at: [372, 618] },
-  strait: { name: 'Mondrath Strait', at: [58, 563] },
+  capital: { name: 'New Veldrania', region: null, at: [372, 608], kind: 'capital' }, // federal district at the Ibicuí–Mognagna–Tapira junction
+  katanai: { name: 'Katanaí', region: 'ibicui', at: [306, 540], kind: 'city' },
+  'st-veldra': { name: 'St. Veldra', region: 'ibicui', at: [412, 535], kind: 'city' },
+  'vila-tamarin': { name: 'Vila Tamarin', region: 'ibicui', at: [320, 566], kind: 'place' },
+  atiaiaba: { name: 'Atiaiaba', region: 'tekoku', at: [436, 432], kind: 'city' },
+  'sugar-bay': { name: 'Sugar Bay', region: 'mognagna', at: [252, 625], kind: 'city' },
+  'mognagna-sertao': { name: 'The sertão', region: 'mognagna', at: [318, 680], kind: 'place' },
+  'tapira-mines': { name: 'Tapira highlands', region: 'tapira', at: [420, 680], kind: 'place' },
+  'upper-ibira': { name: 'Upper Ibira river', region: 'ibira', at: [420, 860], kind: 'place' },
+  'taua-hills': { name: 'Tauá Hills', region: 'ibira', at: [520, 880], kind: 'place' },
+  strait: { name: 'Mondrath Strait', at: [58, 563], kind: 'sea' },
 };
 
 // ---- Organic borders: every edge (pair of control points) gets a deterministic fractal polyline,
