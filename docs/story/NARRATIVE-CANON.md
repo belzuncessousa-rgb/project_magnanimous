@@ -1,6 +1,6 @@
 # Narrative canon — author design sessions
 
-Last consolidated: 2026-11-25. Sessions 01–29. Maintained as author interviews continue.
+Last consolidated: 2026-11-25. Sessions 01–30. Maintained as author interviews continue.
 
 ## Authority and workflow
 
@@ -109,9 +109,15 @@ Author correction to session 28: moral complexity does not require morally ambig
 
 Confirmed Tapira design: preserve the [Tapira GDD](https://app.notion.com/p/36b10ad0215880008b6bd36cd310f8d9) and expand land reform/replacement of established elites as costly options. Distinguish independent but interacting development dimensions: (1) land distribution and political power — agrarian reform, maintaining oligarchic ownership, or further concentration; (2) agricultural technology and modernization, with environmental management affecting agricultural outcomes across ownership arrangements. No forced association between a particular land distribution and technological or environmental policy. Existing drought, bailout, transgenics, trade leverage and elite political influence remain relevant. The established agribusiness elite has genuine financial and political power, making attempts to break, reform or replace it costly. Working implementation idea: use existing education, infrastructure, economic output and environmental flags where feasible rather than unnecessary new indices; specific costs, effects and event sequences TBD. Matrix of possible combinations is conceptual, not six separate scripted paths.
 
-## Next design discussion (30)
+## 30 — Ibira and national integration
 
-Review Ibira's regional GDD and identify an unresolved issue with meaningful gameplay consequences. Continue one question at a time.
+Author direction: Ibira's exceptional natural wealth brings responsibility, risks and opportunities. Economic development should be optional, but neglect must not make the region irrelevant. Cartels remain a national problem even if the president pursues no economic investment there; conservation has cross-regional economic consequences. Preserve these interconnections and the existing [Ibira GDD](https://app.notion.com/p/36b10ad02158806cab49e548ea26b27d). Avoid an all-or-nothing resource sink or excessive separate arcs. Organize around three interacting strands: security/state authority (cartels, corruption, territorial control and nationwide consequences); environmental preservation (forest, rivers, biodiversity, downstream agriculture/commerce); optional economic development/integration (infrastructure, minerals, tourism, trade). Reward coordination and different commitment levels, not just total spending. Environmental and indigenous issues are distinct but can intersect.
+
+Author delegated indigenous design: establish some legally recognized indigenous territories dating from democratization, with inadequately enforced boundaries and protections and unresolved claims. Focus on a limited number of meaningful decisions about territorial rights, consultation over concessions/projects, services/security, culture and religious freedom. Indigenous communities are not homogeneous or uniformly opposed to development. Integrate these into the three strands rather than a fourth large arc. Specific rights, characters and events remain provisional. Preserve infrastructure choices but differentiate their purpose: fluvial national integration, airports access/tourism, rail industry/minerals/international links, roads basic connectivity; no need for a long separate storyline for every investment. Exact spillovers, triggers, security and conservation mechanics remain undecided. Author encourages constructive disagreement, especially on gameplay engagement and scope.
+
+## Next design discussion (31)
+
+Review existing cartel/security material before asking about an unresolved national crime design question. Preserve the distinction between optional Ibira economic investment and unavoidable national security/environmental responsibilities.
 
 ## Implementation backlog (not yet changes)
 
