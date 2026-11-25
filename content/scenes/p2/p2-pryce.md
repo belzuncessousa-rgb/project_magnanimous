@@ -39,6 +39,7 @@ Lionel Pryce has been the Arennian Federation's ambassador in New Veldrania for 
    ↳ > **Lionel Pryce:** "Then of course we respect that. Our Congress is reviewing trade preferences for the whole region this year. I'm sure Kunasai will be treated fairly."
    ↳ > **Celeste Aroun:** "Your Congress reviews them every year, Ambassador."
    ↳ > **Lionel Pryce:** "Indeed it does."
+   ↳ `[if: compass.IDEN >= 4]` > **Lionel Pryce:** "I should say that my government reads your speeches. Sovereignty, our soil, no foreign hand. It's a theme. Themes are noticed in our capital."
 4. **"Thank you, Ambassador. Here is our position."** `→ answer`
 
 ## answer

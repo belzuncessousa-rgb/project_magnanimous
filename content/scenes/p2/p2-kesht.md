@@ -31,6 +31,7 @@ The Ministry of Intelligence has no sign on its building. Kesht receives you in 
    ↳ `[if: !flag.opp_port_authority]` > **Darian Kesht:** "He has been there for six years. He survived three directors."
 2. **"Why did Livia keep postponing this meeting?"** `[once]` `→ questions`
    ↳ > **Darian Kesht:** "Ask her. My guess is that she likes to know what you know before you know it."
+   ↳ `[if: compass.STRUCT <= -3]` > **Darian Kesht:** "And because you have said, more than once, that the state should be small and should step back. My service hopes you'll make an exception for us. A state that steps back too far stops being able to protect anyone."
 3. **"What would you do?"** `[once]` `→ questions`
    ↳ > **Darian Kesht:** "Leave them in place and use them to send the Red Tree false information. That needs money and patience, which the budget may not give me."
 4. **"Here's what we'll do."** `→ decide`

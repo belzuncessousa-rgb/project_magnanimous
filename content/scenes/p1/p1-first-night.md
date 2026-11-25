@@ -44,6 +44,7 @@ The staff have gone home. Amanda is on the sofa with her shoes off and her grey 
    ↳ `[if: flag.address_skipped_welf]` > **Amanda Troes:** "Marco was by the barrier. He left before the end."
    ↳ `[if: flag.opp_price_1 == 1]` > **Amanda Troes:** "Livia's office called about the Port Authority eleven minutes after your meeting with Caio. They already had a name."
    ↳ `[if: flag.cartels_softened]` > **Amanda Troes:** "And Livia asked me to schedule Kesht for 'sometime in February'."
+   ↳ `[if: compass.WELF >= 3]` > **Amanda Troes:** "And this, from the whole day: you said 'the people' or 'the poor' in every room you walked into. I counted eleven times. Livia counted too."
 2. **"Not tonight. Read it to me another day."**
    ↳ She closes the notebook with her thumb inside it to keep the page.
    ↳ > **Amanda Troes:** "It'll keep."

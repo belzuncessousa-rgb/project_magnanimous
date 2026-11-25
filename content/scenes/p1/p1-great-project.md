@@ -25,6 +25,7 @@ It is evening in the Blue Room. Livia has called a short meeting with the minist
 
 1. **"Alexander, the costs."** `[once]` `→ counsel`
    ↳ > **Alexander Fontes:** "The mine is the most expensive to start, and could bring the most revenue in the long term. The railway is expensive and takes the longest. The sanitation works are the cheapest, because half is built, but the Corvel contract has to be dealt with."
+   ↳ `[if: compass.ECON >= 3]` > **Alexander Fontes:** "And one observation, if I may. In every meeting this month you have asked what the state can do. Nobody has asked what it costs the private side. I would like that question asked once, even if the answer doesn't change anything."
 2. **"Livia, the politics."** `[once]` `→ counsel`
    ↳ > **Livia Harvan:** "The mine will interest the Federation and Zharan, and worry the indigenous communities and the environmental groups. The railway is popular in Tapira, where you have little support. The sanitation works are popular in Katanaí, but they will remind everyone of President Luz."
 3. **"Tobias, the work."** `[once]` `→ counsel`

@@ -64,6 +64,8 @@ The Blue Room again. Livia has put a single sheet in front of each minister: the
    ↳ `[if: flag.initiative.labor_compact]` > **Livia Harvan:** "Renata will open talks with the unions next month."
    ↳ `[if: flag.intelligence_cut]` > **Livia Harvan:** "Darian asked me to tell you he has 'noted the decision'."
    ↳ > **Alexander Fontes:** "Now the debt."
+   ↳ `[if: flag.transfers_cut && compass.WELF >= 4]` > **Owin Dara:** "I'll say it once, here. You speak about the poor more than anyone at this table, and you cut the transfers. Sugar Bay will notice the difference before Congress does."
+   ↳ `[if: compass.WELF >= 5 && !flag.transfers_cut]` > **Alexander Fontes:** "For the record: almost every choice this government has made so far has gone toward spending on people. I don't object. I only want it written down, because the Fund will write it down too."
 
 ## debt | The Debt
 

@@ -39,6 +39,7 @@ He is pouring coffee when you come in. Livia sits on the sofa with a single shee
 
 1. **"Then we'll build majorities vote by vote."**
    ↳ > **Caio Mertens:** "That's the only way anyone has governed here in twenty years."
+   ↳ `[if: compass.STRUCT <= -3]` > **Caio Mertens:** "One more thing. Your speech about a small, honest state was noticed in my party. Odel would like to know how small. The OPP lives in the parts of the state that a small state removes."
 2. **"Fifty is close. Who is easiest to bring in?"**
    ↳ > **Caio Mertens:** "The independents, one at a time. Then the Faith and Family Front, on some subjects. Ask me about each party and I'll tell you."
 3. **"What happens if the coalition splits?"**

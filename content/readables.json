@@ -650,5 +650,15 @@
     "title": "Christmas at the port",
     "when": "!flag.strike_unresolved && !flag.crisis_strikes",
     "text": "The port of Katanaí handled a record number of containers in December, according to the Port Authority."
+  },
+  {
+    "id": "r5-nf-foreign",
+    "chapter": 2,
+    "turn": 2,
+    "location": "atiaiaba",
+    "kind": "reaction",
+    "title": "The National Front in Atiaiaba",
+    "when": "compass.IDEN <= -4",
+    "text": "At a party meeting in Atiaiaba, Edvar Solano listed the government's foreign decisions one by one and called you 'a president who apologises for her own country'. Several deputies said the party should treat this as grounds for opposing the government on every vote. Henrick Daur went further."
   }
 ]

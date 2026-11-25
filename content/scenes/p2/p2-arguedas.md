@@ -32,6 +32,7 @@ He is in his early sixties, a former history teacher, elected four years ago. Ar
    ↳ > **Tomás Arguedas:** "Because you're new and so am I, more or less. And because if Kunasai signs a large agreement with the Federation or with Zharan first, there will be nothing left to discuss."
 3. **"Arenza has always seen us as a threat."** `[once]` `→ questions`
    ↳ > **Tomás Arguedas:** "You're three times our size. Of course we have. That's why I'm proposing equals. We would never accept anything else."
+   ↳ `[if: compass.IDEN <= -4]` > **Tomás Arguedas:** "Although I'll admit you make it easier. You are the first Kunasaian president I've met who didn't mention the war, or your size, in the first five minutes. My advisers noticed. They're not sure what to make of it."
 4. **"Here's my answer."** `→ answer`
 
 ## answer

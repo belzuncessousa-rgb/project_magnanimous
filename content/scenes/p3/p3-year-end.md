@@ -69,6 +69,8 @@ She opens the first notebook and reads, in her ordinary voice, the things you sa
    ↳ `[if: flag.impasse_outcome >= 1]` > **Amanda Troes:** "October. Congress stopped working for five weeks. You got it working again. I've written down how."
    ↳ `[if: flag.celia_ill]` > **Amanda Troes:** "November. Katanaí General."
    ↳ > **Amanda Troes:** "That's the year."
+   ↳ `[if: compass.ECON >= 5]` > **Amanda Troes:** "A note in the margin, in my handwriting: every economic choice this year went toward the state doing more. I don't think you noticed it was every one."
+   ↳ `[if: compass.ECON <= -5]` > **Amanda Troes:** "A note in the margin: every economic choice this year went toward the market. Marco asked me in November whether you'd changed parties. I said I'd ask."
 
 ## voice
 

@@ -37,6 +37,7 @@ Livia has gathered Salgado, Mertens, Voss and Dorival Sena in the Blue Room.
    ↳ > **Caio Mertens:** "Narrowly, with the Vanguard and some help. The Capital Party will vote against anything that looks like rewarding a strike."
 3. **"Is Marco leading this?"** `[once]` `→ questions`
    ↳ > **Dorival Sena:** "No one is leading it. That's the problem. But they listen to him. If he says it's a fair deal, they'll go back."
+   ↳ `[if: compass.WELF >= 6]` > **Dorival Sena:** "And one more thing. You've spent the year telling them they come first. They believed you. That's partly why they think they can stop the port and you'll understand."
 4. **"Here is what we'll do."** `→ decide`
 
 ## decide

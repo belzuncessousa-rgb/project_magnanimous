@@ -43,6 +43,7 @@ Livia Harvan takes a chair by the window with a notebook.
    ↳ > **Augusta Lessa:** "You don't have to trust me. Check the figures. They are the same whoever presents them."
 3. **"Who supports you?"** `[once]` `→ questions`
    ↳ > **Augusta Lessa:** "Most of Tekoku's deputies, the Civic Alliance, and part of my party. The National Front likes it because it gives Tekoku more weight. I'm not proud of all my supporters."
+   ↳ `[if: compass.IDEN <= -2]` > **Augusta Lessa:** "And a warning, since I'm here. Solano's people are telling Tekoku that you're the most foreign-minded president since Luz. They quote your speech on open doors. It is working for them."
 4. **"What exactly do you want from me?"** `→ stance`
 
 ## stance

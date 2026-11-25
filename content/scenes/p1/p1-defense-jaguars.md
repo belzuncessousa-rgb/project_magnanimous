@@ -52,6 +52,7 @@ Voss walks with you to the covered arcade, away from the training ground. He tak
 1. **"I understand, General."**
    ↳ `[if: flag.files_petition == 1]` > **Aldric Voss:** "I'm told you received Mrs. Delmar on Tuesday. I understand that too."
    ↳ He puts his cap back on.
+   ↳ `[if: compass.FORCE <= -3]` > **Aldric Voss:** "I'll add one thing. Since the inauguration, the officers' clubs talk about very little except what you said about armies. I tell them a president is entitled to her opinions. They ask me whether she is entitled to their budget."
 2. **"Nobody is opening anything this year."** `[voss loyalty +1]` `[flag: files_promise_voss = true]` `[flag: voice += 1]`
    ↳ > **Aldric Voss:** "This year. I'll remember that you said 'this year'."
    ↳ `[if: flag.delmar_time_asked]` *You told Rosa Delmar "not forever" and Voss "not this year". Both are true, for now.*

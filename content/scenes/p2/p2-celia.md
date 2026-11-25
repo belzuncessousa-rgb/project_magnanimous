@@ -68,6 +68,7 @@ Marco comes in at four, with bread from the kitchen.
    ↳ `[if: !flag.initiative.labor_compact]` > **Marco Prestes:** "That the budget had money for many things. Not much for them."
    ↳ `[if: flag.great_project == 6]` > **Marco Prestes:** "They can see the pipe moving, at least. Slowly."
    ↳ `[if: !(flag.great_project == 6)]` > **Marco Prestes:** "The pipe is still where it was."
+   ↳ `[if: compass.ECON >= 4]` > **Marco Prestes:** "Some of the young ones say you talk about the state more than the Vanguard does. Ziara Keln has noticed. She asked me whether you're trying to take her voters."
 2. **"How long do I have?"**
    ↳ > **Marco Prestes:** "Until the cold weather, maybe. People put up with more in summer."
 

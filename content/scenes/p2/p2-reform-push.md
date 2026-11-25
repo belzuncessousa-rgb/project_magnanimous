@@ -36,6 +36,7 @@ Mertens has asked to see you about it, with Livia.
    ↳ > **Caio Mertens:** "Ibicuí would get about six senators and Tekoku three. Ibira, Tapira and Mognagna would get one or two each. Over time, more federal money would follow the population."
 2. **"What does the OPP do if I support it?"** `[once]` `→ count-q`
    ↳ > **Caio Mertens:** "Odel will vote against, and he'll make the next price higher. He won't leave the coalition over it. Probably."
+   ↳ `[if: compass.STRUCT >= 4]` > **Caio Mertens:** "And Odel asked me to mention something else. Your government likes a strong state. He says it reminds him of governments he did business with before the democracy. He meant it as a compliment. I'm passing it on as a warning."
 3. **"Let's talk about what I'll do."** `→ position`
 
 ## count-q

@@ -33,6 +33,7 @@ It is September. The first year's accounts are almost closed. Fontes asks for a 
    ↳ > **Alexander Fontes:** "The first, a lot, once collection works, which takes a year. The second loses money for two or three years. The third brings in a little, quickly."
 2. **"Who votes for what, Caio?"** `[once]` `→ questions`
    ↳ > **Caio Mertens:** "The first: your party and the Communist Vanguard, and nobody else willingly. The second: the Capital Party and the Faith and Family Front; your party against. The third could get a majority with some work. The OPP votes for whatever is paid for."
+   ↳ `[if: compass.ECON <= -3]` > **Caio Mertens:** "I should add: some in the Capital Party now call you 'the best president we never voted for'. Your own bench has heard it. They don't find it funny."
 3. **"What does the Fund think?"** `[once]` `→ questions`
    ↳ > **Alexander Fontes:** "The Fund likes the second direction and the third. It would accept the first if the money goes to the debt."
 4. **"Here's what we'll propose."** `→ decide`
