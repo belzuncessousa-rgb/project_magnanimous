@@ -107,6 +107,8 @@ As you walk along the arcade, Voss slows down.
 4. **"What precisely are you concerned about?"**
    ↳ > **Aldric Voss:** "That a decision taken for political reasons might overturn the settlement on which the institutions have relied since the transition."
 
+## archive-position
+
 He stops beside one of the columns.
 
 > **Aldric Voss:** "I should be clear about my own position. If the government decides to open those archives, I will not be able to remain Minister of Defense."
