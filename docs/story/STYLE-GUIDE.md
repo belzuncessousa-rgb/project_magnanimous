@@ -88,3 +88,7 @@ Wit is allowed only inside dialogue, sparingly, when it is in character — neve
 - Scenes may vary substantially in length. Brief encounters, standard conversations, major meetings and long landmark sequences can coexist; the narrative purpose determines length, not an arbitrary minimum. Do not pad brief scenes or fragment continuous conversations into unnecessary map visits.
 - A turn may contain a mixture of freely ordered scenes and prerequisite-dependent chains, including newly available encounters triggered by choices. Ensure prerequisites and knowledge continuity across reachable orders. Some scenes may not appear at all on different playthroughs.
 - The First Night calibration excerpt is not the complete scene. Develop the residence and personal evening with room for the mother's call, exploration, reflection or other activities where appropriate; leave Lara's feelings and intentions to the player.
+
+## Palace courtyard benchmark
+
+Let a player who chooses to watch actually see an exercise unfold. Give spectators their own reason to attend and let a detail recur after the decision. Give a restrained official a preference, an honest concession and a specific act of service even when overruled. Allow the player to go straight to the decision. Keep routing labels off the reader's page. Separate fictional evidence available to Lara from provisional balance notes.

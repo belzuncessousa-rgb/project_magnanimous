@@ -10,134 +10,65 @@ portraits: [voss]
 background: palace-courtyard
 ---
 
-⚙️ Staged rewrite. Retain Jaguar Guard decision and archive redline, border equipment discussion, old completion and choice flags. Actual protection consequences, savings and military loyalty effects require reconciliation. Petition references conditional on already completed Justice scene; speech references require actual selected topic, not hidden compass. No precise security deployment details.
+The boy at the fence has one photograph left. His mother wants him to save it for the President. He has his eye on a woman in the front rank whose green breastplate is bright enough to throw a patch of sun onto the underside of the arcade.
 
-## courtyard
+“That's my sister,” he tells General Voss through the bars.
 
-General Voss has asked to meet you in the palace courtyard. Several members of the Jaguar Guard are rehearsing a ceremonial formation. Their dark green uniforms are the same ones you saw during the inauguration.
+“Then I should save it for your sister,” says Voss.
 
-Voss stands with his hands behind his back, watching them.
+Forty pairs of boots come down on the gravel. The boy takes his photograph. By the time his mother notices you, the camera is back in its case.
 
-> **Aldric Voss:** "Good morning, Madam President."
+Voss offers you the shady end of the bench. Beside him lies a Treasury estimate folded into quarters. “Alexander sent me this yesterday. He'd like an answer on the Jaguar Guard. I asked for the morning.” He shifts over to make room. “They're rehearsing for a presentation of honours. We can give them another minute if you like.”
 
-He turns towards the courtyard.
+- **Stay and watch.** The two front ranks part to make an aisle. A corporal in shirtsleeves walks up it in the part of the guest of honour. Halfway to the dais he remembers his hat, turns to fetch it and finds forty people waiting, halberds aloft, for him to make up his mind. Somebody behind the fence starts to clap. The corporal takes his hat off again and bows. Even his sister's little brother can see the grin she's trying to swallow. “Yesterday he played a visiting admiral,” Voss murmurs. “Promotion has done him very little good.”
+- **“Let's see what Fontes has circled.”** Voss opens the estimate on the bench. The red pencil has gone straight through the paper under *replacement breastplates*. “I rang him about that hole. He says the point broke. Knowing Alexander, I believe he sharpened it first.”
+- **“Tell me what you want to keep.”** “The people, first. If you gave me another three hundred and forty uniforms tomorrow I'd still want these three hundred and forty people. As for what they wear on a morning like this, I have a preference. Treasury has a case.”
 
-> **Aldric Voss:** "I wanted to speak to you about the Guard before we discuss the defense budget. Treasury has included its ceremonial expenses among several possible savings."
+A woman outside calls for the Emerald Guard to turn her way. The front rank keeps its eyes on the dais. Voss unfolds the paper to its full width. The heading reads *Jaguar Guard*. Underneath are three duties in the same small type. Palace. Residence. President.
 
-The formation comes to a halt.
+“Four attempts on presidents' lives in sixty years, so far as our records go,” he says. “The Guard brought the president home in all four. Eleven years since the last one. Long enough for a minister to come into office and see these people only on a morning like this.”
 
-> **Aldric Voss:** "They have a long history. The unit predates the republic, although its responsibilities have changed over the years. Today it provides presidential protection as well as ceremonial services."
+“You've put the ceremonial account on top,” you say.
 
-1. **"I'd like to watch for a moment."**
-   ↳ Voss nods. You remain beside him while the formation completes its exercise.
-2. **"How much of their budget is ceremonial?"**
-   ↳ > **Aldric Voss:** "A relatively small part of our overall spending, but a considerable amount for a unit of this size. We maintain several sets of equipment that are used only on formal occasions."
-3. **"What are our alternatives?"**
+“Yes. I thought you'd rather find it there than have Alexander tell you I'd tucked it underneath.”
 
-## guard
+*Ask about any of the following, or give Voss your decision.*
 
-The general leads you towards the covered arcade.
+- **“What would you give up?”** “The replacement order. Let them wear ordinary uniform at honours.” He runs a thumb down the column of fittings and repairs. “Boots for a regiment, every year. I have signed this for three years running. When a quartermaster asks why his men are still wearing last year's boots, my signature is a poor answer.” Down on the gravel the woman in the front rank eases one shoulder under the weight of her plate. “She'd still have her post. I'd want her to hear that from me before somebody prints the savings.”
+- **“Could the federal police take over?”** “Yes. They're already answerable to civilian authority. If you want a republic where a general never gets to sit on this bench and tell a president who looks after her, I see your point.” He gives you time to look at the payroll. “The people on this sheet would go back to the army. The police would inherit the work. There'd be a stretch when the people who knew it best were doing something else. I can't put a price against that for you.” **“Would you help them?”** “I'd owe them better than a bad handover and a speech about how I saw it coming.”
+- **“Who gets to claim this tradition?”** He watches the family at the fence wind the film back into its spool. “My first honours parade, I stood where that boy is standing. My father lifted me up by the seat of my trousers. For years I remembered the indignity better than the parade.” He folds the estimate along its old crease. “I know what the breastplates were made for. An emperor wanted to look out of his window and see his own importance reflected back at him. But that boy got up early to see his sister. I'd be sorry to tell him the emperor still owns the whole business.”
 
-> **Aldric Voss:** "My preference is to retain the unit in its current form. We could reduce its ceremonial responsibilities, or transfer presidential protection to another service. The latter would require considerable preparation."
+The corporal comes down from the dais with his hat tucked firmly under his arm. Voss lays a pencil across the estimate.
 
-→ questions
+1. **“Disband the Guard. Presidential protection goes to the federal police.”** Voss draws a line through the replacement order. “I'll have both services draw up the transfer. I'd like my objection in the minutes.” At the fence the woman in green has come over to see her family. Voss waits until she's seen the camera before he calls her commander aside. “They should have the news from us today.”
+2. **“Keep the protection detail. End the ceremonial armour and halberds.”** He turns the page over and writes *appointments retained* across the blank side. “That's the side I'll show them first. Otherwise they'll see a red line through the armour and go home wondering whether to look for work.” He hands you the estimate. “Alexander gets his figure. I'll take the parade.”
+3. **“Keep the Guard as it stands. I'll answer Fontes myself.”** Voss puts the pencil back in his pocket. “Thank you. When he brings up the boots, send for me. You've taken my advice. You ought at least to have company for the bill.”
 
-## questions
+A roll of film rattles into its little metal can. Under the arcade the courtyard noise drops away. Voss takes off his cap. There's a damp red seam across his forehead.
 
-1. **"Could we preserve the protection and reduce the ceremony?"** `[once]` `→ trim`
-2. **"Would another service be able to take over?"** `[once]` `→ transfer`
-3. **"Why does the tradition matter to the armed forces?"** `[once]` `→ tradition`
-4. **"I'm ready to decide."** `→ decision`
+“There's a second thing,” he says. “I could have put it in the briefing. Then you'd have had to wonder whether I meant it.”
 
-## trim
+*If Lara personally received the petition, she may say* **“Rosa Delmar put her petition in my hands.”** “Did she bring a copy to keep?” he asks. He sees you waiting for the rest. “Letters go missing in ministries. Families learn to bring two. I've signed receipts for the second copy.”
 
-> **Aldric Voss:** "Certainly. The training and protective responsibilities would remain. We could replace much of the ceremonial equipment with standard uniforms."
+*If Lara referred the petition, she may say* **“Renata is handling the families' petition.”** “Then Renata can tell them where it is. That's more of an answer than some families have had.”
 
-He glances back at the courtyard.
+“The military archives,” he says. “There are families who have spent years trying to get a clerk to acknowledge that a particular piece of paper exists. I understand why they'd want you to open the doors. I also gave officers my word that the settlement made when civilian government returned would hold. If you open the archives, I'll resign. And when people ask me why, I'll tell them.”
 
-> **Aldric Voss:** "I expect the personnel would be disappointed. But we can explain the decision."
+- **“I've heard you, General.”** He puts his cap under his arm. “Fair enough. I came to give you notice. You've heard me.”
+- **“They'll stay closed this year.”** “This year,” he repeats. He writes the two words on his copy. “If anyone at the ministry asks what assurance I've had, that's as much as I'll give them.”
+- **“I'll examine the records question myself before I decide.”** “Then I'll send you the terms we gave the officers. Justice ought to send its own reading. I imagine you'll want both on your desk.”
+- **“You may explain your resignation. You'll leave the policy to me.”** Colour rises along the mark his cap has left. For a moment he looks back at the empty bench. “Yes, Madam President. You should have the freedom to open those doors knowing exactly who will walk out.”
 
-→ questions
+His aide is waiting at the far end of the arcade with a folder gone soft at the corners. Voss takes out a photograph of a riverboat propped up on blocks in Ibira. Someone has written the year on the back, then added eight more dates in different inks.
 
-## transfer
+“Nine budgets,” he says. “Same photograph. The boats are thirty years old now. Every year somebody asks the border units for a fresh assessment, and every year somebody down there has the good sense to send me this.”
 
-> **Aldric Voss:** "The federal police could establish the necessary capability, given sufficient preparation. I would want any transfer to be planned carefully with both services."
+- **“Put the boats in the March request. I want to see the figures.”** He passes the photograph to his aide. “Get the current estimate. Leave the dates on the back.”
+- **“Bring Justice and Kesht in. I want to know what the patrols are facing.”** “I'll ask them both. If Kesht can spare us one page the crews are actually allowed to read, I'll count that a good morning.”
+- **“Bring me the wider picture in Ibira before we commit money.”** “I'll have the district reports sent with it. There's a mechanic down there who's kept that boat running for nine budget cycles. I'd like you to have his page too.”
 
-1. **"Would the savings justify the transition?"**
-   ↳ > **Aldric Voss:** "That is a question for Alexander as much as for me. The new arrangements would also have costs."
-2. **"Understood."**
+Outside the gate the boy holds the camera case steady while his sister, still in her breastplate, does up the little buckle for him.
 
-→ questions
+---
 
-## tradition
-
-> **Aldric Voss:** "The Guard has represented the office of the presidency for generations. There are people serving in it whose parents served before them."
-
-He smiles faintly.
-
-> **Aldric Voss:** "They take great pride in appearing at occasions like your inauguration."
-
-→ questions
-
-## decision
-
-1. **"Transfer presidential protection to the federal police and disband the Guard."** `[flag: jaguars_defunded = true]`
-   ↳ Voss's expression stiffens.
-   ↳ > **Aldric Voss:** "I disagree with that decision. I'll prepare my objections and a proposal for the transition, should you decide to proceed."
-2. **"Retain the Guard but reduce its ceremonial expenses."** `[flag: jaguars_trimmed = true]`
-   ↳ He looks towards the courtyard.
-   ↳ > **Aldric Voss:** "Very well. I'll speak to the commander and have the revised estimates sent to Treasury."
-3. **"Keep the Guard in its present form."** `[flag: jaguars_kept = true]`
-   ↳ > **Aldric Voss:** "Thank you. I'll inform the commander."
-
-## files
-
-As you walk along the arcade, Voss slows down.
-
-> **Aldric Voss:** "There is one other matter, Madam President. I would prefer to discuss it directly with you."
-
-> **Aldric Voss:** "You will be asked to open the military archives. I understand the reasons some people have for making that request. I also believe that the arrangements made at the return to civilian government remain important to the armed forces."
-
-1. **"I received a petition from Rosa Delmar."** `[show if: flag.files_petition == 1]`
-   ↳ > **Aldric Voss:** "Yes, I heard that you had received her. I don't object to your meeting with the families."
-2. **"Renata is handling the families' petition."** `[show if: flag.files_petition == 2]`
-   ↳ > **Aldric Voss:** "I would like to be informed before the ministry prepares any proposal to change the present arrangements."
-3. **"I understand that there are legal restrictions."**
-   ↳ > **Aldric Voss:** "There are. I would like us to observe them."
-4. **"What precisely are you concerned about?"**
-   ↳ > **Aldric Voss:** "That a decision taken for political reasons might overturn the settlement on which the institutions have relied since the transition."
-
-## archive-position
-
-He stops beside one of the columns.
-
-> **Aldric Voss:** "I should be clear about my own position. If the government decides to open those archives, I will not be able to remain Minister of Defense."
-
-## archive-response
-
-1. **"I understand your position, General."**
-   ↳ He inclines his head.
-   ↳ > **Aldric Voss:** "Thank you for hearing me."
-2. **"The archives will not be opened this year."** `[flag: files_promise_voss = true]`
-   ↳ > **Aldric Voss:** "I appreciate the assurance."
-3. **"I will make that decision when I have examined the issue."**
-   ↳ > **Aldric Voss:** "Of course. I wanted you to know where I stand."
-4. **"Your resignation cannot determine government policy."**
-   ↳ He looks directly at you.
-   ↳ > **Aldric Voss:** "I have no intention of deciding policy in your place. I am telling you what I would do."
-
-## border
-
-Voss takes a small folder from an assistant waiting nearby.
-
-> **Aldric Voss:** "As for the budget, I would particularly like you to consider the condition of our equipment in Ibira. A large portion of the region is difficult to reach, and some of the equipment in use there is decades old."
-
-1. **"Include the requirements in your budget proposal."** `[flag: seen_defense_briefing = true]`
-   ↳ > **Aldric Voss:** "I will."
-2. **"Coordinate your assessment with Justice and Intelligence."** `[flag: seen_defense_briefing = true]`
-   ↳ He nods.
-   ↳ > **Aldric Voss:** "I'll arrange a meeting with their offices."
-3. **"We should consider the whole situation in Ibira before committing funds."** `[flag: seen_defense_briefing = true]`
-   ↳ > **Aldric Voss:** "Certainly. I'll make sure you have the relevant figures."
-
-→ END
+Staged benchmark only. Each opening flows into the estimate. Each optional topic is available once in any order, with a direct exit to the decision. The police follow-up is optional. Guard outcomes map in order to jaguars_defunded, jaguars_trimmed and jaguars_kept. Only the explicit one-year assurance sets files_promise_voss. Petition options require files_petition == 1 or == 2 respectively. All three border exits set seen_defense_briefing. Retain the existing live effects for reference pending balance review. No new flags, budget yields or loyalty values are specified. See narrative canon for the proposed protection treatment.

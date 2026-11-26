@@ -306,3 +306,9 @@ Write missing negotiation and outcome scenes, then Ch4–6 and conditional arc r
 - Design revised political bargaining, party evolution/leadership, election and next cabinet, institutional gates, personal wealth, optional social feed, cultural orientation, religion, and archive/corruption arcs.
 - Calibrate representative group/negotiation/personal scenes, then rewrite batches including associated news/readables. Preserve scene parser format and check IDs, flags, order-independent knowledge, consequences and tests. Update docs alongside implementation.
 - Production scene drafts are staged separately under docs/story/production; no active gameplay or UI feature has been implemented in these design sessions.
+
+## Jaguar Guard benchmark clarification
+
+Jaguar Guard (the Jaguars) is the formal imperial-era unit. Proposed public nickname for author review: Emerald Guard, inspired by the green ceremonial armour. Both names refer to one unit. Preserve the jaguars_* identifiers. Aldric Voss follows the existing character spelling.
+
+The author's prevention design concerns an assassination attempt against Lara. GDD 7.2 starts her with two survivable attempts. Disbanding the Jaguars removes one. Keeping the protective service therefore preserves one survival relative to disbanding. Proposed narrative payoff: if that margin matters, credit the Guard with foiling one attempt. Do not add a second bonus or guarantee an attempt. Proposed ceremonial trim retains this protection because personnel and protective duties continue. Attempt generation, trigger order, attribution with other safeguards, and trim balance await design approval and implementation. Intelligence cuts and Justice investments remain independent modifiers in the GDD.
