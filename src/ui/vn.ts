@@ -156,7 +156,7 @@ export class VNView {
     this.el.dataset.room = st.background;
     this.el.dataset.pose = st.pose;
     this.roomLabel.textContent = st.label;
-    this.roomLabel.hidden = !st.label;
+    this.roomLabel.hidden = !st.label || st.label.toLowerCase() === this.titleEl.textContent?.toLowerCase();
     this.topbar.hidden = runner.scene.id === 'p1-tutorial';
     this.topbar.querySelector('.vn-date')!.textContent = this.state().dateLabel;
     clear(this.background);
@@ -201,10 +201,12 @@ export class VNView {
 
   private async appendBlock(el: HTMLElement) {
     for (const old of this.log.querySelectorAll('.blk.current')) old.classList.remove('current');
-    el.classList.add('current', 'enter');
+    const animate = this.opts.transitions && !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    el.classList.add('current');
+    if (animate) el.classList.add('enter');
     this.log.insertBefore(el, this.choices);
     this.scrollToEnd();
-    requestAnimationFrame(() => requestAnimationFrame(() => el.classList.remove('enter')));
+    if (animate) requestAnimationFrame(() => requestAnimationFrame(() => el.classList.remove('enter')));
   }
 
   /** Reveal only existing DOM text; keep inline formatting and runner effects intact. */
@@ -307,7 +309,11 @@ export class VNView {
         const block = this.block(out.prose);
         await this.appendBlock(block);
         await this.reveal(block);
-        await this.waitAdvance();
+        const following = runner.peekPlainProse();
+        const consecutiveSpeech = out.prose.role === 'speech' && !out.prose.effects.length &&
+          !out.prose.highlights?.length &&
+          following?.role === 'speech' && following.speaker === out.prose.speaker;
+        if (!consecutiveSpeech) await this.waitAdvance();
       } else if (out.type === 'choices') {
         this.hooks.onHighlight?.([]);
         const o = await this.waitChoice(out.options);

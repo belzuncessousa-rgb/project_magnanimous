@@ -5,6 +5,7 @@ import { validateContent } from '../content/validate';
 import { Game } from '../game/game';
 import { deleteSave, loadGame, loadSettings, saveGame, saveSettings, type Settings } from '../game/save';
 import { clear, h } from './dom';
+import { showCodex } from './codex';
 import { KIND_LABEL, costText, int, militaryWord, millions, money, pct1, relationWord, stabilityWord } from './format';
 import { Hud } from './hud';
 import { MapView, OFFMAP, type Geometry, type MarkerSpec } from './map';
@@ -68,6 +69,7 @@ export class App {
       h('button', { title: 'Reset view', onclick: () => this.map.resetZoom() }, '⌂'));
     const topLeft = h('div', { class: 'top-left' },
       h('button', { class: 'btn ghost', onclick: () => this.openMenu() }, '☰ Menu'),
+      h('button', { class: 'btn ghost', onclick: () => this.openCodex() }, 'Codex'),
       h('button', { class: 'btn ghost', 'data-ui': 'actions', 'data-tip': 'Free actions: rallies, envoys, calls — they cost resources', onclick: () => this.toggleSidebar() }, 'Actions'));
     this.endBtn.dataset.ui = 'end-turn';
     this.agenda.dataset.ui = 'agenda';
@@ -186,6 +188,14 @@ export class App {
         'Transitions & animations'),
       h('button', { class: 'btn danger', onclick: () => { if (confirm('Delete the saved game?')) { deleteSave(); this.flash('Save deleted.'); if (!this.game) this.showTitle(); } } }, 'Delete saved game'));
     this.modal('Settings', body);
+  }
+
+  private openCodex() {
+    const game = this.game;
+    if (!game || this.busy) return;
+    const ids = new Set(game.state.completedScenes.flatMap(id => game.scene(id)?.meta.portraits ?? []));
+    const people = Object.values(game.state.actors).filter(actor => actor.kind === 'character' && ids.has(actor.id));
+    showCodex(this.root, people);
   }
 
   private openMenu() {

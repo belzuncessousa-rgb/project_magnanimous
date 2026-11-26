@@ -231,6 +231,25 @@ describe('runner: misc', () => {
     expect(r.next()).toEqual({ type: 'ui', action: 'vote', arg: 'reform' });
     expect(r.next()).toMatchObject({ type: 'prose', prose: { text: 'After.' } });
   });
+  it('inspects plain speech without consuming it or crossing a UI boundary', () => {
+    const scene = parseScene([
+      '## a',
+      '> **Mertens:** "First."',
+      '> **Mertens:** "Second."',
+      '> **Mertens:** "Now the budget." `[open: budget]`',
+      '> **Mertens:** "After the budget."',
+    ].join('\n\n'));
+    const r = new SceneRunner(scene, testState());
+    expect(r.next()).toMatchObject({ type: 'prose', prose: { text: expect.stringContaining('First') } });
+    const second = r.peekPlainProse();
+    expect(second).toMatchObject({ role: 'speech', text: expect.stringContaining('Second') });
+    expect(r.peekPlainProse()).toBe(second);
+    expect(r.next()).toEqual({ type: 'prose', prose: second });
+    expect(r.peekPlainProse()).toBeUndefined();
+    expect(r.next()).toMatchObject({ type: 'prose', prose: { text: expect.stringContaining('Now the budget') } });
+    expect(r.peekPlainProse()).toBeUndefined();
+    expect(r.next()).toEqual({ type: 'ui', action: 'open', arg: 'budget' });
+  });
   it('highlights attach to prose (inline and standalone)', () => {
     const sc = parseScene('## a\n\n`[highlight: hud-pt]`\n\nThis is your time. `[highlight: hud]`\n\nPlain.');
     const steps = sc.beats[0]!.steps;

@@ -134,6 +134,14 @@ export class SceneRunner {
     return out;
   }
 
+  /** Inspect the next direct prose block without advancing the scene. */
+  peekPlainProse(): Prose | undefined {
+    if (this.awaiting || this.ended || this.uiQueue.length) return;
+    const step = this.pendingJump ? undefined : this.beat()?.steps[this.pos.step];
+    const prose = this.queue[0] ?? (step?.type === 'prose' ? step.prose : undefined);
+    if (prose && !prose.cond && !prose.effects.length && !prose.highlights?.length) return prose;
+  }
+
   next(): RunnerOutput {
     if (this.awaiting) return { type: 'choices', options: this.awaiting };
     for (let guard = 0; guard < 10000; guard++) {
