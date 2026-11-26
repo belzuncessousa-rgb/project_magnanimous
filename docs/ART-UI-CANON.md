@@ -49,3 +49,7 @@ Backgrounds: public/backgrounds/<background-id>.webp. Character masters: public/
 - First Night switches between the lounge, study and upstairs room, with cast changes keyed to scene beats. Staged telephone beats keep Amanda offstage after her departure. The current playable phone call retains Amanda while she is still in the room.
 - Official map reports use the national arms, paper typography and viewport-aware sizing. Notes, reactions and incidents retain the dispatch card.
 - Edge checked the cabinet briefing and visit backgrounds, the live First Night transition to the study, and a report card at 390 x 844.
+
+## Congress, Vila Tamarin and the tablet
+- Installed paired portraits for Lessa, Avros, Celia and Marco. The Congress gallery, residence garden and port authority office are available in playable scenes.
+- Newspaper outlet tabs support arrow keys, Home and End, and announce the current reading panel. Edge checked tab selection and focus in the five-outlet game edition at 390 x 844.
