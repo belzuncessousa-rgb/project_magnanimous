@@ -53,7 +53,7 @@ export const POLITICAL_COLORS: Record<string, string> = {
 const linePath = (pts: Pt[]) => 'M' + pts.map(([x, y]) => `${x},${y}`).join('L');
 const MAP_FRAMES = {
   political: { x: -55, y: 140, w: 800, h: 1120 },
-  terrain: { x: 45, y: 355, w: 610, h: 605 },
+  terrain: { x: 45, y: 350, w: 610, h: 700 },
 } as const;
 
 export interface MarkerSpec {
