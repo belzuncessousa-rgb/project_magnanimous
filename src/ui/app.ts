@@ -201,8 +201,10 @@ export class App {
   private openMenu() {
     let m: HTMLElement;
     const body = h('div', { class: 'menu-buttons' },
+      h('div', { class: 'menu-section-label' }, 'GAME'),
       h('button', { class: 'btn', onclick: () => m.remove() }, 'Resume'),
       h('button', { class: 'btn', onclick: () => { if (this.game) saveGame(this.game.state); this.flash('Game saved.'); m.remove(); } }, 'Save'),
+      h('div', { class: 'menu-section-label menu-section-secondary' }, 'PREFERENCES'),
       h('button', { class: 'btn', onclick: () => { m.remove(); this.openSettings(); } }, 'Settings'),
       h('button', { class: 'btn', onclick: () => { if (this.game) saveGame(this.game.state); m.remove(); this.game = null; this.showTitle(); } }, 'Save & quit to title'));
     m = this.modal('Menu', body);
