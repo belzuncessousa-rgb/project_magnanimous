@@ -67,17 +67,14 @@ Amanda takes a seat and slips off her shoes. On the television, with the volume 
 
 She starts laughing.
 
-1. **"You got the job, though."**
+1. **"You got the job, though."** `[flag: amanda_jacket_callback = 1]`
    ↳ > **Amanda Troes:** "Yes. They asked me to start on Monday. I had to call you and ask if I could keep it for another week."
-   ↳ `[flag: amanda_jacket_callback = 1]`
-2. **"And I had to wait in the corridor in my shirt."**
+2. **"And I had to wait in the corridor in my shirt."** `[flag: amanda_jacket_callback = 2]`
    ↳ > **Amanda Troes:** "I told you to go home! You insisted on waiting for me."
    ↳ She smiles at the memory.
-   ↳ `[flag: amanda_jacket_callback = 2]`
-3. **"That was a long time ago."**
+3. **"That was a long time ago."** `[flag: amanda_jacket_callback = 3]`
    ↳ > **Amanda Troes:** "It was."
    ↳ She watches the television for a moment.
-   ↳ `[flag: amanda_jacket_callback = 3]`
 
 ## evening
 
@@ -90,9 +87,12 @@ She looks at you.
 > **Amanda Troes:** "Unless there's anything from today you want to talk about?"
 
 1. **"How did the speech go, from where you were standing?"** `[once]` `→ speech-reaction`
-2. **"Did Livia mention the port?"** `[show if: flag.opp_price_1 > 0]` `[once]` `→ port-route`
-3. **"How has your first day been?"** `[once]` `→ amanda-day`
-4. **"We can talk about work tomorrow."** `→ departure`
+2. **"Is there a list of port nominees yet?"** `[show if: flag.opp_price_1 == 1]` `[once]` `→ port-accepted`
+3. **"Are we expecting the OPP’s port candidates?"** `[show if: flag.opp_price_1 == 2]` `[once]` `→ port-compromise`
+4. **"Has Odel said anything about the port?"** `[show if: flag.opp_price_1 == 3]` `[once]` `→ port-refused`
+5. **"Have they asked for another meeting about the port?"** `[show if: flag.opp_price_1 == 4]` `[once]` `→ port-deferred`
+6. **"How has your first day been?"** `[once]` `→ amanda-day`
+7. **"We can talk about work tomorrow."** `→ departure`
 
 ## speech-reaction
 
@@ -113,15 +113,6 @@ She looks at you.
 Amanda sets the notebook down.
 
 → evening
-
-## port-route
-
-⚙️ One brief routing choice appears according to the earlier appointment decision; final implementation should prefer a seamless conditional transition if supported.
-
-1. **"Is there already a list of nominees?"** `[show if: flag.opp_price_1 == 1]` `→ port-accepted`
-2. **"Are we expecting the OPP's candidates?"** `[show if: flag.opp_price_1 == 2]` `→ port-compromise`
-3. **"Has Odel said anything since the meeting?"** `[show if: flag.opp_price_1 == 3]` `→ port-refused`
-4. **"Have they asked for another meeting yet?"** `[show if: flag.opp_price_1 == 4]` `→ port-deferred`
 
 ## port-accepted
 
