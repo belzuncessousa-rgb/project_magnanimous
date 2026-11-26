@@ -158,6 +158,8 @@ export class MapView {
         s('feComposite', { in: 'l', in2: 'SourceGraphic', operator: 'in' })),
       s('filter', { id: 'label-shadow' }, s('feDropShadow', { dx: '0', dy: '0', stdDeviation: '1.2', 'flood-color': '#f3ead6', 'flood-opacity': '0.9' })),
       ...shapes.map((g) => s('clipPath', { id: `land-clip-${g.id}` }, s('path', { d: pathOf(g.polygon) }))),
+      s('clipPath', { id: 'kunasai-art-clip', clipPathUnits: 'userSpaceOnUse' },
+        ...shapes.filter((g) => g.kind === 'region').map((g) => s('path', { d: pathOf(g.polygon) }))),
     );
     const sea = s('g', { class: 'sea' },
       s('rect', { x, y, width: w, height: hgt, fill: 'url(#sea-grad)' }),
@@ -172,10 +174,23 @@ export class MapView {
       };
       return g.kind === 'region' ? palette[g.id] ?? '#b3aa8e' : '#9daa91';
     };
+    const kunasaiPoints = kunasaiRegions.flatMap((g) => g.polygon);
+    const kunasaiBounds = {
+      x: Math.min(...kunasaiPoints.map(([px]) => px)),
+      y: Math.min(...kunasaiPoints.map(([, py]) => py)),
+      w: Math.max(...kunasaiPoints.map(([px]) => px)) - Math.min(...kunasaiPoints.map(([px]) => px)),
+      h: Math.max(...kunasaiPoints.map(([, py]) => py)) - Math.min(...kunasaiPoints.map(([, py]) => py)),
+    };
+    const kunasaiArt = s('g', { class: 'kunasai-terrain-art', 'clip-path': 'url(#kunasai-art-clip)', 'aria-hidden': 'true' },
+      s('svg', {
+        x: kunasaiBounds.x, y: kunasaiBounds.y, width: kunasaiBounds.w, height: kunasaiBounds.h,
+        viewBox: '360 0 960 952', preserveAspectRatio: 'none', overflow: 'hidden',
+      }, s('image', { href: 'map/kunasai-terrain-art.png', x: 0, y: 0, width: 1672, height: 952 })));
     const terrain = s('g', { class: 'layer-terrain' },
       s('g', { class: 'land', filter: 'url(#organic)' }, ...shapes.map((g) => s('path', { d: pathOf(g.polygon), fill: landFill(g), class: `land-shape land-${g.kind} land-${g.id}` }))),
       s('g', { class: 'terrain-texture' }, ...shapes.map((g) => s('path', { d: pathOf(g.polygon), fill: 'url(#terrain-contours)', 'clip-path': `url(#land-clip-${g.id})`, class: 'contour-wash' }))),
       s('g', { class: 'relief' }, ...shapes.map((g) => s('path', { d: pathOf(g.polygon), filter: 'url(#relief)', class: `relief-${g.kind}` }))),
+      kunasaiArt,
     );
     const political = s('g', { class: 'layer-political' },
       ...shapes.map((g) => s('path', { d: pathOf(g.polygon), fill: POLITICAL_COLORS[g.id] ?? '#999', class: `pol-${g.kind} pol-${g.id}` })));
