@@ -1,6 +1,6 @@
 # Narrative canon — author design sessions
 
-Last consolidated: 2026-11-25. Sessions 01–49. Maintained as author interviews continue.
+Last consolidated: 2026-11-25. Sessions 01–50. Maintained as author interviews continue.
 
 ## Authority and workflow
 
@@ -227,9 +227,13 @@ Confirmed: Lara may deliberately make promises she does not intend to fulfil. Se
 
 Author is open to removing IPI/EPI if they lack a distinct gameplay purpose. Original [Resources GDD](https://app.notion.com/p/36b10ad0215880ccb306e4ca3499e429) defines PT as presidential attention, FC as public finances, IPI as domestic leverage, EPI as international leverage. Retain IPI/EPI provisionally pending free-action and resource review. Major constitutional reform (PEC) requires authored party negotiations and actual support; spending influence alone must not purchase passage. Major ordinary bills may warrant relevant discussions; minor legislation (e.g. AI regulation or research) can be a short decision, potentially using IPI and later reflected in news, reports and other conversations. Distinguish executive actions from laws requiring congressional support; political circumstances still constrain minor bills. EPI may facilitate smaller diplomatic actions but not replace major bilateral or alliance negotiations. These are working design proposals, not final mechanics. Revisit resource formulas, costs, eligibility and free actions together; avoid adding redundant currencies or scenes.
 
-## Next design discussion (50)
+## 50 — Free actions and cumulative presidential priorities
 
-Review free actions and clarify their gameplay purpose: meaningful discretionary presidential time and influence, not repeated shallow stat purchases. Examine existing implementation/GDD before asking a consequential question. Then proceed to pacing and representative scene writing.
+Confirmed: free actions are a distinctive core feature, with a substantial set of standing repeatable options competing for scarce resources. Author suggests roughly three options per resource as a starting point, not a fixed quota. Some actions can consume multiple resources, public budget or Lara's personal wealth. Also include seasonal actions during ongoing projects/processes, circumstantial actions triggered by current conditions, and unique one-time opportunities. Example: personally review Great Project paperwork/progress to modestly improve its eventual return or execution. Individual effects should generally be small but cumulative, enabling players with similar major decisions to develop different priorities and outcomes. Favor short resolutions and existing indices/flags; occasional conditional conversations or discoveries are desirable, not a bespoke scene for every use. Avoid repetitive mandatory optimization or making free actions overwhelm major narrative decisions. Proposed examples include regional visits, administrative review, political meetings, small legislative initiatives, coordination with regional authorities, cultural diplomacy, trade missions and personal charity. These are illustrative, not a finalized catalogue. Existing [Resources GDD](https://app.notion.com/p/36b10ad0215880ccb306e4ca3499e429) carryover: PT 0%, FC 100%, IPI and EPI 50% each; retain provisionally pending balancing. Personal wealth distinct from FC. UI, action costs, frequencies, effects, diminishing returns, and turn granularity remain TBD.
+
+## Next design discussion (51)
+
+Clarify narrative pacing and turn architecture using the existing chapter schedule and scenes GDD. Prioritize how mandatory narrative events, optional encounters and repeatable free actions coexist, before drafting representative scenes. No expansion of turn count yet.
 
 ## Implementation backlog (not yet changes)
 
