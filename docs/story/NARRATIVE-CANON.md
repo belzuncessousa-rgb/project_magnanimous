@@ -1,6 +1,6 @@
 # Narrative canon — author design sessions
 
-Last consolidated: 2026-11-25. Sessions 01–41. Maintained as author interviews continue.
+Last consolidated: 2026-11-25. Sessions 01–42. Maintained as author interviews continue.
 
 ## Authority and workflow
 
@@ -177,9 +177,15 @@ Confirmed: Veldmoor is a small, wealthy, highly educated, technologically advanc
 
 Confirmed: retain the independent but interacting Mondrath and Tekoku crises. Mondrath primarily wants to be left alone; Lara's best ordinary first-term relationship is peaceful coexistence and modest economic integration, not deep integration or an expansionist alliance. Its reaction to separatism depends on its hostility toward Kunasai, strength/capacity, and Tekoku's separatist conditions. A hostile but weakened Mondrath may support independent Tekoku without absorbing it; a hostile and strong Mondrath may support secession and subsequent union with Mondrath if Tekoku is also sufficiently antagonized. A neutral/friendly Mondrath has little incentive to intervene. These are conditional possibilities, not automatic outcomes; Tekokuan preferences and circumstances still matter. Antagonizing Mondrath and weakening its capacity are distinct. Preserve the existing [Mondrath GDD](https://app.notion.com/p/36b10ad0215881818a8fc242bc2db107), including strait constraints, and session 36's no-playable-open-war boundary. Working implementation: leverage existing foreign relations, aggressiveness and strength indices plus Tekoku's regional conditions; exact thresholds and mechanics TBD.
 
-## Next design discussion (42)
+## 42 — Strait alternatives and Tekoku's separatism threshold
 
-Clarify the Strait's economic/diplomatic crisis and consequences within the no-open-war first-term scope, then close foundational foreign policy and move to domestic factions and institutions.
+Confirmed: Kunasai may reduce dependence on the Mondrath Strait before a crisis by investing in Tekoku's ports, or by establishing a rail connection to alternative ports through Tarev (existing Ibira GDD includes cooperation with Tarev and Zharan-sponsored ports). Domestic port capacity depends on Tekoku remaining stable/integrated; international rail access depends on foreign agreements and may create dependency. Exact routes, costs, capacity and effects TBD. Reward strategic infrastructure preparation without requiring foreknowledge for ordinary successful play.
+
+Tekoku separatism should be difficult to trigger, not a routine result of ideological disagreement. A president antagonizing Mondrath should be able to maintain Tekoku's loyalty through legitimate regional investments, improved quality of life and reasonable political compromises, without embracing nationalist or discriminatory demands. Separatism typically requires sustained neglect, rejected grievances and significant deterioration of regional approval/stability; ethnic tensions and Mondrath may amplify it. Do not require all illustrative factors simultaneously or finalize thresholds yet. Prosperity and regional development can offset ideological divergence. Preserve independent but interacting crisis structure from sessions 26–27 and 41.
+
+## Next design discussion (43)
+
+Close foundational foreign policy by checking existing country coverage and diplomacy implementation, then move to domestic institutions and social factions. Prioritize a consequential unresolved question rather than revisiting established lore. Continue focused questions and record decisions on main.
 
 ## Implementation backlog (not yet changes)
 
