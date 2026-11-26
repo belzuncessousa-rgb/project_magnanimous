@@ -1,6 +1,6 @@
 # Narrative canon — author design sessions
 
-Last consolidated: 2026-11-25. Sessions 01–52. Maintained as author interviews continue.
+Last consolidated: 2026-11-25. Sessions 01–53. Maintained as author interviews continue.
 
 ## Authority and workflow
 
@@ -241,9 +241,15 @@ Current prototype content/chapters.json covers Y1 in nine turns over three chapt
 
 Author confirms the session 51 framework: six chapters, three turns per chapter (18 total), resource generation and carryover at chapter boundaries, flexible narrative calendar over the first four-year term. Approximate eight-month chapter cadence is a working arrangement, not fixed dates. Variable event counts per turn are explicitly desired; do not impose uniform scene counts. Include encounters outside formal governance: personal relationships, family, leisure, public/cultural life, and ordinary citizens. These can contribute to the evolving story without always being political negotiations or stat decisions. Editorial principle: permit some encounters with no mechanical reward or major decision, alternate demanding and quieter sequences, and avoid forcing Lara's feelings. Distinguish mandatory scenes, conditional opportunities and discretionary actions during timeline planning. Exact schedule and resource tuning remain TBD; no gameplay implementation changes.
 
-## Next design discussion (53)
+## 53 — Shared events, dramatic outline and Great Project rounds
 
-Develop a working six-chapter dramatic timeline across the first term, mapping major arcs and their escalation/payoff without imposing fixed outcomes or adding unnecessary features. Review current canon and scene inventory. Resolve one high-impact pacing question, then begin representative scene calibration.
+Confirmed: mix shared historical/external events with state-dependent domestic developments. External events change circumstances and invite adaptation or persistence, rather than predetermine success; preparation and player decisions should primarily determine outcomes. Avoid an unavoidable punishment crisis. Proposed chapter dramatic functions: 1 opening/government foundations; 2 political direction and first budget; 3 emerging consequences; 4 confrontation/resolution and second investment round; 5 consolidation; 6 reelection/transition and legacy. Titles and event allocation remain provisional.
+
+Author explicitly reminds us that the first term must accommodate two Great Project rounds. Preserve the existing latest docs/DECISIONS.md Great Projects list: (1) rare-earth mining in Ibira, (2) Tekoku tech/university hub with Strawberry synergy, (3) Mognagna Water Program (desalination), (4) National Railway Integration, (5) Ibira Fluvial Network, (6) housing/sanitation completing Luz's unfinished work. The hydro dam and Katanaí port expansion are reserved for term two in existing decisions. Existing newer decisions specify first selection at end of Ch1 (options 1,4,6), second selection opportunity in Ch4 (tech hub gated by prior investments); older National Arcs Notion specifies Ch2 and Ch4 and up to four projects at opportunity cost. Retain newer Ch1 selection as working default, Ch2 implementation, Ch3–4 first-round delivery/payoff, Ch4 second-round selection, Ch5–6 second-round delivery/payoff. Do not silently override the newer rule that projects do not fail outright: complications, oversight, contractors, corruption and extra resource costs modify execution, and existing indices affect actual benefits. Earlier assistant suggestion of failed/unfinished projects was provisional and conflicts with this rule; any revision requires explicit discussion. Two normally affordable projects, potentially more with sacrifices (older GDD suggests up to four), exact affordability/availability and completion timing to tune. Preserve project synergies and minimize bespoke chains; no new project catalogue needed. See docs/DECISIONS.md and [National Arcs GDD](https://app.notion.com/p/36b10ad021588065b925eb022915968c). No content or gameplay changes.
+
+## Next design discussion (54)
+
+Move from foundational planning toward writing calibration. Review the existing inauguration, cabinet and personal scenes and scene format; resolve any major unresolved player-agency question about the opening, then produce representative scene drafts for author review. Use the six-chapter timeline as working scaffold and avoid requiring exhaustive advance approval of every event.
 
 ## Implementation backlog (not yet changes)
 
