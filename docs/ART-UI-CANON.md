@@ -25,3 +25,10 @@ Backgrounds: public/backgrounds/<background-id>.webp. Character masters: public/
 - Existing news edition now has a modern foreground tablet frame, outlet tabs and digital reading typography. No new social feed content or mechanics invented.
 - Existing budget/debt screens get official letterhead and institutional material styling; vote remains a clean analytic panel. Their current mechanical semantics are unchanged and will need later reconciliation with the narrative redesign.
 - Mertens paired pose art generated and alpha checked. Livia and Mertens binaries and office background are packaged separately; direct installation of these binary files is pending. Other generation outputs were composite concept boards, not independently usable assets. No additional character identities approved.
+
+
+## Implementation batch 3
+- Strategic HUD, agenda, action sidebar, map view controls and end-turn action use dark emerald, contemporary sans-serif type and restrained brass. Informational region popups stay light. No changes to displayed resource values, positioning logic, map geography or rules. The title screen uses the national arms.
+- Widescreen portrait proportions revised based on an independent browser composition test with Livia and Mertens. The test used the staged Counting Votes text and the presidential office as a stand-in for the VP office; two genuine alpha PNGs per actor, active-speaker dimming, numbered choices, and no JavaScript errors. The test is separate from the game. Seated chair/desk occlusion remains room-specific future work; do not bake an arbitrary desk mask into all scenes.
+- Asset starter pack includes exactly public/backgrounds/president-office.webp and public/portraits/{livia,mertens}-{seated,standing}.png. Extract at repo root to merge public/; binary assets were not installed via the text-only connection. The office is an interim crop; Mertens's appearance remains provisional. No Amanda or other environment files are falsely listed as finished.
+- Optional validation command: node tools/check-art.mjs. This checks the opening prototype art filenames and PNG alpha-capable color types without modifying any files.

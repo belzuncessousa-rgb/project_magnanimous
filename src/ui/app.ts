@@ -119,6 +119,7 @@ export class App {
     this.titleScreen?.remove();
     this.titleScreen = h('div', { class: 'title-screen overlay open' },
       h('div', { class: 'title-card paper' },
+        h('img', { class: 'title-emblem', src: 'identity/kunasai-arms.svg', alt: 'Coat of arms of Kunasai' }),
         h('div', { class: 'title-kicker' }, 'The Republic of Kunasai'),
         h('h1', { class: 'title-name' }, 'Magnanimous'),
         h('div', { class: 'title-sub' }, 'A presidency in five regions and one conscience'),
