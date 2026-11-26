@@ -55,3 +55,12 @@ Wit is allowed only inside dialogue, sparingly, when it is in character — neve
 - Place each scene's token where it happens (use point ids from public/map/regions.json `points`:
   capital, katanai, st-veldra, vila-tamarin, atiaiaba, sugar-bay, mognagna-sertao, tapira-mines, upper-ibira,
   taua-hills, strait — or a region/country id).
+
+
+## 7. Author-approved calibration (session 55)
+
+- The author approves the tone, narration and dialogue of [calibration sample 01](calibration/01-inauguration-sample.md). Use it as a positive reference alongside the earlier feedback. The sample is not yet a playable scene.
+- Keep clickable choices short, usually the opening words of Lara's speech or a clear summary of the intended action. Expand after selection. Clarity overrides brevity: use a longer label when necessary to convey the actual political stance, action, or commitment. Never put a surprising ideological reversal or material new promise into the accompanying text.
+- Ordinary conversation may have no mechanical effects. Other options may set flags (especially public commitments), shift the hidden compass, affect relationships, or change resources. These effects may coexist; do not force every option to carry a stat change. Unspoken thoughts must not directly change external world conditions.
+- Preserve the hidden political compass until the end of the term. Working visibility recommendation: explicit costs shown before choice (after tutorial), predictable resource effects may use tooltips, opinion and long-term effects remain implicit. Exact tooltip behavior and promise tracking UI remain to be confirmed; do not expose hidden compass deltas.
+- Speeches may use more rhetorical language than private conversation, but shared introductions must remain compatible with every available stance.
