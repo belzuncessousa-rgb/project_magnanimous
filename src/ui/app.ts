@@ -34,7 +34,7 @@ export class App {
   private hasTutorial = false;
   private agendaReadsOpen = false;
   private card = h('div', { class: 'readable-card paper', hidden: true });
-  private tip = h('div', { class: 'ui-tip', hidden: true });
+  private tip = h('div', { class: 'ui-tip', id: 'ui-tip', role: 'tooltip', hidden: true });
 
   constructor(
     private root: HTMLElement,
@@ -60,14 +60,14 @@ export class App {
     this.hasTutorial = content.scenes.some((sc) => sc.source !== undefined && JSON.stringify(sc.beats).includes('tutorial_done'));
     this.applySettings();
 
-    const viewToggle = h('div', { class: 'view-toggle paper', role: 'group', 'aria-label': 'Map view', 'data-ui': 'map-toggle' },
+    const viewToggle = h('div', { class: 'view-toggle paper', role: 'group', 'aria-label': 'Map view and zoom', 'data-ui': 'map-toggle' },
       h('button', { 'data-view': 'terrain', onclick: () => this.setView('terrain') }, 'Terrain'),
       h('button', { 'data-view': 'political', onclick: () => this.setView('political') }, 'Political'),
       h('span', { class: 'sep' }),
       h('button', { title: 'Zoom in', onclick: () => this.map.zoomBy(1.4) }, '+'),
       h('button', { title: 'Zoom out', onclick: () => this.map.zoomBy(1 / 1.4) }, '−'),
       h('button', { title: 'Reset view', onclick: () => this.map.resetZoom() }, '⌂'));
-    const topLeft = h('div', { class: 'top-left' },
+    const topLeft = h('div', { class: 'top-left', role: 'group', 'aria-label': 'Game controls' },
       h('button', { class: 'btn ghost', onclick: () => this.openMenu() }, '☰ Menu'),
       h('button', { class: 'btn ghost', onclick: () => this.openCodex() }, 'Codex'),
       h('button', { class: 'btn ghost', 'data-ui': 'actions', 'data-tip': 'Free actions: rallies, envoys, calls — they cost resources', onclick: () => this.toggleSidebar() }, 'Actions'));
@@ -108,7 +108,11 @@ export class App {
   }
 
   private updateViewToggle() {
-    for (const b of this.layer.querySelectorAll<HTMLButtonElement>('.view-toggle [data-view]')) b.classList.toggle('active', b.dataset.view === this.settings.mapView);
+    for (const b of this.layer.querySelectorAll<HTMLButtonElement>('.view-toggle [data-view]')) {
+      const active = b.dataset.view === this.settings.mapView;
+      b.classList.toggle('active', active);
+      b.setAttribute('aria-pressed', String(active));
+    }
   }
 
   // ---------------------------------------------------------------- title
@@ -168,12 +172,43 @@ export class App {
   }
 
   private modal(title: string, body: HTMLElement, onClose?: () => void): HTMLElement {
-    const close = () => { m.remove(); onClose?.(); };
-    const m = h('div', { class: 'modal overlay open', onclick: (ev: Event) => { if (ev.target === m) close(); } },
+    const previousFocus = document.activeElement as HTMLElement | null;
+    const close = () => {
+      if (!m.isConnected) return;
+      m.remove();
+      onClose?.();
+      if (previousFocus?.isConnected) previousFocus.focus();
+    };
+    const m = h('div', {
+      class: 'modal overlay open', role: 'dialog', 'aria-modal': 'true', 'aria-label': title, tabindex: -1,
+      onclick: (ev: Event) => { if (ev.target === m) close(); },
+    },
       h('div', { class: 'modal-card paper' },
         h('div', { class: 'modal-head' }, h('h2', {}, title), h('button', { class: 'x', 'aria-label': 'Close', onclick: close }, '×')),
         body));
+    m.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        close();
+        return;
+      }
+      if (event.key !== 'Tab') return;
+      const focusables = [...m.querySelectorAll<HTMLElement>('button:not(:disabled), input:not(:disabled), select:not(:disabled), [tabindex]:not([tabindex="-1"])')];
+      if (!focusables.length) { event.preventDefault(); m.focus(); return; }
+      const first = focusables[0]!;
+      const last = focusables[focusables.length - 1]!;
+      if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+      else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+    });
     this.root.append(m);
+    requestAnimationFrame(() => {
+      const initial = m.querySelector<HTMLElement>('.menu-buttons button:not(:disabled)')
+        ?? m.querySelector<HTMLElement>('.settings select:not(:disabled)')
+        ?? m.querySelector<HTMLElement>('.settings input:not(:disabled)')
+        ?? m.querySelector<HTMLElement>('.btn.primary:not(:disabled)')
+        ?? m.querySelector<HTMLElement>('.x');
+      initial?.focus();
+    });
     return m;
   }
 
@@ -201,7 +236,7 @@ export class App {
   private openMenu() {
     let m: HTMLElement;
     const body = h('div', { class: 'menu-buttons' },
-      h('div', { class: 'menu-section-label' }, 'GAME'),
+      h('div', { class: 'menu-section-label' }, 'SESSION'),
       h('button', { class: 'btn', onclick: () => m.remove() }, 'Resume'),
       h('button', { class: 'btn', onclick: () => { if (this.game) saveGame(this.game.state); this.flash('Game saved.'); m.remove(); } }, 'Save'),
       h('div', { class: 'menu-section-label menu-section-secondary' }, 'PREFERENCES'),
@@ -240,7 +275,7 @@ export class App {
     );
     // agenda
     clear(this.agenda);
-    this.agenda.append(h('div', { class: 'panel-title' }, 'Agenda'));
+    this.agenda.append(h('h2', { class: 'panel-title' }, 'Agenda'));
     if (!scenes.length) this.agenda.append(h('div', { class: 'agenda-empty' }, 'Nothing on your desk.'));
     const unread = g.activePopups().filter((p) => !g.isRead(p.id));
     this.agenda.classList.toggle('empty', !scenes.length && !unread.length);
@@ -275,7 +310,7 @@ export class App {
   private renderSidebar() {
     const g = this.game!;
     clear(this.sidebar);
-    this.sidebar.append(h('div', { class: 'panel-title' }, 'Free actions', h('button', { class: 'x', 'aria-label': 'Close', onclick: () => this.toggleSidebar() }, '×')));
+    this.sidebar.append(h('h2', { class: 'panel-title' }, 'Free actions', h('button', { class: 'x', 'aria-label': 'Close', onclick: () => this.toggleSidebar() }, '×')));
     const list = g.freeActions();
     if (!list.length) this.sidebar.append(h('div', { class: 'agenda-empty' }, 'No actions available.'));
     for (const v of list) {
@@ -452,24 +487,33 @@ export class App {
       if (!t) return;
       this.tip.textContent = t;
       this.tip.hidden = false;
+      for (const described of document.querySelectorAll('[aria-describedby="ui-tip"]')) described.removeAttribute('aria-describedby');
+      if (document.activeElement === el) el.setAttribute('aria-describedby', this.tip.id);
       const r = el.getBoundingClientRect();
       const tw = Math.min(300, this.tip.offsetWidth);
       let left = r.left + r.width / 2 - tw / 2;
       left = Math.max(8, Math.min(window.innerWidth - tw - 8, left));
       const below = r.bottom + 8;
       this.tip.style.left = `${left}px`;
-      this.tip.style.top = `${below + this.tip.offsetHeight > window.innerHeight - 8 ? r.top - this.tip.offsetHeight - 8 : below}px`;
+      const above = r.top - this.tip.offsetHeight - 8;
+      const focused = document.activeElement === el;
+      this.tip.style.top = `${focused && above >= 8 ? above : below + this.tip.offsetHeight > window.innerHeight - 8 ? Math.max(8, above) : below}px`;
+    };
+    const hide = () => {
+      this.tip.hidden = true;
+      for (const el of document.querySelectorAll('[aria-describedby="ui-tip"]')) el.removeAttribute('aria-describedby');
     };
     document.addEventListener('mouseover', (ev) => {
       const el = (ev.target as Element).closest<HTMLElement>('[data-tip]');
       if (el) show(el);
-      else this.tip.hidden = true;
+      else hide();
     });
     document.addEventListener('focusin', (ev) => {
       const el = (ev.target as Element).closest<HTMLElement>('[data-tip]');
       if (el) show(el);
+      else hide();
     });
-    document.addEventListener('pointerdown', () => (this.tip.hidden = true));
+    document.addEventListener('pointerdown', hide);
   }
 
   private async openScreen(action: string, arg: string): Promise<void> {

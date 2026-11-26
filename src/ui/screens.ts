@@ -25,16 +25,46 @@ const TIER_LABEL: Record<Tier, string> = { cut: 'Cut', low: 'Low', regular: 'Reg
 
 const costText = (c: ResourceAmounts) => fmtCost(c) || 'Free';
 
+const screenReturnFocus = new WeakMap<HTMLElement, HTMLElement | null>();
+
 function overlay(root: HTMLElement, cls: string, card: HTMLElement): HTMLElement {
-  const o = h('div', { class: `screen-overlay overlay ${cls}` }, card);
+  const previousFocus = document.activeElement as HTMLElement | null;
+  const title = card.querySelector<HTMLElement>('.screen-head h2');
+  if (title) title.id = 'decision-screen-title';
+  const o = h('div', {
+    class: `screen-overlay overlay ${cls}`,
+    role: 'dialog', 'aria-modal': 'true',
+    'aria-labelledby': title ? title.id : undefined,
+  }, card);
+  screenReturnFocus.set(o, previousFocus);
+  o.addEventListener('keydown', (event) => {
+    if (event.key !== 'Tab') return;
+    const focusables = [...o.querySelectorAll<HTMLElement>('button:not(:disabled), input:not(:disabled), select:not(:disabled), [tabindex]:not([tabindex="-1"])')];
+    if (!focusables.length) { event.preventDefault(); return; }
+    const first = focusables[0]!;
+    const last = focusables[focusables.length - 1]!;
+    if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+    else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+  });
   root.append(o);
-  requestAnimationFrame(() => requestAnimationFrame(() => o.classList.add('open')));
+  requestAnimationFrame(() => {
+    const initial = o.querySelector<HTMLElement>('button[aria-pressed="true"]')
+      ?? o.querySelector<HTMLElement>('button.primary:not(:disabled)')
+      ?? o.querySelector<HTMLElement>('button:not(:disabled), input:not(:disabled)');
+    initial?.focus();
+    requestAnimationFrame(() => o.classList.add('open'));
+  });
   return o;
 }
 
 function close(o: HTMLElement): Promise<void> {
   o.classList.remove('open');
-  return new Promise((r) => setTimeout(() => { o.remove(); r(); }, 300));
+  return new Promise((r) => setTimeout(() => {
+    o.remove();
+    const previousFocus = screenReturnFocus.get(o);
+    if (previousFocus?.isConnected) previousFocus.focus();
+    r();
+  }, 300));
 }
 
 // ------------------------------------------------------------------------------------------------ budget
@@ -59,10 +89,11 @@ export function showBudget(root: HTMLElement, state: GameState, ministries: Mini
         rows.append(
           h('div', { class: 'budget-row' },
             h('div', { class: 'budget-name' }, h('strong', {}, m.name), m.minister ? h('span', { class: 'budget-minister' }, m.minister) : null),
-            h('div', { class: 'budget-tiers', role: 'radiogroup' },
+            h('div', { class: 'budget-tiers', role: 'group', 'aria-label': `${m.name} funding tier` },
               ...tiers.map((t) =>
                 h('button', {
                   class: `tier${c.tier === t ? ' active' : ''}`,
+                  'aria-pressed': String(c.tier === t),
                   'data-tip': m.tiers[t]!.label ?? (t === 'low' ? 'Keeps one initiative alive' : t === 'cut' ? 'Shuts the ministry’s programmes' : t === 'high' ? 'Everything, and faster' : 'Every initiative funded'),
                   onclick: () => {
                     choices[m.id] = { tier: t, initiative: t === 'low' ? (c.initiative ?? m.initiatives[0]?.id) : undefined };
@@ -72,7 +103,7 @@ export function showBudget(root: HTMLElement, state: GameState, ministries: Mini
             c.tier === 'low' && m.initiatives.length
               ? h('div', { class: 'budget-init' }, 'Keep: ',
                   ...m.initiatives.map((i) =>
-                    h('button', { class: `init${c.initiative === i.id ? ' active' : ''}`, 'data-tip': i.summary || undefined, onclick: () => { c.initiative = i.id; render(); } }, i.name)))
+                    h('button', { class: `init${c.initiative === i.id ? ' active' : ''}`, 'aria-pressed': String(c.initiative === i.id), 'data-tip': i.summary || undefined, onclick: () => { c.initiative = i.id; render(); } }, i.name)))
               : c.tier === 'cut' ? h('div', { class: 'budget-init muted' }, 'No initiatives') : h('div', { class: 'budget-init muted' }, m.initiatives.map((i) => i.name).join(' · ')),
           ),
         );
@@ -115,6 +146,7 @@ export function showVote(root: HTMLElement, state: GameState, bill: Bill | undef
                 const on = deals[row.party] === d.id;
                 return h('button', {
                   class: `deal${on ? ' active' : ''}${d.increments?.includes('corruption') ? ' corrupt' : ''}`,
+                  'aria-pressed': String(on),
                   'data-tip': `${d.label}: ${costText(d.cost)}${d.flags?.opp_ministry_promised ? ' and a ministry promised' : ''}`,
                   onclick: () => { if (on) delete deals[row.party]; else deals[row.party] = d.id; render(); },
                 }, d.label);
@@ -131,10 +163,12 @@ export function showVote(root: HTMLElement, state: GameState, bill: Bill | undef
       const r = resolveVote(state, bill, deals);
       if (!r) return;
       clear(card);
+      const continueButton = h('button', { class: 'btn primary', onclick: async () => { await close(o); resolve(r.result); } }, 'Continue');
       card.append(
-        h('div', { class: 'screen-head' }, h('h2', {}, bill.title)),
+        h('div', { class: 'screen-head' }, h('h2', { id: 'decision-screen-title' }, bill.title)),
         h('div', { class: `vote-result result-${r.result}` }, r.result === 'passed' ? 'The bill passes.' : r.result === 'watered' ? 'It passes — watered down.' : 'The bill fails.'),
-        h('div', { class: 'screen-foot' }, h('span', {}), h('button', { class: 'btn primary', onclick: async () => { await close(o); resolve(r.result); } }, 'Continue')));
+        h('div', { class: 'screen-foot' }, h('span', {}), continueButton));
+      requestAnimationFrame(() => continueButton.focus());
     });
     const card = h('div', { class: 'screen-card paper vote' },
       h('div', { class: 'screen-head' }, h('h2', {}, bill.title), bill.summary ? h('div', { class: 'screen-sub' }, bill.summary) : null),
@@ -185,6 +219,7 @@ export function showDebt(root: HTMLElement, state: GameState): Promise<void> {
         options.append(
           h('button', {
             class: `debt-option${p === policy ? ' active' : ''}`,
+            'aria-pressed': String(p === policy),
             onclick: () => {
               policy = p;
               amount = defaultAmount(p);

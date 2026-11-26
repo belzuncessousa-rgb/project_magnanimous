@@ -114,9 +114,9 @@ export class MapView {
     this.base = { ...geo.viewBox };
     this.vb = { ...geo.viewBox };
     this.el = h('div', { class: 'map', 'data-ui': 'map' });
-    this.svg = s('svg', { class: 'map-svg', preserveAspectRatio: 'xMidYMid slice', role: 'img', 'aria-label': 'Map of Kunasai' });
+    this.svg = s('svg', { class: 'map-svg', preserveAspectRatio: 'xMidYMid slice', role: 'group', 'aria-label': 'Map of Kunasai' });
     this.markerLayer = s('g', { class: 'markers' });
-    this.markerSvg = s('svg', { class: 'map-svg marker-svg', preserveAspectRatio: 'xMidYMid slice', 'data-ui': 'markers' }, this.markerLayer);
+    this.markerSvg = s('svg', { class: 'map-svg marker-svg', preserveAspectRatio: 'xMidYMid slice', role: 'group', 'aria-label': 'Available scenes', 'data-ui': 'markers' }, this.markerLayer);
     this.hotLayer = s('g', { class: 'hotspots' });
     this.toastLayer = h('div', { class: 'map-toasts', 'data-ui': 'readables' });
     this.tooltip = h('div', { class: 'map-tooltip', hidden: true });
@@ -166,8 +166,12 @@ export class MapView {
       ...(this.geo.borders ?? []).filter((b) => b.type !== 'coast').map((b) => s('path', { d: linePath(b.line), class: `ink-${b.type}` })));
 
     for (const g of shapes) {
-      const p = s('path', { d: pathOf(g.polygon), class: `hot hot-${g.kind}`, 'data-id': g.id });
+      const p = s('path', {
+        d: pathOf(g.polygon), class: `hot hot-${g.kind}`, 'data-id': g.id,
+        tabindex: 0, role: 'button', 'aria-label': g.name,
+      });
       p.addEventListener('click', (ev) => this.clickShape(g.id, ev as MouseEvent));
+      p.addEventListener('keydown', (ev) => this.keySelectShape(g.id, ev as KeyboardEvent, p));
       p.addEventListener('mousemove', (ev) => this.showTip(g.name, ev as MouseEvent));
       p.addEventListener('mouseleave', () => this.hideTip());
       this.hotLayer.append(p);
@@ -178,7 +182,11 @@ export class MapView {
         s('rect', { x: -95, y: -20, width: 190, height: 40, rx: 3 }),
         s('text', { class: 'offmap-name', x: 0, y: -2 }, o.name),
         s('text', { class: 'offmap-note', x: 0, y: 12 }, o.note));
+      g.setAttribute('tabindex', '0');
+      g.setAttribute('role', 'button');
+      g.setAttribute('aria-label', `${o.name}, ${o.note}`);
       g.addEventListener('click', (ev) => this.clickShape(id, ev as MouseEvent));
+      g.addEventListener('keydown', (ev) => this.keySelectShape(id, ev as KeyboardEvent, g));
       offmap.append(g);
     }
     const labels = s('g', { class: 'labels' });
@@ -251,6 +259,7 @@ export class MapView {
         tabindex: 0,
         role: 'button',
         'aria-label': m.title,
+        'aria-disabled': String(m.locked),
         'data-scene': m.id,
       },
         s('g', { class: 'marker-body' },
@@ -259,9 +268,12 @@ export class MapView {
           s('text', { class: 'glyph', y: 7 }, KIND_GLYPH[m.kind] ?? '•'),
           m.token ? tokenImage(m.token) : null),
       );
-      const open = () => { if (!m.locked && !this.dragged) this.cb.onMarker(m.id); };
+      const open = () => { if (!m.locked && !this.dragged && !this.targeting) this.cb.onMarker(m.id); };
       g.addEventListener('click', (ev) => { ev.stopPropagation(); open(); });
-      g.addEventListener('keydown', (ev) => { if ((ev as KeyboardEvent).key === 'Enter') open(); });
+      g.addEventListener('keydown', (ev) => {
+        const key = (ev as KeyboardEvent).key;
+        if (key === 'Enter' || key === ' ') { ev.preventDefault(); open(); }
+      });
       g.addEventListener('mousemove', (ev) => this.showTip(m.locked ? `${m.title} — later` : m.title, ev as MouseEvent));
       g.addEventListener('mouseleave', () => this.hideTip());
       this.markerLayer.append(g);
@@ -318,6 +330,10 @@ export class MapView {
     this.el.classList.toggle('targeting', !!valid);
     for (const el of this.svg.querySelectorAll<SVGElement>('[data-id]')) {
       el.classList.toggle('valid', !!valid && valid.includes(el.dataset.id!));
+      el.setAttribute('aria-disabled', String(!!valid && !valid.includes(el.dataset.id!)));
+    }
+    for (const marker of this.markerSvg.querySelectorAll<SVGElement>('.marker')) {
+      marker.setAttribute('aria-disabled', String(!!valid || marker.classList.contains('locked')));
     }
   }
 
@@ -328,11 +344,24 @@ export class MapView {
   private clickShape(id: string, ev: MouseEvent) {
     ev.stopPropagation();
     if (this.dragged) return;
+    this.selectShape(id, ev.clientX, ev.clientY);
+  }
+
+  private keySelectShape(id: string, ev: KeyboardEvent, el: SVGElement) {
+    if (ev.key !== 'Enter' && ev.key !== ' ') return;
+    ev.preventDefault();
+    ev.stopPropagation();
+    const bounds = el.getBoundingClientRect();
+    this.selectShape(id, bounds.left + bounds.width / 2, bounds.top + bounds.height / 2);
+  }
+
+  private selectShape(id: string, x: number, y: number) {
+    if (this.dragged) return;
     if (this.targeting) {
       if (this.targeting.has(id)) this.cb.onTarget(id);
       return;
     }
-    this.cb.onSelect(id, ev.clientX, ev.clientY);
+    this.cb.onSelect(id, x, y);
   }
 
   private showTip(text: string, ev: MouseEvent) {

@@ -1,6 +1,6 @@
 // Presidential tablet: digital news outlets from the existing end-of-turn edition.
 import type { Edition } from '../game/game';
-import { clear, h, inlineMd } from './dom';
+import { clear, h, initials, inlineMd } from './dom';
 
 export function showNewspaper(root: HTMLElement, edition: Edition, footer: string): Promise<void> {
   return new Promise((resolve) => {
@@ -32,22 +32,29 @@ export function showNewspaper(root: HTMLElement, edition: Edition, footer: strin
     };
     let activeIndex = 0;
     const renderSocial = () => {
-      sheet.removeAttribute('aria-labelledby');
+      sheet.setAttribute('aria-labelledby', 'tablet-app-social');
       sheet.scrollTop = 0;
       clear(sheet);
       sheet.className = 'np-sheet np-social';
-      const posts = edition.papers.flatMap(({ paper, items }) => items.map((item) => ({ paper, item })));
+      const posts = edition.papers.flatMap(({ paper, items }, paperIndex) => items.map((item) => ({ paper, item, paperIndex })));
       sheet.append(
         h('header', { class: 'np-social-head' },
-          h('div', { class: 'np-social-kicker' }, 'PUBLIC CONVERSATION'),
-          h('h2', {}, 'The feed'),
-          h('p', {}, 'Stories from today’s papers, as they appear in the news edition.')),
+          h('div', { class: 'np-social-kicker' }, 'PRESS ACCOUNTS'),
+          h('h2', {}, 'Social feed'),
+          h('p', {}, 'Short updates from the publications in this edition. Open a post to read its full story.')),
         posts.length
-          ? h('div', { class: 'np-posts' }, ...posts.map(({ paper, item }) =>
-              h('article', { class: 'np-post' },
-                h('div', { class: 'np-post-source' }, h('span', { class: 'np-source-mark', 'aria-hidden': 'true' }, '◌'), h('span', {}, paper.name), h('span', { class: 'np-source-label' }, 'NEWSROOM')),
+          ? h('div', { class: 'np-posts' }, ...posts.map(({ paper, item, paperIndex }) => {
+              const plainText = item.text.replace(/\s+/g, ' ').trim();
+              const excerpt = plainText.length > 190 ? `${plainText.slice(0, 187).trimEnd()}…` : plainText;
+              return h('article', { class: 'np-post' },
+                h('div', { class: 'np-post-source' },
+                  h('span', { class: 'np-source-mark', 'aria-hidden': 'true' }, initials(paper.name)),
+                  h('span', { class: 'np-account-name' }, paper.name),
+                  h('span', { class: 'np-source-label' }, edition.dateLabel)),
                 h('h3', { html: inlineMd(item.headline) }),
-                item.text ? h('div', { class: 'np-body', html: inlineMd(item.text) }) : null)))
+                excerpt ? h('div', { class: 'np-body', html: inlineMd(excerpt) }) : null,
+                h('button', { class: 'np-post-open', onclick: () => { setApp('news'); render(paperIndex); } }, 'Open full story  →'));
+            }))
           : h('p', { class: 'np-empty' }, 'No new stories in this edition.'),
       );
     };
@@ -85,8 +92,8 @@ export function showNewspaper(root: HTMLElement, edition: Edition, footer: strin
       );
     };
     apps.append(
-      h('button', { class: 'np-app active', role: 'tab', 'aria-selected': 'true', tabindex: 0, 'data-app': 'news', onclick: () => setApp('news') }, 'News'),
-      h('button', { class: 'np-app', role: 'tab', 'aria-selected': 'false', tabindex: -1, 'data-app': 'social', onclick: () => setApp('social') }, 'Social'),
+      h('button', { class: 'np-app active', role: 'tab', id: 'tablet-app-news', 'aria-controls': sheet.id, 'aria-selected': 'true', tabindex: 0, 'data-app': 'news', onclick: () => setApp('news') }, 'News'),
+      h('button', { class: 'np-app', role: 'tab', id: 'tablet-app-social', 'aria-controls': sheet.id, 'aria-selected': 'false', tabindex: -1, 'data-app': 'social', onclick: () => setApp('social') }, 'Social'),
     );
     apps.addEventListener('keydown', event => {
       const buttons = [...apps.querySelectorAll<HTMLButtonElement>('button')];
