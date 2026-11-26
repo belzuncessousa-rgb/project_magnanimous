@@ -1,6 +1,6 @@
 # Narrative canon — author design sessions
 
-Last consolidated: 2026-11-25. Sessions 01–42. Maintained as author interviews continue.
+Last consolidated: 2026-11-25. Sessions 01–43. Maintained as author interviews continue.
 
 ## Authority and workflow
 
@@ -183,9 +183,19 @@ Confirmed: Kunasai may reduce dependence on the Mondrath Strait before a crisis 
 
 Tekoku separatism should be difficult to trigger, not a routine result of ideological disagreement. A president antagonizing Mondrath should be able to maintain Tekoku's loyalty through legitimate regional investments, improved quality of life and reasonable political compromises, without embracing nationalist or discriminatory demands. Separatism typically requires sustained neglect, rejected grievances and significant deterioration of regional approval/stability; ethnic tensions and Mondrath may amplify it. Do not require all illustrative factors simultaneously or finalize thresholds yet. Prosperity and regional development can offset ideological divergence. Preserve independent but interacting crisis structure from sessions 26–27 and 41.
 
-## Next design discussion (43)
+## 43 — Armed forces, political preparation, and delegated creativity
 
-Close foundational foreign policy by checking existing country coverage and diplomacy implementation, then move to domestic institutions and social factions. Prioritize a consequential unresolved question rather than revisiting established lore. Continue focused questions and record decisions on main.
+Confirmed author direction: the current military leader opposes military intervention in civilian government. The armed forces are not initially aligned with Solano; their current priorities are institutional autonomy, national sovereignty, budget protection, professional honour and protecting themselves concerning dictatorship-era files. They have no initial desire to restore military dictatorship. Political antagonism is graduated. A president who repeatedly threatens their interests without addressing their institutional power may face opposition, alignment with rivals or even an independent military coup, unrelated to Solano. A future playable Solano can potentially replace leadership and reshape the institution's ideological direction. This supersedes older GDD assumptions of natural NF alignment. Reconcile coups with session 32's first-term democracy boundary: working proposal is a terminal removal/coup outcome, not a playable military regime or definitive player-led transition in term one; exact aftermath remains open.
+
+General author principle: players pursuing controversial measures may sometimes create political opportunities over a long horizon, including through intentionally precipitated fictional crises, changes in institutional leadership and accumulated political conditions. Applies to ordinary legislation, presidential powers and potential second-term regime transformation, not only extremism. Example from author: a future Solano campaign may provoke a Mondrath crisis to build a narrative justification for greater authority. Do not require a bespoke engineered-crisis route for every law, make controversial outcomes automatic, or turn this into a universal optimal strategy; crises can escape the player's control. Keep this principle in mind when designing interlocking fictional story arcs and long-term gates. Exact events and mechanics TBD.
+
+### Creative delegation and review
+
+Author explicitly welcomes independent creativity and expects not to have time to write or personally review every scene. Use the accumulated design discussions as principles and constraints, not an exhaustive script. The assistant should develop characters, dialogue, events, plausible interconnections and minor design decisions independently, flag substantial uncertainties and contradictions, and challenge weak ideas when appropriate. Ask focused questions only when a decision genuinely affects the creative vision, scope or major architecture; avoid exhausting every topic before producing material. Plan to calibrate writing using representative/trademark scenes the author can read and edit directly; record the resulting voice, pacing, humour, characterization and player-agency standards and apply them to subsequent batches. Maintain repo documentation and continuity checks. Do not treat proposed details as confirmed or guarantee perfect consistency. No gameplay implementation yet.
+
+## Next design discussion (44)
+
+Prioritize the few consequential outstanding decisions needed for character and narrative architecture rather than interviewing about every faction. Review relevant GDD material on the cabinet and character relationships; plan representative writing samples and delegated production once the essential foundations are resolved.
 
 ## Implementation backlog (not yet changes)
 
