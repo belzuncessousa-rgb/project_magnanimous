@@ -22,6 +22,9 @@ export interface VNOptions {
   playerId: string;
 }
 
+// Map a pose master stem to 'original' or a corrected right-facing master stem.
+const rightFacing: Record<string, string | undefined> = {};
+
 interface Who {
   id?: string;
   name: string;
@@ -120,9 +123,8 @@ export class VNView {
     return { id, name: a?.name ?? name, portrait: a?.portrait ?? id };
   }
 
-  private renderPortrait(slot: HTMLElement, who: Who | null, active: boolean) {
-    slot.classList.toggle('active', active);
-    const key = who ? who.id ?? who.name : '';
+  private renderPortrait(slot: HTMLElement, who: Who | null) {
+    const key = who ? [who.id ?? who.name, who.portrait, this.pose].join('/') : '';
     if (slot.dataset.who === key) return;
     slot.dataset.who = key;
     clear(slot);
@@ -132,6 +134,9 @@ export class VNView {
       h('figcaption', {}, who.name));
     if (who.portrait) {
       const img = h('img', { alt: '' });
+      const stem = who.portrait + '-' + this.pose;
+      const facing = slot === this.right ? rightFacing[stem] : undefined;
+      if (slot === this.right && !facing) img.classList.add('mirror-inward');
       let legacy = false;
       img.addEventListener('error', () => {
         if (!legacy) { legacy = true; img.src = `portraits/${who.portrait}.png`; }
@@ -139,18 +144,9 @@ export class VNView {
       });
       img.addEventListener('load', () => fig.classList.add(legacy ? 'has-img' : 'has-master'));
       fig.querySelector('.silhouette')!.append(img);
-      img.src = `portraits/${who.portrait}-${this.pose}.png`;
+      img.src = `portraits/${facing && facing !== 'original' ? facing : stem}.png`;
     }
     slot.append(fig);
-  }
-
-  private setSpeaker(p: Prose | null) {
-    const w = p?.role === 'speech' ? this.who(p.speaker) : null;
-    const active = w?.id ?? w?.name;
-    const left = this.cast[0] ?? null;
-    const right = this.cast[1] ?? null;
-    this.renderPortrait(this.left, left, !!left && (left.id ?? left.name) === active);
-    this.renderPortrait(this.right, right, !!right && (right.id ?? right.name) === active);
   }
 
   private stage(runner: SceneRunner) {
@@ -291,7 +287,8 @@ export class VNView {
     clear(this.right);
     this.titleEl.textContent = title;
     this.stage(runner);
-    this.setSpeaker(null);
+    this.renderPortrait(this.left, this.cast[0] ?? null);
+    this.renderPortrait(this.right, this.cast[1] ?? null);
     this.el.hidden = false;
     document.body.classList.add('vn-active');
     await wait(this.opts.transitions ? 30 : 0);
@@ -306,7 +303,6 @@ export class VNView {
       }
       if (out.type === 'prose') {
         this.hooks.onHighlight?.(out.prose.highlights ?? []);
-        this.setSpeaker(out.prose);
         const block = this.block(out.prose);
         await this.appendBlock(block);
         await this.reveal(block);
@@ -318,7 +314,6 @@ export class VNView {
         const echo = o.choice.spoken
           ? this.block({ role: 'speech', text: o.choice.label.replace(/^["“]|["”]$/g, ''), effects: [] })
           : h('div', { class: 'blk choice-echo', html: inlineMd(o.choice.label) });
-        if (o.choice.spoken) this.setSpeaker({ role: 'speech', text: '', effects: [] });
         await this.appendBlock(echo);
       } else {
         this.hooks.onHighlight?.([]);
