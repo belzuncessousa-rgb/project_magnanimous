@@ -196,14 +196,14 @@ body.vn-active .map-toasts, .map.dim .map-toasts { display: none; }
 .tutorial-on .ui-layer { z-index: 35; pointer-events: none; }
 .tutorial-on .ui-layer > * { pointer-events: none !important; }
 .ui-layer.hidden-ui > .tut-visible { opacity: 1; }
-.tut-highlight { outline: 3px solid var(--gold); outline-offset: 4px; animation: tut-pulse 1.4s ease-in-out infinite; position: relative; z-index: 2; }
-@keyframes tut-pulse { 50% { outline-color: rgba(176, 138, 52, 0.25); outline-offset: 8px; } }
-body.vn-active .tutorial-on .map.tut-highlight, .tutorial-on .map.tut-highlight { filter: none; outline-offset: -6px; }
+.tut-highlight { outline: none; filter: brightness(1.08); animation: tut-pulse 1.4s ease-in-out infinite; position: relative; z-index: 2; }
+@keyframes tut-pulse { 50% { filter: brightness(1.16) saturate(1.08); } }
+body.vn-active .tutorial-on .map.tut-highlight, .tutorial-on .map.tut-highlight { filter: none; }
 .tutorial-on .map .tut-highlight { outline: none; }
 .tutorial-on .marker-svg.tut-highlight .marker-body { animation: tut-pulse-svg 1.4s ease-in-out infinite; }
 @keyframes tut-pulse-svg { 50% { opacity: 0.55; } }
 .tutorial-on .map-toasts.tut-highlight { display: block !important; outline: none; }
-.tutorial-on .map-toasts.tut-highlight .map-toast { outline: 2px solid var(--gold); }
+.tutorial-on .map-toasts.tut-highlight .map-toast { border-left: 2px solid var(--gold); }
 .top-left { position: absolute; top: 14px; left: 14px; display: flex; gap: 8px; }
 
 .hud { position: absolute; top: 12px; right: 12px; padding: 0.45em 0.8em 0.5em; min-width: 360px; }
@@ -438,7 +438,7 @@ body.vn-active .tutorial-on .map.tut-highlight, .tutorial-on .map.tut-highlight 
 .vn .blk.speech .speaker { color: #326554; font-family: Inter, Arial, sans-serif; display: flex; align-items: center; gap: .5em; }
 .vn .vn-choices { border-top: 0; min-height: 0; gap: 2px; }
 .vn .choice { font: inherit; background: transparent; border: 1px solid transparent; color: #215943; padding: 0.35em 0.4em; }
-.vn .choice:hover:not(:disabled), .vn .choice:focus-visible:not(:disabled) { background: #dce5d5; border-color: #79927e; }
+.vn .choice:hover:not(:disabled), .vn .choice:focus-visible:not(:disabled) { background: #dce5d5; border-color: transparent; }
 .vn .choice .num { color: #806638; font-family: Inter, Arial, sans-serif; }
 .vn .vn-choices .continue { color: #326554; animation: none; }
 .vn .portrait { position: relative; z-index: 1; transform: none; margin-bottom: 0; min-width: 0; max-width: 100%; }
@@ -475,7 +475,7 @@ body.vn-active .tutorial-on .map.tut-highlight, .tutorial-on .map.tut-highlight 
 .vn .portrait-left .has-master { transform: translateX(-1.5vw); }
 .vn .portrait-right .has-master { transform: translateX(1.5vw); }
 .vn .blk.speech-player .speaker { color: #806638; }
-.vn .choice:focus-visible, .vn-latest:focus-visible, .np-tab:focus-visible { outline: 2px solid #326554; outline-offset: 2px; }
+.vn .choice:focus-visible, .vn-latest:focus-visible, .np-tab:focus-visible { outline: none; }
 @media (max-width: 900px) {
   .vn .vn-column.paper { margin-top: 34px; max-height: calc(100% - 34px); }
   .vn .vn-topbar { padding: 0 12px; }
@@ -579,10 +579,7 @@ body.vn-active .tutorial-on .map.tut-highlight, .tutorial-on .map.tut-highlight 
 .ui-layer .readable-card.kind-report .readable-text { font-family: "Source Serif 4", var(--serif); line-height: 1.55; }
 
 /* Cohesive emerald, ivory and brass interaction system. */
-:where(button, select, input):focus-visible, .hot:focus-visible, .offmap-chip:focus-visible, .marker:focus-visible {
-  outline: 3px solid #d1b783;
-  outline-offset: 3px;
-}
+:where(button, select, input):focus-visible, .hot:focus-visible, .offmap-chip:focus-visible, .marker:focus-visible { outline: none; }
 .btn { font-family: var(--ui-sans); font-size: .84em; font-weight: 600; letter-spacing: .01em; border-radius: 4px; }
 .btn.primary { background: #173f35; border-color: #326554; color: #f0ebdd; }
 .btn.primary:hover:not(:disabled) { background: #326554; border-color: #5d8a71; }
@@ -602,7 +599,7 @@ body.vn-active .tutorial-on .map.tut-highlight, .tutorial-on .map.tut-highlight 
 .hot:hover, .hot.selected { fill: #f0ebdd38; stroke: #d1b783; stroke-width: 3; stroke-opacity: 1; }
 .hot:focus-visible { stroke: #d1b783; stroke-width: 3.5; stroke-opacity: 1; }
 .offmap-chip rect { fill: #f0ebdde8; stroke: #173f35; stroke-width: 1.5; }
-.offmap-chip:hover rect, .offmap-chip.selected rect, .offmap-chip:focus-visible rect { fill: #fffdf6; stroke: #b99a60; stroke-width: 2.5; }
+.offmap-chip:hover rect, .offmap-chip.selected rect, .offmap-chip:focus-visible rect { fill: #fffdf6; stroke: #b99a60; stroke-width: 1.5; }
 .marker .ring { fill: #173f35; stroke: #f0ebdd; stroke-width: 2.25; }
 .marker.required .ring { fill: #173f35; stroke: #d1b783; stroke-width: 3; }
 .marker.kind-crisis .ring { fill: #8a2e1e; stroke: #f0ebdd; }
@@ -649,13 +646,8 @@ body.vn-active .tutorial-on .map.tut-highlight, .tutorial-on .map.tut-highlight 
 .menu-buttons .btn:last-child { margin-top: .1em; }
 .menu-section-label { margin: .2em 0 -.1em; }
 .menu-section-secondary { margin-top: .7em; }
-.ui-layer .fa-item:focus-visible,
-.debt-option:focus-visible, .tier:focus-visible, .init:focus-visible, .deal:focus-visible {
-  outline: 3px solid #b99a60;
-  outline-offset: 2px;
-  position: relative;
-  z-index: 1;
-}
+.ui-layer .fa-item:focus-visible { background: #326554; box-shadow: inset 3px 0 #b99a60; }
+.debt-option:focus-visible, .tier:focus-visible, .init:focus-visible, .deal:focus-visible { filter: brightness(1.08); }
 .fa-item:disabled .fa-cost { color: #91a298; }
 .info-panel, .readable-card { box-shadow: 0 12px 36px #14292040; }
 .info-head { border-color: #c6cebd; padding-bottom: .35em; }
@@ -693,8 +685,9 @@ body.vn-active .tutorial-on .map.tut-highlight, .tutorial-on .map.tut-highlight 
 .vote-result.result-failed { color: #8a2e1e; }
 .vote-spend.over, .budget-total.over { color: #8a2e1e; }
 .np-wrap { overflow: hidden; }
-.np-app:focus-visible, .np-tab:focus-visible { outline-color: #d1b783; z-index: 1; }
-.np-post:focus-within { border-color: #79927e; box-shadow: 0 0 0 2px #79927e35; }
+.np-app:focus-visible, .np-tab:focus-visible { outline: none; z-index: 1; }
+.np-tab:focus-visible { border-bottom-color: #217a9d; color: #1f586f; }
+.np-post:focus-within { background: #eef3f3; box-shadow: none; }
 @media (max-width: 600px) {
   .top-left { top: 8px; left: 8px; gap: 4px; }
   .ui-layer .top-left .btn.ghost { min-height: 34px; padding: .42em .7em; font-size: .73em; }
@@ -855,7 +848,7 @@ body.vn-active .tutorial-on .map.tut-highlight, .tutorial-on .map.tut-highlight 
 .np-report-document h1 { margin: .2em 0; color: #173f35; font: 500 clamp(1.6rem,4vw,2.2rem) 'Source Serif 4', Georgia, serif; }
 .np-report-from { margin: .6rem 0 1.6rem; color: #667468; font: 11px var(--ui-sans); }
 .np-report-text { color: #303d32; white-space: pre-wrap; font: 13px/1.75 'Source Serif 4', Georgia, serif; }
-.np-wrap :focus-visible { outline: 2px solid #c7a85f; outline-offset: 2px; }
+.np-wrap :focus-visible { outline: none; }
 @media (max-width: 720px) {
   .np-wrap { width: 100vw; height: 100dvh; max-height: 100dvh; padding: 12px 9px 9px; border: 0; border-radius: 0; }
   .np-wrap::before, .np-camera { display: none; }
@@ -974,7 +967,7 @@ body.vn-active .tutorial-on .map.tut-highlight, .tutorial-on .map.tut-highlight 
 .np-empty-state { color: #748187; }
 .np-empty-state h2 { color: #34464d; }
 .np-empty-state p { color: #718087; }
-.np-wrap :focus-visible { outline: 2px solid #4c9ab0; outline-offset: 2px; }
+.np-wrap :focus-visible { outline: none; }
 .menu-buttons { gap: 0; }
 .menu-option { display: grid; grid-template-columns: 36px minmax(0,1fr) 18px; align-items: center; gap: 11px; width: 100%; min-height: 62px; padding: .55rem .35rem; border: 0; border-bottom: 1px solid #d7dddc; background: transparent; color: #28363a; text-align: left; cursor: pointer; }
 .menu-option:hover { background: #e7ece8; box-shadow: inset 3px 0 #b99a60; }
@@ -987,6 +980,17 @@ body.vn-active .tutorial-on .map.tut-highlight, .tutorial-on .map.tut-highlight 
 .menu-option-quit .menu-option-copy strong { color: #86453b; }
 .menu-section-label { margin: .45rem .35rem .3rem; }
 .menu-section-secondary { margin-top: .8rem; padding-top: .6rem; }
+
+/* Focus remains visible through shape and surface changes, without an outside box. */
+.np-wrap :focus-visible { outline: none; }
+button:focus-visible { filter: brightness(1.08); }
+:where(input, select):focus-visible { outline: none; border-color: #b99a60; }
+.menu-option:focus-visible { background: #e7ece8; box-shadow: inset 3px 0 #b99a60; }
+.np-app-icon-button:focus-visible .np-app-icon { filter: brightness(1.14) drop-shadow(0 0 7px #ffffff88); }
+.np-home-back:focus-visible, .np-close:focus-visible { background: #444b50; color: #fff; }
+.np-tab:focus-visible { border-bottom-color: #217a9d; color: #1f586f; }
+.np-post-open:focus-visible, .np-return:focus-visible { text-decoration: underline; text-underline-offset: 3px; }
+.np-report-row:focus-visible, .np-report-teaser:focus-visible, .np-launch:focus-visible { background: #eef3f3; box-shadow: inset 3px 0 #b99a60; }
 @media (max-width: 720px) {
   .np-wrap { width: 100vw; height: 100dvh; max-height: 100dvh; padding: 15px 7px 8px; border: 0; border-radius: 0; }
   .np-wrap::before, .np-camera { display: none; }
