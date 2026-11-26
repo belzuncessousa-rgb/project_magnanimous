@@ -34,6 +34,8 @@ Salgado notices you looking at it.
    ↳ > **Renata Salgado:** "And you usually brought it back. Eventually."
 3. **"Shall we begin?"**
 
+## take-seat
+
 She takes a seat.
 
 ## programme
@@ -126,6 +128,8 @@ She leaves the envelope where it is.
    ↳ > **Renata Salgado:** "I don't know. Whoever sent this may have sent copies elsewhere."
 3. **"I see."**
 
+## assessment
+
 > **Renata Salgado:** "I intend to have it assessed. There is no reason to announce anything publicly before we know whether the information is credible."
 
 ## envelope-choice
@@ -198,6 +202,8 @@ She takes a breath.
    ↳ > **Rosa Delmar:** "We were told he had left the country. His passport was in my mother's drawer."
 3. **Let her continue.**
 
+## petition-request
+
 > **Rosa Delmar:** "I understand that you cannot make a decision about the archives in this room. I would like to know whether you are prepared to acknowledge what we are asking."
 
 ## delmar-response
@@ -213,6 +219,8 @@ She takes a breath.
 4. **"I can't commit to reopening the question."**
    ↳ Mrs. Delmar lowers her eyes to the petition.
    ↳ > **Rosa Delmar:** "Then I hope you will at least keep this."
+
+## receive-petition
 
 Salgado takes the bundle and promises to acknowledge its receipt formally.
 
