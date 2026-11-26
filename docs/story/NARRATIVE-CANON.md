@@ -1,6 +1,6 @@
 # Narrative canon — author design sessions
 
-Last consolidated: 2026-11-25. Sessions 01–46. Maintained as author interviews continue.
+Last consolidated: 2026-11-25. Sessions 01–47. Maintained as author interviews continue.
 
 ## Authority and workflow
 
@@ -209,9 +209,17 @@ Author explicitly intends to keep Lara as a woman and raised a commercial concer
 
 Confirmed: Lara and Mertens have an established professional relationship from her Senate years, with potential respect and subsequent friendship, partnership, mutual contempt or purely transactional cooperation. Mertens is an exceptionally gifted political operator, possibly a genius at reading people, institutions, incentives and negotiating agreements. His passion is politics itself, not governing or improving people's lives. He enjoys power, political machinery and the intellectual/social challenge of making it operate. No particular presidential ambitions, consistent with OPP identity. He is not especially hardworking: dislikes administrative labour, can appear unremarkable, relaxed or disengaged, but occasionally displays startling brilliance when an interesting challenge arises or he is delegated a negotiation. Author's reference to an unimpressive old master is a characterization analogy, not a requirement that he be elderly or alcoholic. Show competence through earned outcomes and specific conversations rather than constant exposition or omniscience. Working voice: understated, dry, occasionally irreverent, not a caricature. His selective motivation and indifference to policy outcomes contrast with Amanda's conscientiousness and genuine public-service motivation. He can respect an ideological Lara without sharing her convictions; relationship development is conditional. No predetermined betrayal, presidential plotting or guaranteed success. Exact biography, appearance, hobbies and dialogue details delegated/provisional.
 
-## Next design discussion (47)
+## 47 — Livia Harvan and character scope
 
-Livia Harvan as Chief of Staff: distinguish her professional role, personality and relationship to Mertens and OPP leadership. Review existing GDD before asking. Then focus on key cabinet relationships and representative scene writing rather than exhaustively interviewing every character.
+Confirmed: Livia is a disciplined, hardworking, meticulous administrator with professional pride, associated with the influential Harvan family and OPP. She aspires to build her own political reputation and potentially lead the OPP. Distinguish her from Amanda's public-service motivation and Mertens's passion for political machinery. Proposed relationship drivers: Livia appreciates effective administration, meaningful delegated responsibility, recognition and honoured commitments; dislikes disorganization, being bypassed or undermined, loss of credit and threats to OPP interests. Existing OPP redlines remain relevant; exact character-specific responses and biography are delegated, not locked.
+
+Author clarification on Mertens: intransigent, strictly by-the-book Lara who repeatedly refuses his proposed concessions or less-than-clean negotiations can alienate him. He appreciates political ingenuity and flexibility. Do not equate honesty alone with incompetence or automatically penalize a principled president who finds workable alternatives. Amanda, Mertens and Livia have distinct motivations and relationship opportunities; these need not be additional mechanical indices.
+
+Author scope constraint: the three central advisers justify deeper agendas, personality and branching relationships because of their importance across the story. Do not give every cabinet member equally elaborate personal arcs or replacement options. Some ministers should simply perform their jobs throughout the term, with distinct voices, professional convictions and advice. Working editorial hierarchy: central recurring relationships; major supporting figures with particular arc involvement; professional supporting figures with characterization but limited independent plot. Prioritize memorable personalities over a proliferation of secret agendas, resignations and endings. Assistant may independently develop details and choose which other figures merit major arcs based on narrative function.
+
+## Next design discussion (48)
+
+Resolve the most consequential remaining cabinet relationship: the role of Renata Salgado in the corruption and justice storylines, including her prior professional connection to Lara. Then delegate the rest of the ordinary cabinet characterization and move toward political gameplay and representative writing. Maintain scope discipline and one focused question at a time.
 
 ## Implementation backlog (not yet changes)
 
