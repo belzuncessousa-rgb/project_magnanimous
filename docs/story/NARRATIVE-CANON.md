@@ -1,6 +1,6 @@
 # Narrative canon — author design sessions
 
-Last consolidated: 2026-11-25. Sessions 01–45. Maintained as author interviews continue.
+Last consolidated: 2026-11-25. Sessions 01–46. Maintained as author interviews continue.
 
 ## Authority and workflow
 
@@ -205,9 +205,13 @@ Confirmed: Amanda's friendship and professional loyalty are distinct. She may re
 
 Author explicitly intends to keep Lara as a woman and raised a commercial concern about the number of women in powerful roles in a potentially male-skewed political strategy audience. Editorial decision: retain the current cabinet roster (four women/four men, female president and male VP), not change genders based on speculative audience backlash. Existing two presidential rivals are men. Write characters as varied individuals, capable of competence, mistakes, ambition, corruption, kindness or cruelty regardless of gender; avoid ideological sermonizing or making Lara's gender her defining characteristic. This does not preclude relevant in-world gender politics. Audience-specific commercial impact is unverified; general gamer surveys are not a sales forecast for this niche. No changes to character JSON or scenes.
 
-## Next design discussion (46)
+## 46 — Caio Mertens
 
-Develop Caio Mertens's relationship with Lara and the OPP. Preserve the predetermined coalition and his lack of presidential ambitions; clarify the personal/professional relationship at inauguration. Then prioritize representative character scenes and political gameplay design.
+Confirmed: Lara and Mertens have an established professional relationship from her Senate years, with potential respect and subsequent friendship, partnership, mutual contempt or purely transactional cooperation. Mertens is an exceptionally gifted political operator, possibly a genius at reading people, institutions, incentives and negotiating agreements. His passion is politics itself, not governing or improving people's lives. He enjoys power, political machinery and the intellectual/social challenge of making it operate. No particular presidential ambitions, consistent with OPP identity. He is not especially hardworking: dislikes administrative labour, can appear unremarkable, relaxed or disengaged, but occasionally displays startling brilliance when an interesting challenge arises or he is delegated a negotiation. Author's reference to an unimpressive old master is a characterization analogy, not a requirement that he be elderly or alcoholic. Show competence through earned outcomes and specific conversations rather than constant exposition or omniscience. Working voice: understated, dry, occasionally irreverent, not a caricature. His selective motivation and indifference to policy outcomes contrast with Amanda's conscientiousness and genuine public-service motivation. He can respect an ideological Lara without sharing her convictions; relationship development is conditional. No predetermined betrayal, presidential plotting or guaranteed success. Exact biography, appearance, hobbies and dialogue details delegated/provisional.
+
+## Next design discussion (47)
+
+Livia Harvan as Chief of Staff: distinguish her professional role, personality and relationship to Mertens and OPP leadership. Review existing GDD before asking. Then focus on key cabinet relationships and representative scene writing rather than exhaustively interviewing every character.
 
 ## Implementation backlog (not yet changes)
 
