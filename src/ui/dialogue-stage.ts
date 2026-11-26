@@ -65,3 +65,10 @@ export function resolveDialogueStage(meta: Pick<SceneMeta, 'id' | 'background' |
   return { background, label: room.label, pose: room.pose, cast: cast.slice(0, room.slots),
     showEnvironment: !!background && meta.id !== 'p1-tutorial' };
 }
+
+/** Pose directions from the production scenes, independent of dialogue and effects. */
+export function dialoguePortraitPose(sceneId: string, beat: string | undefined, actorId: string | undefined, fallback: DialoguePose): DialoguePose {
+  if (sceneId === 'p1-great-project' && beat === 'opening' && actorId === 'livia') return 'standing';
+  if (sceneId === 'p2-sadrah' && beat === 'arrival' && actorId === 'sadrah') return 'standing';
+  return fallback;
+}

@@ -460,7 +460,7 @@ body.vn-active .tutorial-on .map.tut-highlight, .tutorial-on .map.tut-highlight 
 .vn .portrait-frame figcaption { font: 500 .65em var(--ui-sans); letter-spacing: .04em; }
 .vn .portrait-frame.has-master { max-width: none; width: 33vw; }
 .vn .has-master .silhouette { height: 78vh; }
-.vn[data-pose="standing"] .has-master .silhouette { height: 88vh; }
+.vn .portrait[data-pose="standing"] .has-master .silhouette { height: 88vh; }
 .vn[data-room="residence-night"] .has-master .silhouette { height: 74vh; }
 .vn .portrait-left .has-master { transform: translateX(-1.5vw); }
 .vn .portrait-right .has-master { transform: translateX(1.5vw); }
@@ -511,7 +511,7 @@ body.vn-active .tutorial-on .map.tut-highlight, .tutorial-on .map.tut-highlight 
 .vn .portrait-frame.has-master { width: min(30vw, 82vh); max-width: 100%; transform: none; }
 .vn .has-master .silhouette { height: 82vh; }
 .vn .portrait-left .has-master, .vn .portrait-right .has-master { transform: none; }
-.vn[data-pose="standing"] .has-master .silhouette { height: 88vh; }
+.vn .portrait[data-pose="standing"] .has-master .silhouette { height: 88vh; }
 .vn[data-room="residence-night"] .has-master .silhouette { height: 80vh; }
 .vn .has-master figcaption { display: none; }
 

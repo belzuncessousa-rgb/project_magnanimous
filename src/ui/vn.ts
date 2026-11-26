@@ -5,7 +5,7 @@ import type { ChoiceOption, SceneRunner } from '../scene/runner';
 import type { Prose } from '../scene/types';
 import { clear, h, initials, inlineMd, wait } from './dom';
 import { costText } from './format';
-import { resolveDialogueStage } from './dialogue-stage';
+import { dialoguePortraitPose, resolveDialogueStage, type DialoguePose } from './dialogue-stage';
 
 export interface VNHooks {
   /** `[open: …]` / `[vote: …]` tokens: show the screen, resolve when done */
@@ -44,7 +44,6 @@ export class VNView {
   private titleEl: HTMLElement;
   private advanceResolve: (() => void) | null = null;
   private cast: Who[] = [];
-  private pose: 'seated' | 'standing' = 'standing';
   private background: HTMLElement;
   private roomLabel: HTMLElement;
   private latest: HTMLButtonElement;
@@ -123,10 +122,11 @@ export class VNView {
     return { id, name: a?.name ?? name, portrait: a?.portrait ?? id };
   }
 
-  private renderPortrait(slot: HTMLElement, who: Who | null) {
-    const key = who ? [who.id ?? who.name, who.portrait, this.pose].join('/') : '';
+  private renderPortrait(slot: HTMLElement, who: Who | null, pose: DialoguePose) {
+    const key = who ? [who.id ?? who.name, who.portrait, pose].join('/') : '';
     if (slot.dataset.who === key) return;
     slot.dataset.who = key;
+    slot.dataset.pose = pose;
     clear(slot);
     if (!who) return;
     const fig = h('figure', { class: 'portrait-frame' },
@@ -134,7 +134,7 @@ export class VNView {
       h('figcaption', {}, who.name));
     if (who.portrait) {
       const img = h('img', { alt: '' });
-      const stem = who.portrait + '-' + this.pose;
+      const stem = who.portrait + '-' + pose;
       const facing = slot === this.right ? rightFacing[stem] : undefined;
       if (slot === this.right && !facing) img.classList.add('mirror-inward');
       let legacy = false;
@@ -151,7 +151,6 @@ export class VNView {
 
   private stage(runner: SceneRunner) {
     const st = resolveDialogueStage(runner.scene.meta, this.opts.playerId, runner.currentBeat);
-    this.pose = st.pose;
     this.cast = st.cast.map(x => this.who(x));
     this.el.dataset.room = st.background;
     this.el.dataset.pose = st.pose;
@@ -159,8 +158,12 @@ export class VNView {
     this.roomLabel.hidden = !st.label || st.label.toLowerCase() === this.titleEl.textContent?.toLowerCase();
     this.topbar.hidden = runner.scene.id === 'p1-tutorial';
     this.topbar.querySelector('.vn-date')!.textContent = this.state().dateLabel;
-    this.renderPortrait(this.left, this.cast[0] ?? null);
-    this.renderPortrait(this.right, this.cast[1] ?? null);
+    const slots = [this.left, this.right];
+    slots.forEach((slot, index) => {
+      const person = this.cast[index];
+      const pose = dialoguePortraitPose(runner.scene.id, runner.currentBeat, person?.id, st.pose);
+      this.renderPortrait(slot, person ?? null, pose);
+    });
     const environment = st.showEnvironment ? st.background : '';
     if (this.background.dataset.environment === environment) return;
     this.background.dataset.environment = environment;

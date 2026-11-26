@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { resolveDialogueStage } from '../src/ui/dialogue-stage';
+import { dialoguePortraitPose, resolveDialogueStage } from '../src/ui/dialogue-stage';
 
 describe('dialogue staging', () => {
   it('reserves cabinet seats and leaves overflow to the transcript', () => {
@@ -27,6 +27,11 @@ describe('dialogue staging', () => {
     expect(resolveDialogueStage(scene, 'lara', 'telephone')).toMatchObject({ background: 'residence-night', cast: [] });
     expect(resolveDialogueStage(scene, 'lara', 'late-evening')).toMatchObject({ background: 'residence-study', cast: [] });
     expect(resolveDialogueStage(scene, 'lara', 'phone').cast).toEqual(['amanda']);
+  });
+  it('supports a standing guest in a seated room without changing other slots', () => {
+    expect(dialoguePortraitPose('p1-great-project', 'opening', 'livia', 'seated')).toBe('standing');
+    expect(dialoguePortraitPose('p1-great-project', 'opening', 'fontes', 'seated')).toBe('seated');
+    expect(dialoguePortraitPose('p1-great-project', 'counsel', 'livia', 'seated')).toBe('seated');
   });
 
 });

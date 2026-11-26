@@ -193,7 +193,7 @@ export class App {
   private openCodex() {
     const game = this.game;
     if (!game || this.busy) return;
-    const ids = new Set(game.state.completedScenes.flatMap(id => game.scene(id)?.meta.portraits ?? []));
+    const ids = new Set(['lara', ...game.state.completedScenes.flatMap(id => game.scene(id)?.meta.portraits ?? [])]);
     const people = Object.values(game.state.actors).filter(actor => actor.kind === 'character' && ids.has(actor.id));
     showCodex(this.root, people);
   }
