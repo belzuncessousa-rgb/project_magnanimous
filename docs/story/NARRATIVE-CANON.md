@@ -1,6 +1,6 @@
 # Narrative canon — author design sessions
 
-Last consolidated: 2026-11-25. Sessions 01–56. Maintained as author interviews continue.
+Last consolidated: 2026-11-25. Sessions 01–57. Maintained as author interviews continue.
 
 ## Authority and workflow
 
@@ -265,9 +265,15 @@ Updated [STYLE-GUIDE.md](STYLE-GUIDE.md) with these rules. Second calibration sa
 
 Author approves the natural and distinct voices of Mertens and Livia in sample 02, but finds narration/reactions somewhat sterile and the conversation too dry. Confirmed writing rules: enrich observable facial expressions, posture, tone, hesitation and atmosphere without mind-reading or forced Lara feelings; NPCs may respond to each other rather than exclusively answering Lara; optional conversation topics can be visited in any order, disappear after use, and allow proceeding directly to the decision. Some topics open nested follow-up questions or expressive choices (comments, humour, silence, acknowledgment) before returning to their parent menu; these need not affect mechanics. Important scenes like this may merit roughly 50–100% more optional interaction than initial sample 02; not a global quota. Include meaningful conditional callbacks to previous actions/commitments, prefer brief variations over excessive duplication. Update STYLE-GUIDE.md and revise [sample 02](calibration/02-counting-votes-sample.md) accordingly. Revised sample remains provisional; appointment details and parser integration untested; no playable scenes changed.
 
-## Next design discussion (57)
+## 57 — Approved negotiation style and layered reactivity
 
-Review revised negotiation excerpt for reaction/interaction density, then calibrate a personal scene (Amanda or family) and begin full scene production. Avoid further exhaustive questions if the revised style is accepted.
+Author approves revised sample 02's overall writing, amount of description and character personality. Specific qualifications follow-up felt awkward when returning to the hub; no rewrite requested, but use natural conversational closure and avoid implying Lara has accepted an agreement from informational questions. Author explicitly emphasizes conditional player dialogue and substantive decision availability in addition to conditional NPC responses, based on prior choices/flags/thresholds; later scenes should increasingly diverge, including completely different scenes or absent encounters. Preserve this as a core design priority, subject to scope discipline and tested continuity. Four working reactivity levels: dialogue, player responses, decisions, scene availability/variants. Updated style guide accordingly.
+
+Third calibration excerpt: [03-first-night-sample.md](calibration/03-first-night-sample.md), a private first-night conversation with Amanda, including low-stakes exchanges, shared history, optional interest in Amanda's own experience and conditionally distinct political dialogue/options. Minor backstory and staging details are provisional; no engine-ready effects or scene changes. The existing forced inner voice and assumptions in p1-first-night require review during implementation.
+
+## Next design discussion (58)
+
+Review Amanda personal-scene sample, then plan full-scene production and mechanical reconciliation if calibration is sufficient. Prioritize a playable vertical slice and author review of representative scenes rather than requiring review of every scene.
 
 ## Implementation backlog (not yet changes)
 
