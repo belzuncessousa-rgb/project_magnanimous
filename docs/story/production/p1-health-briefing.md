@@ -55,6 +55,8 @@ The boy looks at the unfamiliar people surrounding him and presses his face agai
 3. **Let Dara finish speaking to her.**
    ↳ He exchanges a few more words with her and then rejoins you.
 
+## ward
+
 The director leads you through a recently renovated ward. Across a courtyard, you can see a much older building with several windows boarded up.
 
 > **Director:** "That's where we used to have the pediatric outpatient department. We've moved the service into another wing until the building can be repaired."
@@ -152,6 +154,8 @@ Dara takes another sheet out of his folder.
 1. **"How much warning will we have if it worsens?"**
    ↳ > **Owin Dara:** "We are collecting reports on reservoirs, food prices and admissions to clinics. I would prefer to act on those reports before we start seeing serious shortages."
 2. **"Keep me informed."**
+
+## leaving-office
 
 He gathers his papers.
 
