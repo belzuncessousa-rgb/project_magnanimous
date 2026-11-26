@@ -1,6 +1,6 @@
 # Narrative canon — author design sessions
 
-Last consolidated: 2026-11-25. Sessions 01–54. Maintained as author interviews continue.
+Last consolidated: 2026-11-25. Sessions 01–55. Maintained as author interviews continue.
 
 ## Authority and workflow
 
@@ -255,9 +255,15 @@ Reviewed the [Notion original](https://app.notion.com/p/37310ad0215880938db8e97f
 
 First calibration sample: [01-inauguration-sample.md](calibration/01-inauguration-sample.md). Opening, Mertens encounter, greeting and illustrative ECON topic only; not a complete scene or engine-ready. Await author feedback before adopting voice and completing branches. New palace staging, timing detail, dialogue, and sample economic pledges are provisional and may be edited. No gameplay changes.
 
-## Next design discussion (55)
+## 55 — First sample approved; choice labels and effect visibility
 
-Review author's response to calibration sample; refine tone, dialogue, options and narration before writing the remaining address and a representative cabinet negotiation/personal scene. Use feedback to establish reusable writing rules.
+Author approves the tone, narration and dialogue of [sample 01](calibration/01-inauguration-sample.md) without prose changes. Author explicitly requests concise, clear choice labels, especially for extended Lara speeches: use the beginning of a line or short representative statement, lengthen only when required for clarity. The full accompanying response must be consistent with the chosen intent; do not sneak in an unexpected ideology, action or material commitment. Some choices are conversation only, some set flags (especially public promises), some move the hidden compass, some may affect non-financial resources, and effects can overlap. Keep compass hidden until term-end. Author is considering resource-effect tooltips; assistant recommends explicit predictable costs visible after tutorial, possible tooltips for predictable gains, hidden opinion/compass and long-term consequences, clear wording of public commitments. Journal and tooltip mechanics remain proposals. No unspoken thought directly changes external outcomes.
+
+Updated [STYLE-GUIDE.md](STYLE-GUIDE.md) with these rules. Second calibration sample [02-counting-votes-sample.md](calibration/02-counting-votes-sample.md) adapts the existing p1-panorama port appointment request into an optional-question and decision exchange with Mertens and Livia. It tests multi-character dialogue, informational follow-ups and clear actionable choices. Appointment details and branch effects are provisional; no playable scene changed. Distinguish legitimate party appointments from actual corruption; finalize with broader political mechanics. No compulsory resource costs before tutorial.
+
+## Next design discussion (56)
+
+Get focused feedback on the negotiation excerpt, especially whether the characters sound distinct and the optional questions feel natural. Then calibrate a private/personal scene and proceed toward complete scene rewrites and mechanical reconciliation.
 
 ## Implementation backlog (not yet changes)
 
