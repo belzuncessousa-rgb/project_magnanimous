@@ -1,6 +1,6 @@
 # Narrative canon — author design sessions
 
-Last consolidated: 2026-11-25. Sessions 01–50. Maintained as author interviews continue.
+Last consolidated: 2026-11-25. Sessions 01–51. Maintained as author interviews continue.
 
 ## Authority and workflow
 
@@ -231,9 +231,15 @@ Author is open to removing IPI/EPI if they lack a distinct gameplay purpose. Ori
 
 Confirmed: free actions are a distinctive core feature, with a substantial set of standing repeatable options competing for scarce resources. Author suggests roughly three options per resource as a starting point, not a fixed quota. Some actions can consume multiple resources, public budget or Lara's personal wealth. Also include seasonal actions during ongoing projects/processes, circumstantial actions triggered by current conditions, and unique one-time opportunities. Example: personally review Great Project paperwork/progress to modestly improve its eventual return or execution. Individual effects should generally be small but cumulative, enabling players with similar major decisions to develop different priorities and outcomes. Favor short resolutions and existing indices/flags; occasional conditional conversations or discoveries are desirable, not a bespoke scene for every use. Avoid repetitive mandatory optimization or making free actions overwhelm major narrative decisions. Proposed examples include regional visits, administrative review, political meetings, small legislative initiatives, coordination with regional authorities, cultural diplomacy, trade missions and personal charity. These are illustrative, not a finalized catalogue. Existing [Resources GDD](https://app.notion.com/p/36b10ad0215880ccb306e4ca3499e429) carryover: PT 0%, FC 100%, IPI and EPI 50% each; retain provisionally pending balancing. Personal wealth distinct from FC. UI, action costs, frequencies, effects, diminishing returns, and turn granularity remain TBD.
 
-## Next design discussion (51)
+## 51 — Chapter cadence and resource generation (working proposal)
 
-Clarify narrative pacing and turn architecture using the existing chapter schedule and scenes GDD. Prioritize how mandatory narrative events, optional encounters and repeatable free actions coexist, before drafting representative scenes. No expansion of turn count yet.
+Author's original preference: six chapters, three turns per chapter, with approximately proportional chapter durations and resource generation at chapter rather than turn granularity. Author is uncertain about dates and requests editorial guidance; not yet a locked schedule. Working recommendation: 6 chapters × 3 turns = 18 turns across the four-year first term; approximately eight months per chapter, with narrative flexibility around inauguration/election. Illustrative cadence: Ch1 Jan–Aug Y1; Ch2 Sep Y1–Apr Y2; Ch3 May–Dec Y2; Ch4 Jan–Aug Y3; Ch5 Sep Y3–Apr Y4; Ch6 May–Dec Y4. Chapters define ordinary resource generation and carryover; turns expose narrative events, decisions and free actions drawing on chapter resources, without automatic turn replenishment. Consequences may resolve during turns, and one-off resource effects may still occur. Rebalance resource quantities and simulation tick cadence; longer-term developments should respect plausible elapsed time. Retain calendar in fiction (elections, anniversaries, construction, festivals etc.), use approximate dates in main interface and precise dates where relevant. No final dates or schedule implementation approved.
+
+Current prototype content/chapters.json covers Y1 in nine turns over three chapters, and older Notion P5/P6 assumed a second term. Both require reconciliation with the first-term-only scope and proposed 18-turn framework; do not simply extend the existing prototype cadence, delete scenes or assume old chapter titles/arcs retain their placement. If the six-chapter structure is accepted, redistribute existing scenes by dramatic function, allow opening turn to be dense and later arcs to breathe, and retain final chapter for reelection/transition. Test actual scene and free-action pacing before fixing count; 30-hour ambition remains unvalidated.
+
+## Next design discussion (52)
+
+Confirm the six-chapter framework and chapter-level resource generation, then resolve the ordering of the first term's major story arcs and prepare a provisional narrative timeline for calibration scenes. No code changes.
 
 ## Implementation backlog (not yet changes)
 
