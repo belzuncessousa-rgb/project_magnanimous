@@ -152,6 +152,8 @@ Lessa gathers her papers.
 2. **"Say that we've discussed representation. Leave my position private for now."**
    ↳ > **Augusta Lessa:** "Very well."
 
+## departure
+
 She thanks you and leaves.
 
 ## livia
