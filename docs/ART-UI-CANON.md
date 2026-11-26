@@ -18,3 +18,10 @@ Livia: approved wavy dark hair, silver streaks, freckles, tailored green jacket,
 
 ## Asset contract and limitations
 Backgrounds: public/backgrounds/<background-id>.webp. Character masters: public/portraits/<portrait-id>-seated.png or -standing.png, legacy <portrait-id>.png fallback. Art assets not yet installed; renderer falls back to map and initials. Initial room presets support one/two fixed slots; slot-specific geometry, close foreground chair artwork/occlusion masks, codex crop metadata and per-beat pose/background transitions still needed. Current renderer uses existing per-prose pauses, including consecutive speech. Verify TypeScript build, UI hooks, keyboard numbers (including disabled choices), scrolling, reduced motion, choice histories, portrait overflow and real 16:9 asset placement before declaring finished. No changes to scene files or runner.
+
+## Implementation batch 2
+- Scene staging presets extracted into a testable presentation-only module. Location label, date, compact national header and explicit return-to-latest added to dialogue. Existing runner pauses still retained pending safe same-speaker grouping.
+- Added scalable interpretations of the approved flag/arms/standard in public/identity; exact decorative heraldic treatment may be refined against the reference. Font families requested via the existing Google Fonts stylesheet, with local fallback; offline packaging and OFL notices remain outstanding.
+- Existing news edition now has a modern foreground tablet frame, outlet tabs and digital reading typography. No new social feed content or mechanics invented.
+- Existing budget/debt screens get official letterhead and institutional material styling; vote remains a clean analytic panel. Their current mechanical semantics are unchanged and will need later reconciliation with the narrative redesign.
+- Mertens paired pose art generated and alpha checked. Livia and Mertens binaries and office background are packaged separately; direct installation of these binary files is pending. Other generation outputs were composite concept boards, not independently usable assets. No additional character identities approved.

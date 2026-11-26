@@ -5,6 +5,7 @@ import type { ChoiceOption, SceneRunner } from '../scene/runner';
 import type { Prose } from '../scene/types';
 import { clear, h, initials, inlineMd, wait } from './dom';
 import { costText } from './format';
+import { resolveDialogueStage } from './dialogue-stage';
 
 export interface VNHooks {
   /** `[open: …]` / `[vote: …]` tokens: show the screen, resolve when done */
@@ -42,6 +43,9 @@ export class VNView {
   private cast: Who[] = [];
   private pose: 'seated' | 'standing' = 'standing';
   private background: HTMLElement;
+  private roomLabel: HTMLElement;
+  private latest: HTMLButtonElement;
+  private topbar: HTMLElement;
   private followLog = true;
   private finishReveal: (() => void) | null = null;
 
@@ -56,21 +60,26 @@ export class VNView {
     this.left = h('div', { class: 'portrait portrait-left' });
     this.right = h('div', { class: 'portrait portrait-right' });
     this.background = h('div', { class: 'vn-background', 'aria-hidden': 'true' });
+    this.roomLabel = h('div', { class: 'vn-room-label' });
+    this.latest = h('button', { class: 'vn-latest', hidden: true, onclick: () => { this.followLog = true; this.latest.hidden = true; this.scrollToEnd(); } }, 'Return to latest ↓');
+    this.topbar = h('div', { class: 'vn-topbar' }, h('span', { class: 'vn-wordmark' }, h('img', { src: 'identity/kunasai-mark.svg', alt: '' }), 'KUNASAI'), h('span', { class: 'vn-date' }));
     this.log.append(this.choices);
     this.log.tabIndex = 0;
-    const column = h('div', { class: 'vn-column paper' }, this.titleEl, this.log);
-    this.el = h('div', { class: 'vn', hidden: true }, this.background, this.left, column, this.right);
+    const column = h('div', { class: 'vn-column paper' }, this.roomLabel, this.titleEl, this.latest, this.log);
+    this.el = h('div', { class: 'vn', hidden: true }, this.background, this.topbar, this.left, column, this.right);
     this.log.addEventListener('scroll', () => {
       this.followLog = this.log.scrollHeight - this.log.clientHeight - this.log.scrollTop < 48;
+      this.latest.hidden = this.followLog;
     }, { passive: true });
     // the choice list grows/shrinks below the log: keep the newest block in view
     if (typeof ResizeObserver !== 'undefined') new ResizeObserver(() => this.scrollToEnd()).observe(this.log);
     column.addEventListener('click', (ev) => {
-      if ((ev.target as Element).closest('button')) return;
+      if ((ev.target as Element).closest('button') || window.getSelection()?.toString()) return;
       this.advance();
     });
     window.addEventListener('keydown', (ev) => {
       if (this.el.hidden || ev.repeat || ev.ctrlKey || ev.altKey || ev.metaKey) return;
+      if (document.querySelector('.screen-overlay.open, .modal.open, .newspaper.open')) return;
       if ((ev.target as Element | null)?.closest('input, textarea, select, [contenteditable=true]')) return;
       if (ev.key === ' ' || ev.key === 'Enter') {
         if (this.advanceResolve || this.finishReveal) {
@@ -145,29 +154,25 @@ export class VNView {
   }
 
   private stage(runner: SceneRunner) {
-    const id = runner.scene.meta.background ?? '';
-    const rooms = new Set(['blue-room', 'blue-room-night', 'vp-office', 'president-office',
-      'residence-night', 'treasury-office', 'justice-office', 'congress-office',
-      'intelligence-office', 'tamarin-kitchen', 'congress-gallery']);
-    const two = new Set(['blue-room', 'blue-room-night', 'vp-office', 'president-office',
-      'planning-model-room', 'treasury-office', 'tamarin-kitchen', 'congress-gallery']);
-    this.pose = rooms.has(id) ? 'seated' : 'standing';
-    let ids = runner.scene.meta.portraits.filter(x => x !== this.opts.playerId);
-    // A phone participant is not physically seated in the residence.
-    if (runner.scene.id === 'p1-first-night') ids = ids.filter(x => x === 'amanda');
-    // The production draft seats Livia to Lara's left and Mertens to her right.
-    this.cast = ids.slice(0, two.has(id) ? 2 : 1).map(x => this.who(x));
+    const st = resolveDialogueStage(runner.scene.meta, this.opts.playerId);
+    this.pose = st.pose;
+    this.cast = st.cast.map(x => this.who(x));
+    this.el.dataset.room = st.background;
+    this.el.dataset.pose = st.pose;
+    this.roomLabel.textContent = st.label;
+    this.roomLabel.hidden = !st.label;
+    this.topbar.hidden = runner.scene.id === 'p1-tutorial';
+    this.topbar.querySelector('.vn-date')!.textContent = this.state().dateLabel;
     clear(this.background);
     this.el.classList.remove('has-environment');
-    // The tutorial needs the existing map and its highlighted controls visible.
-    if (id && runner.scene.id !== 'p1-tutorial' && /^[a-z0-9-]+$/.test(id)) {
+    if (st.showEnvironment) {
       const bg = h('img', { alt: '' });
       bg.addEventListener('load', () => {
         if (bg.parentElement === this.background) this.el.classList.add('has-environment');
       });
       bg.addEventListener('error', () => bg.remove());
       this.background.append(bg);
-      bg.src = `backgrounds/${id}.webp`;
+      bg.src = `backgrounds/${st.background}.webp`;
     }
   }
 
@@ -276,6 +281,7 @@ export class VNView {
   async play(runner: SceneRunner, title: string): Promise<string | undefined> {
     clear(this.log);
     this.followLog = true;
+    this.latest.hidden = true;
     this.log.classList.remove('overflow');
     clear(this.choices);
     this.log.append(this.choices);

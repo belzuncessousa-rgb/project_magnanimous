@@ -1,4 +1,4 @@
-// End-of-turn newspaper: one tab per paper that has items this turn.
+// Presidential tablet: digital news outlets from the existing end-of-turn edition.
 import type { Edition } from '../game/game';
 import { clear, h, inlineMd } from './dom';
 
@@ -8,6 +8,7 @@ export function showNewspaper(root: HTMLElement, edition: Edition, footer: strin
     const sheet = h('article', { class: 'np-sheet paper' });
     const overlay = h('div', { class: 'newspaper overlay' },
       h('div', { class: 'np-wrap' },
+        h('div', { class: 'np-device-head' }, h('span', {}, 'Presidential tablet'), h('span', {}, edition.dateLabel)),
         tabs,
         sheet,
         h('div', { class: 'np-footer' },
@@ -17,7 +18,11 @@ export function showNewspaper(root: HTMLElement, edition: Edition, footer: strin
     const render = (i: number) => {
       const p = edition.papers[i];
       if (!p) return;
-      for (const [j, t] of [...tabs.children].entries()) t.classList.toggle('active', j === i);
+      for (const [j, t] of [...tabs.children].entries()) {
+        t.classList.toggle('active', j === i);
+        t.setAttribute('aria-selected', String(j === i));
+      }
+      sheet.scrollTop = 0;
       clear(sheet);
       sheet.className = `np-sheet paper paper-${p.paper.id}`;
       const [lead, ...rest] = p.items;
@@ -44,6 +49,7 @@ export function showNewspaper(root: HTMLElement, edition: Edition, footer: strin
     });
     root.append(overlay);
     render(0);
+    if (!edition.papers.length) sheet.append(h('p', { class: 'np-empty' }, 'No new articles in this edition.'));
     requestAnimationFrame(() => requestAnimationFrame(() => overlay.classList.add('open')));
   });
 }

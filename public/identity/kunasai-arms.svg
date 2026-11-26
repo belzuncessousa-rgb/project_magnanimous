@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 460">
+<defs><clipPath id="shield"><path d="M120 108Q210 119 300 108L296 255Q287 324 210 365Q133 324 124 255Z"/></clipPath>
+<g id="branch" fill="#326554" stroke="#0C4F34" stroke-width="1.5">
+<path d="M174 383Q55 330 53 160Q57 104 86 78" fill="none" stroke="#806638" stroke-width="4"/>
+<path d="M57 162Q14 137 21 109Q62 114 57 162M56 182Q100 136 106 167Q96 192 56 182M60 218Q10 206 10 174Q56 172 60 218M65 230Q104 186 117 215Q110 242 65 230M79 270Q27 273 22 242Q63 229 79 270M84 282Q119 237 132 266Q131 291 84 282M112 321Q65 331 51 302Q91 276 112 321M118 326Q145 285 158 306Q163 334 118 326M155 360Q102 378 92 352Q128 328 155 360M64 127Q52 79 87 57Q104 95 64 127"/>
+</g></defs>
+<use href="#branch"/><use href="#branch" transform="translate(420) scale(-1 1)"/>
+<path d="M210 12L220 43 253 43 226 63 236 95 210 75 184 95 194 63 167 43 200 43Z" fill="#F2B705" stroke="#9d7731" stroke-width="2"/>
+<path d="M120 108Q210 119 300 108L296 255Q287 324 210 365Q133 324 124 255Z" fill="#0C4F34" stroke="#b99a60" stroke-width="10"/>
+<g clip-path="url(#shield)"><circle cx="210" cy="208" r="61" fill="#F2B705"/><path d="M110 243Q165 278 215 239T310 244L310 275Q264 254 216 278T110 275Z" fill="#F5F4EF"/></g>
+<path d="M120 108Q210 119 300 108L296 255Q287 324 210 365Q133 324 124 255Z" fill="none" stroke="#b99a60" stroke-width="5"/>
+<path d="M52 372Q210 411 368 372L350 418Q210 451 70 418Z" fill="#F5F4EF" stroke="#b99a60" stroke-width="3"/>
+<text x="210" y="411" text-anchor="middle" font-family="Georgia,serif" font-size="17" font-weight="bold" fill="#173f35">REPUBLIC OF KUNASAI</text>
+</svg>

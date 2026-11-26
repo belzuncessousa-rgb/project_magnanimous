@@ -83,7 +83,7 @@ export function showBudget(root: HTMLElement, state: GameState, ministries: Mini
       total.classList.toggle('over', fc > free);
     };
     const card = h('div', { class: 'screen-card paper budget' },
-      h('div', { class: 'screen-head' }, h('h2', {}, 'The Budget'), h('div', { class: 'screen-sub' }, 'Set each ministry’s tier. Costs are paid every turn.')),
+      h('div', { class: 'screen-head' }, h('div', { class: 'executive-letterhead' }, h('img', { src: 'identity/kunasai-arms.svg', alt: '' }), h('span', {}, 'Republic of Kunasai · Ministry of the Treasury')), h('h2', {}, 'The Budget'), h('div', { class: 'screen-sub' }, 'Set each ministry’s tier. Costs are paid every turn.')),
       rows,
       h('div', { class: 'screen-foot' }, total, h('button', { class: 'btn primary', onclick: async () => { applyBudget(state, ministries, choices); await close(o); resolve(); } }, 'Sign the budget')));
     render();
@@ -215,6 +215,7 @@ export function showDebt(root: HTMLElement, state: GameState): Promise<void> {
     };
     const card = h('div', { class: 'screen-card paper debt' },
       h('div', { class: 'screen-head' },
+        h('div', { class: 'executive-letterhead' }, h('img', { src: 'identity/kunasai-arms.svg', alt: '' }), h('span', {}, 'Republic of Kunasai · Ministry of the Treasury')),
         h('h2', {}, 'The Debt'),
         h('div', { class: 'screen-sub' }, `Owed to the Fund: ${bn(state.nation.debt ?? 0)} · interest ${(TUNING.debt.interestRatePerTurn * 100).toFixed(0)}% of the balance every turn`)),
       options, control, preview,

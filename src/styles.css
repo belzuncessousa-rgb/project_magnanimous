@@ -446,3 +446,61 @@ body.vn-active .tutorial-on .map.tut-highlight, .tutorial-on .map.tut-highlight 
   .vn .vn-column.paper { margin: 10px 0; max-height: calc(100% - 20px); padding: 1em 1.1em; }
 }
 @media (prefers-reduced-motion: reduce) { .vn, .vn * { animation: none !important; transition: none !important; } }
+
+
+/* Shared institutional direction — presentation only, no resource or rule changes. */
+:root { --ui-emerald: #173f35; --ui-emerald-light: #326554; --ui-brass: #b99a60; --ui-ivory: #f0ebdd; --ui-sans: Inter, Arial, sans-serif; }
+.vn .vn-topbar { position: absolute; inset: 0 0 auto; height: 34px; z-index: 4; display: flex; align-items: center; justify-content: space-between; padding: 0 24px; background: #122820e8; color: #f1eee5; font: 500 12px var(--ui-sans); letter-spacing: .12em; }
+.vn-wordmark { display: flex; align-items: center; gap: 9px; }
+.vn-wordmark img { width: 25px; height: 17px; }
+.vn .vn-column.paper { margin-top: 34px; max-height: calc(100% - 34px); }
+.vn .vn-room-label { color: #62695d; font: 600 .59em var(--ui-sans); text-transform: uppercase; letter-spacing: .15em; text-align: center; margin-bottom: .6em; }
+.vn .vn-title { font-family: 'Source Serif 4', Georgia, serif; font-size: 1.48em; font-weight: 600; letter-spacing: 0; padding-bottom: .55em; }
+.vn-latest { align-self: center; margin: 0 0 .45em; padding: .25em .6em; font: 500 .7em var(--ui-sans); color: #173f35; border: 1px solid #a9b4a4; background: #e4e9de; border-radius: 2px; cursor: pointer; }
+.vn .portrait-frame figcaption { font: 500 .65em var(--ui-sans); letter-spacing: .04em; }
+.vn .portrait-frame.has-master { max-width: none; width: 33vw; }
+.vn .has-master .silhouette { height: 78vh; }
+.vn[data-pose="standing"] .has-master .silhouette { height: 88vh; }
+.vn[data-room="residence-night"] .has-master .silhouette { height: 74vh; }
+.vn .portrait-left .has-master { transform: translateX(-1.5vw); }
+.vn .portrait-right .has-master { transform: translateX(1.5vw); }
+.vn .blk.speech-player .speaker { color: #806638; }
+.vn .choice:focus-visible, .vn-latest:focus-visible, .np-tab:focus-visible { outline: 2px solid #326554; outline-offset: 2px; }
+@media (max-width: 900px) {
+  .vn .vn-column.paper { margin-top: 34px; max-height: calc(100% - 34px); }
+  .vn .vn-topbar { padding: 0 12px; }
+}
+.vn[data-room="president-office"]:not(:has(.vn-topbar[hidden])) .vn-column { padding-top: 1.25em; }
+
+/* Modern tablet frame with individually styled publication websites. */
+.newspaper { background: #0b1c18b8; }
+.np-wrap { width: min(1100px, 94vw); max-height: 92vh; padding: 13px; border: 1px solid #718078; border-radius: 15px; background: #171d1b; box-shadow: 0 20px 65px #0009; transform: translateY(26px) scale(.975); transition: transform .4s ease; gap: 0; }
+.newspaper.open .np-wrap { transform: translateY(0) scale(1); }
+.np-device-head { display: flex; justify-content: space-between; padding: 7px 9px 11px; font: 500 12px var(--ui-sans); color: #d4ded4; letter-spacing: .03em; }
+.np-tabs { background: #eff2ec; padding: 6px; gap: 4px; border-radius: 5px 5px 0 0; }
+.np-tab { background: transparent; color: #365145; border: 0; border-radius: 3px; padding: .55em .85em; font: 600 .69em var(--ui-sans); }
+.np-tab.active { background: #173f35; color: #fff; }
+.np-sheet.paper { background: #fffefa; border: 0; box-shadow: none; color: #212822; border-radius: 0 0 5px 5px; padding: 1.25em 1.65em 1.5em; }
+.np-name { font-family: 'Source Serif 4', Georgia, serif; }
+.np-dateline { font: 500 .63em var(--ui-sans); color: #59635c; padding: .65em 0; }
+.np-lead h2, .np-item h3 { font-family: 'Source Serif 4', Georgia, serif; }
+.np-body { font-family: var(--ui-sans); font-size: .82em; line-height: 1.65; text-align: left; hyphens: none; }
+.np-lead .np-body { columns: auto; max-width: 78ch; }
+.np-footer { padding: 9px 3px 1px; font: 400 .68em var(--ui-sans); color: #c8d4cb; }
+.np-footer .btn.primary { background: #326554; border-color: #4c7c68; color: #fff; font: 600 1em var(--ui-sans); border-radius: 4px; }
+.np-footer .btn.primary:hover { background: #407761; }
+
+/* Important executive documents vs analytical screens. */
+.budget-screen, .debt-screen { background: #101f1bb8; }
+.budget-screen .screen-card, .debt-screen .screen-card { border: 7px solid #173f35; background: #f0ebdd; box-shadow: 0 0 0 1px #b99a60, 0 22px 60px #0008; border-radius: 4px; font-family: var(--ui-sans); }
+.executive-letterhead { display: flex; align-items: center; justify-content: center; gap: 12px; color: #173f35; font: 600 .62em var(--ui-sans); text-transform: uppercase; letter-spacing: .1em; margin-bottom: 12px; }
+.executive-letterhead img { width: 56px; height: 56px; object-fit: contain; }
+.budget-screen .screen-head h2, .debt-screen .screen-head h2 { font-family: 'Source Serif 4', Georgia, serif; text-align: center; color: #173f35; }
+.budget-screen .screen-sub, .debt-screen .screen-sub { text-align: center; font-size: .8em; }
+.screen-overlay .screen-card { font-family: var(--ui-sans); font-size: .89em; }
+.screen-overlay .btn.primary { background: #173f35; color: #f0ebdd; border-color: #173f35; border-radius: 3px; font-family: var(--ui-sans); letter-spacing: 0; }
+.screen-overlay .btn.primary:hover:not(:disabled) { background: #326554; }
+.screen-overlay .tier.active, .screen-overlay .init.active, .screen-overlay .deal.active { background: #173f35; border-color: #173f35; color: #f0ebdd; }
+.vote-screen .screen-card { background: #f4f3ee; border: 1px solid #89968a; }
+.vote-screen .screen-head h2 { font-family: var(--ui-sans); color: #173f35; font-weight: 600; }
+@media (prefers-reduced-motion: reduce) { .np-wrap { transition: none; } }
