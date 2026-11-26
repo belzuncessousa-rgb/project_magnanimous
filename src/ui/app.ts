@@ -397,6 +397,10 @@ export class App {
     clear(this.card);
     const KIND: Record<string, string> = { reaction: 'Reaction', note: 'Note', report: 'Report', incident: 'Incident', popup: 'Dispatch' };
     this.card.className = `readable-card paper kind-${p.kind}`;
+    if (p.kind === 'report') {
+      this.card.append(h('div', { class: 'report-letterhead' },
+        h('img', { src: 'identity/kunasai-arms.svg', alt: '' }), 'Republic of Kunasai'));
+    }
     this.card.append(
       h('div', { class: 'info-head' },
         h('div', {}, h('div', { class: 'info-sub' }, KIND[p.kind] ?? 'Report'), h('h3', {}, p.title ?? '')),
@@ -404,9 +408,10 @@ export class App {
       h('p', { class: 'readable-text' }, p.text),
       p.from ? h('div', { class: 'readable-from' }, `— ${p.from}`) : '');
     this.card.hidden = false;
-    const w = 320;
+    const w = this.card.offsetWidth;
+    const height = this.card.offsetHeight;
     this.card.style.left = `${Math.min(window.innerWidth - w - 16, Math.max(16, x + 16))}px`;
-    this.card.style.top = `${Math.min(window.innerHeight - 260, Math.max(70, y - 30))}px`;
+    this.card.style.top = `${Math.min(window.innerHeight - height - 16, Math.max(16, y - 30))}px`;
     saveGame(g.state);
     this.refresh();
   }

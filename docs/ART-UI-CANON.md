@@ -17,7 +17,7 @@ Sources: docs/story/production/p1-blue-room.md, p1-panorama.md, p1-first-night.m
 Livia: approved wavy dark hair, silver streaks, freckles, tailored green jacket, ivory blouse, confident chin-on-hand seated pose. Mertens: late 50s/early 60s, slightly overweight, unshowy suit, relaxed and deceptively ordinary. Amanda: 42, short hair with some grey, reading glasses, practical clothes, serious yet approachable. Lara last. Fontes: reading glasses, measured academic/central-bank bearing. Marne: civil engineer/former mayor, practical tailoring. Salgado: crisp, direct legal professional and former colleague. Other cast appearances delegated; use canon and actual scenes, avoid caricatures or regional stereotypes.
 
 ## Asset contract and limitations
-Backgrounds: public/backgrounds/<background-id>.webp. Character masters: public/portraits/<portrait-id>-seated.png or -standing.png, legacy <portrait-id>.png fallback. The presidential office and both pose masters for Livia and Mertens are installed. The renderer uses the map and initials where artwork is missing. Initial room presets support one/two fixed slots; slot-specific geometry, close foreground chair artwork/occlusion masks, codex crop metadata and per-beat pose/background transitions still needed. The renderer keeps a pause at prose boundaries except for adjacent plain speech from the same speaker. Verify TypeScript build, UI hooks, keyboard numbers (including disabled choices), scrolling, reduced motion, choice histories, portrait overflow and real 16:9 asset placement before declaring finished. No changes to scene files or runner.
+Backgrounds: public/backgrounds/<background-id>.webp. Character masters: public/portraits/<portrait-id>-seated.png or -standing.png, legacy <portrait-id>.png fallback. The presidential office and both pose masters for Livia and Mertens are installed. The renderer uses the map and initials where artwork is missing. Initial room presets support one/two fixed slots; slot-specific geometry, close foreground chair artwork/occlusion masks, art-directed codex crops and additional per-beat staging still need production. The renderer keeps a pause at prose boundaries except for adjacent plain speech from the same speaker. Verify TypeScript build, UI hooks, keyboard numbers (including disabled choices), scrolling, reduced motion, choice histories, portrait overflow and real 16:9 asset placement before declaring finished. Scene files and runner state transitions are unchanged.
 
 ## Implementation batch 2
 - Scene staging presets extracted into a testable presentation-only module. Location label, date, compact national header and explicit return-to-latest added to dialogue. Same-speaker grouping was added later through a read-only runner lookahead.
@@ -34,12 +34,18 @@ Backgrounds: public/backgrounds/<background-id>.webp. Character masters: public/
 - Optional validation command: node tools/check-art.mjs. This checks the opening prototype art filenames and PNG alpha-capable color types without modifying any files.
 
 ## Opening scene artwork
-- Installed the cabinet Blue Room, informal VP office, residence lounge at night and inauguration palace doors. The residence plate depicts the downstairs conversation. Upstairs staging still needs a separate plate and a presentation cue.
+- Installed the cabinet Blue Room, informal VP office, residence lounge at night and inauguration palace doors. The residence plate depicts the downstairs conversation. Upstairs staging now has bedroom and study plates with beat-based presentation cues.
 - Amanda has paired transparent seated and standing portraits. In the first-night scene she occupies the fixed slot, while voices on the phone use the transcript.
 - At compact widths the transcript shows speaker icons for fixed-slot characters as well as overflow speakers. Desktop keeps icons for overflow speakers.
-- Edge verified the four installed rooms in the built game at 1600 ? 900 and the compact Blue Room at 390 ? 844. Livia's chair edge is still visible in the seated master. The right-slot portraits remain mirrored in these rooms.
+- Edge verified the four installed rooms in the built game at 1600 x 900 and the compact Blue Room at 390 x 844. Livia's chair edge is still visible in the seated master. The right-slot portraits remain mirrored in these rooms.
 
 ## Minister briefings and Codex
 - Installed the Blue Room night variant, Treasury and Justice offices, and the Planning model room. Fontes, Salgado and Marne have matching seated and standing transparent masters.
 - The map Codex lists people from completed scenes using existing cast metadata and roles. It has portrait crops, initials when a portrait is unavailable, and search by name or role.
-- Edge checked the four room presets at 1600 ? 900 and Codex search at 390 ? 844.
+- Edge checked the four room presets at 1600 x 900 and Codex search at 390 x 844.
+
+## Cabinet, reports and residence staging
+- Dara, Kaval, Voss, Kesht and Aroun have seated and standing masters. Installed background plates for the hospital corridor, university hall, palace courtyard, intelligence office, Congress office and Vila Tamarin kitchen.
+- First Night switches between the lounge, study and upstairs room, with cast changes keyed to scene beats. Staged telephone beats keep Amanda offstage after her departure. The current playable phone call retains Amanda while she is still in the room.
+- Official map reports use the national arms, paper typography and viewport-aware sizing. Notes, reactions and incidents retain the dispatch card.
+- Edge checked the cabinet briefing and visit backgrounds, the live First Night transition to the study, and a report card at 390 x 844.

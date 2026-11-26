@@ -20,4 +20,13 @@ describe('dialogue staging', () => {
     expect(s.cast).toEqual(['voss']);
     expect(s.showEnvironment).toBe(false);
   });
+  it('stages the residence by beat while keeping phone callers offstage', () => {
+    const scene = { id: 'p1-first-night', background: 'residence-night', portraits: ['amanda', 'celia'] };
+    expect(resolveDialogueStage(scene, 'lara', 'arrival')).toMatchObject({ background: 'residence-upstairs', cast: [] });
+    expect(resolveDialogueStage(scene, 'lara', 'sitting-room')).toMatchObject({ background: 'residence-night', cast: ['amanda'] });
+    expect(resolveDialogueStage(scene, 'lara', 'telephone')).toMatchObject({ background: 'residence-night', cast: [] });
+    expect(resolveDialogueStage(scene, 'lara', 'late-evening')).toMatchObject({ background: 'residence-study', cast: [] });
+    expect(resolveDialogueStage(scene, 'lara', 'phone').cast).toEqual(['amanda']);
+  });
+
 });

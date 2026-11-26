@@ -150,7 +150,7 @@ export class VNView {
   }
 
   private stage(runner: SceneRunner) {
-    const st = resolveDialogueStage(runner.scene.meta, this.opts.playerId);
+    const st = resolveDialogueStage(runner.scene.meta, this.opts.playerId, runner.currentBeat);
     this.pose = st.pose;
     this.cast = st.cast.map(x => this.who(x));
     this.el.dataset.room = st.background;
@@ -159,6 +159,11 @@ export class VNView {
     this.roomLabel.hidden = !st.label || st.label.toLowerCase() === this.titleEl.textContent?.toLowerCase();
     this.topbar.hidden = runner.scene.id === 'p1-tutorial';
     this.topbar.querySelector('.vn-date')!.textContent = this.state().dateLabel;
+    this.renderPortrait(this.left, this.cast[0] ?? null);
+    this.renderPortrait(this.right, this.cast[1] ?? null);
+    const environment = st.showEnvironment ? st.background : '';
+    if (this.background.dataset.environment === environment) return;
+    this.background.dataset.environment = environment;
     clear(this.background);
     this.el.classList.remove('has-environment');
     if (st.showEnvironment) {
@@ -289,9 +294,8 @@ export class VNView {
     clear(this.left);
     clear(this.right);
     this.titleEl.textContent = title;
+    let stagedBeat = runner.currentBeat;
     this.stage(runner);
-    this.renderPortrait(this.left, this.cast[0] ?? null);
-    this.renderPortrait(this.right, this.cast[1] ?? null);
     this.el.hidden = false;
     document.body.classList.add('vn-active');
     await wait(this.opts.transitions ? 30 : 0);
@@ -299,6 +303,10 @@ export class VNView {
     let nextScene: string | undefined;
     for (;;) {
       const out = runner.next();
+      if (out.type !== 'end' && runner.currentBeat !== stagedBeat) {
+        stagedBeat = runner.currentBeat;
+        this.stage(runner);
+      }
       if (out.type === 'ui') {
         this.hooks.onHighlight?.([]);
         await this.hooks.onUi?.(out.action, out.arg);

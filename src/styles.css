@@ -575,3 +575,9 @@ body.vn-active .tutorial-on .map.tut-highlight, .tutorial-on .map.tut-highlight 
 .codex-role { font: .875rem var(--ui-sans); color: #47594f; }
 .codex-portrait { position: relative; flex: none; display: grid; place-items: center; overflow: hidden; width: 3.25rem; height: 3.25rem; border-radius: 50%; background: #dce5d5; }
 .codex-portrait img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+
+.ui-layer .readable-card { width: min(320px, calc(100vw - 32px)); max-height: calc(100dvh - 32px); overflow-y: auto; }
+.ui-layer .readable-card.kind-report { width: min(420px, calc(100vw - 32px)); padding: 1.1rem 1.3rem 1.3rem; }
+.report-letterhead { display: flex; align-items: center; gap: .65rem; margin-bottom: .9rem; padding-bottom: .65rem; border-bottom: 1px solid #b99a60; color: #173f35; font: 600 .7rem var(--ui-sans); letter-spacing: .1em; text-transform: uppercase; }
+.report-letterhead img { width: 2.15rem; height: 2.15rem; }
+.ui-layer .readable-card.kind-report .readable-text { font-family: "Source Serif 4", var(--serif); line-height: 1.55; }

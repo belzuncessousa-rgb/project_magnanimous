@@ -7,6 +7,8 @@ const rooms: Record<string, RoomPreset> = {
   'blue-room-night': { label: 'The Blue Room', pose: 'seated', slots: 2 },
   'vp-office': { label: "Vice President's office", pose: 'seated', slots: 2 },
   'president-office': { label: 'Presidential office', pose: 'seated', slots: 2 },
+  'residence-upstairs': { label: 'Presidential residence', pose: 'seated', slots: 1 },
+  'residence-study': { label: 'Presidential residence', pose: 'seated', slots: 1 },
   'residence-night': { label: 'Presidential residence', pose: 'seated', slots: 1 },
   'palace-doors': { label: 'Presidential palace', pose: 'standing', slots: 1 },
   'palace-courtyard': { label: 'Palace courtyard', pose: 'standing', slots: 1 },
@@ -39,13 +41,27 @@ export interface DialogueStage {
   showEnvironment: boolean;
 }
 
+const residenceLocations: Record<string, string | undefined> = {
+  arrival: 'residence-upstairs',
+  'late-evening': 'residence-study',
+  close: 'residence-upstairs',
+  window: 'residence-study',
+  dark: 'residence-upstairs',
+};
+const residenceSoloBeats = new Set([
+  ...Object.keys(residenceLocations), 'after-departure', 'telephone', 'family-neighbourhood',
+  'family-goodnight', 'after-call',
+]);
+
 /** Presentation only. Fixed casting order comes from scene metadata, never political state. */
-export function resolveDialogueStage(meta: Pick<SceneMeta, 'id' | 'background' | 'portraits'>, playerId: string): DialogueStage {
-  const background = /^[a-z0-9-]+$/.test(meta.background ?? '') ? meta.background! : '';
+export function resolveDialogueStage(meta: Pick<SceneMeta, 'id' | 'background' | 'portraits'>, playerId: string, beat?: string): DialogueStage {
+  const firstNight = meta.id === 'p1-first-night' && meta.background === 'residence-night';
+  const location = firstNight && beat ? residenceLocations[beat] ?? meta.background : meta.background;
+  const background = location && /^[a-z0-9-]+$/.test(location) ? location : '';
   const room = rooms[background] ?? { label: '', pose: 'standing' as const, slots: 1 as const };
   let cast = [...new Set(meta.portraits.filter(id => id !== playerId))];
   // Family is on the phone in the revised first night, not in the residence.
-  if (meta.id === 'p1-first-night') cast = cast.filter(id => id === 'amanda');
+  if (firstNight) cast = beat && residenceSoloBeats.has(beat) ? [] : cast.filter(id => id === 'amanda');
   return { background, label: room.label, pose: room.pose, cast: cast.slice(0, room.slots),
     showEnvironment: !!background && meta.id !== 'p1-tutorial' };
 }
