@@ -1,6 +1,6 @@
 # Narrative canon — author design sessions
 
-Last consolidated: 2026-11-25. Sessions 01–43. Maintained as author interviews continue.
+Last consolidated: 2026-11-25. Sessions 01–44. Maintained as author interviews continue.
 
 ## Authority and workflow
 
@@ -193,9 +193,15 @@ General author principle: players pursuing controversial measures may sometimes 
 
 Author explicitly welcomes independent creativity and expects not to have time to write or personally review every scene. Use the accumulated design discussions as principles and constraints, not an exhaustive script. The assistant should develop characters, dialogue, events, plausible interconnections and minor design decisions independently, flag substantial uncertainties and contradictions, and challenge weak ideas when appropriate. Ask focused questions only when a decision genuinely affects the creative vision, scope or major architecture; avoid exhausting every topic before producing material. Plan to calibrate writing using representative/trademark scenes the author can read and edit directly; record the resulting voice, pacing, humour, characterization and player-agency standards and apply them to subsequent batches. Maintain repo documentation and continuity checks. Do not treat proposed details as confirmed or guarantee perfect consistency. No gameplay implementation yet.
 
-## Next design discussion (44)
+## 44 — Restricted cabinet reshuffles and scope discipline
 
-Prioritize the few consequential outstanding decisions needed for character and narrative architecture rather than interviewing about every faction. Review relevant GDD material on the cabinet and character relationships; plan representative writing samples and delegated production once the essential foundations are resolved.
+Confirmed: first-term cabinet is substantially predetermined by pre-inauguration arrangements. Minister replacements should be rare, restricted to authored opportunities rather than an unrestricted dismissal/recruitment menu. Potential cases: voluntary resignation under specific conditions, trading competence for loyalty, replacing a party appointee with a competent specialist, or accepting a coalition partner's request. These can overlap; three or four potential opportunities is an illustrative upper working budget, not a quota, and fewer may be better. Broad cabinet reconstruction belongs to the reelection chapter. Exact ministers, alternatives, triggers and consequences remain TBD. Preserve meaningful consequences for party relations, capacity and loyalty; avoid duplicating every ministerial scene for unrestricted combinations.
+
+Author prefers a substantial, deep game (roughly 30 hours as an illustrative desired playthrough) over a short shallow game. Author explicitly asks assistant to temper enthusiasm and avoid AI-driven feature proliferation. Working target of 25–35 hours is a proposal, not measured or guaranteed. Evaluate turn count and conversation capacity against actual narrative pacing before expanding them. Prioritize depth over breadth, reuse and interactions between established systems, strong characters, meaningful decisions and replayability. Do not add mechanics or arcs merely because they are possible; consider content, UI, implementation and testing burden. No turn schedule change or gameplay implementation made.
+
+## Next design discussion (45)
+
+Establish the narrative role and personal relationship of Amanda Troes before developing cabinet personalities. Review existing Amanda scenes and data; respect author-approved friendship and independent moral convictions from sessions 10–12. Focus on consequential character questions and delegate smaller details.
 
 ## Implementation backlog (not yet changes)
 
