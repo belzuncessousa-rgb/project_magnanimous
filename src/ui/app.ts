@@ -223,13 +223,18 @@ export class App {
 
   private openMenu() {
     let m: HTMLElement;
+    const option = (icon: string, title: string, detail: string, onclick: () => void, extraClass = '') =>
+      h('button', { class: `menu-option${extraClass ? ` ${extraClass}` : ''}`, onclick },
+        h('span', { class: 'menu-option-icon', 'aria-hidden': 'true' }, icon),
+        h('span', { class: 'menu-option-copy' }, h('strong', {}, title), h('small', {}, detail)),
+        h('span', { class: 'menu-option-arrow', 'aria-hidden': 'true' }, '›'));
     const body = h('div', { class: 'menu-buttons' },
       h('div', { class: 'menu-section-label' }, 'SESSION'),
-      h('button', { class: 'btn', onclick: () => m.remove() }, 'Resume'),
-      h('button', { class: 'btn', onclick: () => { if (this.game) saveGame(this.game.state); this.flash('Game saved.'); m.remove(); } }, 'Save'),
+      option('↗', 'Resume', 'Return to the map', () => m.remove()),
+      option('▣', 'Save', 'Keep your current progress', () => { if (this.game) saveGame(this.game.state); this.flash('Game saved.'); m.remove(); }),
       h('div', { class: 'menu-section-label menu-section-secondary' }, 'PREFERENCES'),
-      h('button', { class: 'btn', onclick: () => { m.remove(); this.openSettings(); } }, 'Settings'),
-      h('button', { class: 'btn', onclick: () => { if (this.game) saveGame(this.game.state); m.remove(); this.game = null; this.showTitle(); } }, 'Save & quit to title'));
+      option('☷', 'Settings', 'Text and display options', () => { m.remove(); this.openSettings(); }),
+      option('⇱', 'Save & quit to title', 'Save before leaving this session', () => { if (this.game) saveGame(this.game.state); m.remove(); this.game = null; this.showTitle(); }, 'menu-option-quit'));
     m = this.modal('Menu', body);
   }
 
@@ -278,7 +283,7 @@ export class App {
       .filter((entry) => entry.items.length > 0);
     const unknown = printed.filter((item) => !this.content.papers.some((paper) => paper.id === item.paper));
     if (unknown.length) papers.push({ paper: { id: 'wire', name: 'Wire Services', slant: '', tagline: '' }, items: unknown });
-    return { dateLabel: 'Press archive', papers };
+    return { dateLabel: g.state.dateLabel, papers };
   }
 
   // ---------------------------------------------------------------- rest state

@@ -20,11 +20,11 @@ export interface TabletOptions {
   closeLabel?: string;
 }
 
-const APPS: { id: TabletApp; icon: string; name: string; description: string }[] = [
-  { id: 'news', icon: '▤', name: 'News', description: 'Newspaper reporting' },
-  { id: 'social', icon: '◉', name: 'Social', description: 'Public conversation' },
-  { id: 'codex', icon: '✣', name: 'Codex', description: 'People you have met' },
-  { id: 'reports', icon: '▧', name: 'Reports', description: 'Official correspondence' },
+const APPS: { id: Exclude<TabletApp, 'home'>; icon: string; name: string }[] = [
+  { id: 'news', icon: '▤', name: 'News' },
+  { id: 'social', icon: '◉', name: 'Social' },
+  { id: 'codex', icon: '✣', name: 'Codex' },
+  { id: 'reports', icon: '▧', name: 'Reports' },
 ];
 
 export function showTablet(root: HTMLElement, options: TabletOptions): Promise<void> {
@@ -34,37 +34,37 @@ export function showTablet(root: HTMLElement, options: TabletOptions): Promise<v
     let closing = false;
     let closeTablet = () => {};
     const close = h('button', { class: 'np-close', 'aria-label': 'Close tablet' }, '×');
-    const appNav = h('nav', { class: 'np-apps', 'aria-label': 'Tablet apps' });
+    const appNav = h('nav', { class: 'np-app-grid', 'aria-label': 'Tablet apps' });
     const screen = h('main', { class: 'np-screen', tabindex: -1, 'aria-live': 'polite' });
     const closeBottom = h('button', { class: 'np-return', onclick: () => closeTablet() }, options.closeLabel ?? 'Close tablet');
     const overlay = h('div', {
-      class: 'newspaper overlay', role: 'dialog', 'aria-modal': 'true', 'aria-label': 'Presidential tablet', tabindex: -1,
+      class: 'newspaper overlay', role: 'dialog', 'aria-modal': 'true', 'aria-label': 'Kunasai tablet', tabindex: -1,
     },
       h('section', { class: 'np-wrap' },
         h('div', { class: 'np-camera', 'aria-hidden': 'true' }, h('span', {})),
         h('header', { class: 'np-device-head' },
-          h('div', { class: 'np-device-brand' },
-            h('span', { class: 'np-device-emblem', 'aria-hidden': 'true' }, 'K'),
-            h('span', {}, h('span', { class: 'np-device-kicker' }, 'REPUBLIC OF KUNASAI'), h('strong', {}, 'Presidential tablet'))),
           h('span', { class: 'np-device-date' }, options.edition.dateLabel),
+          h('span', { class: 'np-device-status', 'aria-hidden': 'true' }, h('span', {}, '●'), h('span', {}, '◔'), h('span', { class: 'np-battery' }, '')),
           close),
-        h('div', { class: 'np-device-body' }, appNav, screen),
-        h('footer', { class: 'np-footer' }, h('span', { class: 'np-note' }, options.footer ?? 'Executive information desk'), closeBottom)));
+        h('div', { class: 'np-device-body' }, screen),
+        h('footer', { class: 'np-footer' },
+          h('span', { class: 'np-home-indicator', 'aria-hidden': 'true' }, ''),
+          options.footer ? h('span', { class: 'np-note' }, options.footer) : '',
+          options.closeLabel ? closeBottom : '')));
 
     const newsCount = options.edition.papers.reduce((n, paper) => n + paper.items.length, 0);
     const unreadReports = () => reports.filter(({ read }) => !read).length;
-    const navEntries: { id: TabletApp; icon: string; name: string }[] = [
-      { id: 'home', icon: '⌂', name: 'Home' },
-      ...APPS,
-    ];
+    const navEntries = APPS;
     const navButtons = new Map<TabletApp, HTMLButtonElement>();
     for (const app of navEntries) {
       const button = h('button', {
-        class: 'np-app', 'data-app': app.id, 'aria-current': 'false',
+        class: 'np-app-icon-button', 'data-app': app.id, 'aria-current': 'false',
+        'aria-label': app.name,
         onclick: () => openApp(app.id),
-      }, h('span', { class: 'np-app-icon', 'aria-hidden': 'true' }, app.icon), h('span', { class: 'np-app-name' }, app.name));
-      if (app.id === 'reports') button.append(h('span', { class: 'np-app-count', 'data-count': 'reports', hidden: unreadReports() === 0 }, String(unreadReports())));
-      if (app.id === 'news') button.append(h('span', { class: 'np-app-count', 'data-count': 'news' }, String(newsCount)));
+      }, h('span', { class: `np-app-icon np-icon-${app.id}`, 'aria-hidden': 'true' }, app.icon),
+      h('span', { class: 'np-app-name' }, app.name));
+      const count = app.id === 'reports' ? unreadReports() : app.id === 'news' ? newsCount : 0;
+      if (count > 0) button.append(h('span', { class: 'np-app-count', 'data-count': app.id }, String(count)));
       appNav.append(button);
       navButtons.set(app.id, button);
     }
@@ -81,47 +81,38 @@ export function showTablet(root: HTMLElement, options: TabletOptions): Promise<v
     };
     close.addEventListener('click', closeTablet);
 
-    const appCount = (app: TabletApp) => {
-      if (app === 'news' || app === 'social') return String(newsCount);
-      if (app === 'codex') return String(options.people.length);
-      if (app === 'reports') return String(unreadReports());
-      return '';
-    };
     const openApp = (app: TabletApp) => {
       for (const [id, button] of navButtons) button.setAttribute('aria-current', String(id === app));
+      screen.classList.add('is-switching');
       if (app === 'home') renderHome();
       else if (app === 'news') renderNews(0);
       else if (app === 'social') renderSocial();
       else if (app === 'codex') renderCodex();
       else renderReports();
       screen.scrollTop = 0;
+      requestAnimationFrame(() => requestAnimationFrame(() => screen.classList.remove('is-switching')));
     };
     const renderHeader = (section: string, title: string, subtitle: string) => h('header', { class: 'np-page-head' },
       h('div', { class: 'np-page-kicker' }, section), h('h1', {}, title), h('p', {}, subtitle));
+    const renderAppBar = (id: Exclude<TabletApp, 'home'>) => {
+      const app = APPS.find((entry) => entry.id === id)!;
+      return h('div', { class: 'np-appbar' },
+        h('button', { class: 'np-home-back', 'aria-label': 'Back to home screen', onclick: () => openApp('home') }, '‹'),
+        h('span', { class: `np-appbar-icon np-icon-${id}`, 'aria-hidden': 'true' }, app.icon),
+        h('strong', {}, app.name),
+        h('span', { class: 'np-appbar-date' }, options.edition.dateLabel));
+    };
 
     const renderHome = () => {
       clear(screen);
       screen.append(
         h('section', { class: 'np-home' },
-          h('div', { class: 'np-page-kicker' }, 'THE EXECUTIVE DESK'),
-          h('h1', {}, 'Briefing instruments'),
-          h('p', { class: 'np-home-intro' }, 'Press coverage, public conversation, people and official reports in one place.'),
-          h('div', { class: 'np-launch-list' }, ...APPS.map((app) => h('button', {
-            class: 'np-launch', 'data-app': app.id, onclick: () => openApp(app.id),
-          },
-            h('span', { class: 'np-launch-icon', 'aria-hidden': 'true' }, app.icon),
-            h('span', { class: 'np-launch-copy' }, h('strong', {}, app.name), h('small', {}, app.description)),
-            h('span', { class: 'np-launch-count' }, appCount(app.id)),
-            h('span', { class: 'np-launch-arrow', 'aria-hidden': 'true' }, '›'),
-          ))),
-          reports.length
-            ? h('aside', { class: 'np-home-reports' },
-                h('div', { class: 'np-home-section' }, h('span', {}, 'INCOMING'), h('span', {}, unreadReports() ? `${unreadReports()} UNREAD` : 'UP TO DATE')),
-                ...reports.slice(0, 2).map(({ popup, read }) => h('button', {
-                  class: `np-report-teaser${read ? ' is-read' : ''}`, onclick: () => openReport(popup.id),
-                }, h('span', { class: 'np-report-state', 'aria-hidden': 'true' }, read ? '•' : '◆'),
-                h('span', {}, h('strong', {}, popup.title ?? 'Official report'), popup.from ? h('small', {}, popup.from) : ''))))
-            : h('div', { class: 'np-home-note' }, 'New reports will be filed here when they reach the presidency.'),
+          h('div', { class: 'np-wallpaper' },
+            h('img', { class: 'np-wallpaper-flag', src: 'identity/kunasai-flag.svg', alt: '', draggable: 'false' }),
+            h('div', { class: 'np-wallpaper-shade', 'aria-hidden': 'true' }),
+        ),
+          appNav,
+          h('span', { class: 'np-home-caption' }, 'Tap an app to open'),
         ),
       );
     };
@@ -130,7 +121,7 @@ export function showTablet(root: HTMLElement, options: TabletOptions): Promise<v
       clear(screen);
       const paper = options.edition.papers[index];
       const page = h('section', { class: 'np-page' });
-      page.append(renderHeader('PRESS ROOM', 'News', 'Coverage from the publications in this edition.'));
+      page.append(renderAppBar('news'), renderHeader('EDITIONS', 'Today in the press', 'Coverage from the publications in this edition.'));
       if (!options.edition.papers.length) {
         page.append(h('div', { class: 'np-empty-state' }, h('span', { 'aria-hidden': 'true' }, '▤'), h('h2', {}, 'No edition on file'),
           h('p', {}, 'Today’s newspaper is prepared when the sitting closes. Previously published articles will appear here.')));
@@ -157,17 +148,20 @@ export function showTablet(root: HTMLElement, options: TabletOptions): Promise<v
       clear(screen);
       const posts = options.edition.papers.flatMap(({ paper, items }, paperIndex) => items.map((item) => ({ paper, item, paperIndex })));
       const page = h('section', { class: 'np-page np-social' });
-      page.append(renderHeader('PRESS ROOM · PUBLIC FEED', 'Social', 'Short posts from publications in the news edition. Each post opens its full article.'));
+      page.append(renderAppBar('social'), renderHeader('PUBLIC FEED', 'Latest posts', 'Updates from the publications in today’s edition.'));
       if (!posts.length) page.append(h('div', { class: 'np-empty-state' }, h('span', { 'aria-hidden': 'true' }, '◉'), h('h2', {}, 'The feed is quiet'),
         h('p', {}, 'Press posts appear here alongside the newspaper edition.')));
       else page.append(h('div', { class: 'np-posts' }, ...posts.map(({ paper, item, paperIndex }) => {
         const plainText = item.text.replace(/\s+/g, ' ').trim();
         const excerpt = plainText.length > 190 ? `${plainText.slice(0, 187).trimEnd()}…` : plainText;
         return h('article', { class: 'np-post' },
-          h('div', { class: 'np-post-source' }, h('span', { class: 'np-source-mark', 'aria-hidden': 'true' }, initials(paper.name)),
-            h('span', { class: 'np-account-name' }, paper.name), h('span', { class: 'np-source-label' }, options.edition.dateLabel)),
-          h('h2', { html: inlineMd(item.headline) }), excerpt ? h('p', { html: inlineMd(excerpt) }) : '',
-          h('button', { class: 'np-post-open', onclick: () => { openApp('news'); renderNews(paperIndex); } }, 'Read in News  →'),
+          h('span', { class: 'np-source-mark', 'aria-hidden': 'true' }, initials(paper.name)),
+          h('div', { class: 'np-post-content' },
+            h('div', { class: 'np-post-source' }, h('span', { class: 'np-account-name' }, paper.name),
+              h('span', { class: 'np-source-dot', 'aria-hidden': 'true' }, '·'), h('span', { class: 'np-source-label' }, options.edition.dateLabel)),
+            h('h2', { html: inlineMd(item.headline) }), excerpt ? h('p', { html: inlineMd(excerpt) }) : '',
+            h('button', { class: 'np-post-open', onclick: () => { openApp('news'); renderNews(paperIndex); } }, 'Read full article  →'),
+          ),
         );
       })));
       screen.append(page);
@@ -176,7 +170,7 @@ export function showTablet(root: HTMLElement, options: TabletOptions): Promise<v
     const renderCodex = () => {
       clear(screen);
       const page = h('section', { class: 'np-page np-codex' });
-      page.append(renderHeader('REFERENCE', 'Codex', 'People encountered in the story.'));
+      page.append(renderAppBar('codex'), renderHeader('CAST DIRECTORY', 'People encountered', 'Names and portraits from the story so far.'));
       if (!options.people.length) {
         page.append(h('div', { class: 'np-empty-state' }, h('span', { 'aria-hidden': 'true' }, '✣'), h('h2', {}, 'Your Codex is ready'),
           h('p', {}, 'People appear here as you meet them.')));
@@ -216,6 +210,7 @@ export function showTablet(root: HTMLElement, options: TabletOptions): Promise<v
       }
       clear(screen);
       screen.append(h('section', { class: 'np-page np-report-detail' },
+        renderAppBar('reports'),
         h('button', { class: 'np-back', onclick: renderReports }, '‹  All reports'),
         h('div', { class: 'np-report-document' },
           h('div', { class: 'np-report-letterhead' }, h('span', {}, 'REPUBLIC OF KUNASAI'), h('span', {}, 'OFFICE OF THE PRESIDENCY')),
@@ -229,7 +224,7 @@ export function showTablet(root: HTMLElement, options: TabletOptions): Promise<v
     const renderReports = () => {
       clear(screen);
       const page = h('section', { class: 'np-page np-reports' });
-      page.append(renderHeader('CORRESPONDENCE', 'Reports', `${reports.length} available · ${unreadReports()} unread`));
+      page.append(renderAppBar('reports'), renderHeader('CORRESPONDENCE', 'Official reports', `${reports.length} available · ${unreadReports()} unread`));
       if (!reports.length) page.append(h('div', { class: 'np-empty-state' }, h('span', { 'aria-hidden': 'true' }, '▧'), h('h2', {}, 'No reports on file'),
         h('p', {}, 'Official reports will be collected here when they arrive.')));
       else page.append(h('div', { class: 'np-report-list' }, ...reports.map(({ popup, read }) => h('button', {
@@ -251,10 +246,13 @@ export function showTablet(root: HTMLElement, options: TabletOptions): Promise<v
       else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first?.focus(); }
     });
     root.append(overlay);
-    openApp(options.initialApp ?? 'home');
+      openApp(options.initialApp ?? 'home');
     requestAnimationFrame(() => requestAnimationFrame(() => {
       overlay.classList.add('open');
-      navButtons.get(options.initialApp ?? 'home')?.focus();
+        const initialFocus = options.initialApp === undefined || options.initialApp === 'home'
+          ? screen.querySelector<HTMLElement>('.np-app-icon-button')
+          : screen.querySelector<HTMLElement>('.np-home-back, .np-tab, .np-report-row, .np-person-entry');
+        (initialFocus ?? close).focus();
     }));
   });
 }
