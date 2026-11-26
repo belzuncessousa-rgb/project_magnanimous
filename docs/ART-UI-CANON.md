@@ -32,3 +32,9 @@ Backgrounds: public/backgrounds/<background-id>.webp. Character masters: public/
 - Widescreen portrait proportions revised based on an independent browser composition test with Livia and Mertens. The test used the staged Counting Votes text and the presidential office as a stand-in for the VP office; two genuine alpha PNGs per actor, the now-superseded active-speaker dimming, numbered choices, and no JavaScript errors. The test is separate from the game. Seated chair/desk occlusion remains room-specific future work; do not bake an arbitrary desk mask into all scenes.
 - Asset starter pack includes exactly public/backgrounds/president-office.webp and public/portraits/{livia,mertens}-{seated,standing}.png. The five starter assets are installed under public/. The office is an interim crop; Mertens's appearance remains provisional. No Amanda or other environment files are falsely listed as finished.
 - Optional validation command: node tools/check-art.mjs. This checks the opening prototype art filenames and PNG alpha-capable color types without modifying any files.
+
+## Opening scene artwork
+- Installed the cabinet Blue Room, informal VP office, residence lounge at night and inauguration palace doors. The residence plate depicts the downstairs conversation. Upstairs staging still needs a separate plate and a presentation cue.
+- Amanda has paired transparent seated and standing portraits. In the first-night scene she occupies the fixed slot, while voices on the phone use the transcript.
+- At compact widths the transcript shows speaker icons for fixed-slot characters as well as overflow speakers. Desktop keeps icons for overflow speakers.
+- Edge verified the four installed rooms in the built game at 1600 ? 900 and the compact Blue Room at 390 ? 844. Livia's chair edge is still visible in the seated master. The right-slot portraits remain mirrored in these rooms.

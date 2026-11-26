@@ -172,8 +172,8 @@ export class VNView {
     }
   }
 
-  private overflowIcon(w: Who): HTMLElement {
-    const icon = h('span', { class: 'vn-speaker-icon', 'aria-hidden': 'true' }, initials(w.name));
+  private speakerIcon(w: Who, fixed: boolean): HTMLElement {
+    const icon = h('span', { class: fixed ? 'vn-speaker-icon compact-only' : 'vn-speaker-icon', 'aria-hidden': 'true' }, initials(w.name));
     if (w.portrait) {
       const img = h('img', { alt: '' });
       let legacy = false;
@@ -181,6 +181,7 @@ export class VNView {
         if (!legacy) { legacy = true; img.src = `portraits/${w.portrait}.png`; }
         else img.remove();
       });
+      img.loading = 'lazy';
       icon.append(img);
       img.src = `portraits/${w.portrait}-standing.png`;
     }
@@ -190,9 +191,9 @@ export class VNView {
   private block(p: Prose): HTMLElement {
     if (p.role === 'speech') {
       const w = this.who(p.speaker);
-      const outside = w.id !== this.opts.playerId && !this.cast.some(c => (c.id ?? c.name) === (w.id ?? w.name));
+      const fixed = this.cast.some(c => (c.id ?? c.name) === (w.id ?? w.name));
       return h('div', { class: `blk speech${w.id === this.opts.playerId ? ' speech-player' : ''}` },
-        h('div', { class: 'speaker' }, outside ? this.overflowIcon(w) : null, w.name),
+        h('div', { class: 'speaker' }, w.id === this.opts.playerId ? null : this.speakerIcon(w, fixed), w.name),
         h('div', { class: 'text', html: inlineMd(p.text) }));
     }
     return h('div', { class: `blk ${p.role}`, html: inlineMd(p.text) });
