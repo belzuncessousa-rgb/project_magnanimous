@@ -8,7 +8,7 @@ Status: working plan, not an implementation change. Author-approved narrative ca
 2. Blue Room — retain Livia conducting and an informational overview of ministries, introduce characters when they participate, distinguish voices, allow optional follow-ups, no forced budget or project decisions.
 3. Counting Votes — keep parliamentary arithmetic and political context; deepen optional questions, negotiation and consequences; adapt approved sample 02; callback to actual inaugural pledges. Do not presume a party appointment automatically establishes criminal corruption.
 4. Tutorial — retain existing UI tutorial and order, reconcile chapter-level resources and revised bargaining only after engine design is agreed; avoid misleading tutorial claims. No pre-tutorial resource costs.
-5. The First Night — develop approved sample 03, personal life, family call, residence and optional evening activities; remove imposed moral voice, retain appropriate callback functions after audit; ensure mother/family biography matches canon.
+5. The First Night — complete draft staged in [p1-first-night.md](p1-first-night.md): approved sample 03 expanded with residence, family call, independent personal and political topics, conditional Lara options and evening activities. Verify family biography and downstream flags before integration.
 
 Use short optional map readables/news reactions, with meaningful variations based on public choices. Existing scene order is the initial working default, not a commitment to final calendar or event count.
 
@@ -29,3 +29,10 @@ Minor dialogue, blocking, gestures, pacing, flavour flags and scene details are 
 ## Review packet
 
 Author should review representative complete scenes and major choice points rather than approve every line. Proceed in batches, retain clean Git history, and do not claim testing or playable integration until performed.
+
+## First-night integration checklist
+
+- Keep existing scene ID and completion flag; port callback mapping assumes current opp_price_1 values. Verify against eventual Counting Votes rewrite.
+- Replace outdated moral voice/path flags and old record-keeping plot only after auditing all dependent scenes, crisis conditions and ending logic. No invented forced guilt or compulsory thoughts. New draft preserves family neighbourhood and unfinished sanitation connection without assuming a personal favour or promising immediate construction.
+- The existing monthly visit commitment and illness storyline are not automatically preserved; new next-month visit and residence invitation are separate proposed flags, not a permanent commitment. Reconcile later family scenes and personal calendar accordingly. Both parents and siblings present in the new family account; names, ages and illnesses not fixed in this draft.
+- Optional conversation hub now has mutually exclusive prior-port-decision options, with no additional routing menu. Validate once-only behavior across hidden options and returns. Test combinations of each inaugural pledge and each earlier port decision, as well as skipping every optional conversation.
