@@ -1,6 +1,6 @@
 # Narrative canon — author design sessions
 
-Last consolidated: 2026-11-25. Sessions 01–58. Maintained as author interviews continue.
+Last consolidated: 2026-11-25. Sessions 01–59. Maintained as author interviews continue.
 
 ## Authority and workflow
 
@@ -279,13 +279,24 @@ Author questions the original exclusively long-scene plan and proposes a mixture
 
 All three representative prose calibration samples now approved in tone (01 inauguration, 02 revised negotiation, 03 Amanda), subject to the feedback in sessions 55–58. Style guide updated. No playable content or mechanical implementation changed.
 
-## Next design discussion (59)
+## 59 — Production started
 
-Transition from foundational interviews to production. Start with a complete inaugural address in the existing scene format and a vertical-slice opening-turn plan, reconcile canon and existing mechanics/flags before replacing playable content, and validate reachable branches. Author review representative complete scenes rather than every scene. Keep the existing prototype intact until rewrites are ready for integration; coordinate engine changes separately.
+Author authorizes proceeding independently with scene production after the three successful calibration samples; reserve questions for consequential blockers, ask one at a time when review resumes. A morning review is scheduled for November 26 at 08:00 São Paulo time. No claim of continuous unattended overnight work.
+
+Staged production drafts, intentionally outside the active game content:
+- [Complete inaugural address](production/p1-inauguration.md): preserves opening and speech hub, allows zero to multiple explicit pledges and optional topics, includes Mertens's reactions, avoids forced ideology and private-thought effects on national conditions.
+- [Complete first night](production/p1-first-night.md): residence, Amanda's personal and political exchanges, callbacks and choice availability based on inaugural promises and the port negotiation, family call reflecting both parents and siblings, optional evening activities. Minor details and new flags remain provisional.
+- [Opening-turn production plan](production/OPENING-TURN.md): sequencing, next scenes, dependencies and integration checklist.
+
+Static draft checks: inaugural address 19 beats and 47 authored choice entries; first night 16 beats and 49 authored choice entries; no unresolved explicit beat targets or duplicate beat headings detected. This is not engine execution or validation of every reachable branch. No active playable scenes, engine code or calendar changed. Reconcile old flags, downstream references, public promise evaluation, and resource cadence before integration. Current drafts are prose-complete but not implementation-approved. Do not ask the author to approve minor dialogue details; representative review only.
+
+## Next production step
+
+Develop Blue Room and Counting Votes, preserve their informational and negotiation roles, then audit the opening turn as a coherent playable slice. Coordinate tutorial/resource and voting changes with the engine implementation. Review only critical unresolved decisions with the author, one at a time.
 
 ## Implementation backlog (not yet changes)
 
 - Audit current GDD/DECISIONS/scene prose against player-defined personality, new biography/family, term scope, NPC party identities and timeline; record superseded assumptions.
 - Design revised political bargaining, party evolution/leadership, election and next cabinet, institutional gates, personal wealth, optional social feed, cultural orientation, religion, and archive/corruption arcs.
 - Calibrate representative group/negotiation/personal scenes, then rewrite batches including associated news/readables. Preserve scene parser format and check IDs, flags, order-independent knowledge, consequences and tests. Update docs alongside implementation.
-- No new scene, gameplay or UI feature was implemented in these design sessions.
+- Production scene drafts are staged separately under docs/story/production; no active gameplay or UI feature has been implemented in these design sessions.
