@@ -1,6 +1,6 @@
 # Narrative canon — author design sessions
 
-Last consolidated: 2026-11-25. Sessions 01–48. Maintained as author interviews continue.
+Last consolidated: 2026-11-25. Sessions 01–49. Maintained as author interviews continue.
 
 ## Authority and workflow
 
@@ -221,9 +221,15 @@ Author scope constraint: the three central advisers justify deeper agendas, pers
 
 Confirmed: Renata previously worked alongside Lara during her famous corruption investigation. They are former professional colleagues with mutual respect, not necessarily close personal friends. She is a highly competent legal professional, firmly anti-corruption, less sentimental and more confrontational than Amanda, and protective of judicial independence. Her professional history gives particular weight to potential conflicts over corruption in Lara's own government. Keep her an independent character; do not dictate Lara's motives or make Renata a universal moral commentator. Exact biography, investigative role and conditional responses are delegated. The remaining ordinary cabinet characterization may be developed independently within the scope principles of session 47.
 
-## Next design discussion (49)
+## 49 — Political commitments, legislative scale and influence resources
 
-Move to political gameplay: examine the existing political capital, negotiation and corruption design and establish the narrative treatment of commitments and political deals. Ask only consequential unresolved questions.
+Confirmed: Lara may deliberately make promises she does not intend to fulfil. Severe betrayal should have substantial persistent consequences with the affected party, potentially making future promise-based deals impossible (concessions may need to be delivered upfront). Other political actors may learn of the betrayal and become less trusting. Distinguish opportunistic but reliable dealmaking from unreliability; allow fulfilment, renegotiation, delay and breach where narratively appropriate. Do not dictate private intentions unless player explicitly chooses them. Exact reputation and commitment tracking TBD; prefer existing relationship/flag systems and meaningful callbacks.
+
+Author is open to removing IPI/EPI if they lack a distinct gameplay purpose. Original [Resources GDD](https://app.notion.com/p/36b10ad0215880ccb306e4ca3499e429) defines PT as presidential attention, FC as public finances, IPI as domestic leverage, EPI as international leverage. Retain IPI/EPI provisionally pending free-action and resource review. Major constitutional reform (PEC) requires authored party negotiations and actual support; spending influence alone must not purchase passage. Major ordinary bills may warrant relevant discussions; minor legislation (e.g. AI regulation or research) can be a short decision, potentially using IPI and later reflected in news, reports and other conversations. Distinguish executive actions from laws requiring congressional support; political circumstances still constrain minor bills. EPI may facilitate smaller diplomatic actions but not replace major bilateral or alliance negotiations. These are working design proposals, not final mechanics. Revisit resource formulas, costs, eligibility and free actions together; avoid adding redundant currencies or scenes.
+
+## Next design discussion (50)
+
+Review free actions and clarify their gameplay purpose: meaningful discretionary presidential time and influence, not repeated shallow stat purchases. Examine existing implementation/GDD before asking a consequential question. Then proceed to pacing and representative scene writing.
 
 ## Implementation backlog (not yet changes)
 
