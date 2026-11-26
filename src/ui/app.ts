@@ -1,16 +1,15 @@
-// Top-level UI controller: title ↔ rest state (map) ↔ VN mode ↔ newspaper.
+// Top-level UI controller: title ↔ rest state (map) ↔ VN mode ↔ presidential tablet.
 import { resolveCountry, resolveRegion } from '../core/ids';
-import type { ContentBundle, FreeAction } from '../content/schema';
+import type { ContentBundle, FreeAction, Popup } from '../content/schema';
 import { validateContent } from '../content/validate';
-import { Game } from '../game/game';
+import { Game, type Edition } from '../game/game';
 import { deleteSave, loadGame, loadSettings, saveGame, saveSettings, type Settings } from '../game/save';
 import { clear, h } from './dom';
-import { showCodex } from './codex';
-import { KIND_LABEL, costText, int, militaryWord, millions, money, pct1, relationWord, stabilityWord } from './format';
+import { costText, int, militaryWord, millions, money, pct1, relationWord, stabilityWord } from './format';
 import { Hud } from './hud';
 import { MapView, OFFMAP, type Geometry, type MarkerSpec } from './map';
-import { showNewspaper } from './newspaper';
 import { showBudget, showDebt, showVote } from './screens';
+import { showTablet, type TabletApp, type TabletOptions } from './tablet';
 import { tokenFor } from './tokens';
 import { VNView } from './vn';
 
@@ -22,7 +21,6 @@ export class App {
   private vn: VNView;
   private layer = h('div', { class: 'ui-layer', hidden: true });
   private sidebar = h('aside', { class: 'sidebar paper' });
-  private agenda = h('div', { class: 'agenda paper' });
   private info = h('div', { class: 'info-panel paper', hidden: true });
   private endBtn = h('button', { class: 'btn primary end-turn' }, 'End turn');
   private endNote = h('div', { class: 'end-note' });
@@ -30,9 +28,9 @@ export class App {
   private toast = h('div', { class: 'toast', hidden: true });
   private titleScreen: HTMLElement | null = null;
   private targeting: FreeAction | null = null;
+  private latestEdition: Edition | null = null;
   private busy = false;
   private hasTutorial = false;
-  private agendaReadsOpen = false;
   private card = h('div', { class: 'readable-card paper', hidden: true });
   private tip = h('div', { class: 'ui-tip', id: 'ui-tip', role: 'tooltip', hidden: true });
 
@@ -68,13 +66,12 @@ export class App {
       h('button', { title: 'Reset view', onclick: () => this.map.resetZoom() }, '⌂'));
     const topLeft = h('div', { class: 'top-left', role: 'group', 'aria-label': 'Game controls' },
       h('button', { class: 'btn ghost', onclick: () => this.openMenu() }, '☰ Menu'),
-      h('button', { class: 'btn ghost', onclick: () => this.openCodex() }, 'Codex'),
+      h('button', { class: 'btn ghost', 'data-ui': 'tablet', onclick: () => this.openTablet() }, '▱ Tablet'),
       h('button', { class: 'btn ghost', 'data-ui': 'actions', 'data-tip': 'Free actions: rallies, envoys, calls — they cost resources', onclick: () => this.toggleSidebar() }, 'Actions'));
     this.endBtn.dataset.ui = 'end-turn';
-    this.agenda.dataset.ui = 'agenda';
     this.endBtn.addEventListener('click', () => void this.endTurn());
     const bottomRight = h('div', { class: 'bottom-right' }, this.endNote, this.endBtn);
-    this.layer.append(topLeft, this.hud.el, this.agenda, this.sidebar, viewToggle, bottomRight, this.info, this.card, this.banner, this.toast);
+    this.layer.append(topLeft, this.hud.el, this.sidebar, viewToggle, bottomRight, this.info, this.card, this.banner, this.toast);
     this.hud.el.hidden = false;
     root.append(this.map.el, this.layer, this.vn.el, this.tip);
     this.bindTooltips();
@@ -224,14 +221,6 @@ export class App {
     this.modal('Settings', body);
   }
 
-  private openCodex() {
-    const game = this.game;
-    if (!game || this.busy) return;
-    const ids = new Set(['lara', ...game.state.completedScenes.flatMap(id => game.scene(id)?.meta.portraits ?? [])]);
-    const people = Object.values(game.state.actors).filter(actor => actor.kind === 'character' && ids.has(actor.id));
-    showCodex(this.root, people);
-  }
-
   private openMenu() {
     let m: HTMLElement;
     const body = h('div', { class: 'menu-buttons' },
@@ -242,6 +231,54 @@ export class App {
       h('button', { class: 'btn', onclick: () => { m.remove(); this.openSettings(); } }, 'Settings'),
       h('button', { class: 'btn', onclick: () => { if (this.game) saveGame(this.game.state); m.remove(); this.game = null; this.showTitle(); } }, 'Save & quit to title'));
     m = this.modal('Menu', body);
+  }
+
+  private openTablet() {
+    const g = this.game;
+    if (!g || this.busy) return;
+    this.hideInfo();
+    this.hideCard();
+    this.sidebar.classList.remove('open');
+    void showTablet(this.root, this.tabletOptions(this.latestEdition ?? this.publishedEdition()));
+  }
+
+  private tabletOptions(edition: Edition, initialApp: TabletApp = 'home', footer?: string, closeLabel?: string): TabletOptions {
+    const g = this.game!;
+    const ids = new Set(['lara', ...g.state.completedScenes.flatMap((id) => g.scene(id)?.meta.portraits ?? [])]);
+    const people = Object.values(g.state.actors).filter((actor) => actor.kind === 'character' && ids.has(actor.id));
+    const seenReports = new Set([...g.state.shownPopups, ...g.state.activePopups]);
+    return {
+      edition,
+      people,
+      reports: this.content.popups
+        .filter((popup) => popup.kind === 'report' && seenReports.has(popup.id))
+        .sort((a, b) => g.state.shownPopups.indexOf(b.id) - g.state.shownPopups.indexOf(a.id))
+        .map((popup) => ({ popup, read: g.isRead(popup.id) })),
+      initialApp,
+      footer,
+      closeLabel,
+      onOpenReport: (id) => {
+        const game = this.game;
+        if (!game) return undefined;
+        const popup = game.readPopup(id);
+        if (popup) {
+          saveGame(game.state);
+          this.refresh();
+        }
+        return popup;
+      },
+    };
+  }
+
+  private publishedEdition(): Edition {
+    const g = this.game!;
+    const printed = this.content.news.filter((item) => g.state.printedNews.includes(item.id));
+    const papers = this.content.papers
+      .map((paper) => ({ paper, items: printed.filter((item) => item.paper === paper.id).sort((a, b) => a.priority - b.priority) }))
+      .filter((entry) => entry.items.length > 0);
+    const unknown = printed.filter((item) => !this.content.papers.some((paper) => paper.id === item.paper));
+    if (unknown.length) papers.push({ paper: { id: 'wire', name: 'Wire Services', slant: '', tagline: '' }, items: unknown });
+    return { dateLabel: 'Press archive', papers };
   }
 
   // ---------------------------------------------------------------- rest state
@@ -258,7 +295,7 @@ export class App {
     this.hud.update(g.state, this.chapterTitle());
     const scenes = g.availableScenes();
     const foreign = new Set([...this.geo.regions.filter((r) => r.kind === 'country').map((r) => r.id), ...Object.keys(OFFMAP)]);
-    // forced `order`: later scenes appear on the map only once the forced ones are done (agenda shows them greyed)
+    // Forced-order scenes appear as map markers only after earlier scenes are completed.
     const markers: MarkerSpec[] = scenes.filter((sc) => !g.isLocked(sc)).map((sc) => ({
       id: sc.id,
       title: sc.meta.title,
@@ -272,29 +309,6 @@ export class App {
     this.map.setToasts(
       g.activePopups().map((p) => ({ id: `${g.state.turnIndex}:${p.id}`, title: p.title, kind: p.kind, read: g.isRead(p.id), at: this.map.locate(p.location) ?? this.map.locate('capital')! })),
     );
-    // agenda
-    clear(this.agenda);
-    this.agenda.append(h('h2', { class: 'panel-title' }, 'Agenda'));
-    if (!scenes.length) this.agenda.append(h('div', { class: 'agenda-empty' }, 'Nothing on your desk.'));
-    const unread = g.activePopups().filter((p) => !g.isRead(p.id));
-    this.agenda.classList.toggle('empty', !scenes.length && !unread.length);
-    for (const sc of scenes) {
-      const locked = g.isLocked(sc);
-      this.agenda.append(
-        h('button', { class: `agenda-item kind-${sc.meta.kind}${locked ? ' locked' : ''}`, disabled: locked, onclick: () => void this.playScene(sc.id) },
-          h('span', { class: 'agenda-kind' }, (g.isRequired(sc) ? '● ' : '○ ') + (KIND_LABEL[sc.meta.kind] ?? sc.meta.kind)),
-          h('span', { class: 'agenda-title' }, sc.meta.title)));
-    }
-    // unread readables (the map pins become icon-only when there are many)
-    if (unread.length) {
-      const list = h('details', { class: 'agenda-reads', 'data-ui': 'readables-list' },
-        h('summary', {}, `On your desk · ${unread.length} unread`),
-        ...unread.map((p) =>
-          h('button', { class: 'agenda-read', onclick: (ev: Event) => { const r = (ev.currentTarget as HTMLElement).getBoundingClientRect(); this.showReadable(p.id, r.left - 340, r.top); } }, p.title ?? 'Report')));
-      if (unread.length <= 6 || this.agendaReadsOpen) list.setAttribute('open', '');
-      list.addEventListener('toggle', () => (this.agendaReadsOpen = (list as HTMLDetailsElement).open));
-      this.agenda.append(list);
-    }
     // end turn
     const pending = g.pendingRequired().length;
     this.endBtn.disabled = !g.canEndTurn() || this.busy;
@@ -311,7 +325,7 @@ export class App {
     clear(this.sidebar);
     this.sidebar.append(h('h2', { class: 'panel-title' }, 'Free actions', h('button', { class: 'x', 'aria-label': 'Close', onclick: () => this.toggleSidebar() }, '×')));
     const list = g.freeActions();
-    if (!list.length) this.sidebar.append(h('div', { class: 'agenda-empty' }, 'No actions available.'));
+    if (!list.length) this.sidebar.append(h('div', { class: 'fa-empty' }, 'No actions available.'));
     for (const v of list) {
       const cost = costText(v.action.cost);
       this.sidebar.append(
@@ -571,9 +585,15 @@ export class App {
     this.hideInfo();
     this.cancelTargeting();
     const res = g.endTurn();
+    if (res.edition.papers.length) this.latestEdition = res.edition;
     this.layer.classList.add('hidden-ui');
     if (res.edition.papers.length) {
-      await showNewspaper(this.root, res.edition, res.ended ? 'The term goes on — to be continued.' : `Next: ${g.state.dateLabel}`);
+      await showTablet(this.root, this.tabletOptions(
+        res.edition,
+        'news',
+        res.ended ? 'The term goes on — to be continued.' : `Next: ${g.state.dateLabel}`,
+        'Continue  ›',
+      ));
     }
     this.layer.classList.remove('hidden-ui');
     this.busy = false;
