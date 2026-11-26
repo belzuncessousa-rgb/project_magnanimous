@@ -1,6 +1,6 @@
 # Narrative canon — author design sessions
 
-Last consolidated: 2026-11-25. Sessions 01–47. Maintained as author interviews continue.
+Last consolidated: 2026-11-25. Sessions 01–48. Maintained as author interviews continue.
 
 ## Authority and workflow
 
@@ -217,9 +217,13 @@ Author clarification on Mertens: intransigent, strictly by-the-book Lara who rep
 
 Author scope constraint: the three central advisers justify deeper agendas, personality and branching relationships because of their importance across the story. Do not give every cabinet member equally elaborate personal arcs or replacement options. Some ministers should simply perform their jobs throughout the term, with distinct voices, professional convictions and advice. Working editorial hierarchy: central recurring relationships; major supporting figures with particular arc involvement; professional supporting figures with characterization but limited independent plot. Prioritize memorable personalities over a proliferation of secret agendas, resignations and endings. Assistant may independently develop details and choose which other figures merit major arcs based on narrative function.
 
-## Next design discussion (48)
+## 48 — Renata Salgado
 
-Resolve the most consequential remaining cabinet relationship: the role of Renata Salgado in the corruption and justice storylines, including her prior professional connection to Lara. Then delegate the rest of the ordinary cabinet characterization and move toward political gameplay and representative writing. Maintain scope discipline and one focused question at a time.
+Confirmed: Renata previously worked alongside Lara during her famous corruption investigation. They are former professional colleagues with mutual respect, not necessarily close personal friends. She is a highly competent legal professional, firmly anti-corruption, less sentimental and more confrontational than Amanda, and protective of judicial independence. Her professional history gives particular weight to potential conflicts over corruption in Lara's own government. Keep her an independent character; do not dictate Lara's motives or make Renata a universal moral commentator. Exact biography, investigative role and conditional responses are delegated. The remaining ordinary cabinet characterization may be developed independently within the scope principles of session 47.
+
+## Next design discussion (49)
+
+Move to political gameplay: examine the existing political capital, negotiation and corruption design and establish the narrative treatment of commitments and political deals. Ask only consequential unresolved questions.
 
 ## Implementation backlog (not yet changes)
 
