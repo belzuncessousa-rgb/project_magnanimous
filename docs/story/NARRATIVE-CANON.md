@@ -1,6 +1,6 @@
 # Narrative canon — author design sessions
 
-Last consolidated: 2026-11-25. Sessions 01–51. Maintained as author interviews continue.
+Last consolidated: 2026-11-25. Sessions 01–52. Maintained as author interviews continue.
 
 ## Authority and workflow
 
@@ -237,9 +237,13 @@ Author's original preference: six chapters, three turns per chapter, with approx
 
 Current prototype content/chapters.json covers Y1 in nine turns over three chapters, and older Notion P5/P6 assumed a second term. Both require reconciliation with the first-term-only scope and proposed 18-turn framework; do not simply extend the existing prototype cadence, delete scenes or assume old chapter titles/arcs retain their placement. If the six-chapter structure is accepted, redistribute existing scenes by dramatic function, allow opening turn to be dense and later arcs to breathe, and retain final chapter for reelection/transition. Test actual scene and free-action pacing before fixing count; 30-hour ambition remains unvalidated.
 
-## Next design discussion (52)
+## 52 — Confirmed chapter framework and narrative rhythm
 
-Confirm the six-chapter framework and chapter-level resource generation, then resolve the ordering of the first term's major story arcs and prepare a provisional narrative timeline for calibration scenes. No code changes.
+Author confirms the session 51 framework: six chapters, three turns per chapter (18 total), resource generation and carryover at chapter boundaries, flexible narrative calendar over the first four-year term. Approximate eight-month chapter cadence is a working arrangement, not fixed dates. Variable event counts per turn are explicitly desired; do not impose uniform scene counts. Include encounters outside formal governance: personal relationships, family, leisure, public/cultural life, and ordinary citizens. These can contribute to the evolving story without always being political negotiations or stat decisions. Editorial principle: permit some encounters with no mechanical reward or major decision, alternate demanding and quieter sequences, and avoid forcing Lara's feelings. Distinguish mandatory scenes, conditional opportunities and discretionary actions during timeline planning. Exact schedule and resource tuning remain TBD; no gameplay implementation changes.
+
+## Next design discussion (53)
+
+Develop a working six-chapter dramatic timeline across the first term, mapping major arcs and their escalation/payoff without imposing fixed outcomes or adding unnecessary features. Review current canon and scene inventory. Resolve one high-impact pacing question, then begin representative scene calibration.
 
 ## Implementation backlog (not yet changes)
 
