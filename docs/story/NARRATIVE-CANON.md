@@ -1,6 +1,6 @@
 # Narrative canon — author design sessions
 
-Last consolidated: 2026-11-25. Sessions 01–57. Maintained as author interviews continue.
+Last consolidated: 2026-11-25. Sessions 01–58. Maintained as author interviews continue.
 
 ## Authority and workflow
 
@@ -271,9 +271,17 @@ Author approves revised sample 02's overall writing, amount of description and c
 
 Third calibration excerpt: [03-first-night-sample.md](calibration/03-first-night-sample.md), a private first-night conversation with Amanda, including low-stakes exchanges, shared history, optional interest in Amanda's own experience and conditionally distinct political dialogue/options. Minor backstory and staging details are provisional; no engine-ready effects or scene changes. The existing forced inner voice and assumptions in p1-first-night require review during implementation.
 
-## Next design discussion (58)
+## 58 — Personal writing calibration approved; dialogue and scene cadence
 
-Review Amanda personal-scene sample, then plan full-scene production and mechanical reconciliation if calibration is sufficient. Prioritize a playable vertical slice and author review of representative scenes rather than requiring review of every scene.
+Author approves Amanda's voice, the friendship and reusable personal anecdotes in sample 03. Author requests fewer mandatory choice interruptions: Lara may speak routine, low-stakes lines directly, and dialogue may continue for several exchanges before the next choice. Fixed dialogue must not impose political beliefs, meaningful personal attitudes, decisions, promises or unchosen feelings. Two options are acceptable when sufficient; allow more when useful; no obligatory three-option minimum. Keep expressive choices where they enrich agency rather than making every response a selection.
+
+Author questions the original exclusively long-scene plan and proposes a mixture of short, long and very long scenes, including within a turn independently available encounters and prerequisite-dependent chains. Editorial recommendation: adopt varied scene lengths and let dramatic purpose determine length. Brief 1–3 minutes, standard 4–10, major 10–20, landmark 20–30+ are illustrative estimates only, not quotas or validated runtime. Avoid padding and unnecessary map interruptions; a brief scene can have major consequences. Maintain meaningful optional encounters, conditional scenes, and knowledge continuity across permitted scene orderings. Full First Night should extend beyond the calibration excerpt, potentially through the residence, a family call, quiet activities or reflection without forcing Lara's feelings. No new fixed personal details or scene schedule established.
+
+All three representative prose calibration samples now approved in tone (01 inauguration, 02 revised negotiation, 03 Amanda), subject to the feedback in sessions 55–58. Style guide updated. No playable content or mechanical implementation changed.
+
+## Next design discussion (59)
+
+Transition from foundational interviews to production. Start with a complete inaugural address in the existing scene format and a vertical-slice opening-turn plan, reconcile canon and existing mechanics/flags before replacing playable content, and validate reachable branches. Author review representative complete scenes rather than every scene. Keep the existing prototype intact until rewrites are ready for integration; coordinate engine changes separately.
 
 ## Implementation backlog (not yet changes)
 
