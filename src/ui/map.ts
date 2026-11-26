@@ -1,4 +1,4 @@
-// REST STATE map: painted image (if present) or styled SVG fallback, hotspots, labels, markers, pan/zoom.
+// Rest-state map: data-aligned atlas layers, hotspots, labels, markers and pan/zoom.
 import { clear, h, s } from './dom';
 import { KIND_GLYPH } from './format';
 import { fanOut, stackPins, type Rect } from './layout';
@@ -32,13 +32,13 @@ export const OFFMAP: Record<string, { at: Pt; name: string; note: string }> = {
   zharan: { at: [1000, 520], name: 'Zharan', note: 'Across the eastern ocean' },
 };
 
-/** Political view: multiplied over the terrain image. Kunasai in warm earth hues, neighbours in muted cool ones. */
+/** Muted atlas fills for the regional political map. Kunasai receives one national colour. */
 export const POLITICAL_COLORS: Record<string, string> = {
-  tekoku: '#d38b2c',
-  ibicui: '#b9412a',
-  mognagna: '#e2b43c',
-  tapira: '#8c5627',
-  ibira: '#5e8c2c',
+  tekoku: '#9a744d',
+  ibicui: '#9a744d',
+  mognagna: '#9a744d',
+  tapira: '#9a744d',
+  ibira: '#9a744d',
   veldmoor: '#6f80a8',
   tarev: '#9c6e8e',
   orvane: '#7c9c90',
@@ -51,6 +51,10 @@ export const POLITICAL_COLORS: Record<string, string> = {
 };
 
 const linePath = (pts: Pt[]) => 'M' + pts.map(([x, y]) => `${x},${y}`).join('L');
+const MAP_FRAMES = {
+  political: { x: -55, y: 140, w: 800, h: 1120 },
+  terrain: { x: 45, y: 355, w: 610, h: 605 },
+} as const;
 
 export interface MarkerSpec {
   id: string;
@@ -106,6 +110,7 @@ export class MapView {
   private dismissed = new Set<string>();
   private dragged = false;
   private targeting: Set<string> | null = null;
+  private view: 'terrain' | 'political' = 'terrain';
 
   constructor(
     readonly geo: Geometry,
@@ -114,9 +119,9 @@ export class MapView {
     this.base = { ...geo.viewBox };
     this.vb = { ...geo.viewBox };
     this.el = h('div', { class: 'map', 'data-ui': 'map' });
-    this.svg = s('svg', { class: 'map-svg', preserveAspectRatio: 'xMidYMid slice', role: 'group', 'aria-label': 'Map of Kunasai' });
+    this.svg = s('svg', { class: 'map-svg', preserveAspectRatio: 'xMidYMid meet', role: 'group', 'aria-label': 'Map of Kunasai' });
     this.markerLayer = s('g', { class: 'markers' });
-    this.markerSvg = s('svg', { class: 'map-svg marker-svg', preserveAspectRatio: 'xMidYMid slice', role: 'group', 'aria-label': 'Available scenes', 'data-ui': 'markers' }, this.markerLayer);
+    this.markerSvg = s('svg', { class: 'map-svg marker-svg', preserveAspectRatio: 'xMidYMid meet', role: 'group', 'aria-label': 'Available scenes', 'data-ui': 'markers' }, this.markerLayer);
     this.hotLayer = s('g', { class: 'hotspots' });
     this.toastLayer = h('div', { class: 'map-toasts', 'data-ui': 'readables' });
     this.tooltip = h('div', { class: 'map-tooltip', hidden: true });
@@ -129,15 +134,20 @@ export class MapView {
 
   private build() {
     const { x, y, w, hgt } = { ...this.base, hgt: this.base.h };
+    const shapes = this.geo.regions;
     const defs = s(
       'defs',
       {},
       s('radialGradient', { id: 'sea-grad', cx: '45%', cy: '50%', r: '75%' },
         s('stop', { offset: '0%', 'stop-color': 'var(--sea-light)' }),
         s('stop', { offset: '100%', 'stop-color': 'var(--sea-deep)' })),
-      s('filter', { id: 'organic', x: '-5%', y: '-5%', width: '110%', height: '110%' },
-        s('feTurbulence', { type: 'fractalNoise', baseFrequency: '0.035', numOctaves: '3', seed: '7', result: 'n' }),
-        s('feDisplacementMap', { in: 'SourceGraphic', in2: 'n', scale: '9', xChannelSelector: 'R', yChannelSelector: 'G' })),
+      s('pattern', { id: 'sea-lines', width: 180, height: 120, patternUnits: 'userSpaceOnUse' },
+        s('path', { d: 'M-12 28 C18 18 44 18 72 28 S126 38 154 28 S202 18 224 28 M-40 80 C-10 70 16 70 44 80 S98 90 126 80 S180 70 208 80', fill: 'none', stroke: '#9bb4ac', 'stroke-width': 1 })),
+      s('pattern', { id: 'terrain-contours', width: 92, height: 82, patternUnits: 'userSpaceOnUse' },
+        s('path', { d: 'M-20 38 C2 18 28 17 48 31 S83 48 110 24 M-23 54 C4 34 29 33 49 47 S82 64 112 40 M-22 70 C3 51 29 50 49 64 S82 81 111 57', fill: 'none', stroke: '#f1e5c8', 'stroke-width': 1.25, opacity: 0.6 })),
+      s('filter', { id: 'organic', x: '-3%', y: '-3%', width: '106%', height: '106%' },
+        s('feTurbulence', { type: 'fractalNoise', baseFrequency: '0.012', numOctaves: '2', seed: '7', result: 'n' }),
+        s('feDisplacementMap', { in: 'SourceGraphic', in2: 'n', scale: '2.2', xChannelSelector: 'R', yChannelSelector: 'G' })),
       s('filter', { id: 'paper-noise', x: '0', y: '0', width: '100%', height: '100%' },
         s('feTurbulence', { type: 'fractalNoise', baseFrequency: '0.9', numOctaves: '2', seed: '3', result: 'n' }),
         s('feColorMatrix', { in: 'n', type: 'matrix', values: '0 0 0 0 0.25  0 0 0 0 0.2  0 0 0 0 0.12  0 0 0 0.22 0' }),
@@ -147,23 +157,40 @@ export class MapView {
         s('feDiffuseLighting', { in: 'n', 'lighting-color': '#f4ead2', surfaceScale: '3', result: 'l' }, s('feDistantLight', { azimuth: '235', elevation: '55' })),
         s('feComposite', { in: 'l', in2: 'SourceGraphic', operator: 'in' })),
       s('filter', { id: 'label-shadow' }, s('feDropShadow', { dx: '0', dy: '0', stdDeviation: '1.2', 'flood-color': '#f3ead6', 'flood-opacity': '0.9' })),
+      ...shapes.map((g) => s('clipPath', { id: `land-clip-${g.id}` }, s('path', { d: pathOf(g.polygon) }))),
     );
     const sea = s('g', { class: 'sea' },
       s('rect', { x, y, width: w, height: hgt, fill: 'url(#sea-grad)' }),
-      s('rect', { x, y, width: w, height: hgt, filter: 'url(#paper-noise)', fill: '#000', opacity: '0.5' }));
-    const shapes = this.geo.regions;
-    const landFill = (g: GeoShape) => (g.kind === 'region' ? 'var(--land-home)' : 'var(--land-foreign)');
+      s('rect', { x, y, width: w, height: hgt, filter: 'url(#paper-noise)', fill: '#000', opacity: '0.45' }),
+      s('rect', { x, y, width: w, height: hgt, fill: 'url(#sea-lines)', opacity: '0.24' }));
+    const kunasaiRegions = shapes.filter((g) => g.kind === 'region');
+    const outerKunasaiBorders = (this.geo.borders ?? []).filter((b) =>
+      b.between.some((id) => kunasaiRegions.some((r) => r.id === id)) && (b.type === 'coast' || b.type === 'international'));
+    const landFill = (g: GeoShape) => {
+      const palette: Record<string, string> = {
+        tekoku: '#c9b48a', ibicui: '#d7bd8c', mognagna: '#c9a66d', tapira: '#a9956a', ibira: '#638565',
+      };
+      return g.kind === 'region' ? palette[g.id] ?? '#b3aa8e' : '#9daa91';
+    };
     const terrain = s('g', { class: 'layer-terrain' },
-      s('g', { class: 'coast-halo', filter: 'url(#organic)' }, ...shapes.map((g) => s('path', { d: pathOf(g.polygon) }))),
-      s('g', { class: 'land', filter: 'url(#organic)' }, ...shapes.map((g) => s('path', { d: pathOf(g.polygon), fill: landFill(g), class: `land-${g.kind}` }))),
-      s('g', { class: 'relief', filter: 'url(#organic)' }, ...shapes.map((g) => s('path', { d: pathOf(g.polygon), filter: 'url(#relief)' }))),
-      s('g', { class: 'borders', filter: 'url(#organic)' }, ...shapes.map((g) => s('path', { d: pathOf(g.polygon), class: `border-${g.kind}` }))),
+      s('g', { class: 'land', filter: 'url(#organic)' }, ...shapes.map((g) => s('path', { d: pathOf(g.polygon), fill: landFill(g), class: `land-shape land-${g.kind} land-${g.id}` }))),
+      s('g', { class: 'terrain-texture' }, ...shapes.map((g) => s('path', { d: pathOf(g.polygon), fill: 'url(#terrain-contours)', 'clip-path': `url(#land-clip-${g.id})`, class: 'contour-wash' }))),
+      s('g', { class: 'relief' }, ...shapes.map((g) => s('path', { d: pathOf(g.polygon), filter: 'url(#relief)', class: `relief-${g.kind}` }))),
     );
-    const image = s('image', { class: 'map-image', x, y, width: w, height: hgt, preserveAspectRatio: 'none' });
     const political = s('g', { class: 'layer-political' },
-      ...shapes.map((g) => s('path', { d: pathOf(g.polygon), fill: POLITICAL_COLORS[g.id] ?? '#999', class: `pol-${g.kind}` })));
-    const inkBorders = s('g', { class: 'ink-borders' },
-      ...(this.geo.borders ?? []).filter((b) => b.type !== 'coast').map((b) => s('path', { d: linePath(b.line), class: `ink-${b.type}` })));
+      ...shapes.map((g) => s('path', { d: pathOf(g.polygon), fill: POLITICAL_COLORS[g.id] ?? '#999', class: `pol-${g.kind} pol-${g.id}` })));
+    const borderLines = this.geo.borders ?? [];
+    const terrainBorders = s('g', { class: 'terrain-borders' },
+      ...borderLines.filter((b) => b.type !== 'coast').map((b) => s('path', { d: linePath(b.line), class: `border-line border-${b.type}` })));
+    const coastBorders = s('g', { class: 'coast-borders' },
+      ...borderLines.filter((b) => b.type === 'coast').map((b) => s('path', { d: linePath(b.line) })));
+    const international = borderLines.filter((b) => b.type === 'international');
+    const politicalBorderUnderlay = s('g', { class: 'political-border-underlay' },
+      ...international.map((b) => s('path', { d: linePath(b.line) })));
+    const politicalBorders = s('g', { class: 'political-borders' },
+      ...international.map((b) => s('path', { d: linePath(b.line), class: 'international-border' })));
+    const nationalOutline = s('g', { class: 'national-outline' },
+      ...outerKunasaiBorders.map((b) => s('path', { d: linePath(b.line) })));
 
     for (const g of shapes) {
       const p = s('path', {
@@ -172,10 +199,19 @@ export class MapView {
       });
       p.addEventListener('click', (ev) => this.clickShape(g.id, ev as MouseEvent));
       p.addEventListener('keydown', (ev) => this.keySelectShape(g.id, ev as KeyboardEvent, p));
-      p.addEventListener('mousemove', (ev) => this.showTip(g.name, ev as MouseEvent));
+      p.addEventListener('mousemove', (ev) => this.showTip(g.kind === 'region' && this.view === 'political' ? 'Kunasai — open regional map' : g.name, ev as MouseEvent));
       p.addEventListener('mouseleave', () => this.hideTip());
       this.hotLayer.append(p);
     }
+    const kunasaiHot = s('g', { class: 'hot-kunasai', tabindex: 0, role: 'button', 'aria-label': 'Kunasai — open regional map' },
+      ...kunasaiRegions.map((g) => s('path', { d: pathOf(g.polygon), class: 'hot-kunasai-piece' })));
+    kunasaiHot.addEventListener('click', (ev) => { ev.stopPropagation(); if (!this.targeting) this.setView('terrain'); });
+    kunasaiHot.addEventListener('keydown', (ev) => {
+      if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); ev.stopPropagation(); this.setView('terrain'); }
+    });
+    kunasaiHot.addEventListener('mousemove', (ev) => this.showTip('Kunasai — open regional map', ev as MouseEvent));
+    kunasaiHot.addEventListener('mouseleave', () => this.hideTip());
+    this.hotLayer.append(kunasaiHot);
     const offmap = s('g', { class: 'offmap' });
     for (const [id, o] of Object.entries(OFFMAP)) {
       const g = s('g', { class: 'offmap-chip hot-offmap', 'data-id': id, transform: `translate(${o.at[0]},${o.at[1]})` },
@@ -191,8 +227,12 @@ export class MapView {
     }
     const labels = s('g', { class: 'labels' });
     for (const g of shapes) {
-      labels.append(s('text', { class: `label label-${g.kind}`, x: g.center[0], y: g.center[1] + (g.kind === 'region' ? 5 : 4) }, g.kind === 'region' ? g.name.toUpperCase() : g.name));
+      if (g.kind === 'country') labels.append(s('text', { class: 'label label-country', x: g.center[0], y: g.center[1] + 4 }, g.name));
+      else labels.append(s('text', { class: 'label label-region', x: g.center[0], y: g.center[1] + 5 }, g.name.toUpperCase()));
     }
+    labels.append(s('text', { class: 'label label-national', x: 355, y: 700 }, 'KUNASAI'));
+    labels.append(s('text', { class: 'label label-continent', x: 350, y: 158 }, 'ARVANE'));
+    labels.append(s('text', { class: 'label label-canal', x: 350, y: 1247 }, 'CONTINENTAL CANAL'));
     for (const [id, p] of Object.entries(this.geo.points)) {
       if (id === 'capital') {
         labels.append(
@@ -205,7 +245,7 @@ export class MapView {
       }
     }
     labels.append(s('text', { class: 'label label-water', x: 160, y: 600 }, 'Gulf of Katanaí'));
-    this.svg.append(defs, sea, terrain, image, political, inkBorders, this.hotLayer, offmap, labels);
+    this.svg.append(defs, sea, terrain, terrainBorders, political, coastBorders, politicalBorderUnderlay, politicalBorders, nationalOutline, this.hotLayer, offmap, labels);
     this.svg.addEventListener('click', (ev) => {
       if (this.dragged) return;
       const t = ev.target as Element;
@@ -213,26 +253,14 @@ export class MapView {
     });
   }
 
-  /** Load the painted terrain map (small version first, then full). Keeps the SVG fallback if both are missing. */
-  loadImage(small: string, full?: string) {
-    const show = (url: string) => {
-      this.svg.querySelector('.map-image')?.setAttribute('href', url);
-      this.el.classList.add('has-image');
-    };
-    const img = new Image();
-    img.onload = () => {
-      show(small);
-      if (!full || window.innerWidth <= 900) return;
-      const big = new Image();
-      big.onload = () => show(full);
-      big.src = full;
-    };
-    img.src = small;
-  }
-
   setView(view: 'terrain' | 'political') {
+    this.view = view;
+    this.base = { ...MAP_FRAMES[view] };
+    this.vb = { ...this.base };
     this.el.classList.toggle('view-political', view === 'political');
     this.el.classList.toggle('view-terrain', view === 'terrain');
+    this.svg.setAttribute('aria-label', view === 'political' ? 'Political map of Arvane' : 'Terrain map of Kunasai and its regions');
+    this.applyViewBox();
   }
 
   locate(id: string | undefined): Pt | undefined {
@@ -359,6 +387,10 @@ export class MapView {
     if (this.dragged) return;
     if (this.targeting) {
       if (this.targeting.has(id)) this.cb.onTarget(id);
+      return;
+    }
+    if (this.view === 'political' && this.geo.regions.some((g) => g.id === id && g.kind === 'region')) {
+      this.setView('terrain');
       return;
     }
     this.cb.onSelect(id, x, y);

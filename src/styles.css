@@ -80,32 +80,41 @@ button { font: inherit; color: inherit; }
 .panel-title { font-family: var(--caps); font-weight: 700; letter-spacing: 0.08em; font-size: 0.95em; color: var(--ink-soft); border-bottom: 1px solid var(--paper-edge); padding-bottom: 0.3em; margin-bottom: 0.4em; display: flex; justify-content: space-between; align-items: center; }
 
 /* ------------------------------------------------------------------ map */
-.map { position: absolute; inset: 0; overflow: hidden; transition: filter 0.6s ease; cursor: default; }
+.map { position: absolute; inset: 0; overflow: hidden; background: var(--sea-deep); transition: filter 0.6s ease; cursor: default; }
 .map.dim, body.vn-active .map { filter: brightness(0.42) saturate(0.7) blur(1.5px); }
 .map.panning { cursor: grabbing; }
 .map-svg { width: 100%; height: 100%; display: block; user-select: none; }
 .marker-svg { position: absolute; inset: 0; pointer-events: none; z-index: 4; }
 .marker-svg .marker { pointer-events: auto; }
 
-.coast-halo path { fill: none; stroke: #7f9a98; stroke-opacity: 0.45; stroke-width: 9; stroke-linejoin: round; }
-.land path { stroke: none; }
-.relief path { fill: #fff; opacity: 0.35; mix-blend-mode: multiply; }
-.borders path { fill: none; stroke-linejoin: round; }
-.borders .border-region { stroke: #6b5636; stroke-width: 1.4; stroke-dasharray: 5 3; }
-.borders .border-country { stroke: #5d5445; stroke-width: 1.1; }
-.map-image { display: none; }
-.map.has-image .map-image { display: inline; }
-.map.has-image .layer-terrain { display: none; }
-.layer-political, .ink-borders { display: none; }
-.view-political .layer-political, .view-political .ink-borders { display: inline; }
-.layer-political path { mix-blend-mode: multiply; opacity: 0.55; stroke: none; }
-.map:not(.has-image) .layer-political path { mix-blend-mode: normal; opacity: 0.85; }
-.ink-borders path { fill: none; stroke: #2b2016; stroke-linejoin: round; stroke-linecap: round; opacity: 0.55; }
-.ink-borders .ink-international { stroke-width: 1.6; }
-.ink-borders .ink-internal { stroke-width: 1.1; stroke-dasharray: 5 3; }
+.land-shape { stroke: none; }
+.land-country { fill: #a8ad91; }
+.contour-wash { opacity: 0.2; pointer-events: none; }
+.relief path { fill: #f4ecd8; opacity: 0.3; mix-blend-mode: multiply; }
+.terrain-borders path, .coast-borders path, .political-borders path, .political-border-underlay path, .national-outline path { fill: none; stroke-linejoin: round; stroke-linecap: round; vector-effect: non-scaling-stroke; }
+.terrain-borders .border-internal { stroke: #55694e; stroke-width: 1.2; opacity: 0.7; }
+.terrain-borders .border-international { stroke: #697366; stroke-width: 1.1; opacity: 0.53; }
+.coast-borders path { stroke: #293b34; stroke-width: 2.8; opacity: 0.52; }
+.layer-political, .political-borders, .political-border-underlay, .national-outline { display: none; }
+.view-political .layer-terrain, .view-political .terrain-borders { display: none; }
+.view-political .layer-political, .view-political .political-borders, .view-political .political-border-underlay, .view-political .national-outline { display: inline; }
+.layer-political path { stroke: none; opacity: 0.94; }
+.view-political .pol-country { filter: saturate(0.86); }
+.view-political .political-border-underlay path { stroke: #efe6d3; stroke-width: 4.1; opacity: 0.9; }
+.view-political .political-borders path { stroke: #51483a; stroke-width: 1.2; opacity: 0.92; }
+.view-political .national-outline path { stroke: #3b3429; stroke-width: 2.3; opacity: 0.95; }
+.view-terrain .national-outline { display: none; }
+.offmap { display: none; }
+.map.targeting .offmap { display: inline; }
 
 .hot { fill: transparent; stroke: transparent; stroke-width: 2.5; cursor: pointer; transition: fill 0.15s, stroke 0.15s; }
 .hot:hover, .hot.selected { fill: rgba(255, 244, 214, 0.18); stroke: #f3e3b6; stroke-opacity: 0.9; }
+.hot-kunasai { display: none; cursor: pointer; }
+.hot-kunasai-piece { fill: transparent; stroke: transparent; }
+.view-political:not(.targeting) .hot-region { display: none; }
+.view-political:not(.targeting) .hot-kunasai { display: inline; }
+.view-political:not(.targeting) .hot-kunasai:hover .hot-kunasai-piece,
+.view-political:not(.targeting) .hot-kunasai:focus .hot-kunasai-piece { fill: rgba(255, 244, 214, 0.13); }
 .targeting .hot { cursor: not-allowed; fill: rgba(20, 15, 10, 0.32); }
 .targeting .hot.valid { cursor: crosshair; fill: rgba(176, 138, 52, 0.18); stroke: var(--gold); stroke-dasharray: 6 4; animation: march 1.2s linear infinite; }
 .targeting .hot.valid:hover { fill: rgba(176, 138, 52, 0.38); }
@@ -124,6 +133,14 @@ button { font: inherit; color: inherit; }
 .label { pointer-events: none; text-anchor: middle; paint-order: stroke; stroke-linejoin: round; }
 .label-region { font-family: var(--caps); font-weight: 700; font-size: 15px; letter-spacing: 0.18em; fill: #2f2416; stroke: rgba(240, 230, 205, 0.75); stroke-width: 3px; }
 .label-country { font-family: var(--serif); font-style: italic; font-size: 13px; letter-spacing: 0.04em; fill: #3e362b; stroke: rgba(220, 212, 192, 0.7); stroke-width: 2.5px; }
+.label-national { display: none; font-family: var(--caps); font-weight: 700; font-size: 24px; letter-spacing: 0.16em; fill: #2b251b; stroke: rgba(240, 230, 205, 0.86); stroke-width: 4px; }
+.label-continent, .label-canal { display: none; font-family: var(--ui-sans); font-size: 12px; font-weight: 600; letter-spacing: 0.18em; fill: #d4dfd7; stroke: rgba(30, 56, 48, 0.65); stroke-width: 3px; }
+.view-political .label-region, .view-political .capital, .view-political .label-water, .view-political .label-point { display: none; }
+.view-political .label-national { display: inline; }
+.view-political .label-continent, .view-political .label-canal { display: inline; }
+.view-political .label-country { font-style: normal; font-weight: 600; }
+.view-terrain .label-country { opacity: 0.48; }
+.view-terrain .label-region { font-size: 17px; letter-spacing: 0.12em; }
 .label-water { font-family: var(--serif); font-style: italic; font-size: 13px; letter-spacing: 0.2em; fill: #b9cbc7; opacity: 0.85; }
 .label-point { font-family: var(--serif); font-style: italic; font-size: 11px; text-anchor: start; fill: #2b2219; stroke: rgba(240, 230, 205, 0.8); stroke-width: 2.5px; }
 .view-political .label-region { fill: #1e170f; stroke: rgba(245, 236, 214, 0.85); }

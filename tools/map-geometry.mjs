@@ -3,7 +3,9 @@
 // Run: node tools/map-geometry.mjs  -> writes public/map/regions.json + reference/map-layout.svg
 import { writeFileSync } from 'node:fs';
 
-export const VIEWBOX = { x: -405, y: 160, w: 1536, h: 864 };
+// Full Arvane frame: northern Veldmoor peninsula through Torreval's southern canal.
+// The land itself is tall; the map view fits it rather than cutting off its north or south.
+export const VIEWBOX = { x: -55, y: 140, w: 800, h: 1120 };
 
 const P = {
   // Tekoku
@@ -140,13 +142,19 @@ for (const r of regions) r.center = centroid(r.polygon);
 for (const r of regions) delete r.control;
 writeFileSync(new URL('../public/map/regions.json', import.meta.url), JSON.stringify({ viewBox: VIEWBOX, regions, borders: BORDERS, points: POINTS }));
 
-// Flat layout reference for the painter (no labels, distinct colours).
-const fill = { region: ['#d9b26f', '#c98f5a', '#e0c78a', '#b9a06a', '#7f9f5a'], country: '#bdb6a3' };
-let i = 0;
+// Political layout reference: one country fill for Kunasai; only international borders.
+const politicalFill = {
+  kunasai: '#9a744d', veldmoor: '#718496', tarev: '#93816f', orvane: '#718d80',
+  arenza: '#798da0', selvara: '#81916f', torreval: '#9e8966', cabral: '#aa795e',
+  mondrath: '#7b718d', vassel: '#648f8a',
+};
 const path = r => 'M' + r.polygon.map(p => p.join(',')).join(' L') + ' Z';
-const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${VIEWBOX.x} ${VIEWBOX.y} ${VIEWBOX.w} ${VIEWBOX.h}" width="1920" height="1080">
-<rect x="${VIEWBOX.x}" y="${VIEWBOX.y}" width="${VIEWBOX.w}" height="${VIEWBOX.h}" fill="#5f8fa8"/>
-${regions.map(r => `<path d="${path(r)}" fill="${r.kind === 'region' ? fill.region[i++] : fill.country}" stroke="#2b2118" stroke-width="${r.kind === 'region' ? 3 : 2}" stroke-linejoin="round"/>`).join('\n')}
+const borderPath = b => 'M' + b.line.map(p => p.join(',')).join(' L');
+const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${VIEWBOX.x} ${VIEWBOX.y} ${VIEWBOX.w} ${VIEWBOX.h}" width="800" height="1120">
+<rect x="${VIEWBOX.x}" y="${VIEWBOX.y}" width="${VIEWBOX.w}" height="${VIEWBOX.h}" fill="#345451"/>
+${regions.map(r => `<path d="${path(r)}" fill="${politicalFill[r.kind === 'region' ? 'kunasai' : r.id] ?? '#9a9885'}"/>`).join('\n')}
+${BORDERS.filter(b => b.type === 'coast').map(b => `<path d="${borderPath(b)}" fill="none" stroke="#34453a" stroke-width="2" stroke-linecap="round"/>`).join('\n')}
+${BORDERS.filter(b => b.type === 'international').map(b => `<path d="${borderPath(b)}" fill="none" stroke="#ece2ce" stroke-width="3.5" stroke-linecap="round"/><path d="${borderPath(b)}" fill="none" stroke="#51483a" stroke-width="1.1" stroke-linecap="round"/>`).join('\n')}
 </svg>`;
 writeFileSync(new URL('../reference/map-layout.svg', import.meta.url), svg);
 console.log('ok', regions.length);

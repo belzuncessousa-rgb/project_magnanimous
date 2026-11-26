@@ -48,7 +48,6 @@ export class App {
       onBackground: () => { this.hideInfo(); this.hideCard(); },
       onReadable: (id, x, y) => this.showReadable(id, x, y),
     });
-    this.map.loadImage('map/terrain-small.jpg', 'map/terrain.jpg');
     this.map.setView(this.settings.mapView);
     const player = content.world.actors.find((a) => a.id === 'lara' || /vento/i.test(a.name));
     this.vn = new VNView(() => this.game!.state, { transitions: this.settings.transitions, playerId: player?.id ?? 'lara' }, {
@@ -61,8 +60,8 @@ export class App {
     this.applySettings();
 
     const viewToggle = h('div', { class: 'view-toggle paper', role: 'group', 'aria-label': 'Map view and zoom', 'data-ui': 'map-toggle' },
-      h('button', { 'data-view': 'terrain', onclick: () => this.setView('terrain') }, 'Terrain'),
-      h('button', { 'data-view': 'political', onclick: () => this.setView('political') }, 'Political'),
+      h('button', { 'data-view': 'terrain', onclick: () => this.setView('terrain') }, 'Kunasai'),
+      h('button', { 'data-view': 'political', onclick: () => this.setView('political') }, 'Arvane'),
       h('span', { class: 'sep' }),
       h('button', { title: 'Zoom in', onclick: () => this.map.zoomBy(1.4) }, '+'),
       h('button', { title: 'Zoom out', onclick: () => this.map.zoomBy(1 / 1.4) }, '−'),
