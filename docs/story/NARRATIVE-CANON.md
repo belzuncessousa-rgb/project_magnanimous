@@ -1,6 +1,6 @@
 # Narrative canon — author design sessions
 
-Last consolidated: 2026-11-25. Sessions 01–44. Maintained as author interviews continue.
+Last consolidated: 2026-11-25. Sessions 01–45. Maintained as author interviews continue.
 
 ## Authority and workflow
 
@@ -199,9 +199,15 @@ Confirmed: first-term cabinet is substantially predetermined by pre-inauguration
 
 Author prefers a substantial, deep game (roughly 30 hours as an illustrative desired playthrough) over a short shallow game. Author explicitly asks assistant to temper enthusiasm and avoid AI-driven feature proliferation. Working target of 25–35 hours is a proposal, not measured or guaranteed. Evaluate turn count and conversation capacity against actual narrative pacing before expanding them. Prioritize depth over breadth, reuse and interactions between established systems, strong characters, meaningful decisions and replayability. Do not add mechanics or arcs merely because they are possible; consider content, UI, implementation and testing burden. No turn schedule change or gameplay implementation made.
 
-## Next design discussion (45)
+## 45 — Amanda Troes and cast composition
 
-Establish the narrative role and personal relationship of Amanda Troes before developing cabinet personalities. Review existing Amanda scenes and data; respect author-approved friendship and independent moral convictions from sessions 10–12. Focus on consequential character questions and delegate smaller details.
+Confirmed: Amanda's friendship and professional loyalty are distinct. She may resign from government while remaining Lara's friend, or sufficiently serious personal/ethical conflicts may produce lasting estrangement. She is competent, honest, genuinely motivated to improve lives, with an independent personality, humour, ambitions and relationships. Do not make her an unconditional loyalist, a permanent moral commentator, or a device that dictates Lara's feelings. Exact triggers, intermediate relationship states and personal scenes TBD; preserve author-defined player agency.
+
+Author explicitly intends to keep Lara as a woman and raised a commercial concern about the number of women in powerful roles in a potentially male-skewed political strategy audience. Editorial decision: retain the current cabinet roster (four women/four men, female president and male VP), not change genders based on speculative audience backlash. Existing two presidential rivals are men. Write characters as varied individuals, capable of competence, mistakes, ambition, corruption, kindness or cruelty regardless of gender; avoid ideological sermonizing or making Lara's gender her defining characteristic. This does not preclude relevant in-world gender politics. Audience-specific commercial impact is unverified; general gamer surveys are not a sales forecast for this niche. No changes to character JSON or scenes.
+
+## Next design discussion (46)
+
+Develop Caio Mertens's relationship with Lara and the OPP. Preserve the predetermined coalition and his lack of presidential ambitions; clarify the personal/professional relationship at inauguration. Then prioritize representative character scenes and political gameplay design.
 
 ## Implementation backlog (not yet changes)
 
