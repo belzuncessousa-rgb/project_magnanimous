@@ -290,9 +290,15 @@ Staged production drafts, intentionally outside the active game content:
 
 Static draft checks: inaugural address 19 beats and 47 authored choice entries; first night 16 beats and 49 authored choice entries; no unresolved explicit beat targets or duplicate beat headings detected. This is not engine execution or validation of every reachable branch. No active playable scenes, engine code or calendar changed. Reconcile old flags, downstream references, public promise evaluation, and resource cadence before integration. Current drafts are prose-complete but not implementation-approved. Do not ask the author to approve minor dialogue details; representative review only.
 
+## 60 — Independent production, first inventory checkpoint
+
+Author requests continued production without waiting for morning review or approving each scene. All 38 original prototype scenes now have separate staged rewrites under `docs/story/production/` (15 Ch1, 17 Ch2, 6 Ch3). This is a first manuscript pass over the legacy inventory, not completion of the full first term. The [production roadmap](production/PRODUCTION-ROADMAP.md) maps the approved six-chapter/eighteen-turn structure to the additional narrative work and integration dependencies. Preserve creative independence for minor details; questions only for genuine consequential blockers. No active game scenes, engine or calendar modified.
+
+Draft checks cover explicit transition targets and duplicate beat headings, not full parser execution, branch reachability, narrative QA or balancing. Some new conditional branches are editorial placeholders; several shorter late drafts need further development. Intent flags, resource effects, procurement/debt/budget approvals, negotiated PEC, tax enactment, project delivery, corruption and institutional resistance require actual downstream resolution. Avoid making immoral or confrontational player routes impossible by reflexively substituting procedural discussion; provide genuine outcomes when plausible. Exact state mapping, chapter resource cadence and late-term availability are provisional.
+
 ## Next production step
 
-Develop Blue Room and Counting Votes, preserve their informational and negotiation roles, then audit the opening turn as a coherent playable slice. Coordinate tutorial/resource and voting changes with the engine implementation. Review only critical unresolved decisions with the author, one at a time.
+Write missing negotiation and outcome scenes, then Ch4–6 and conditional arc resolutions, in coordination with playable-slice integration and tests. Reconcile tutorial, promises, resources, voting, calendar, associated news/readables and endings. Continue from the roadmap without asking the author to reapprove minor creative choices.
 
 ## Implementation backlog (not yet changes)
 
