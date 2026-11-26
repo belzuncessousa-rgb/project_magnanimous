@@ -91,4 +91,4 @@ Wit is allowed only inside dialogue, sparingly, when it is in character — neve
 
 ## Palace courtyard benchmark
 
-Let a player who chooses to watch actually see an exercise unfold. Give spectators their own reason to attend and let a detail recur after the decision. Give a restrained official a preference, an honest concession and a specific act of service even when overruled. Allow the player to go straight to the decision. Keep routing labels off the reader's page. Separate fictional evidence available to Lara from provisional balance notes.
+Stay within Lara's point of view. Describe what she can see or hear and use established knowledge she could reasonably have. Let a player who chooses to watch see a short, concrete exercise. A spectator can add ordinary activity to the setting without carrying a subplot. Give restrained officials room to explain their position, admit a cost and respond to Lara's choice in their own voice. Use the three approved samples to calibrate the amount of description and the length of exchanges.
