@@ -1,6 +1,6 @@
 # Narrative canon — author design sessions
 
-Last consolidated: 2026-11-25. Sessions 01–53. Maintained as author interviews continue.
+Last consolidated: 2026-11-25. Sessions 01–54. Maintained as author interviews continue.
 
 ## Authority and workflow
 
@@ -247,9 +247,17 @@ Confirmed: mix shared historical/external events with state-dependent domestic d
 
 Author explicitly reminds us that the first term must accommodate two Great Project rounds. Preserve the existing latest docs/DECISIONS.md Great Projects list: (1) rare-earth mining in Ibira, (2) Tekoku tech/university hub with Strawberry synergy, (3) Mognagna Water Program (desalination), (4) National Railway Integration, (5) Ibira Fluvial Network, (6) housing/sanitation completing Luz's unfinished work. The hydro dam and Katanaí port expansion are reserved for term two in existing decisions. Existing newer decisions specify first selection at end of Ch1 (options 1,4,6), second selection opportunity in Ch4 (tech hub gated by prior investments); older National Arcs Notion specifies Ch2 and Ch4 and up to four projects at opportunity cost. Retain newer Ch1 selection as working default, Ch2 implementation, Ch3–4 first-round delivery/payoff, Ch4 second-round selection, Ch5–6 second-round delivery/payoff. Do not silently override the newer rule that projects do not fail outright: complications, oversight, contractors, corruption and extra resource costs modify execution, and existing indices affect actual benefits. Earlier assistant suggestion of failed/unfinished projects was provisional and conflicts with this rule; any revision requires explicit discussion. Two normally affordable projects, potentially more with sacrifices (older GDD suggests up to four), exact affordability/availability and completion timing to tune. Preserve project synergies and minimize bespoke chains; no new project catalogue needed. See docs/DECISIONS.md and [National Arcs GDD](https://app.notion.com/p/36b10ad021588065b925eb022915968c). No content or gameplay changes.
 
-## Next design discussion (54)
+## 54 — Inaugural address and first calibration sample
 
-Move from foundational planning toward writing calibration. Review the existing inauguration, cabinet and personal scenes and scene format; resolve any major unresolved player-agency question about the opening, then produce representative scene drafts for author review. Use the six-chapter timeline as working scaffold and avoid requiring exhaustive advance approval of every event.
+Confirmed: Lara can give an ambitious inaugural address with multiple commitments or a deliberately vague/minimal address with few or no concrete pledges. Preserve the author's speech topic hub and order freedom. Public commitments can create enthusiasm and future accountability; distinguish them from broad ideological rhetoric and private thoughts. Avoid imposing a minimum number of optional topics, assuming private intentions, or changing external world conditions directly from unexpressed thoughts. Skipped topics may receive proportionate contextual reactions, not automatic universal penalties. Review exact flags, greeting effects and speech structure before implementation.
+
+Reviewed the [Notion original](https://app.notion.com/p/37310ad0215880938db8e97ffa973b7a), its mirrored GDD, existing playable p1-inauguration, STYLE-GUIDE and SCENE-FORMAT. The author identifies this as the scene they personally wrote, subsequently revised by Claude; versions do not establish individual authorship of shared passages. Preserve author's design and allow speeches more rhetorical latitude than ordinary conversation, while avoiding forced convictions and repetitive rhetorical flourishes.
+
+First calibration sample: [01-inauguration-sample.md](calibration/01-inauguration-sample.md). Opening, Mertens encounter, greeting and illustrative ECON topic only; not a complete scene or engine-ready. Await author feedback before adopting voice and completing branches. New palace staging, timing detail, dialogue, and sample economic pledges are provisional and may be edited. No gameplay changes.
+
+## Next design discussion (55)
+
+Review author's response to calibration sample; refine tone, dialogue, options and narration before writing the remaining address and a representative cabinet negotiation/personal scene. Use feedback to establish reusable writing rules.
 
 ## Implementation backlog (not yet changes)
 
