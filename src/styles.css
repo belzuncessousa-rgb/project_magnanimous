@@ -507,10 +507,10 @@ body.vn-active .tutorial-on .map.tut-highlight, .tutorial-on .map.tut-highlight 
 
 /* Portrait sizing calibrated on the independent Livia/Mertens widescreen test. */
 .vn { overflow: hidden; }
-.vn .portrait-frame.has-master { width: min(48vw, 91vh); max-width: none; transform: none; }
-.vn .has-master .silhouette { height: 91vh; }
+.vn .portrait-frame.has-master { width: min(30vw, 82vh); max-width: 100%; transform: none; }
+.vn .has-master .silhouette { height: 82vh; }
 .vn .portrait-left .has-master, .vn .portrait-right .has-master { transform: none; }
-.vn[data-pose="standing"] .has-master .silhouette { height: 91vh; }
+.vn[data-pose="standing"] .has-master .silhouette { height: 88vh; }
 .vn[data-room="residence-night"] .has-master .silhouette { height: 80vh; }
 .vn .has-master figcaption { display: none; }
 
