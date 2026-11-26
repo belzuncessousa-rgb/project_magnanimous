@@ -110,6 +110,8 @@ She looks at you.
 4. **"Well, we'll see what people say tomorrow."**
    ↳ > **Amanda Troes:** "I'll have the papers ready for you."
 
+## after-speech
+
 Amanda sets the notebook down.
 
 → evening
@@ -207,6 +209,8 @@ She reaches for her shoes.
 2. **"Go on. I'll see you tomorrow."**
    ↳ > **Amanda Troes:** "Good night."
 
+## after-departure
+
 She gathers her things and heads towards the door.
 
 ## telephone
@@ -261,6 +265,8 @@ You hear someone speaking in the background.
    ↳ > **Celia Vento:** "Good night, dear."
 4. **"Good night, Mum."**
    ↳ > **Celia Vento:** "Good night."
+
+## after-call
 
 She hangs up.
 
