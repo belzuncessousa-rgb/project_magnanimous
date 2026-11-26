@@ -22,8 +22,13 @@ export interface VNOptions {
   playerId: string;
 }
 
-// Map a pose master stem to 'original' or a corrected right-facing master stem.
-const rightFacing: Record<string, string | undefined> = {};
+// Preserve jacket pins on these masters. Other right-slot portraits mirror inward.
+const rightSlotPortraits: Record<string, 'original' | `${string}-${DialoguePose}`> = {
+  'livia-seated': 'original',
+  'livia-standing': 'original',
+  'mertens-seated': 'original',
+  'mertens-standing': 'original',
+};
 
 interface Who {
   id?: string;
@@ -135,8 +140,9 @@ export class VNView {
     if (who.portrait) {
       const img = h('img', { alt: '' });
       const stem = who.portrait + '-' + pose;
-      const facing = slot === this.right ? rightFacing[stem] : undefined;
-      if (slot === this.right && !facing) img.classList.add('mirror-inward');
+      const rightSlotPortrait = slot === this.right ? rightSlotPortraits[stem] : undefined;
+      const source = rightSlotPortrait && rightSlotPortrait !== 'original' ? rightSlotPortrait : stem;
+      if (slot === this.right && rightSlotPortrait !== 'original') img.classList.add('mirror-inward');
       let legacy = false;
       img.addEventListener('error', () => {
         if (!legacy) { legacy = true; img.src = `portraits/${who.portrait}.png`; }
@@ -144,7 +150,7 @@ export class VNView {
       });
       img.addEventListener('load', () => fig.classList.add(legacy ? 'has-img' : 'has-master'));
       fig.querySelector('.silhouette')!.append(img);
-      img.src = `portraits/${facing && facing !== 'original' ? facing : stem}.png`;
+      img.src = `portraits/${source}.png`;
     }
     slot.append(fig);
   }
