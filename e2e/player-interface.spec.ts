@@ -43,6 +43,7 @@ test('desktop map, desk, controls, zoom, and tablet work as one screen', async (
   await page.screenshot({ path: `${screenshots}/desktop-tablet-home.png` });
   await page.getByRole('button', { name: 'News' }).click();
   await expect(page.getByRole('heading', { name: 'Today in the press' })).toBeVisible();
+  await page.getByRole('button', { name: 'Back to home screen' }).click();
   await page.getByRole('button', { name: 'Social' }).click();
   await expect(page.getByRole('heading', { name: 'Latest posts' })).toBeVisible();
 });
