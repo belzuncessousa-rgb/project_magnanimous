@@ -72,7 +72,6 @@
 .np-tabs { border-radius: 0; }
 .np-tab { font-size: .68em; }
 .np-sheet.paper { min-height: 260px; }
-.np-social { background: #edf0e9 !important; color: #26382d !important; padding: clamp(1rem, 3vw, 2rem) !important; }
 .np-source-mark { font-size: 1.2em; }
 .np-source-label { margin-left: auto; color: #88978c; font-size: .76em; letter-spacing: .1em; }
 .np-post h3 { margin: .65rem 0 .35rem; color: #26382d; font: 600 1.08em 'Source Serif 4', Georgia, serif; line-height: 1.25; }

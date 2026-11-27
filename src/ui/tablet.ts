@@ -11,6 +11,7 @@ export interface TabletPage {
   app: TabletApp;
   newsIndex?: number;
   reportId?: string;
+  personId?: string;
   query?: string;
   scroll?: number;
 }
@@ -116,8 +117,6 @@ export function showTablet(root: HTMLElement, options: TabletOptions): Promise<v
       notify();
       requestAnimationFrame(() => requestAnimationFrame(() => screen.classList.remove('is-switching')));
     };
-    const renderHeader = (section: string, title: string, subtitle: string) => h('header', { class: 'np-page-head' },
-      h('div', { class: 'np-page-kicker' }, section), h('h1', {}, title), h('p', {}, subtitle));
     const renderAppBar = (id: Exclude<TabletApp, 'home'>) => {
       const app = APPS.find((entry) => entry.id === id)!;
       return h('div', { class: 'np-appbar' },
@@ -140,25 +139,27 @@ export function showTablet(root: HTMLElement, options: TabletOptions): Promise<v
       );
     };
 
+    // ---------------------------------------------------------------- News: a newspaper reader
     const renderNews = (index: number) => {
       clear(screen);
       where.newsIndex = index;
       const paper = options.edition.papers[index];
-      const page = h('section', { class: 'np-page' });
-      page.append(renderAppBar('news'), renderHeader('EDITIONS', 'Today in the press', 'Coverage from the publications in this edition.'));
+      const page = h('section', { class: 'np-page np-app-news' });
+      page.append(renderAppBar('news'));
       if (!options.edition.papers.length) {
         page.append(h('div', { class: 'np-empty-state' }, h('span', { 'aria-hidden': 'true' }, '▤'), h('h2', {}, 'No edition on file'),
           h('p', {}, 'Today’s newspaper is prepared when the sitting closes. Previously published articles will appear here.')));
       } else {
-        const tabs = h('nav', { class: 'np-tabs', 'aria-label': 'Publications' }, ...options.edition.papers.map((item, i) => h('button', {
-          class: `np-tab${i === index ? ' active' : ''}`, 'aria-current': String(i === index), onclick: () => { renderNews(i); screen.scrollTop = 0; notify(); },
-        }, item.paper.name)));
+        const tabs = h('nav', { class: 'np-tabs np-outlets', 'aria-label': 'Publications' }, ...options.edition.papers.map((item, i) => h('button', {
+          class: `np-tab np-outlet outlet-${item.paper.id}${i === index ? ' active' : ''}`, 'aria-current': String(i === index),
+          onclick: () => { renderNews(i); screen.scrollTop = 0; notify(); },
+        }, h('span', { class: 'np-outlet-name' }, item.paper.name), h('small', {}, `${item.items.length} ${item.items.length === 1 ? 'story' : 'stories'}`))));
         page.append(tabs);
         if (paper) {
           const [lead, ...rest] = paper.items;
           page.append(h('article', { class: `np-sheet paper paper-${paper.paper.id}` },
             h('header', { class: 'np-masthead' }, h('div', { class: 'np-name' }, paper.paper.name),
-              h('div', { class: 'np-dateline' }, h('span', {}, paper.paper.tagline), h('span', {}, options.edition.dateLabel), h('span', {}, paper.paper.slant))),
+              h('div', { class: 'np-dateline' }, paper.paper.tagline ? h('span', {}, paper.paper.tagline) : '', h('span', {}, options.edition.dateLabel))),
             lead ? h('section', { class: 'np-lead' }, h('h2', { html: inlineMd(lead.headline) }), lead.text ? h('div', { class: 'np-body', html: inlineMd(lead.text) }) : '') : '',
             rest.length ? h('section', { class: 'np-rest' }, ...rest.map((item) => h('div', { class: 'np-item' },
               h('h3', { html: inlineMd(item.headline) }), item.text ? h('div', { class: 'np-body', html: inlineMd(item.text) }) : ''))) : '',
@@ -168,100 +169,129 @@ export function showTablet(root: HTMLElement, options: TabletOptions): Promise<v
       screen.append(page);
     };
 
+    // ---------------------------------------------------------------- Social: a vertical short-post feed
     const renderSocial = () => {
       clear(screen);
       const posts = options.edition.papers.flatMap(({ paper, items }, paperIndex) => items.map((item) => ({ paper, item, paperIndex })));
       const page = h('section', { class: 'np-page np-social' });
-      page.append(renderAppBar('social'), renderHeader('PUBLIC FEED', 'Latest posts', 'Updates from the publications in today’s edition.'));
+      page.append(renderAppBar('social'));
       if (!posts.length) page.append(h('div', { class: 'np-empty-state' }, h('span', { 'aria-hidden': 'true' }, '◉'), h('h2', {}, 'The feed is quiet'),
         h('p', {}, 'Press posts appear here alongside the newspaper edition.')));
       else page.append(h('div', { class: 'np-posts' }, ...posts.map(({ paper, item, paperIndex }) => {
         const plainText = item.text.replace(/\s+/g, ' ').trim();
         const excerpt = plainText.length > 190 ? `${plainText.slice(0, 187).trimEnd()}…` : plainText;
-        return h('article', { class: 'np-post' },
+        return h('article', { class: `np-post src-${paper.id}` },
           h('span', { class: 'np-source-mark', 'aria-hidden': 'true' }, initials(paper.name)),
           h('div', { class: 'np-post-content' },
             h('div', { class: 'np-post-source' }, h('span', { class: 'np-account-name' }, paper.name),
               h('span', { class: 'np-source-dot', 'aria-hidden': 'true' }, '·'), h('span', { class: 'np-source-label' }, options.edition.dateLabel)),
             h('h2', { html: inlineMd(item.headline) }), excerpt ? h('p', { html: inlineMd(excerpt) }) : '',
-            h('button', { class: 'np-post-open', onclick: () => { openApp('news'); renderNews(paperIndex); notify(); } }, 'Read full article  →'),
+            h('button', { class: 'np-post-open', onclick: () => { openApp('news'); renderNews(paperIndex); notify(); } }, 'Read in the paper'),
           ),
         );
       })));
       screen.append(page);
     };
 
+    // ---------------------------------------------------------------- Codex: a two-pane reference library
+    const portraitImage = (person: Actor, cls: string) => {
+      const avatar = h('span', { class: cls, 'aria-hidden': 'true' }, initials(person.name));
+      if (person.portrait) {
+        const image = h('img', { alt: '', loading: 'lazy' });
+        avatar.append(image);
+        loadPortrait(image, [`${person.portrait}-standing`, `${person.portrait}-seated`, person.portrait]);
+      }
+      return avatar;
+    };
     const renderCodex = () => {
       clear(screen);
       const page = h('section', { class: 'np-page np-codex' });
-      page.append(renderAppBar('codex'), renderHeader('CAST DIRECTORY', 'People encountered', 'Names and portraits from the story so far.'));
+      page.append(renderAppBar('codex'));
       if (!options.people.length) {
         page.append(h('div', { class: 'np-empty-state' }, h('span', { 'aria-hidden': 'true' }, '✣'), h('h2', {}, 'Your Codex is ready'),
           h('p', {}, 'People appear here as you meet them.')));
-      } else {
-        const search = h('input', { class: 'np-search', type: 'search', placeholder: 'Search people', 'aria-label': 'Search people' });
-        const entries = [...options.people].sort((a, b) => a.name.localeCompare(b.name)).map((person) => {
-          const avatar = h('span', { class: 'np-person-portrait', 'aria-hidden': 'true' }, initials(person.name));
-          if (person.portrait) {
-            const image = h('img', { alt: '', loading: 'lazy' });
-            loadPortrait(image, [`${person.portrait}-standing`, `${person.portrait}-seated`, person.portrait]);
-            avatar.append(image);
-          }
-          return h('li', { class: 'np-person-entry' }, avatar, h('span', {}, h('strong', {}, person.name), person.role ? h('small', {}, person.role) : ''));
-        });
-        const list = h('ul', { class: 'np-person-list' }, ...entries);
-        const empty = h('p', { class: 'np-search-empty', hidden: true }, 'No matching people.');
-        const applyQuery = () => {
-          const query = search.value.trim().toLocaleLowerCase();
-          where.query = search.value;
-          search.setAttribute('value', search.value); // keeps the text in the resting device's mirrored copy
-          for (const entry of entries) entry.hidden = !(entry.textContent ?? '').toLocaleLowerCase().includes(query);
-          empty.hidden = entries.some((entry) => !entry.hidden);
-        };
-        search.addEventListener('input', () => { applyQuery(); notify(); });
-        if (where.query) { search.value = where.query; applyQuery(); }
-        page.append(search, list, empty);
+        screen.append(page);
+        return;
       }
+      const people = [...options.people].sort((a, b) => a.name.localeCompare(b.name));
+      const detail = h('article', { class: 'np-codex-detail', 'aria-live': 'polite' });
+      const showPerson = (person: Actor) => {
+        where.personId = person.id;
+        for (const b of list.querySelectorAll<HTMLElement>('.np-person-entry')) b.setAttribute('aria-current', String(b.dataset.id === person.id));
+        clear(detail);
+        detail.append(
+          portraitImage(person, 'np-codex-portrait'),
+          h('div', { class: 'np-codex-card' },
+            h('div', { class: 'np-page-kicker' }, 'Codex'),
+            h('h1', {}, person.name),
+            person.role ? h('p', { class: 'np-codex-role' }, person.role) : '',
+          ));
+      };
+      const search = h('input', { class: 'np-search', type: 'search', placeholder: 'Search people', 'aria-label': 'Search people' });
+      const entries = people.map((person) => h('button', {
+        class: 'np-person-entry', 'data-id': person.id, 'aria-current': 'false',
+        onclick: () => { showPerson(person); notify(); },
+      }, portraitImage(person, 'np-person-portrait'), h('span', {}, h('strong', {}, person.name), person.role ? h('small', {}, person.role) : '')));
+      const list = h('div', { class: 'np-person-list', role: 'list' }, ...entries);
+      const empty = h('p', { class: 'np-search-empty', hidden: true }, 'No matching people.');
+      const applyQuery = () => {
+        const query = search.value.trim().toLocaleLowerCase();
+        where.query = search.value;
+        search.setAttribute('value', search.value); // keeps the text in the resting device's mirrored copy
+        for (const entry of entries) entry.hidden = !(entry.textContent ?? '').toLocaleLowerCase().includes(query);
+        empty.hidden = entries.some((entry) => !entry.hidden);
+      };
+      search.addEventListener('input', () => { applyQuery(); notify(); });
+      if (where.query) { search.value = where.query; applyQuery(); }
+      page.append(h('div', { class: 'np-codex-body' },
+        h('aside', { class: 'np-codex-index' }, search, list, empty),
+        detail));
       screen.append(page);
+      showPerson(people.find((p) => p.id === where.personId) ?? people.find((p) => p.id !== 'lara') ?? people[0]!);
     };
 
+    // ---------------------------------------------------------------- Reports: an inbox of formal documents
+    const reportDocument = (popup: Popup) => h('div', { class: 'np-report-document' },
+      h('div', { class: 'np-report-letterhead' },
+        h('img', { src: 'identity/kunasai-arms.svg', alt: '' }),
+        h('span', {}, 'Republic of Kunasai'), h('span', {}, 'Office of the Presidency')),
+      h('div', { class: 'np-page-kicker' }, 'Official report'), h('h1', {}, popup.title ?? 'Official report'),
+      popup.from ? h('div', { class: 'np-report-from' }, `From ${popup.from}`) : '',
+      h('div', { class: 'np-report-text' }, popup.text));
     const openReport = (id: string) => {
       // The resting face only shows the report; opening (and marking read) happens on the real device.
       const popup = options.previewOnly ? reports.find((r) => r.popup.id === id)?.popup : options.onOpenReport(id);
       if (!popup) return;
       const item = reports.find((report) => report.popup.id === id);
       if (item) item.read = true;
-      where.reportId = id;
       const count = appNav.querySelector<HTMLElement>('[data-count="reports"]');
       if (count) {
         count.textContent = String(unreadReports());
         count.hidden = unreadReports() === 0;
       }
-      clear(screen);
-      screen.append(h('section', { class: 'np-page np-report-detail' },
-        renderAppBar('reports'),
-        h('button', { class: 'np-back', onclick: () => { renderReports(); screen.scrollTop = 0; notify(); } }, '‹  All reports'),
-        h('div', { class: 'np-report-document' },
-          h('div', { class: 'np-report-letterhead' }, h('span', {}, 'REPUBLIC OF KUNASAI'), h('span', {}, 'OFFICE OF THE PRESIDENCY')),
-          h('div', { class: 'np-page-kicker' }, 'OFFICIAL REPORT'), h('h1', {}, popup.title ?? 'Official report'),
-          popup.from ? h('div', { class: 'np-report-from' }, `From ${popup.from}`) : '',
-          h('div', { class: 'np-report-text' }, popup.text),
-        ),
-      ));
+      renderReports(id);
     };
-
-    const renderReports = () => {
+    const renderReports = (openId?: string) => {
       clear(screen);
-      where.reportId = undefined;
+      where.reportId = openId;
       const page = h('section', { class: 'np-page np-reports' });
-      page.append(renderAppBar('reports'), renderHeader('CORRESPONDENCE', 'Official reports', `${reports.length} available · ${unreadReports()} unread`));
-      if (!reports.length) page.append(h('div', { class: 'np-empty-state' }, h('span', { 'aria-hidden': 'true' }, '▧'), h('h2', {}, 'No reports on file'),
-        h('p', {}, 'Official reports will be collected here when they arrive.')));
-      else page.append(h('div', { class: 'np-report-list' }, ...reports.map(({ popup, read }) => h('button', {
-        class: `np-report-row${read ? ' is-read' : ''}`, onclick: () => { openReport(popup.id); screen.scrollTop = 0; notify(); },
-      }, h('span', { class: 'np-report-state', 'aria-hidden': 'true' }, read ? '•' : '◆'),
-      h('span', { class: 'np-report-copy' }, h('strong', {}, popup.title ?? 'Official report'), popup.from ? h('small', {}, popup.from) : ''),
-      h('span', { class: 'np-report-chevron', 'aria-hidden': 'true' }, '›')))));
+      page.append(renderAppBar('reports'));
+      if (!reports.length) {
+        page.append(h('div', { class: 'np-empty-state' }, h('span', { 'aria-hidden': 'true' }, '▧'), h('h2', {}, 'No reports on file'),
+          h('p', {}, 'Official reports will be collected here when they arrive.')));
+        screen.append(page);
+        return;
+      }
+      const open = reports.find((r) => r.popup.id === openId)?.popup;
+      page.append(h('div', { class: 'np-reports-body' },
+        h('nav', { class: 'np-report-list', 'aria-label': `Official reports, ${unreadReports()} unread` },
+          ...reports.map(({ popup, read }) => h('button', {
+            class: `np-report-row${read ? ' is-read' : ''}`, 'aria-current': String(popup.id === openId),
+            onclick: () => { openReport(popup.id); screen.scrollTop = 0; notify(); },
+          }, h('span', { class: 'np-report-state', 'aria-hidden': 'true' }),
+          h('span', { class: 'np-report-copy' }, h('strong', {}, popup.title ?? 'Official report'), popup.from ? h('small', {}, popup.from) : '')))),
+        h('article', { class: 'np-report-reader' }, open ? reportDocument(open)
+          : h('div', { class: 'np-report-placeholder' }, h('img', { src: 'identity/kunasai-arms.svg', alt: '' }), h('p', {}, 'Choose a report to read it.')))));
       screen.append(page);
     };
 
@@ -280,8 +310,9 @@ export function showTablet(root: HTMLElement, options: TabletOptions): Promise<v
     openApp(start.app);
     if (start.app === 'news' && start.newsIndex) renderNews(start.newsIndex);
     if (start.app === 'reports' && start.reportId && reports.some((r) => r.popup.id === start.reportId)) openReport(start.reportId);
-    if (start.app === 'codex' && start.query) {
+    if (start.app === 'codex' && (start.query || start.personId)) {
       where.query = start.query;
+      where.personId = start.personId;
       renderCodex();
     }
     // Scroll after the overlay has laid out.
