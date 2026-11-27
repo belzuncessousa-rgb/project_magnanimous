@@ -211,3 +211,11 @@ Only the **new GDD** in Notion ("📖 GDD — Project Magnanimous") counts. The 
   Purely arithmetic, minimal flags (only `debt_policy` from the chapter-2 decision). Constants in TUNING.debt;
   starting balance calibrated so the first interest ≈ 11% of revenue. FC tooltip in the HUD shows the balance and
   last turn's interest/principal.
+
+## Interface updates (author, 2026-11-27)
+- Integrate Menu and Actions into the green leather edging of the presidential desk as tactile/embossed lettering and controls; avoid floating generic rectangular buttons on the desk.
+- Keep the current official paper-ledger format, but make the resource numerals look like Lara's handwritten annotations. The chapter/date and Office of the Presidency letterhead remain formal and readable.
+- Remove the small white home-indicator line beneath the resting tablet. Its resting face must exactly match the last app/page left open on the device, and keep doing so when apps change.
+- Give News, Social, Codex and Reports individually considered in-app layouts. Social should read as a familiar vertically scrolling short-post feed, with inline photos only where authored content/art exists; do not invent accounts, reactions, engagement counts or story mechanics.
+- Remove the top-of-map ARVAINE/ARVAIN label. The interactive map must read as a purpose-built screen seated in the table's glass opening, not a separate rectangular map image laid over leather; sea texture should continue around the atlas within the glass.
+- Replace plain circular map markers that rely on a letter or tiny generic symbol with more distinctive, tactile tokens whose silhouette and material communicate their role. Keep them tied to actual cities/locations, readable at PC scale, and away from map labels.
