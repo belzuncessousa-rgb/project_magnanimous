@@ -62,6 +62,8 @@ const KUNASAI_ZOOM = 1.48;
 const DESK_ART = { w: 1672, h: 941, glass: { x0: 48, y0: 137, x1: 1123, y1: 791, r: 26 } } as const;
 /** public/map/sea-tile.jpg (1024×1024 px) in map units at the atlas painting's scale (1065 px ↔ 800 units). */
 const SEA_TILE = { w: 769, h: 769 } as const;
+/** Colour correction for the sea tile → atlas water (tile mean ≈ 8,67,67; atlas ≈ 1,75,75). Identity once they match. */
+const SEA_MATCH = '0.1 0 0 0 0  0 1.11 0 0 0  0 0 1.13 0 0  0 0 0 1 0';
 const MIN_ZOOM = 1;
 
 export interface MarkerSpec {
@@ -158,7 +160,9 @@ export class MapView {
     },
       this.tabletScreen);
     this.build();
-    this.el.append(this.svg, this.toastLayer, this.markerSvg, this.tooltip, this.tablet);
+    // Planning-display furniture on the glass: thin corner brackets (decorative, fixed to the glass, not the map).
+    const glassHud = h('div', { class: 'glass-hud', 'aria-hidden': 'true' }, h('i', {}), h('i', {}), h('i', {}), h('i', {}));
+    this.el.append(this.svg, glassHud, this.toastLayer, this.markerSvg, this.tooltip, this.tablet);
     this.layoutGlass();
     new ResizeObserver(() => this.resizeFrame()).observe(this.el);
     this.applyViewBox();
@@ -278,12 +282,23 @@ export class MapView {
         href: this.atlasArtHref, x: this.geo.viewBox.x, y: this.geo.viewBox.y,
         width: this.geo.viewBox.w, height: this.geo.viewBox.h, preserveAspectRatio: 'none', filter: 'url(#atlas-land-key)',
       })),
-      s('pattern', { id: 'sea-tile', patternUnits: 'userSpaceOnUse', x: this.geo.viewBox.x, y: this.geo.viewBox.y, width: SEA_TILE.w, height: SEA_TILE.h },
-        s('image', { href: this.seaTileHref, x: 0, y: 0, width: SEA_TILE.w, height: SEA_TILE.h, preserveAspectRatio: 'none' })),
-      s('filter', { id: 'atlas-feather-blur', x: '-5%', y: '-5%', width: '110%', height: '110%' },
-        s('feGaussianBlur', { stdDeviation: 7 })),
+      // Mirrored 2x2 tiling: every tile edge meets its own mirror image, so no seam can show.
+      s('pattern', { id: 'sea-tile', patternUnits: 'userSpaceOnUse', x: this.geo.viewBox.x, y: this.geo.viewBox.y, width: SEA_TILE.w * 2, height: SEA_TILE.h * 2 },
+        ...([[1, 1, 0, 0], [-1, 1, 2, 0], [1, -1, 0, 2], [-1, -1, 2, 2]] as const).map(([sx, sy, tx, ty]) =>
+          s('image', {
+            href: this.seaTileHref, x: 0, y: 0, width: SEA_TILE.w, height: SEA_TILE.h, preserveAspectRatio: 'none',
+            transform: `translate(${tx * SEA_TILE.w},${ty * SEA_TILE.h}) scale(${sx},${sy})`,
+          }))),
+      // Match the tile's colour to the atlas painting's own open water (measured means, tools/check-sea-tile.py).
+      s('filter', { id: 'sea-match', x: '0', y: '0', width: '100%', height: '100%', 'color-interpolation-filters': 'sRGB' },
+        s('feColorMatrix', { type: 'matrix', values: SEA_MATCH })),
+      // Graticule of the planning display: faint lines every 100 map units that zoom with the map.
+      s('pattern', { id: 'planning-grid', patternUnits: 'userSpaceOnUse', x: 0, y: 0, width: 100, height: 100 },
+        s('path', { d: 'M100 0 H0 V100', fill: 'none', stroke: '#c9f4ec', 'stroke-width': 0.8, 'vector-effect': 'non-scaling-stroke' })),
+      s('filter', { id: 'atlas-feather-blur', x: '-10%', y: '-10%', width: '120%', height: '120%' },
+        s('feGaussianBlur', { stdDeviation: 16 })),
       s('mask', { id: 'atlas-feather', maskUnits: 'userSpaceOnUse', x: this.geo.viewBox.x, y: this.geo.viewBox.y, width: this.geo.viewBox.w, height: this.geo.viewBox.h },
-        s('rect', { x: this.geo.viewBox.x + 12, y: this.geo.viewBox.y + 12, width: this.geo.viewBox.w - 24, height: this.geo.viewBox.h + 40, fill: '#fff', filter: 'url(#atlas-feather-blur)' })),
+        s('rect', { x: this.geo.viewBox.x + 30, y: this.geo.viewBox.y + 30, width: this.geo.viewBox.w - 60, height: this.geo.viewBox.h + 40, fill: '#fff', filter: 'url(#atlas-feather-blur)' })),
       s('clipPath', { id: 'strategy-glass-clip', clipPathUnits: 'userSpaceOnUse' },
         this.glassClipRect = s('rect', { x: this.vb.x, y: this.vb.y, width: this.vb.w, height: this.vb.h, rx: this.vb.w * 0.012 })),
       ...shapes.map((g) => s('clipPath', { id: `land-clip-${g.id}` }, s('path', { d: pathOf(g.polygon) }))),
@@ -292,7 +307,7 @@ export class MapView {
     );
     // Open water fills the whole glass; the painting's own sea blends into it at the feathered edges.
     const sea = s('g', { class: 'sea-water', 'aria-hidden': 'true' },
-      s('rect', { class: 'sea-water-fill', x, y, width: w, height: hgt, fill: 'url(#sea-tile)' }));
+      s('rect', { class: 'sea-water-fill', x, y, width: w, height: hgt, fill: 'url(#sea-tile)', filter: 'url(#sea-match)' }));
     this.seaLayer = sea;
     // The approved Arvain painting is the continuous map surface at every map scale.
     // Game hit areas and political borders stay above the artwork as separate layers.
@@ -418,7 +433,8 @@ export class MapView {
       }
     }
     labels.append(s('text', { class: 'label label-water', x: 160, y: 600 }, 'Gulf of Katanaí'));
-    this.svg.append(defs, sea, atlasArt, terrain, terrainBorders, political, coastBorders, politicalBorderUnderlay, politicalBorders, nationalOutline, this.hotLayer, offmap, labels);
+    const planningGrid = s('rect', { class: 'planning-grid', x: -3000, y: -3000, width: 7000, height: 7000, fill: 'url(#planning-grid)', 'aria-hidden': 'true' });
+    this.svg.append(defs, sea, atlasArt, planningGrid, terrain, terrainBorders, political, coastBorders, politicalBorderUnderlay, politicalBorders, nationalOutline, this.hotLayer, offmap, labels);
     this.svg.addEventListener('click', (ev) => {
       if (this.dragged) return;
       const t = ev.target as Element;
