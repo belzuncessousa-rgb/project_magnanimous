@@ -1,0 +1,58 @@
+/* ------------------------------------------------------------------ tooltips, readables, screens */
+.ui-tip { position: fixed; z-index: 100; max-width: 300px; pointer-events: none; font-size: 0.75em; line-height: 1.35; padding: 0.4em 0.65em; box-shadow: var(--shadow); }
+.readable-card { position: absolute; width: 320px; padding: 0.7em 1em 0.9em; z-index: 22; font-size: 0.9em; animation: fade-in 0.2s ease; }
+.readable-card h3 { margin: 0; font-family: var(--caps); font-size: 1.2em; letter-spacing: 0.04em; }
+.readable-text { margin: 0.5em 0 0.4em; line-height: 1.45; }
+.readable-from { text-align: right; font-style: italic; color: var(--ink-soft); }
+.readable-card.kind-incident h3 { color: var(--accent); }
+
+.screen-overlay { z-index: 55; }
+.screen-card { width: min(880px, 94vw); max-height: 92vh; overflow: auto; padding: 1.1em 1.5em 1.2em; }
+.screen-head { border-bottom: 1px solid var(--paper-edge); margin-bottom: 0.7em; }
+.screen-head h2 { margin: 0; font-size: 1.7em; }
+.screen-sub { font-style: italic; margin-bottom: 0.4em; }
+.screen-foot { display: flex; justify-content: space-between; align-items: center; gap: 1em; border-top: 1px solid var(--paper-edge); margin-top: 0.8em; padding-top: 0.7em; }
+.budget-row { display: grid; grid-template-columns: 200px 1fr; gap: 0.2em 1em; padding: 0.5em 0; border-bottom: 1px dotted var(--paper-edge); align-items: center; }
+.budget-name { display: flex; flex-direction: column; }
+.budget-minister { font-size: 0.8em; color: var(--muted); font-style: italic; }
+.budget-tiers { display: flex; gap: 4px; flex-wrap: wrap; }
+.tier, .init, .deal { font: inherit; font-size: 0.85em; background: rgba(255, 252, 244, 0.5); border: 1px solid var(--paper-edge); padding: 0.25em 0.7em; cursor: pointer; border-radius: 2px; }
+.tier.active, .init.active, .deal.active { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.tier-fc { margin-left: 0.5em; font-family: var(--caps); font-weight: 700; font-size: 0.85em; opacity: 0.8; }
+.budget-init { grid-column: 2; font-size: 0.85em; display: flex; gap: 4px; align-items: center; flex-wrap: wrap; }
+.budget-init.muted { color: var(--muted); font-style: italic; }
+.budget-total, .vote-spend { font-style: italic; color: var(--ink-soft); }
+.budget-total.over, .vote-spend.over { color: var(--accent); }
+.vote-row { display: grid; grid-template-columns: 220px 120px 1fr; gap: 0.6em; align-items: center; border-bottom: 1px dotted var(--paper-edge); }
+.vote-party { display: flex; flex-direction: column; }
+.vote-seats { font-size: 0.8em; color: var(--muted); }
+.vote-stance { font-family: var(--caps); font-weight: 700; letter-spacing: 0.04em; }
+.stance-for .vote-stance { color: #3f6a2c; }
+.stance-leaning .vote-stance { color: #7a8a3a; }
+.stance-undecided .vote-stance { color: var(--muted); }
+.stance-against .vote-stance { color: var(--accent); }
+.vote-deals { display: flex; gap: 4px; flex-wrap: wrap; }
+.deal.corrupt { border-style: dashed; }
+.vote-outlook { font-family: var(--caps); font-weight: 700; font-size: 1.1em; letter-spacing: 0.04em; }
+.vote-result { font-family: var(--display); font-size: 1.6em; text-align: center; padding: 1em 0; }
+.result-failed { color: var(--accent); }
+@media (max-width: 900px) {
+  .budget-row, .vote-row { grid-template-columns: 1fr; }
+  .budget-init { grid-column: 1; }
+}
+
+.vote-row { padding: 0.2em 0; }
+.vote .deal { padding: 0.15em 0.55em; font-size: 0.8em; }
+.screen-head h2 { line-height: 1.15; }
+.screen-card .screen-foot { position: sticky; bottom: -1.2em; background: var(--paper); padding-bottom: 0.4em; }
+
+.debt-options { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px; margin-bottom: 0.8em; }
+.debt-option { text-align: left; font: inherit; border: 1px solid var(--paper-edge); padding: 0.6em 0.8em; cursor: pointer; display: flex; flex-direction: column; gap: 0.2em; }
+.debt-option span { font-size: 0.85em; font-style: italic; }
+.debt-option.active { border-color: var(--ink); box-shadow: inset 0 0 0 1px var(--ink); background: #fbf4e2; }
+.debt-control { display: grid; grid-template-columns: 1fr auto; gap: 0.3em 1em; align-items: center; margin-bottom: 0.6em; }
+.debt-label { grid-column: 1 / -1; font-family: var(--caps); font-weight: 700; letter-spacing: 0.05em; }
+.debt-slider { display: flex; gap: 0.6em; align-items: center; font-size: 0.8em; color: var(--muted); }
+.debt-slider input { flex: 1; }
+.debt-amount { font-family: var(--display); font-size: 1.4em; min-width: 5.5em; text-align: right; }
+.debt-preview { max-width: 520px; }

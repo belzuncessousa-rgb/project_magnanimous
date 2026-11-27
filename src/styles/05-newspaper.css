@@ -1,0 +1,17 @@
+/* ------------------------------------------------------------------ newspaper */
+.np-tabs { flex-wrap: wrap; }
+.np-tab { font-family: var(--caps); font-weight: 700; letter-spacing: 0.02em; cursor: pointer; }
+.np-sheet { background-color: #f3ead6; padding: 1.4em 2em 1.6em; overflow: auto; flex: 1; border-radius: 0 2px 2px 2px; }
+.np-name { font-weight: 900; font-size: clamp(1.8em, 5vw, 2.9em); line-height: 1.1; }
+.np-dateline { display: flex; justify-content: space-between; gap: 1em; font-family: var(--caps); font-weight: 600; font-size: 0.75em; letter-spacing: 0.08em; border-top: 1px solid var(--ink); margin-top: 0.4em; }
+.np-lead h2 { font-family: var(--display); font-size: 1.9em; line-height: 1.1; margin: 0.2em 0 0.4em; }
+.np-body { column-gap: 1.6em; }
+.np-rest { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1em 1.6em; border-top: 1px solid var(--ink); margin-top: 1em; padding-top: 0.8em; }
+.np-item h3 { font-family: var(--display); font-size: 1.15em; margin: 0 0 0.3em; line-height: 1.15; }
+.np-item .np-body { font-size: 0.9em; }
+.paper-clarion .np-name { font-family: var(--display); text-transform: uppercase; color: #7d1b10; letter-spacing: 0.02em; }
+.paper-clarion .np-lead h2 { text-transform: uppercase; color: #7d1b10; }
+.paper-voice .np-name { font-family: var(--caps); font-weight: 700; color: #6b2a1f; }
+.paper-dispatch .np-name { font-family: var(--caps); font-weight: 700; letter-spacing: 0.08em; color: #263a40; }
+.paper-canopy .np-name { font-family: var(--serif); font-style: italic; font-weight: 500; color: #3f5530; }
+.np-footer { padding-top: 0.7em; font-style: italic; }

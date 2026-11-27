@@ -1,0 +1,16 @@
+/* ------------------------------------------------------------------ small screens */
+@media (max-width: 1100px) {
+  .portrait-frame, .silhouette { width: 150px; }
+  .silhouette { height: 200px; }
+  .silhouette::before { width: 130px; height: 120px; margin-left: -65px; }
+  .silhouette::after { width: 70px; height: 84px; margin-left: -35px; top: 36px; }
+  .silhouette .initials { margin-top: 50px; font-size: 1.8em; }
+}
+@media (max-width: 900px) {
+  :root { --text: 17px; }
+  .portrait { display: none; }
+  .vn-column { margin: 10px 0; max-height: calc(100vh - 20px); padding: 1em 1.1em; }
+  .hud { min-width: 0; left: 12px; top: 58px; }
+  .hud-row { gap: 0.5em; flex-wrap: wrap; }
+  .sidebar { top: 110px; }
+}

@@ -1,0 +1,71 @@
+/* Magnanimous — dossier / paper look. Muted earthy palette, serif type, minimal chrome. */
+
+:root {
+  --ink: #26382d;
+  --ink-soft: #526155;
+  --muted: #66776b;
+  --paper: #f0ebdd;
+  --paper-2: #e4e9de;
+  --paper-edge: #b8c2b2;
+  --accent: #8a2e1e;
+  --accent-soft: #a9553f;
+  --gold: #b99a60;
+  --sea-light: #50686a;
+  --sea-deep: #142d26;
+  --land-home: #d6c194;
+  --land-foreign: #b4ab95;
+  --shadow: 0 10px 30px rgba(20, 14, 8, 0.35), 0 2px 6px rgba(20, 14, 8, 0.25);
+  --serif: 'EB Garamond', Garamond, 'Times New Roman', serif;
+  --caps: 'Cormorant SC', 'EB Garamond', serif;
+  --display: 'Playfair Display', 'EB Garamond', serif;
+  --text: 19px;
+  --ui-emerald: #173f35;
+  --ui-emerald-light: #326554;
+  --ui-brass: #b99a60;
+  --ui-ivory: #f0ebdd;
+  --ui-sans: Inter, Arial, sans-serif;
+  --ui-border: #547163;
+  --ui-text-muted: #b9cbbf;
+  --noise: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.3  0 0 0 0 0.22  0 0 0 0 0.12  0 0 0 0.09 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  color-scheme: light;
+}
+:root[data-text-size='small'] { --text: 17px; }
+:root[data-text-size='large'] { --text: 22px; }
+:root.no-transitions *, :root.no-transitions *::before, :root.no-transitions *::after {
+  transition: none !important;
+  animation: none !important;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; overflow: hidden; }
+body {
+  background: var(--sea-deep);
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: var(--text);
+  -webkit-font-smoothing: antialiased;
+}
+#app { position: fixed; inset: 0; }
+button { font: inherit; color: inherit; }
+[hidden] { display: none !important; }
+
+.paper {
+  background-color: var(--paper);
+  background-image: var(--noise), linear-gradient(180deg, rgba(255, 255, 255, 0.25), rgba(0, 0, 0, 0.03));
+  border: 1px solid var(--paper-edge);
+  box-shadow: var(--shadow);
+  border-radius: 2px;
+}
+
+.btn {
+  padding: 0.45em 1.1em;
+  background: var(--paper);
+  border: 1px solid var(--ink-soft);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+.btn:hover:not(:disabled) { background: var(--paper-2); }
+.btn:disabled { opacity: 0.45; cursor: default; }
+.btn.small { font-size: 0.8em; padding: 0.25em 0.7em; }
+.x { background: none; border: 0; font-size: 1.4em; line-height: 1; cursor: pointer; padding: 0 0.2em; }
+.panel-title { font-family: var(--caps); font-weight: 700; letter-spacing: 0.08em; font-size: 0.95em; color: var(--ink-soft); border-bottom: 1px solid var(--paper-edge); padding-bottom: 0.3em; margin-bottom: 0.4em; display: flex; justify-content: space-between; align-items: center; }

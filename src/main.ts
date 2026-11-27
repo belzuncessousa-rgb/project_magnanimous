@@ -1,4 +1,4 @@
-import './styles.css';
+import './styles/index.css';
 import { loadContent, loadDevCorpus } from './content/loader';
 import { App } from './ui/app';
 import type { Geometry } from './ui/map';

@@ -1,0 +1,32 @@
+/* Focus remains visible through shape and surface changes, without an outside box. */
+.np-wrap :focus-visible { outline: none; }
+button:focus-visible { filter: brightness(1.08); }
+:where(input, select):focus-visible { outline: none; border-color: #b99a60; }
+.menu-option:focus-visible { background: #e7ece8; box-shadow: inset 3px 0 #b99a60; }
+.np-app-icon-button:focus-visible .np-app-icon { filter: brightness(1.14) drop-shadow(0 0 7px #ffffff88); }
+.np-home-back:focus-visible, .np-close:focus-visible { background: #444b50; color: #fff; }
+.np-tab:focus-visible { border-bottom-color: #217a9d; color: #1f586f; }
+.np-post-open:focus-visible, .np-return:focus-visible { text-decoration: underline; text-underline-offset: 3px; }
+.np-report-row:focus-visible { background: #eef3f3; box-shadow: inset 3px 0 #b99a60; }
+@media (max-width: 720px) {
+  .np-wrap { width: 100vw; height: 100dvh; max-height: 100dvh; padding: 15px 7px 8px; border: 0; border-radius: 0; }
+  .np-wrap::before, .np-camera { display: none; }
+  .np-device-head { min-height: 22px; padding: 0 6px 7px; }
+  .np-device-body { border-radius: 7px; }
+  .np-footer { min-height: 19px; padding-top: 7px; }
+  .np-home { padding: 1.25rem .7rem .9rem; }
+  .np-app-grid { grid-template-columns: repeat(2, 76px); gap: 17px 28px; padding: 15px 22px; border-radius: 18px; }
+  .np-app-icon { width: 54px; height: 54px; border-radius: 15px; font-size: 25px; }
+  .np-app-count { right: 4px; }
+  .np-home-caption { margin-top: .7rem; }
+  .np-appbar { min-height: 46px; margin-bottom: .8rem; }
+  .np-page-head { padding-bottom: .7rem; }
+  .np-post { grid-template-columns: 36px minmax(0,1fr); gap: 9px; padding: 13px .8rem; }
+  .np-source-mark { width: 34px; height: 34px; }
+  .np-post h2 { font-size: 14px; }
+  .np-post p { font-size: 12px; }
+  .np-person-list, .np-report-list { margin-inline: .8rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .np-wrap, .np-screen, .np-app-icon { transition: none; }
+}

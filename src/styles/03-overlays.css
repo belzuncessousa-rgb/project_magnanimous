@@ -1,0 +1,22 @@
+/* ------------------------------------------------------------------ overlays */
+.overlay { position: absolute; inset: 0; z-index: 40; display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.4s ease; }
+.overlay.open { opacity: 1; }
+.modal { z-index: 60; }
+.modal-card { width: min(420px, 92vw); padding: 1em 1.3em 1.3em; }
+.modal-head { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--paper-edge); margin-bottom: 0.8em; }
+.modal-head h2 { margin: 0; font-family: var(--caps); }
+.settings { display: flex; flex-direction: column; gap: 0.9em; }
+.settings label { display: flex; justify-content: space-between; align-items: center; gap: 1em; }
+.settings label.check { justify-content: flex-start; }
+.settings select { font: inherit; border: 1px solid var(--paper-edge); padding: 0.15em 0.4em; }
+.menu-buttons { display: flex; flex-direction: column; }
+
+.title-screen { z-index: 50; }
+.title-card { width: min(560px, 92vw); padding: 2.4em 2.4em 2em; text-align: center; }
+.title-kicker { font-family: var(--caps); font-weight: 600; letter-spacing: 0.3em; font-size: 0.85em; color: var(--muted); }
+.title-name { font-family: var(--display); font-weight: 900; font-size: clamp(2.2em, 6vw, 3.6em); margin: 0.15em 0 0.05em; letter-spacing: 0.02em; line-height: 1; }
+.title-name.small { font-size: clamp(2em, 5vw, 3em); }
+.title-sub { font-style: italic; color: var(--ink-soft); margin-bottom: 1.6em; }
+.title-buttons { display: flex; flex-direction: column; gap: 0.55em; width: 220px; margin: 0 auto; }
+.title-save, .title-demo { margin-top: 1.2em; font-size: 0.8em; color: var(--muted); font-style: italic; }
+.title-demo { color: var(--accent-soft); }

@@ -1,0 +1,53 @@
+/* Presidential tablet: a quiet instrument case with a clear app rail and working surface. */
+.np-wrap { height: min(790px, 90dvh); max-height: 90dvh;
+}
+.np-wrap::before { left: 10px; top: 28px; bottom: 34px; }
+.np-camera span { width: 3px; height: 3px; margin: 1px 0 0 16px; border-radius: 50%; background: #49645a; }
+.np-device-date { margin-left: auto; }
+.np-device-body { grid-template-columns: 188px minmax(0,1fr); }
+.np-app-count[data-count="reports"] { background: #b99a60; color: #172820; }
+.np-app-count[data-count="reports"]:empty { display: none; }
+.np-page { max-width: 850px; }
+.np-page-head h1, .np-home h1 { margin: .15em 0 .2em; color: #173f35; font: 500 clamp(1.8rem,4vw,2.5rem) 'Source Serif 4', Georgia, serif; }
+.np-return { border-bottom: 1px solid #b99a60; }
+.np-return:hover { color: #f3d998; }
+.np-home h1 { margin-top: .25em; }
+.np-report-state { color: #8a6c2f; font-size: 9px; }
+.np-tab { border-radius: 0; }
+.np-sheet.paper { border-top: 3px double #546652; }
+.np-empty-state { display: grid; justify-items: center; max-width: 440px; margin: 5vh auto; padding: 1.5rem; text-align: center; }
+.np-empty-state > span { color: #8a7547; font: 28px var(--serif); }
+.np-empty-state h2 { margin: .6em 0 .2em; font: 500 20px 'Source Serif 4', Georgia, serif; }
+.np-empty-state p { margin: 0; font: 12px/1.6 var(--ui-sans); }
+.np-posts { gap: 0; }
+.np-post { border-left: 2px solid #b99a60; border-radius: 0; }
+.np-codex .np-search, .np-search { border-bottom: 1px solid #798c7d; }
+.np-person-list { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 0 2rem; padding: 0; list-style: none; }
+.np-person-entry { display: flex; align-items: center; gap: .75rem; min-width: 0; padding: .7rem .2rem; border-bottom: 1px solid #c2c9bd; }
+.np-person-entry > span:last-child { display: grid; gap: 2px; min-width: 0; }
+.np-person-entry strong { color: #26382d; font: 600 12px 'Source Serif 4', Georgia, serif; }
+.np-person-entry small { overflow: hidden; color: #68756b; text-overflow: ellipsis; white-space: nowrap; font: 10px var(--ui-sans); }
+.np-person-portrait { position: relative; display: grid; place-items: center; flex: none; width: 38px; height: 38px; overflow: hidden; border: 1px solid #839486; border-radius: 50%; background: #dbe3d8; color: #45614e; font: 600 11px var(--ui-sans); }
+.np-person-portrait img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+.np-search-empty { color: #69776a; font: 12px var(--ui-sans); }
+.np-report-row { display: grid; grid-template-columns: 22px minmax(0,1fr) 20px; align-items: center; gap: .65rem; width: 100%; min-height: 58px; padding: .6rem .45rem; border: 0; border-bottom: 1px solid #c2c9bd; color: #26382d; text-align: left; cursor: pointer; }
+.np-report-row.is-read .np-report-state { color: #a4ada2; }
+.np-report-copy { display: grid; gap: 3px; }
+.np-report-copy strong { color: #173f35; font: 600 13px 'Source Serif 4', Georgia, serif; }
+.np-report-copy small { color: #6b786e; font: 10px var(--ui-sans); }
+.np-report-chevron { color: #89764e; font: 22px var(--serif); }
+.np-back { margin: 0 0 1rem; border: 0; border-bottom: 1px solid #b99a60; padding: .3em .1em; background: transparent; color: #43604d; cursor: pointer; font: 600 10px var(--ui-sans); }
+.np-report-document { max-width: 700px; padding: clamp(1rem,3vw,2.2rem); }
+.np-report-letterhead { display: flex; justify-content: space-between; gap: 1rem; margin-bottom: 2rem; padding-bottom: .65rem; border-bottom: 1px solid #b99a60; font: 700 8px var(--ui-sans); letter-spacing: .12em; }
+.np-report-document h1 { margin: .2em 0; font: 500 clamp(1.6rem,4vw,2.2rem) 'Source Serif 4', Georgia, serif; }
+.np-report-from { margin: .6rem 0 1.6rem; color: #667468; font: 11px var(--ui-sans); }
+.np-report-text { white-space: pre-wrap; font: 13px/1.75 'Source Serif 4', Georgia, serif; }
+@media (max-width: 720px) {
+  .np-wrap { height: 100dvh; max-height: 100dvh; }
+  .np-device-date { font-size: 8px; }
+  .np-device-body { grid-template-columns: minmax(0,1fr); grid-template-rows: auto minmax(0,1fr); }
+  .np-app-count { min-width: 16px; padding: 2px 4px; font-size: 8px; }
+  .np-screen { padding: 1rem .85rem; }
+  .np-person-list { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) { .np-wrap { transition: none; } }
