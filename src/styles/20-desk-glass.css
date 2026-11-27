@@ -199,3 +199,4 @@ body.vn-active .glass-hud, .map.dim .glass-hud { opacity: .4; }
 .ui-layer .readable-card.kind-incident .info-sub, .ui-layer .readable-card.kind-incident h3, .ui-layer .readable-card.kind-incident .x { color: #241a06; }
 .ui-layer .readable-card.kind-incident h3 { font: 700 1.1em/1.2 var(--ui-sans); letter-spacing: .01em; }
 .ui-layer .readable-card.kind-incident .readable-text { font: 13.5px/1.6 ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace; }
+.map-toasts .map-toast[class*="kind-"] .toast-icon { background-color: transparent; border-radius: 0; }
