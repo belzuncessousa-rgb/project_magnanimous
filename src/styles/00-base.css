@@ -15,9 +15,10 @@
   --land-home: #d6c194;
   --land-foreign: #b4ab95;
   --shadow: 0 10px 30px rgba(20, 14, 8, 0.35), 0 2px 6px rgba(20, 14, 8, 0.25);
-  --serif: 'EB Garamond', Garamond, 'Times New Roman', serif;
-  --caps: 'Cormorant SC', 'EB Garamond', serif;
-  --display: 'Playfair Display', 'EB Garamond', serif;
+  /* Canon type (G-09): Source Serif 4 for titles and reading, Inter for compact controls, labels and data. */
+  --serif: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+  --caps: Inter, Arial, sans-serif;
+  --display: 'Source Serif 4', Georgia, serif;
   --text: 19px;
   --ui-emerald: #173f35;
   --ui-emerald-light: #326554;

@@ -9,9 +9,6 @@ license text ships with each package (`node_modules/<package>/LICENSE`) and at h
 |---|---|---|
 | Inter | `@fontsource-variable/inter` | © The Inter Project Authors |
 | Source Serif 4 | `@fontsource-variable/source-serif-4` | © Adobe |
-| EB Garamond | `@fontsource-variable/eb-garamond` | © The EB Garamond Project Authors |
-| Playfair Display | `@fontsource-variable/playfair-display` | © The Playfair Project Authors |
-| Cormorant SC | `@fontsource/cormorant-sc` | © Christian Thalmann |
 | Caveat | `@fontsource-variable/caveat` | © The Caveat Project Authors |
 
 The fonts may be bundled, embedded and redistributed with the game, including commercially (Steam). They may not be

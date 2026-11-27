@@ -6,9 +6,6 @@ import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 const SOURCES = [
   ['Inter', '@fontsource-variable/inter', ['wght.css']],
   ['Source Serif 4', '@fontsource-variable/source-serif-4', ['wght.css', 'wght-italic.css']],
-  ['EB Garamond', '@fontsource-variable/eb-garamond', ['wght.css', 'wght-italic.css']],
-  ['Playfair Display', '@fontsource-variable/playfair-display', ['wght.css']],
-  ['Cormorant SC', '@fontsource/cormorant-sc', ['500.css', '600.css', '700.css']],
   ['Caveat', '@fontsource-variable/caveat', ['wght.css']],
 ];
 const KEEP = /-(latin|latin-ext)-/;

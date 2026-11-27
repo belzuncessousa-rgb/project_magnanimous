@@ -63,7 +63,7 @@
 }
 .end-turn.is-blocked::before {
   content: ''; border-color: #a99263;
-  background: no-repeat center / 13px 15px url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 13 15'%3E%3Cpath d='M3.5 6.5V4.6a3 3 0 0 1 6 0v1.9' fill='none' stroke='%23263b2d' stroke-width='1.7'/%3E%3Crect x='1.5' y='6.3' width='10' height='7.7' rx='1.6' fill='%23263b2d'/%3E%3Ccircle cx='6.5' cy='9.6' r='1.1' fill='%23c9b383'/%3E%3C/svg%3E"),
+  background: no-repeat center / 9px 11px url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 13 15'%3E%3Cpath d='M3.5 6.5V4.6a3 3 0 0 1 6 0v1.9' fill='none' stroke='%236e5a33' stroke-width='1.6'/%3E%3Crect x='1.5' y='6.3' width='10' height='7.7' rx='1.6' fill='%236e5a33'/%3E%3Ccircle cx='6.5' cy='9.6' r='1.1' fill='%23d8c38f'/%3E%3C/svg%3E"),
     radial-gradient(circle at 35% 28%, #e2d1a6, #9d8758 78%);
 }
 .ui-layer .end-turn:focus-visible { box-shadow: 0 4px 0 #0a251c, 0 0 0 2px #11281f, 0 0 0 4px #d1b783aa; }
@@ -84,3 +84,5 @@
 @media (max-width: 600px) {
   .ui-layer .hud.paper { top: calc(var(--rail-cy, 26px) + 20px); }
 }
+/* engraved: the padlock sits into the coin (inner shadow), not printed on it */
+.end-turn.is-blocked::before { box-shadow: 0 2px 0 #78613b, inset 0 1px 2px #5b47248c, inset 0 -1px 0 #fff6; }
