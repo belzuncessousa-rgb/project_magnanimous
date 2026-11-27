@@ -7,6 +7,7 @@ import { clear, h, initials, inlineMd, wait } from './dom';
 import { costText } from './format';
 import { dialoguePortraitPose, resolveDialogueStage, type DialoguePose } from './dialogue-stage';
 import { loadPortrait } from './portraits';
+import { sound } from './audio';
 
 export interface VNHooks {
   /** `[open: …]` / `[vote: …]` tokens: show the screen, resolve when done */
@@ -324,6 +325,7 @@ export class VNView {
       } else if (out.type === 'choices') {
         this.hooks.onHighlight?.([]);
         const o = await this.waitChoice(out.options);
+        sound.play('choice-select');
         runner.choose(o.index);
         const echo = o.choice.spoken
           ? this.block({ role: 'speech', text: o.choice.label.replace(/^["“]|["”]$/g, ''), effects: [] })

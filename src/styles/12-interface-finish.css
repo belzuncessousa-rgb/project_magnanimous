@@ -82,3 +82,17 @@
   .budget-screen .screen-card, .debt-screen .screen-card { border-width: 4px; }
   .np-wrap { max-height: 98dvh; }
 }
+
+/* C-07: Sound settings — emerald track, brass thumb; no rectangular focus box (halo on the thumb instead). */
+.settings-audio { display: flex; flex-direction: column; gap: .7em; margin: 0; padding: .7em 0 0; border: 0; border-top: 1px solid #c9bd9d; }
+.settings-audio legend { padding: 0 .4em 0 0; color: #596b5b; font: 700 .68em var(--ui-sans); letter-spacing: .16em; text-transform: uppercase; }
+.settings label.range input { width: min(220px, 52%); accent-color: #b99a60; }
+.settings input[type='range'] { -webkit-appearance: none; appearance: none; height: 18px; background: transparent; cursor: pointer; }
+.settings input[type='range']::-webkit-slider-runnable-track { height: 4px; border-radius: 4px; background: linear-gradient(90deg, #326554, #173f35); }
+.settings input[type='range']::-moz-range-track { height: 4px; border-radius: 4px; background: linear-gradient(90deg, #326554, #173f35); }
+.settings input[type='range']::-webkit-slider-thumb { -webkit-appearance: none; width: 16px; height: 16px; margin-top: -6px; border: 1px solid #8a6f3c; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #f1dfb4, #b99a60 75%); box-shadow: 0 1px 2px #0005; }
+.settings input[type='range']::-moz-range-thumb { width: 16px; height: 16px; border: 1px solid #8a6f3c; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #f1dfb4, #b99a60 75%); }
+.settings input[type='range']:focus-visible { outline: none; }
+.settings input[type='range']:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 3px #d1b783aa; }
+.settings input[type='range']:focus-visible::-moz-range-thumb { box-shadow: 0 0 0 3px #d1b783aa; }
+.settings input[type='checkbox'] { accent-color: #326554; }

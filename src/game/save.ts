@@ -14,9 +14,17 @@ export interface Settings {
   textSize: 'small' | 'medium' | 'large';
   transitions: boolean;
   mapView: 'political' | 'terrain';
+  /** Audio levels 0..1 (src/ui/audio.ts). */
+  masterVolume: number;
+  musicVolume: number;
+  sfxVolume: number;
+  muted: boolean;
 }
 
-export const DEFAULT_SETTINGS: Settings = { textSize: 'medium', transitions: true, mapView: 'political' };
+export const DEFAULT_SETTINGS: Settings = {
+  textSize: 'medium', transitions: true, mapView: 'political',
+  masterVolume: 0.8, musicVolume: 0.6, sfxVolume: 0.7, muted: false,
+};
 
 type StorageLike = Pick<Storage, 'getItem' | 'setItem' | 'removeItem'>;
 

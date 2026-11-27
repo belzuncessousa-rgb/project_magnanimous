@@ -12,6 +12,7 @@ import { showBudget, showDebt, showVote } from './screens';
 import { showTablet, type TabletApp, type TabletOptions, type TabletPage } from './tablet';
 import { tokenFor } from './tokens';
 import { VNView } from './vn';
+import { sound } from './audio';
 
 export class App {
   private game: Game | null = null;
@@ -98,6 +99,7 @@ export class App {
 
   private applySettings() {
     document.documentElement.dataset.textSize = this.settings.textSize;
+    sound.setLevels({ master: this.settings.masterVolume, music: this.settings.musicVolume, sfx: this.settings.sfxVolume, muted: this.settings.muted });
     document.documentElement.classList.toggle('no-transitions', !this.settings.transitions);
     this.vn.setOptions({ transitions: this.settings.transitions });
   }
@@ -105,6 +107,7 @@ export class App {
   // ---------------------------------------------------------------- title
 
   showTitle() {
+    sound.music('title-theme');
     this.layer.hidden = true;
     this.map.el.classList.add('dim');
     const save = loadGame();
@@ -126,6 +129,7 @@ export class App {
   }
 
   private closeTitle() {
+    sound.music(null);
     this.titleScreen?.remove();
     this.titleScreen = null;
     this.map.el.classList.remove('dim');
@@ -163,6 +167,7 @@ export class App {
     const close = () => {
       if (!m.isConnected) return;
       m.remove();
+      sound.play('ui-back');
       onClose?.();
       if (previousFocus?.isConnected) previousFocus.focus();
     };
@@ -208,11 +213,24 @@ export class App {
       h('label', { class: 'check' },
         h('input', { type: 'checkbox', checked: this.settings.transitions, onchange: (ev: Event) => { this.settings.transitions = (ev.target as HTMLInputElement).checked; saveSettings(this.settings); this.applySettings(); } }),
         'Transitions & animations'),
+      h('fieldset', { class: 'settings-audio' },
+        h('legend', {}, 'Sound'),
+        ...([['masterVolume', 'Master volume'], ['musicVolume', 'Music'], ['sfxVolume', 'Interface sounds']] as const).map(([key, label]) =>
+          h('label', { class: 'range' }, label,
+            h('input', {
+              type: 'range', min: 0, max: 100, step: 5, value: String(Math.round(this.settings[key] * 100)), 'aria-label': label,
+              oninput: (ev: Event) => { this.settings[key] = Number((ev.target as HTMLInputElement).value) / 100; saveSettings(this.settings); this.applySettings(); },
+              onchange: () => { if (key !== 'musicVolume') sound.play('ui-confirm'); },
+            }))),
+        h('label', { class: 'check' },
+          h('input', { type: 'checkbox', checked: this.settings.muted, onchange: (ev: Event) => { this.settings.muted = (ev.target as HTMLInputElement).checked; saveSettings(this.settings); this.applySettings(); } }),
+          'Mute all sound')),
       h('button', { class: 'btn danger', onclick: () => { if (confirm('Delete the saved game?')) { deleteSave(); this.flash('Save deleted.'); if (!this.game) this.showTitle(); } } }, 'Delete saved game'));
     this.modal('Settings', body);
   }
 
   private openMenu() {
+    sound.play('ui-confirm');
     let m: HTMLElement;
     const option = (icon: string, title: string, detail: string, onclick: () => void, extraClass = '') =>
       h('button', { class: `menu-option${extraClass ? ` ${extraClass}` : ''}`, onclick },
@@ -232,6 +250,7 @@ export class App {
   private openTablet() {
     const g = this.game;
     if (!g || this.busy) return;
+    sound.play('tablet-open');
     this.hideInfo();
     this.hideCard();
     this.sidebar.classList.remove('open');
@@ -457,6 +476,7 @@ export class App {
   // ---------------------------------------------------------------- readables, tutorial, tooltips, screens
 
   private showReadable(id: string, x: number, y: number) {
+    sound.play('document-open');
     const g = this.game;
     if (!g || this.busy) return;
     const p = g.readPopup(id);
@@ -603,6 +623,8 @@ export class App {
     this.hideInfo();
     this.cancelTargeting();
     const res = g.endTurn();
+    sound.play('end-turn');
+    if (res.firedCrises.length) sound.play('crisis-alert');
     if (res.edition.papers.length) this.latestEdition = res.edition;
     this.layer.classList.add('hidden-ui');
     if (res.edition.papers.length) {
