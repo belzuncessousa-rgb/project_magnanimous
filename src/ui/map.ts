@@ -127,7 +127,7 @@ export class MapView {
     private cb: MapCallbacks,
   ) {
     this.base = { ...MAP_FRAMES.political };
-    this.vb = { ...geo.viewBox };
+    this.vb = { ...this.base };
     this.el = h('div', { class: 'map', 'data-ui': 'map' });
     this.svg = s('svg', { class: 'map-svg', preserveAspectRatio: 'xMidYMid meet', role: 'group', 'aria-label': 'Map of Kunasai' });
     this.markerLayer = s('g', { class: 'markers' });
@@ -142,9 +142,13 @@ export class MapView {
       onclick: () => this.cb.onTablet(),
     },
       h('span', { class: 'map-tablet-screen' },
+        h('span', { class: 'tablet-status', 'aria-hidden': 'true' }, h('b', {}, '09:41'), h('span', {}, '◉  Wi-Fi  ▰')),
         h('img', { src: 'identity/kunasai-flag.svg', alt: '', draggable: 'false' }),
         h('span', { class: 'map-tablet-apps', 'aria-hidden': 'true' },
-          h('i', {}, 'N'), h('i', {}, 'S'), h('i', {}, 'C'), h('i', {}, 'R'))),
+          h('i', { class: 'mini-news' }, h('b', {}, '▤'), h('small', {}, 'News')),
+          h('i', { class: 'mini-social' }, h('b', {}, '◉'), h('small', {}, 'Social')),
+          h('i', { class: 'mini-codex' }, h('b', {}, '◫'), h('small', {}, 'Codex')),
+          h('i', { class: 'mini-reports' }, h('b', {}, '▥'), h('small', {}, 'Reports')))),
       h('span', { class: 'map-tablet-caption' }, 'PRESIDENTIAL TABLET'));
     this.build();
     this.el.append(this.svg, this.toastLayer, this.markerSvg, this.tooltip, this.tablet);
@@ -187,6 +191,14 @@ export class MapView {
       s('rect', { x, y, width: w, height: hgt, filter: 'url(#paper-noise)', fill: '#000', opacity: '0.45' }),
       s('rect', { x, y, width: w, height: hgt, fill: 'url(#sea-lines)', opacity: '0.24' }),
       s('rect', { class: 'sea-frame', x: x + 3, y: y + 3, width: w - 6, height: hgt - 6, rx: 5 }));
+    // The approved Arvain painting is the continuous map surface at every map scale.
+    // Game hit areas and political borders stay above the artwork as separate layers.
+    const atlasArt = s('image', {
+      class: 'atlas-art', href: 'map/arvain-terrain-art.png',
+      x: this.geo.viewBox.x, y: this.geo.viewBox.y,
+      width: this.geo.viewBox.w, height: this.geo.viewBox.h,
+      preserveAspectRatio: 'none', 'aria-hidden': 'true',
+    });
     const kunasaiRegions = shapes.filter((g) => g.kind === 'region');
     const outerKunasaiBorders = (this.geo.borders ?? []).filter((b) =>
       b.between.some((id) => kunasaiRegions.some((r) => r.id === id)) && (b.type === 'coast' || b.type === 'international'));
@@ -298,7 +310,7 @@ export class MapView {
       }
     }
     labels.append(s('text', { class: 'label label-water', x: 160, y: 600 }, 'Gulf of Katanaí'));
-    this.svg.append(defs, sea, terrain, terrainBorders, political, coastBorders, politicalBorderUnderlay, politicalBorders, nationalOutline, this.hotLayer, offmap, labels);
+    this.svg.append(defs, sea, atlasArt, terrain, terrainBorders, political, coastBorders, politicalBorderUnderlay, politicalBorders, nationalOutline, this.hotLayer, offmap, labels);
     this.svg.addEventListener('click', (ev) => {
       if (this.dragged) return;
       const t = ev.target as Element;
