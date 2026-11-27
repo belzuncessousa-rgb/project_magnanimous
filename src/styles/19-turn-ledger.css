@@ -70,3 +70,17 @@
 .end-turn.nudge { animation: end-turn-nudge .32s ease; }
 @keyframes end-turn-nudge { 20% { transform: translateX(-3px); } 45% { transform: translateX(3px); } 70% { transform: translateX(-2px); } }
 @media (prefers-reduced-motion: reduce) { .end-turn.nudge { animation: none; } }
+
+/* C-17: the figures are Lara's own pen annotations — blue-black fountain-pen ink in a neat hand, slightly irregular,
+   while the letterhead, labels, chapter and date stay formally typeset. */
+.ui-layer .hud.ledger .hud-val {
+  font: 600 1.62em/0.9 'Caveat', 'Segoe Print', cursive; font-variant-numeric: normal; letter-spacing: .01em;
+  color: #1f2f57; text-shadow: 0 0 .5px #1f2f5799;
+  display: inline-block; transform: rotate(-1.5deg) translateY(1px);
+}
+.ui-layer .hud.ledger .hud-res:nth-child(2n) .hud-val { transform: rotate(1deg) translateY(1px); }
+.ui-layer .hud.ledger .res-APP .hud-val { color: #1f2f57; }
+.ui-layer .hud.ledger .hud-val.bump { color: #2b4a9a; }
+@media (max-width: 600px) {
+  .ui-layer .hud.paper { top: calc(var(--rail-cy, 26px) + 20px); }
+}
