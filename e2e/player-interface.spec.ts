@@ -11,7 +11,8 @@ async function startGame(page: Page) {
   await expect(page.getByRole('button', { name: 'End turn' })).toBeVisible();
 }
 
-test('desktop map, desk, controls, zoom, and tablet work as one screen', async ({ page, isMobile }) => {\n  test.skip(isMobile, 'desktop-only visual check');
+test('desktop map, desk, controls, zoom, and tablet work as one screen', async ({ page, isMobile }) => {
+  test.skip(isMobile, 'desktop-only visual check');
   await startGame(page);
   await expect(page.locator('.atlas-art')).toBeAttached();
   await expect(page.locator('.map')).toHaveClass(/view-political/);
@@ -46,7 +47,8 @@ test('desktop map, desk, controls, zoom, and tablet work as one screen', async (
   await expect(page.getByRole('heading', { name: 'Latest posts' })).toBeVisible();
 });
 
-test('phone layout keeps controls visible and the tablet usable', async ({ page, isMobile }) => {\n  test.skip(!isMobile, 'phone-only visual check');
+test('phone layout keeps controls visible and the tablet usable', async ({ page, isMobile }) => {
+  test.skip(!isMobile, 'phone-only visual check');
   await startGame(page);
   for (const name of ['Menu', 'Actions', 'End turn', 'Pick up the presidential tablet']) {
     await expect(page.getByRole('button', { name: new RegExp(name, 'i') })).toBeVisible();
