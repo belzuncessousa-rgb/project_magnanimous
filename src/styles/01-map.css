@@ -41,10 +41,10 @@
 .label-region { font-family: var(--caps); font-weight: 700; font-size: 15px; letter-spacing: 0.18em; fill: #2f2416; stroke: rgba(240, 230, 205, 0.75); stroke-width: 3px; }
 .label-country { font-family: var(--serif); font-style: italic; font-size: 13px; letter-spacing: 0.04em; fill: #3e362b; stroke: rgba(220, 212, 192, 0.7); stroke-width: 2.5px; }
 .label-national { display: none; font-family: var(--caps); font-weight: 700; font-size: 24px; letter-spacing: 0.16em; fill: #2b251b; stroke: rgba(240, 230, 205, 0.86); stroke-width: 4px; }
-.label-continent, .label-canal { display: none; font-family: var(--ui-sans); font-size: 12px; font-weight: 600; letter-spacing: 0.18em; fill: #d4dfd7; stroke: rgba(30, 56, 48, 0.65); stroke-width: 3px; }
+.label-canal { display: none; font-family: var(--ui-sans); font-size: 12px; font-weight: 600; letter-spacing: 0.18em; fill: #d4dfd7; stroke: rgba(30, 56, 48, 0.65); stroke-width: 3px; }
 .view-political .label-region, .view-political .capital, .view-political .label-water, .view-political .label-point { display: none; }
 .view-political .label-national { display: inline; }
-.view-political .label-continent, .view-political .label-canal { display: inline; }
+.view-political .label-canal { display: inline; }
 .view-political .label-country { font-style: normal; font-weight: 600; }
 .view-terrain .label-country { opacity: 0.48; }
 .view-terrain .label-region { font-size: 17px; letter-spacing: 0.12em; }

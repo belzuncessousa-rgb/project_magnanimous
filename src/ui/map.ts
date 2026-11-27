@@ -124,6 +124,8 @@ export class MapView {
   private scale: MapScale = 'continent';
   private tablet: HTMLButtonElement;
   private tabletScreen: HTMLSpanElement;
+  /** Last measured size of the open tablet (.np-wrap) in CSS px; the resting clone is laid out at this size. */
+  private deviceSize = { w: 1220, h: 790 };
   private atlasArtHref: string;
   private seaTileHref: string;
   private seaLayer: SVGGElement | null = null;
@@ -146,15 +148,8 @@ export class MapView {
     this.hotLayer = s('g', { class: 'hotspots' });
     this.toastLayer = h('div', { class: 'map-toasts', 'data-ui': 'readables' });
     this.tooltip = h('div', { class: 'map-tooltip', hidden: true });
-    this.tabletScreen = h('span', { class: 'map-tablet-screen' },
-      h('span', { class: 'tablet-status', 'aria-hidden': 'true' }, h('b', {}, '09:41'), h('span', {}, '◉  Wi-Fi  ▰')),
-      h('img', { class: 'map-tablet-wallpaper', src: 'identity/kunasai-flag.svg', alt: '', draggable: 'false' }),
-      h('span', { class: 'map-tablet-shade', 'aria-hidden': 'true' }),
-      h('span', { class: 'map-tablet-apps', 'aria-hidden': 'true' },
-        h('i', { class: 'mini-news' }, h('b', {}, '▤'), h('small', {}, 'News')),
-        h('i', { class: 'mini-social' }, h('b', {}, '◉'), h('small', {}, 'Social')),
-        h('i', { class: 'mini-codex' }, h('b', {}, '✣'), h('small', {}, 'Codex')),
-        h('i', { class: 'mini-reports' }, h('b', {}, '▧'), h('small', {}, 'Reports'))));
+    // The resting tablet's face is a scaled clone of the real device (setTabletPreview); empty until the app builds it.
+    this.tabletScreen = h('span', { class: 'map-tablet-screen' });
     this.tablet = h('button', {
       class: 'map-tablet',
       type: 'button',
@@ -222,6 +217,7 @@ export class MapView {
     st.setProperty('--wood-cx', `${woodLeft + woodW / 2}px`);
     st.setProperty('--tablet-w', `${Math.round(Math.min(310, Math.max(150, woodW * 0.78)))}px`);
     this.el.classList.toggle('desk-narrow', woodW < 190);
+    requestAnimationFrame(() => this.fitTabletPreview());
   }
 
   private resizeFrame() {
@@ -409,7 +405,6 @@ export class MapView {
       else labels.append(s('text', { class: 'label label-region', x: g.center[0], y: g.center[1] + 5 }, g.name.toUpperCase()));
     }
     labels.append(s('text', { class: 'label label-national', x: 355, y: 700 }, 'KUNASAI'));
-    labels.append(s('text', { class: 'label label-continent', x: 350, y: 158 }, 'ARVANE'));
     labels.append(s('text', { class: 'label label-canal', x: 350, y: 1247 }, 'CONTINENTAL CANAL'));
     for (const [id, p] of Object.entries(this.geo.points)) {
       if (id === 'capital') {
@@ -431,14 +426,36 @@ export class MapView {
     });
   }
 
+  /**
+   * Show the real device on the desk: `screen` is the tablet's .np-screen (inside its .np-wrap). The whole device is
+   * cloned at its real pixel size and scaled down, so the resting tablet is exactly what the player picks up.
+   */
   setTabletPreview(screen: HTMLElement, scroll = 0) {
-    const clone = screen.cloneNode(true) as HTMLElement;
-    clone.removeAttribute('tabindex');
-    clone.removeAttribute('aria-live');
+    const device = (screen.closest('.np-wrap') as HTMLElement | null) ?? screen;
+    if (device.offsetWidth > 0) this.deviceSize = { w: device.offsetWidth, h: device.offsetHeight };
+    const clone = device.cloneNode(true) as HTMLElement;
+    for (const el of [clone, ...clone.querySelectorAll<HTMLElement>('[tabindex], [aria-live]')]) {
+      el.removeAttribute('tabindex');
+      el.removeAttribute('aria-live');
+    }
     clone.setAttribute('aria-hidden', 'true');
-    clone.classList.remove('is-switching');
-    this.tabletScreen.replaceChildren(h('span', { class: 'map-tablet-preview' }, clone));
-    clone.scrollTop = scroll;
+    clone.querySelector('.np-screen')?.classList.remove('is-switching');
+    clone.classList.add('map-tablet-device');
+    this.tabletScreen.replaceChildren(clone);
+    this.fitTabletPreview();
+    const cloneScreen = clone.querySelector<HTMLElement>('.np-screen');
+    if (cloneScreen) cloneScreen.scrollTop = scroll;
+  }
+
+  /** Scale the cloned device to the resting tablet's width and give the tablet the device's proportions. */
+  private fitTabletPreview() {
+    const { w, h: hgt } = this.deviceSize;
+    this.tablet.style.setProperty('--tab-ar', String(w / hgt));
+    const clone = this.tabletScreen.firstElementChild as HTMLElement | null;
+    if (!clone) return;
+    clone.style.width = `${w}px`;
+    clone.style.height = `${hgt}px`;
+    clone.style.transform = `scale(${(this.tablet.offsetWidth || 300) / w})`;
   }
 
   setView(view: 'terrain' | 'political') {

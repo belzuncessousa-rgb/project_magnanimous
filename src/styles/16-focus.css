@@ -18,7 +18,6 @@ button:focus-visible { filter: brightness(1.08); }
   .np-app-grid { grid-template-columns: repeat(2, 76px); gap: 17px 28px; padding: 15px 22px; border-radius: 18px; }
   .np-app-icon { width: 54px; height: 54px; border-radius: 15px; font-size: 25px; }
   .np-app-count { right: 4px; }
-  .np-home-caption { margin-top: .7rem; }
   .np-appbar { min-height: 46px; margin-bottom: .8rem; }
   .np-page-head { padding-bottom: .7rem; }
   .np-post { grid-template-columns: 36px minmax(0,1fr); gap: 9px; padding: 13px .8rem; }

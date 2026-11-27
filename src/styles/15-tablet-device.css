@@ -27,7 +27,6 @@
 .np-screen.is-switching { opacity: .35; transform: scale(.985); }
 .np-footer { position: relative; min-height: 21px; display: flex; justify-content: center; align-items: center; gap: 12px; padding: 10px 4px 0; color: #d1d5d7; font: 10px var(--ui-sans); }
 .np-note { max-width: 70%; margin-right: auto; color: #bfc5c8; }
-.np-home-indicator { width: 108px; height: 4px; border-radius: 5px; background: #e2e5e7; box-shadow: 0 1px 2px #0008; }
 .np-return { position: absolute; right: 7px; border: 1px solid #60686d; border-radius: 15px; padding: .35em .8em; background: #292e32; color: #f0f1f2; cursor: pointer; font: 600 10px var(--ui-sans); }
 .np-return:hover { background: #444b50; }
 .np-home { position: relative; width: 100%; max-width: none; min-height: 100%; display: flex; flex-direction: column; justify-content: flex-end; overflow: hidden; margin: 0; padding: 2rem clamp(1rem, 4vw, 3.4rem) 1.35rem; color: white; isolation: isolate; }
@@ -44,7 +43,6 @@
 .np-icon-reports { background: linear-gradient(145deg, #d67868, #8b3731 72%); }
 .np-app-name { white-space: nowrap; }
 .np-app-count { position: absolute; top: -5px; right: 12px; min-width: 19px; padding: 3px 5px; border: 1px solid #fff; border-radius: 12px; background: #c84038; color: white; text-align: center; text-shadow: none; font: 700 9px var(--ui-sans); }
-.np-home-caption { margin: 1rem auto 0; color: #ffffffd9; font: 500 9px var(--ui-sans); letter-spacing: .08em; text-shadow: 0 1px 5px #000a; }
 .np-page { width: min(850px, 100%); min-height: 100%; margin: 0 auto; padding: 0 0 1.4rem; }
 .np-appbar { position: sticky; z-index: 3; top: 0; display: flex; align-items: center; gap: 9px; min-height: 52px; margin: 0 0 1.1rem; padding: 7px clamp(1rem,3vw,2rem); border-bottom: 1px solid #d9dee0; background: #f7f8f8ed; backdrop-filter: blur(12px); color: #202729; }
 .np-home-back { display: grid; place-items: center; width: 30px; height: 30px; border: 0; border-radius: 50%; background: transparent; color: #526970; cursor: pointer; font: 300 26px/1 var(--ui-sans); }

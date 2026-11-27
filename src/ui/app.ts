@@ -257,6 +257,12 @@ export class App {
     void showTablet(this.root, this.tabletOptions(this.latestEdition ?? this.publishedEdition(), this.lastTabletPage));
   }
 
+  /** Rebuild the resting tablet's face from the real device at its current app/page (no overlay shown). */
+  private refreshTabletFace() {
+    if (!this.game) return;
+    void showTablet(this.root, { ...this.tabletOptions(this.latestEdition ?? this.publishedEdition(), this.lastTabletPage), previewOnly: true });
+  }
+
   private tabletOptions(edition: Edition, initial: TabletApp | TabletPage = 'home', footer?: string, closeLabel?: string): TabletOptions {
     const initialPage: TabletPage = typeof initial === 'string' ? { app: initial } : initial;
     const g = this.game!;
@@ -344,6 +350,7 @@ export class App {
     this.endBtn.title = endTip;
     this.endBtn.setAttribute('aria-label', pending ? `End turn. ${pendingLabel}.` : 'End turn. All required matters are complete.');
     this.renderSidebar();
+    this.refreshTabletFace();
   }
 
   private toggleSidebar() {

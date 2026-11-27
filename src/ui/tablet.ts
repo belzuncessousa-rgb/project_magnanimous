@@ -30,6 +30,8 @@ export interface TabletOptions {
   initialPage?: TabletPage;
   footer?: string;
   closeLabel?: string;
+  /** Build the device and report its screen through onAppChange without showing it (the resting tablet's face). */
+  previewOnly?: boolean;
   onAppChange?(app: TabletApp, screen: HTMLElement, page: TabletPage): void;
 }
 
@@ -67,7 +69,6 @@ export function showTablet(root: HTMLElement, options: TabletOptions): Promise<v
           close),
         h('div', { class: 'np-device-body' }, screen),
         h('footer', { class: 'np-footer' },
-          h('span', { class: 'np-home-indicator', 'aria-hidden': 'true' }, ''),
           options.footer ? h('span', { class: 'np-note' }, options.footer) : '',
           options.closeLabel ? closeBottom : '')));
 
@@ -135,7 +136,6 @@ export function showTablet(root: HTMLElement, options: TabletOptions): Promise<v
             h('div', { class: 'np-wallpaper-shade', 'aria-hidden': 'true' }),
         ),
           appNav,
-          h('span', { class: 'np-home-caption' }, 'Tap an app to open'),
         ),
       );
     };
@@ -226,7 +226,8 @@ export function showTablet(root: HTMLElement, options: TabletOptions): Promise<v
     };
 
     const openReport = (id: string) => {
-      const popup = options.onOpenReport(id);
+      // The resting face only shows the report; opening (and marking read) happens on the real device.
+      const popup = options.previewOnly ? reports.find((r) => r.popup.id === id)?.popup : options.onOpenReport(id);
       if (!popup) return;
       const item = reports.find((report) => report.popup.id === id);
       if (item) item.read = true;
@@ -274,7 +275,7 @@ export function showTablet(root: HTMLElement, options: TabletOptions): Promise<v
       if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last?.focus(); }
       else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first?.focus(); }
     });
-    root.append(overlay);
+    if (!options.previewOnly) root.append(overlay);
     const start = options.initialPage ?? { app: options.initialApp ?? 'home' };
     openApp(start.app);
     if (start.app === 'news' && start.newsIndex) renderNews(start.newsIndex);
@@ -286,6 +287,7 @@ export function showTablet(root: HTMLElement, options: TabletOptions): Promise<v
     // Scroll after the overlay has laid out.
     if (start.scroll) requestAnimationFrame(() => { screen.scrollTop = start.scroll ?? 0; });
     notify();
+    if (options.previewOnly) { resolve(); return; }
     requestAnimationFrame(() => requestAnimationFrame(() => {
       overlay.classList.add('open');
         const initialFocus = start.app === 'home'

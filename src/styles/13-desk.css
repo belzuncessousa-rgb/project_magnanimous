@@ -16,28 +16,14 @@
 .map-svg .atlas-art { pointer-events: none; }
 .map-svg .terrain-borders, .map-svg .political-border-underlay, .map-svg .political-borders,
 .map-svg .national-outline, .map-svg .coast-borders, .map-svg .labels { display: none !important; }
-.map-svg .label-region, .map-svg .label-country, .map-svg .label-national, .map-svg .label-continent,
-.map-svg .label-canal, .map-svg .label-water, .map-svg .label-point { paint-order: stroke; filter: drop-shadow(0 1px 2px #07150fbb); }
+.map-svg .label-region, .map-svg .label-country, .map-svg .label-national, .map-svg .label-canal, .map-svg .label-water, .map-svg .label-point { paint-order: stroke; filter: drop-shadow(0 1px 2px #07150fbb); }
 .map-svg .label-region { fill: #183d2c; stroke: #f0dba9; stroke-width: 3px; }
 .map-svg .label-country { fill: #f0ebdd; stroke: #173c2e; stroke-width: 3px; }
 .map-svg .label-national { fill: #f4ead4; stroke: #173c2e; }
-.map-svg .label-continent, .map-svg .label-canal { fill: #f0ebdd; }
+.map-svg .label-canal { fill: #f0ebdd; }
 .map-svg .label-water { fill: #e1e8dd; stroke: #14362f; stroke-width: 3px; }
 
 /* Raised consumer tablet resting on the clear timber area of the desk. */
 .view-political .map-tablet { transform: translateY(-50%) rotate(2deg) scale(.92); }
-.map-tablet-screen img { margin-top: 3%; }
-.map-tablet-apps { grid-template-columns: repeat(4, 1fr); }
-.map-tablet-apps i { justify-items: center; align-content: center; }
-.map-tablet-apps i::first-letter { font-size: 1.4em; }
-.map-tablet::after { content: ''; position: absolute; left: 50%; bottom: -9px; width: 30px; height: 3px; transform: translateX(-50%); border-radius: 3px; background: #e9e8dd; box-shadow: 0 1px 3px #0009; opacity: .72; }
-.tablet-status { position: absolute; top: 4%; left: 7%; right: 7%; display: flex; justify-content: space-between; color: #f2eee2; font: 600 clamp(7px, .48vw, 9px) var(--ui-sans); letter-spacing: .03em; opacity: .85; }
-.map-tablet-apps i { flex-direction: column; align-items: center; justify-content: center; }
-.map-tablet-apps i b { font: 700 clamp(15px, 1.35vw, 25px) var(--ui-sans); line-height: 1; }
-.map-tablet-apps i small { font: 600 clamp(6px, .48vw, 9px) var(--ui-sans); letter-spacing: 0; }
-.map-tablet-apps .mini-news b { color: #173f35; }
-.map-tablet-apps .mini-social b { color: #427398; }
-.map-tablet-apps .mini-codex b { color: #806638; }
-.map-tablet-apps .mini-reports b { color: #8a2e1e; }
 
 /* Keep the current painted atlas free of legacy geo overlays until its borders are redrawn to fit it. */
