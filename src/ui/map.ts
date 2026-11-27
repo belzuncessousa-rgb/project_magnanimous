@@ -220,7 +220,7 @@ export class MapView {
     const woodLeft = Math.min(cw, ox + (g.x1 + 30) * scale);
     const woodW = Math.max(0, cw - woodLeft);
     st.setProperty('--wood-cx', `${woodLeft + woodW / 2}px`);
-    st.setProperty('--tablet-w', `${Math.round(Math.min(370, Math.max(150, woodW * 0.78)))}px`);
+    st.setProperty('--tablet-w', `${Math.round(Math.min(310, Math.max(150, woodW * 0.78)))}px`);
     this.el.classList.toggle('desk-narrow', woodW < 190);
   }
 
@@ -501,6 +501,7 @@ export class MapView {
       g.addEventListener('mouseleave', () => this.hideTip());
       this.markerLayer.append(g);
     });
+    this.declutterLabels();
     this.layoutToasts();
   }
 
@@ -524,6 +525,7 @@ export class MapView {
       });
       this.toastLayer.append(el);
     }
+    this.declutterLabels();
     this.layoutToasts();
   }
 
@@ -546,6 +548,47 @@ export class MapView {
       el.style.left = `${pos[i]![0]}px`;
       el.style.top = `${pos[i]![1]}px`;
     });
+  }
+
+  /**
+   * Keep map labels readable: national, region and country names stay where they are; place and water names shift a
+   * little (screen-space search, applied as a map-unit translate) until they clear scene markers and the labels already
+   * placed. Re-run after every view change because labels and markers scale differently with zoom.
+   */
+  private declutterLabels() {
+    const texts = [...this.svg.querySelectorAll<SVGTextElement>('.labels text')];
+    if (!texts.length) return;
+    for (const t of texts) t.removeAttribute('transform');
+    const host = this.el.getBoundingClientRect();
+    const svgRect = this.svg.getBoundingClientRect();
+    if (svgRect.width < 1) return;
+    const unitsPerPx = this.vb.w / svgRect.width;
+    const rank = (t: SVGTextElement) => t.classList.contains('label-national') ? 0 : t.classList.contains('label-region') ? 1
+      : t.classList.contains('label-country') ? 2 : t.classList.contains('label-point') ? 3 : 4;
+    const placed: Rect[] = [];
+    for (const el of this.markerSvg.querySelectorAll<SVGGElement>('.marker .ring')) {
+      const r = el.getBoundingClientRect();
+      if (r.width > 0) placed.push({ x: r.left - host.left, y: r.top - host.top, w: r.width, h: r.height });
+    }
+    const overlaps = (a: Rect) => placed.some((b) => a.x < b.x + b.w && b.x < a.x + a.w && a.y < b.y + b.h && b.y < a.y + a.h);
+    for (const t of texts.sort((a, b) => rank(a) - rank(b))) {
+      const r = t.getBoundingClientRect();
+      if (r.width < 1 || r.height < 1) continue;
+      const box: Rect = { x: r.left - host.left - 2, y: r.top - host.top, w: r.width + 4, h: r.height };
+      if (rank(t) <= 2 || !overlaps(box)) { placed.push(box); continue; }
+      // Try nearby offsets, closest first: below, above, right, left, then further rings.
+      let best: [number, number] | null = null;
+      const step = box.h * 0.9;
+      search: for (let ring = 1; ring <= 4; ring++) {
+        for (const [dx, dy] of [[0, 1], [0, -1], [1, 0], [-1, 0], [1, 1], [-1, 1], [1, -1], [-1, -1]] as const) {
+          const ox = dx * ring * Math.max(step, box.w * 0.35), oy = dy * ring * step;
+          const cand = { ...box, x: box.x + ox, y: box.y + oy };
+          if (!overlaps(cand)) { best = [ox, oy]; placed.push(cand); break search; }
+        }
+      }
+      if (!best) { placed.push(box); continue; }
+      t.setAttribute('transform', `translate(${best[0] * unitsPerPx},${best[1] * unitsPerPx})`);
+    }
   }
 
   /** Screen rectangles (relative to the map element) of every map label currently drawn, so pins keep clear of them. */
@@ -681,6 +724,7 @@ export class MapView {
       this.scale = nextScale;
       this.cb.onScaleChange(this.scale);
     }
+    this.declutterLabels();
     this.layoutToasts();
   }
 
