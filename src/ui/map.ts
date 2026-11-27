@@ -28,7 +28,7 @@ export interface Geometry {
 
 /** Countries that are not drawn on the map get an edge chip (DECISIONS: Federation south, Zharan east). */
 export const OFFMAP: Record<string, { at: Pt; name: string; note: string }> = {
-  federation: { at: [505, 1325], name: 'Arennian Federation', note: 'South, beyond the canal' },
+  federation: { at: [690, 1270], name: 'Arennian Federation', note: 'South, beyond the canal' },
   zharan: { at: [900, 540], name: 'Zharan', note: 'Across the eastern ocean' },
 };
 
@@ -121,14 +121,18 @@ export class MapView {
   private view: 'terrain' | 'political' = 'terrain';
   private scale: MapScale = 'continent';
   private tablet: HTMLButtonElement;
+  private seaLayer: SVGGElement | null = null;
+  private glassClipRect: SVGRectElement | null = null;
 
   constructor(
     readonly geo: Geometry,
     private cb: MapCallbacks,
   ) {
-    this.base = { ...MAP_FRAMES.political };
+    this.base = this.responsivePoliticalFrame(window.innerWidth / Math.max(1, window.innerHeight * 0.9));
     this.vb = { ...this.base };
     this.el = h('div', { class: 'map', 'data-ui': 'map' });
+    const tableBackground = new URL(`${import.meta.env.BASE_URL}map/strategy-table-background.png`, document.baseURI);
+    this.el.style.setProperty('--strategy-table-background', `url("${tableBackground.href}")`);
     this.svg = s('svg', { class: 'map-svg', preserveAspectRatio: 'xMidYMid meet', role: 'group', 'aria-label': 'Map of Kunasai' });
     this.markerLayer = s('g', { class: 'markers' });
     this.markerSvg = s('svg', { class: 'map-svg marker-svg', preserveAspectRatio: 'xMidYMid meet', role: 'group', 'aria-label': 'Available scenes', 'data-ui': 'markers' }, this.markerLayer);
@@ -154,7 +158,38 @@ export class MapView {
     this.el.append(this.svg, this.toastLayer, this.markerSvg, this.tooltip, this.tablet);
     this.applyViewBox();
     this.bindPanZoom();
-    window.addEventListener('resize', () => this.layoutToasts());
+    window.addEventListener('resize', () => this.resizeFrame());
+  }
+
+  /** Keep the portrait atlas proportionate while giving the digital glass board a landscape viewport. */
+  private responsivePoliticalFrame(aspect: number) {
+    const art = this.geo.viewBox;
+    const width = Math.max(MAP_FRAMES.political.h * aspect, art.w + 120);
+    const height = width / aspect;
+    const artCenterX = art.x + art.w / 2;
+    const anchorX = aspect > 1.15 ? 0.3 : 0.5;
+    return {
+      x: artCenterX - width * anchorX,
+      y: art.y - (height - art.h) / 2,
+      w: width,
+      h: height,
+    };
+  }
+
+  private resizeFrame() {
+    const rect = this.svg.getBoundingClientRect();
+    if (!rect.width || !rect.height) return;
+    const oldZoom = this.base.w / this.vb.w;
+    const centerX = this.vb.x + this.vb.w / 2;
+    const centerY = this.vb.y + this.vb.h / 2;
+    this.base = this.responsivePoliticalFrame(rect.width / rect.height);
+    this.vb = {
+      x: centerX - this.base.w / oldZoom / 2,
+      y: centerY - this.base.h / oldZoom / 2,
+      w: this.base.w / oldZoom,
+      h: this.base.h / oldZoom,
+    };
+    this.applyViewBox();
   }
 
   private build() {
@@ -182,26 +217,42 @@ export class MapView {
         s('feDiffuseLighting', { in: 'n', 'lighting-color': '#f4ead2', surfaceScale: '3', result: 'l' }, s('feDistantLight', { azimuth: '235', elevation: '55' })),
         s('feComposite', { in: 'l', in2: 'SourceGraphic', operator: 'in' })),
       s('filter', { id: 'label-shadow' }, s('feDropShadow', { dx: '0', dy: '0', stdDeviation: '1.2', 'flood-color': '#f3ead6', 'flood-opacity': '0.9' })),
+      s('filter', { id: 'atlas-land-key', x: '0', y: '0', width: '100%', height: '100%', 'color-interpolation-filters': 'sRGB' },
+        s('feColorMatrix', {
+          type: 'matrix',
+          values: '0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  2.55 1.7085 -2.55 0 0.2',
+        }),
+        s('feComponentTransfer', {}, s('feFuncA', { type: 'linear', slope: '6', intercept: '-1.2' }))),
+      s('mask', {
+        id: 'atlas-land-mask', maskUnits: 'userSpaceOnUse', maskContentUnits: 'userSpaceOnUse', 'mask-type': 'alpha',
+        x: this.geo.viewBox.x, y: this.geo.viewBox.y, width: this.geo.viewBox.w, height: this.geo.viewBox.h,
+      }, s('image', {
+        href: 'map/arvain-terrain-art.png', x: this.geo.viewBox.x, y: this.geo.viewBox.y,
+        width: this.geo.viewBox.w, height: this.geo.viewBox.h, preserveAspectRatio: 'none', filter: 'url(#atlas-land-key)',
+      })),
+      s('clipPath', { id: 'strategy-glass-clip', clipPathUnits: 'userSpaceOnUse' },
+        this.glassClipRect = s('rect', { x: this.vb.x, y: this.vb.y, width: this.vb.w * 0.68, height: this.vb.h, rx: this.vb.w * 0.012 })),
       ...shapes.map((g) => s('clipPath', { id: `land-clip-${g.id}` }, s('path', { d: pathOf(g.polygon) }))),
       s('clipPath', { id: 'kunasai-art-clip', clipPathUnits: 'userSpaceOnUse' },
         ...shapes.filter((g) => g.kind === 'region').map((g) => s('path', { d: pathOf(g.polygon) }))),
     );
-    const sea = s('g', { class: 'sea' },
-      s('rect', { x, y, width: w, height: hgt, fill: 'url(#sea-grad)' }),
-      s('rect', { x, y, width: w, height: hgt, filter: 'url(#paper-noise)', fill: '#000', opacity: '0.45' }),
-      s('rect', { x, y, width: w, height: hgt, fill: 'url(#sea-lines)', opacity: '0.24' }),
-      s('rect', { class: 'sea-frame', x: x + 3, y: y + 3, width: w - 6, height: hgt - 6, rx: 5 }));
+    const sea = s('g', { class: 'sea', 'clip-path': 'url(#strategy-glass-clip)' },
+      s('rect', { class: 'sea-fill', x, y, width: w, height: hgt, fill: 'url(#sea-grad)' }),
+      s('rect', { class: 'sea-grain', x, y, width: w, height: hgt, filter: 'url(#paper-noise)', fill: '#000', opacity: '0.2' }),
+      s('rect', { class: 'sea-lines', x, y, width: w, height: hgt, fill: 'url(#sea-lines)', opacity: '0.2' }));
+    this.seaLayer = sea;
     // The approved Arvain painting is the continuous map surface at every map scale.
     // Game hit areas and political borders stay above the artwork as separate layers.
     const atlasArt = s('image', {
       class: 'atlas-art', href: 'map/arvain-terrain-art.png',
       x: this.geo.viewBox.x, y: this.geo.viewBox.y,
       width: this.geo.viewBox.w, height: this.geo.viewBox.h,
-      preserveAspectRatio: 'none', 'aria-hidden': 'true',
+      preserveAspectRatio: 'none', 'aria-hidden': 'true', mask: 'url(#atlas-land-mask)',
     });
     const kunasaiRegions = shapes.filter((g) => g.kind === 'region');
+    const kunasaiRegionIds = new Set(kunasaiRegions.map((g) => g.id));
     const outerKunasaiBorders = (this.geo.borders ?? []).filter((b) =>
-      b.between.some((id) => kunasaiRegions.some((r) => r.id === id)) && (b.type === 'coast' || b.type === 'international'));
+      b.between.some((id) => kunasaiRegionIds.has(id)) && b.type === 'international');
     const landFill = (g: GeoShape) => {
       const palette: Record<string, string> = {
         tekoku: '#c9b48a', ibicui: '#d7bd8c', mognagna: '#c9a66d', tapira: '#a9956a', ibira: '#638565',
@@ -229,17 +280,22 @@ export class MapView {
     const political = s('g', { class: 'layer-political' },
       ...shapes.map((g) => s('path', { d: pathOf(g.polygon), fill: POLITICAL_COLORS[g.id] ?? '#999', class: `pol-${g.kind} pol-${g.id}` })));
     const borderLines = this.geo.borders ?? [];
-    const terrainBorders = s('g', { class: 'terrain-borders' },
-      ...borderLines.filter((b) => b.type !== 'coast').map((b) => s('path', { d: linePath(b.line), class: `border-line border-${b.type}` })));
+    const landMasked = (className: string, ...children: SVGElement[]) => s('g', { class: className, mask: 'url(#atlas-land-mask)' }, ...children);
+    const kunasaiRegionalBorders = borderLines.filter((b) =>
+      b.type === 'internal' && b.between.length > 0 && b.between.every((id) => kunasaiRegionIds.has(id)));
+    const terrainBorders = landMasked('terrain-borders',
+      ...kunasaiRegionalBorders.map((b) => s('path', { d: linePath(b.line), class: 'border-line border-internal' })));
     const coastBorders = s('g', { class: 'coast-borders' },
       ...borderLines.filter((b) => b.type === 'coast').map((b) => s('path', { d: linePath(b.line) })));
-    const international = borderLines.filter((b) => b.type === 'international');
-    const politicalBorderUnderlay = s('g', { class: 'political-border-underlay' },
+    coastBorders.setAttribute('mask', 'url(#atlas-land-mask)');
+    const international = borderLines.filter((b) => b.type === 'international' && !b.between.some((id) => kunasaiRegionIds.has(id)));
+    const politicalBorderUnderlay = landMasked('political-border-underlay',
       ...international.map((b) => s('path', { d: linePath(b.line) })));
-    const politicalBorders = s('g', { class: 'political-borders' },
+    const politicalBorders = landMasked('political-borders',
       ...international.map((b) => s('path', { d: linePath(b.line), class: 'international-border' })));
-    const nationalOutline = s('g', { class: 'national-outline' },
+    const nationalOutline = landMasked('national-outline',
       ...outerKunasaiBorders.map((b) => s('path', { d: linePath(b.line) })));
+    this.hotLayer.setAttribute('mask', 'url(#atlas-land-mask)');
 
     for (const g of shapes) {
       const p = s('path', {
@@ -320,7 +376,18 @@ export class MapView {
 
   setView(view: 'terrain' | 'political') {
     this.view = view;
-    this.vb = view === 'political' ? { ...this.base } : { ...MAP_FRAMES.terrain };
+    if (view === 'political') {
+      this.vb = { ...this.base };
+    } else {
+      const points = this.geo.regions.filter((g) => g.kind === 'region').flatMap((g) => g.polygon);
+      const minX = Math.min(...points.map(([px]) => px));
+      const maxX = Math.max(...points.map(([px]) => px));
+      const minY = Math.min(...points.map(([, py]) => py));
+      const maxY = Math.max(...points.map(([, py]) => py));
+      const width = this.base.w / KUNASAI_ZOOM;
+      const height = this.base.h / KUNASAI_ZOOM;
+      this.vb = { x: (minX + maxX) / 2 - width / 2, y: (minY + maxY) / 2 - height / 2, w: width, h: height };
+    }
     this.applyViewBox();
   }
 
@@ -504,6 +571,19 @@ export class MapView {
     }
     this.svg.setAttribute('viewBox', `${this.vb.x} ${this.vb.y} ${this.vb.w} ${this.vb.h}`);
     this.markerSvg.setAttribute('viewBox', `${this.vb.x} ${this.vb.y} ${this.vb.w} ${this.vb.h}`);
+    if (this.glassClipRect) {
+      this.glassClipRect.setAttribute('x', String(this.vb.x));
+      this.glassClipRect.setAttribute('y', String(this.vb.y));
+      this.glassClipRect.setAttribute('width', String(this.vb.w * 0.68));
+      this.glassClipRect.setAttribute('height', String(this.vb.h));
+      this.glassClipRect.setAttribute('rx', String(this.vb.w * 0.012));
+    }
+    for (const rect of this.seaLayer?.querySelectorAll<SVGRectElement>('rect') ?? []) {
+      rect.setAttribute('x', String(this.vb.x));
+      rect.setAttribute('y', String(this.vb.y));
+      rect.setAttribute('width', String(this.vb.w));
+      rect.setAttribute('height', String(this.vb.h));
+    }
     const zoom = b.w / this.vb.w;
     this.el.style.setProperty('--zoom', String(zoom));
     const nextScale: MapScale = zoom < TABLE_ZOOM ? 'table' : zoom >= KUNASAI_ZOOM ? 'kunasai' : 'continent';
