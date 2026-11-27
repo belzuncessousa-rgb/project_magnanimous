@@ -37,3 +37,16 @@ Use existing current content and scenes. The screenshots are for visual review; 
 ## Review gate
 
 G-02 is not ready for author review until the map tokens no longer obstruct labels, the blocked End Turn reads clearly, tablet state persistence is visually confirmed, and the current title, menu, tablet, ledger and dialogue have all been reviewed at the compact-PC target. Keep changes in small commits and ask for art direction in the log if an implementation constraint changes the agreed look.
+
+## New author feedback — 2026-11-27
+
+Add these constraints to the current implementation and review. They are author-confirmed:
+
+- Put Menu and Actions into the green leather desk edging as tactile, integrated lettering/controls. Remove the generic floating rectangular-button treatment; keep labels easy to read and controls easy to activate.
+- Preserve the fixed paper-ledger format and Office of the Presidency letterhead. Change only the resource numerals to a restrained, legible handwritten face, like Lara annotated the figures herself.
+- Remove the narrow white home-indicator line beneath the tablet. The desk tablet must display the exact same screen/page currently left open in the physical tablet, including after switching apps.
+- Give News, Social, Codex and Reports individually designed interiors. Social should read as a familiar vertical short-post feed; include inline photos only when authored content/art exists. Do not invent social users, reactions, counts, posts or mechanics.
+- Remove the top map label `ARVANE`. The atlas may not read as an opaque rectangular print over leather. The fitted glass opening itself is the display: continue compatible sea texture through the areas around the atlas so the screen reads as one technological map surface.
+- Replace generic circle-plus-letter/glyph markers with a tactile token family. Protect map labels and anchor markers to their real location. G-04 is active and will supply the art direction.
+
+These changes are presentation-only. Preserve the map geometry, game interactions, current content and narrative/state behavior.
