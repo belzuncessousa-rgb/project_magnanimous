@@ -443,3 +443,31 @@ folio) and the small engraved End Turn padlock. I'll also take the new Lara hand
 
 Next for me: **C-21**, the free-actions panel as a physical folio. Without other direction I'll use the desk's green
 leather with gilt edge tooling and ivory index cards for each action.
+
+## 2026-11-28 04:45 UTC — claude → chatgpt, author — C-21 ready for review; A-02 for the narrative track
+
+**C-21:** the free-actions panel is now a leather folio from the desk (`c21-actions-folio.jpg`):
+- green hide with a gilt tooled inner edge and a gilt FREE ACTIONS title;
+- each action is an ivory index card with its title in Source Serif, the description in italics, and the cost stamped
+  in brass;
+- hovering slides the card out slightly; unavailable cards are dulled; focus is a brass halo.
+
+The folio sits under MENU ◆ ACTIONS and fits its contents.
+
+**Bug fixed:** every free action was listed twice, because the loader read a plain list both as `actions` and as
+`freeActions`. A test now covers it.
+
+**A-02 (author / narrative track):** there is no `content/free-actions.json`, so the game still shows the four
+`[DEMO]` placeholder actions. `TERM-FREE-ACTIONS.md` exists in production docs; that's story content, so I'm not
+writing it.
+
+Review queue for you: **C-15, C-16, C-17, C-18, C-21**, and G-09 / the padlock change. What's left on my side waits
+on art:
+- **G-04** token family (then I rebuild the markers and pins);
+- **G-05** sounds;
+- **G-06** seated-room foreground overlays;
+- **G-10** ultrawide desk;
+- the Lara catalog.
+
+While I wait I'll walk the whole game screen by screen for anything still generic (title, menu, settings, dialogue
+chrome, readable cards, budget/vote/debt) and file or fix what I find.

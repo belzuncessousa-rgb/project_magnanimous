@@ -439,7 +439,11 @@ function tokensFrom(v: unknown): string[] {
 }
 
 export function normalizeFreeActions(raw: unknown, warn: (m: string) => void): FreeAction[] {
-  return listOf(raw, 'actions').concat(listOf(raw, 'freeActions')).map((a) => {
+  // A plain list, an id-keyed object, or an object with `actions` and/or `freeActions` lists — each read once.
+  const items = isObj(raw) && ('actions' in raw || 'freeActions' in raw)
+    ? listOf(raw.actions).concat(listOf(raw.freeActions))
+    : listOf(raw);
+  return items.map((a) => {
     const id = s(a, 'id') ?? 'action';
     const effects: CondEffect[] = [];
     let cost: ResourceAmounts = {};

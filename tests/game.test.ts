@@ -193,3 +193,13 @@ describe('game flow (demo content)', () => {
     expect(loadGame(broken)).toBeNull();
   });
 });
+
+describe('free actions file shapes', () => {
+  it('reads each action once whether the file is a list or an object with actions/freeActions', async () => {
+    const { normalizeFreeActions } = await import('../src/content/schema');
+    const one = [{ id: 'rally', label: 'Hold a rally', cost: '1 PT' }];
+    expect(normalizeFreeActions(one, () => {}).map((a) => a.id)).toEqual(['rally']);
+    expect(normalizeFreeActions({ actions: one, freeActions: [{ id: 'envoy', label: 'Envoy' }] }, () => {}).map((a) => a.id)).toEqual(['rally', 'envoy']);
+    expect(normalizeFreeActions({ rally: { label: 'Hold a rally' } }, () => {}).map((a) => a.id)).toEqual(['rally']);
+  });
+});
