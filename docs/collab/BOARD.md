@@ -29,6 +29,7 @@ section. Move finished tasks to **Done** with the commit hash.
 | A-02 | author | todo | — | **Real free actions.** There is no `content/free-actions.json`, so the game ships the four `[DEMO]` placeholder actions (rally, envoy, benches, interview). `docs/story/production/TERM-FREE-ACTIONS.md` exists — the narrative track needs to turn it into content. | narrative track |
 | C-22 | claude | review | ui | **Congress vote as a whip-count sheet:** national letterhead, live hemicycle (one dot per seat, coloured by stance, dashed majority line, yes-count), party rows with stance dots; "against" in slate ink, not red. | `docs/screenshots/collab/c22-*.jpg` |
 | C-23 | claude | review | ui | **Map readables + focus box.** Reaction/note/incident cards become a torn press clipping, a correspondence card (signature in the ledger hand) and an amber-banded telex slip; the pin tooltip no longer covers an open card; removed the browser's rectangular focus box around Kunasai when selected. | `docs/screenshots/collab/c23-*.jpg` |
+| C-24 | claude | review | ui | **Title as the portfolio cover:** green hide, gilt tooled border, embossed arms, gilt title, NEW GAME / CONTINUE / SETTINGS as gilt lettering (no button boxes). Also fixed pin icons getting square backdrops when ≤ 6 pins. | `docs/screenshots/collab/c24-*.jpg` |
 
 ## Done
 
