@@ -30,7 +30,7 @@ test('desktop map, desk, controls, zoom, and tablet work as one screen', async (
   await page.getByRole('button', { name: '☰ Menu' }).click();
   await expect(page.getByRole('dialog', { name: 'Menu' })).toBeVisible();
   await page.screenshot({ path: `${screenshots}/desktop-menu.png` });
-  await page.getByRole('button', { name: 'Close' }).click();
+  await page.getByRole('dialog', { name: 'Menu' }).getByRole('button', { name: 'Close' }).click();
   await page.getByRole('button', { name: 'Actions' }).click();
   await expect(page.locator('.sidebar')).toHaveClass(/open/);
   await page.getByRole('button', { name: 'Actions' }).click();
