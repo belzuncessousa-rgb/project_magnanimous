@@ -28,7 +28,7 @@ export interface Geometry {
 
 /** Countries that are not drawn on the map get an edge chip (DECISIONS: Federation south, Zharan east). */
 export const OFFMAP: Record<string, { at: Pt; name: string; note: string }> = {
-  federation: { at: [690, 1270], name: 'Arennian Federation', note: 'South, beyond the canal' },
+  federation: { at: [640, 1175], name: 'Arennian Federation', note: 'South, beyond the canal' },
   zharan: { at: [900, 540], name: 'Zharan', note: 'Across the eastern ocean' },
 };
 
@@ -58,6 +58,10 @@ const MAP_FRAMES = {
   terrain: { x: 45, y: 350, w: 610, h: 700 },
 } as const;
 const KUNASAI_ZOOM = 1.48;
+/** strategy-table-background.png: size and the inner edge of its painted glass display, in image pixels. */
+const DESK_ART = { w: 1672, h: 941, glass: { x0: 48, y0: 137, x1: 1123, y1: 791, r: 26 } } as const;
+/** public/map/sea-tile.jpg (506×502 px) in map units, matching the atlas painting's scale. */
+const SEA_TILE = { w: 380, h: 381 } as const;
 const MIN_ZOOM = 1;
 
 export interface MarkerSpec {
@@ -121,6 +125,7 @@ export class MapView {
   private tablet: HTMLButtonElement;
   private tabletScreen: HTMLSpanElement;
   private atlasArtHref: string;
+  private seaTileHref: string;
   private seaLayer: SVGGElement | null = null;
   private glassClipRect: SVGRectElement | null = null;
 
@@ -134,6 +139,7 @@ export class MapView {
     const tableBackground = new URL(`${import.meta.env.BASE_URL}map/strategy-table-background.png`, document.baseURI);
     this.el.style.setProperty('--strategy-table-background', `url("${tableBackground.href}")`);
     this.atlasArtHref = new URL(`${import.meta.env.BASE_URL}map/arvain-terrain-art.png`, document.baseURI).href;
+    this.seaTileHref = new URL(`${import.meta.env.BASE_URL}map/sea-tile.jpg`, document.baseURI).href;
     this.svg = s('svg', { class: 'map-svg', preserveAspectRatio: 'xMidYMid meet', role: 'group', 'aria-label': 'Map of Arvain', tabindex: 0 });
     this.markerLayer = s('g', { class: 'markers' });
     this.markerSvg = s('svg', { class: 'map-svg marker-svg', preserveAspectRatio: 'xMidYMid meet', role: 'group', 'aria-label': 'Available scenes', 'data-ui': 'markers' }, this.markerLayer);
@@ -158,27 +164,58 @@ export class MapView {
       this.tabletScreen);
     this.build();
     this.el.append(this.svg, this.toastLayer, this.markerSvg, this.tooltip, this.tablet);
+    this.layoutGlass();
+    new ResizeObserver(() => this.resizeFrame()).observe(this.el);
     this.applyViewBox();
     this.bindPanZoom();
     window.addEventListener('resize', () => this.resizeFrame());
   }
 
-  /** Keep the portrait atlas proportionate while giving the digital glass board a landscape viewport. */
+  /**
+   * Continental fit: show the whole painted atlas (contain) and extend it sideways or vertically with sea,
+   * so the glass display never reveals the painting's edge as an empty margin.
+   */
   private responsivePoliticalFrame(aspect: number) {
     const art = this.geo.viewBox;
-    const width = Math.max(MAP_FRAMES.political.h * aspect, art.w + 120);
+    const inset = 6; // trims the painting's outermost pixels, which blend into the sea tile
+    const fitW = art.w - inset * 2;
+    const fitH = art.h - inset * 2;
+    const width = aspect >= fitW / fitH ? fitH * aspect : fitW;
     const height = width / aspect;
-    const artCenterX = art.x + art.w / 2;
-    const anchorX = aspect > 1.15 ? 0.3 : 0.5;
     return {
-      x: artCenterX - width * anchorX,
-      y: art.y - (height - art.h) / 2,
+      x: art.x + art.w / 2 - width / 2,
+      y: art.y + art.h / 2 - height / 2,
       w: width,
       h: height,
     };
   }
 
+  /**
+   * Place the map viewport exactly over the glass painted in the desk artwork. The desk image is drawn with
+   * background-size: cover, so the glass moves with the window's aspect ratio; mirror that maths here.
+   */
+  private layoutGlass() {
+    const cw = this.el.clientWidth || window.innerWidth;
+    const ch = this.el.clientHeight || window.innerHeight;
+    const scale = Math.max(cw / DESK_ART.w, ch / DESK_ART.h);
+    const ox = (cw - DESK_ART.w * scale) / 2;
+    const oy = (ch - DESK_ART.h * scale) / 2;
+    const g = DESK_ART.glass;
+    const margin = 6;
+    const left = Math.max(margin, ox + g.x0 * scale);
+    const top = Math.max(margin, oy + g.y0 * scale);
+    const right = Math.min(cw - margin, ox + g.x1 * scale);
+    const bottom = Math.min(ch - margin, oy + g.y1 * scale);
+    const st = this.el.style;
+    st.setProperty('--glass-l', `${left}px`);
+    st.setProperty('--glass-t', `${top}px`);
+    st.setProperty('--glass-w', `${Math.max(0, right - left)}px`);
+    st.setProperty('--glass-h', `${Math.max(0, bottom - top)}px`);
+    st.setProperty('--glass-r', `${Math.max(6, g.r * scale)}px`);
+  }
+
   private resizeFrame() {
+    this.layoutGlass();
     const rect = this.svg.getBoundingClientRect();
     if (!rect.width || !rect.height) return;
     const oldZoom = this.base.w / this.vb.w;
@@ -235,15 +272,21 @@ export class MapView {
         href: this.atlasArtHref, x: this.geo.viewBox.x, y: this.geo.viewBox.y,
         width: this.geo.viewBox.w, height: this.geo.viewBox.h, preserveAspectRatio: 'none', filter: 'url(#atlas-land-key)',
       })),
+      s('pattern', { id: 'sea-tile', patternUnits: 'userSpaceOnUse', x: this.geo.viewBox.x, y: this.geo.viewBox.y, width: SEA_TILE.w, height: SEA_TILE.h },
+        s('image', { href: this.seaTileHref, x: 0, y: 0, width: SEA_TILE.w, height: SEA_TILE.h, preserveAspectRatio: 'none' })),
+      s('filter', { id: 'atlas-feather-blur', x: '-5%', y: '-5%', width: '110%', height: '110%' },
+        s('feGaussianBlur', { stdDeviation: 7 })),
+      s('mask', { id: 'atlas-feather', maskUnits: 'userSpaceOnUse', x: this.geo.viewBox.x, y: this.geo.viewBox.y, width: this.geo.viewBox.w, height: this.geo.viewBox.h },
+        s('rect', { x: this.geo.viewBox.x + 12, y: this.geo.viewBox.y + 12, width: this.geo.viewBox.w - 24, height: this.geo.viewBox.h + 40, fill: '#fff', filter: 'url(#atlas-feather-blur)' })),
       s('clipPath', { id: 'strategy-glass-clip', clipPathUnits: 'userSpaceOnUse' },
         this.glassClipRect = s('rect', { x: this.vb.x, y: this.vb.y, width: this.vb.w, height: this.vb.h, rx: this.vb.w * 0.012 })),
       ...shapes.map((g) => s('clipPath', { id: `land-clip-${g.id}` }, s('path', { d: pathOf(g.polygon) }))),
       s('clipPath', { id: 'kunasai-art-clip', clipPathUnits: 'userSpaceOnUse' },
         ...shapes.filter((g) => g.kind === 'region').map((g) => s('path', { d: pathOf(g.polygon) }))),
     );
-    const sea = s('g', { class: 'sea', 'clip-path': 'url(#strategy-glass-clip)' },
-      s('rect', { class: 'sea-fill', x, y, width: w, height: hgt, fill: 'url(#sea-grad)', filter: 'url(#water-paint)' }),
-      s('rect', { class: 'sea-grain', x, y, width: w, height: hgt, filter: 'url(#paper-noise)', fill: '#000', opacity: '0.08' }));
+    // Open water fills the whole glass; the painting's own sea blends into it at the feathered edges.
+    const sea = s('g', { class: 'sea-water', 'aria-hidden': 'true' },
+      s('rect', { class: 'sea-water-fill', x, y, width: w, height: hgt, fill: 'url(#sea-tile)' }));
     this.seaLayer = sea;
     // The approved Arvain painting is the continuous map surface at every map scale.
     // Game hit areas and political borders stay above the artwork as separate layers.
@@ -251,7 +294,7 @@ export class MapView {
       class: 'atlas-art', href: this.atlasArtHref,
       x: this.geo.viewBox.x, y: this.geo.viewBox.y,
       width: this.geo.viewBox.w, height: this.geo.viewBox.h,
-      preserveAspectRatio: 'none', 'aria-hidden': 'true',
+      preserveAspectRatio: 'none', 'aria-hidden': 'true', mask: 'url(#atlas-feather)',
     });
     const kunasaiRegions = shapes.filter((g) => g.kind === 'region');
     const kunasaiRegionIds = new Set(kunasaiRegions.map((g) => g.id));
