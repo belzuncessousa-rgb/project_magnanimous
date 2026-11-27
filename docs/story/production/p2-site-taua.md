@@ -27,6 +27,8 @@ She unfolds a map showing villages and the area being assessed.
 
 Marne looks at the map.
 
+→ discussion
+
 > **Tobias Marne:** "We can discuss the preliminary work separately from the operations that will require further assessment."
 
 ## discussion
@@ -105,7 +107,7 @@ Tuyú nods.
 
 ## decision
 
-1. **"Conduct formal consultation before irreversible development proceeds."** `[flag: taua_consulted = true]`
+1. **"Conduct formal consultation before irreversible development proceeds."**
    ↳ Tuyú inclines her head.
    ↳ > **Iracema Tuyú:** "I'll arrange discussions with the communities."
    ↳ > **Tobias Marne:** "We'll revise the timetable to account for that."
@@ -123,5 +125,23 @@ Tuyú nods.
 Before leaving, Tuyú introduces you to a member of the council who has brought a small booklet describing the communities along the river.
 
 1. **Accept the booklet and thank her.** `[flag: seen_site_visit = true]`
+
+→ END
+
+### The area named in the agreement
+
+*Before award where there is a reportable consultation, access decision, or legal ruling. Set the legacy consultation state only once consultation has actually occurred. Consultation, consent, authority, and the eventual award are separate facts.*
+
+Tuyú brings a marked copy of the survey map. She lays it beside the draft scope. One line has been redrawn since your visit.
+
+> **Tuyú:** “We met at two of the landings. The people using the third asked for a meeting of their own. This mark is where they said the survey crossed their route.”
+
+Use that account only if those meetings took place. Otherwise Tuyú identifies the report she can speak to, or explains which communities the commission still needs to hear.
+
+> **Marne:** “I can take a narrower scope to the contractor. The cost comparison is for the area on this map.”
+
+- **“Return the revised scope for agreement.”** Tuyú asks for a copy before the next local meeting. “They need to see the revised line and the conditions on access together.” Require actual agreement from the bodies whose consent is needed before awarding that scope.
+- **“Proceed with the independently authorized area.”** Show the authority and the part of the project it covers. Tuyú checks that the excluded land is marked on the same copy. Later notice and delivery use only the authorized area, and any outstanding challenge remains open.
+- **“Keep the award on hold.”** Marne takes the proposed start off the schedule. “I'll tell the site what work can still go ahead under its existing authority.” Use the actual service restriction or confirmed preparatory work in the later landing scene.
 
 → END

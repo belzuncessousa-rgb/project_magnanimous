@@ -107,7 +107,7 @@ A few people call your name from the front of the square. You wait for them to f
 3. **"I want to speak about Kunasai's place in the world."** `[once]` `→ topic-iden`
 4. **"There is much to be done for our families."** `[once]` `→ topic-welf`
 5. **"Let me address our national security."** `[once]` `→ topic-force`
-6. **"I have a commitment to make to you today."** `[show if: !flag.promised_CoL || !flag.promised_GDP || !flag.promised_power || !flag.promised_integrity]` `→ promises`
+6. **Consider making a public commitment.** `[show if: !flag.promised_CoL || !flag.promised_GDP || !flag.promised_power || !flag.promised_integrity]` `→ promises`
 7. **Conclude your address.** `→ finish`
 
 ## topic-econ | The Economy

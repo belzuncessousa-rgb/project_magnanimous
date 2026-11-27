@@ -10,7 +10,7 @@ portraits: [sadrah, aroun]
 background: port-office
 ---
 
-⚙️ Staged rewrite. Financing offers differ by selected project, prior procurement and diplomatic choices. Acceptance in principle is not disbursement; exact terms, amounts, concession, exclusivity and approvals require follow-up. Preserve zharan_financing_studied; replace premature zharan_financing with proposed zharan_financing_intent until signed. No automatic relation change with unobserved actions.
+⚙️ Staged rewrite. Financing offers differ by selected project, prior procurement and diplomatic choices. Acceptance in principle is not disbursement; exact terms, amounts, concession, exclusivity and approvals require follow-up. Preserve zharan_financing_studied; replace premature zharan_financing with proposed zharan_financing_intent until signed. Proposed key `zharan_financing_project` captures the selected `great_project` value only when Lara asks the envoy to prepare financing terms. No automatic relation change with unobserved actions.
 
 ## arrival
 
@@ -25,6 +25,8 @@ Celeste Aroun is seated beside you.
 > **Celeste Aroun:** "I understand your government has prepared some financing proposals."
 
 > **Nima Sadrah:** "Yes. We have been following the investment plans announced by the President. We believe there are projects where our companies and institutions could offer useful terms."
+
+→ offer
 
 He opens a document in front of him.
 

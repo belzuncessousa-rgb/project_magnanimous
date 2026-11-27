@@ -20,6 +20,8 @@ Owin Dara is waiting outside the entrance with the hospital's director. A few pe
 
 > **Owin Dara:** "Welcome to Sugar Bay, Madam President."
 
+→ corridor
+
 He introduces the director, who shakes your hand and leads you inside.
 
 > **Director:** "We've had quite a busy morning. I hope you'll forgive us if the corridors are crowded."
@@ -161,6 +163,8 @@ He gathers his papers.
 
 > **Owin Dara:** "There are reporters waiting outside. I expect they'll ask what the government intends to do about it."
 
+→ press
+
 ## press
 
 A small group of reporters has assembled beneath the awning at the entrance. The director stands beside Dara as you approach.
@@ -201,5 +205,46 @@ He points to the name on the cover.
    ↳ > **Owin Dara:** "Very well. I'll keep collecting the health data."
 3. **"Send me the health assessment first."** `[flag: seen_health_briefing = true]`
    ↳ > **Owin Dara:** "Of course."
+
+→ END
+
+### The bill Sollis brings
+
+*Optional, after Lara requests the bill or asks for a health assessment and later authorizes talks. Use the actual scope of the proposed tobacco legislation.*
+
+Sollis has put the draft on the table with a letter from a shopkeeper in his district. He leaves the letter open at the paragraph about the existing stock.
+
+> **Sollis:** “She wants to know which rule applies to the stock she already ordered. Could we tell her when she has to change what she does?”
+
+Dara brings the health assessment over. “I can explain the measure. The shops need the start date from the final text.”
+
+- **“Seek support for the bill as drafted.”** Sollis takes the dated version. “I'll give this to the bench. I'll come back if they want a change before they'll vote for it.”
+- **“Cost a longer transition.”** Dara asks the clerk to note what would begin later. Show the revised terms and health consequences before Lara confirms them. Reconfirm support for the revised text.
+- **“Leave the bill here.”** Sollis puts the shopkeeper's letter back in its envelope. “I'll tell her the current rules are still in force.”
+
+#### The vote on Sollis's bill
+
+*Play once a text can be voted on. A pledge to seek support at the hospital does not guarantee a majority or schedule a vote.*
+
+Sollis meets you outside the chamber. He has brought the copy he sent to his district. The letters from shopkeepers and health offices are clipped inside the front cover.
+
+> **Sollis:** “This is the one they're counting. A deputy asked whether her request about the start date would be read out.”
+
+> **Lara:** “Did it make it into the text?”
+
+Sollis turns to the clause and gives the date that is actually printed there. If the concession was rejected, he identifies the difference before showing the latest count.
+
+- **“Take this text to the vote.”** Sollis hands his copy to the clerk. Use the legislature's result on that version.
+- **“Bring back the transition amendment first.”** `[show if: flag.tobacco_transition_amendment_feasible]` Sollis takes the unsigned copy back. “I'll ask them what they can support on the new date.” The revised terms go to the affected blocs before support is counted; this request does not place the bill back on the agenda.
+- **“Hold the bill and ask Sollis to return with a costed transition date.”** The clerk removes the item from the scheduled business. Sollis takes the dated draft. “I'll ask them what the later start would cost. I'll bring the text back before I tell the district there will be another vote.” The bill stays deferred until Lara reviews the revised text and separately authorizes reopening.
+- **“Hold the bill without setting a reopening date.”** The clerk removes the item from the scheduled business. Sollis puts the shopkeeper's letter back in its envelope. “I'll tell her the current rules remain in force. I'll wait for your office before I tell the district the bill is coming back.” No later vote is scheduled.
+
+*Passed and effective.* At the district counter, the shopkeeper gives the clerk her invoice and asks which date applies. The clerk finds the published rule before marking the relevant date on the notice. Dara receives the same notice and asks that later reports distinguish the date the rule took effect from any measured public health change.
+
+*Passed, awaiting commencement.* The clerk leaves the existing notice on the wall and puts a copy of the new rule beside it. “This is the date it begins. Use the current instructions until then.”
+
+*Defeated or withdrawn.* Sollis sends the shopkeeper the clerk's notice that the bill has gone off the list. The district office continues to answer under the existing rules. A favourable health assessment remains available for a future proposal.
+
+⚙️ Provisional integration: `tobacco_transition_amendment_feasible` is true only when a later start date can be drafted within legal authority, the resulting revenue and health estimates are available, and the affected blocs can review the revised text before the vote. A request to explore a transition is not itself a revised bill or a vote date.
 
 → END

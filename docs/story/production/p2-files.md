@@ -20,9 +20,13 @@ General Voss examines the pictures without touching them.
 
 > **Salgado:** Then we should be precise about its purpose.
 
-1. **"What exactly would the assessment cover?"** `→ scope`
-2. **"General, what is the military's concern?"** `→ concern`
-3. **"Have we heard from the families directly?"** `→ families`
+→ questions
+
+## questions
+
+1. **"What exactly would the assessment cover?"** `[once]` `→ scope`
+2. **"General, what is the military's concern?"** `[once]` `→ concern`
+3. **"Have we heard from the families directly?"** `[once]` `→ families`
 4. **"I understand. Let's make a decision."** `→ decision`
 
 ## scope
@@ -33,7 +37,13 @@ She moves a blank sheet beside the photographs.
 
 > **Salgado:** We would submit recommendations. No document would be released simply because the study had begun.
 
-→ decision
+> **Lara:** Who would give the families an answer while that was going on?
+
+Salgado looks at the petition beside the photographs.
+
+> **Salgado:** The office that received the request. I'll ask them what they've sent so far.
+
+→ questions
 
 ## concern
 
@@ -41,18 +51,31 @@ She moves a blank sheet beside the photographs.
 
 > **Salgado:** The study can address those agreements. We cannot ask the families to accept an interpretation we have never examined.
 
-→ decision
+Voss glances at the file but leaves it closed.
 
+1. **"Ask the General why he wants to speak to the officers himself."** `[show if: flag.files_promise_voss]`
+   ↳ > **Voss:** "You gave me a date in the courtyard. If the government's position has changed, I would like the officers to hear it from me."
+   ↳ > **Salgado:** "The study can address the transition agreements. Beginning it does not itself change the rules on release."
+2. **"Keep the assessment separate from any decision to release records."**
+   ↳ > **Salgado:** "That is the distinction I want in the terms of reference. A study alone does not release a document."
+
+→ questions
 ## families
 
-> **Salgado:** Mrs. Delmar asked for an answer to the petition. Her request is for information about her brother.
+> **Salgado:** "Mrs. Delmar asked for information about her brother. Her petition is here with the other requests."
 
-If Lara previously received Delmar, Salgado adds:
+> "What have we told her so far?"
 
-> **Salgado:** She appreciated being heard at the palace. I think she would appreciate a written response just as much.
+1. **"I met her at the palace. What answer has she received?"** `[show if: flag.files_petition == 1]`
+   ↳ > **Salgado:** "She appreciated being heard. The office still owes her a written account of what the registry can establish. I'll check what they can send."
+2. **"What did Rosa hear from the office after you met with her?"** `[show if: flag.files_petition == 2]`
+   ↳ > **Salgado:** "We've sent an acknowledgment. I'll check what the registry can establish before we promise anything further."
+3. **"She could not see me that day. Has the office answered her yet?"** `[show if: flag.files_petition == 3]`
+   ↳ > **Salgado:** "She wasn't able to see you that day. The petition is still here. I'll ask the office for an answer we can give her."
+4. **"Has anyone answered the petition?"** `[show if: !flag.files_petition]`
+   ↳ > **Salgado:** "Not yet. The request is with us. I'll ask the registry what it can establish before we reply."
 
-→ decision
-
+→ questions
 ## decision
 
 1. **"Commission an independent legal study."** `[flag: files_study = true]` `→ study`

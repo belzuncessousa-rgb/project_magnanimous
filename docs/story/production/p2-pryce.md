@@ -10,7 +10,7 @@ portraits: [pryce, aroun]
 background: president-office
 ---
 
-⚙️ Staged rewrite. Federation's political, commercial and strategic priorities coexist. Diplomacy tone does not automatically establish a binding agreement or become public. Preserve pryce_tone and seen_pryce. Conditional callbacks use actual public speech and project flags. Exact relationship effects and concessions deferred.
+⚙️ Staged rewrite. Federation's political, commercial and strategic priorities coexist. Diplomacy tone does not automatically establish a binding agreement or become public. Preserve pryce_tone and seen_pryce. Conditional callbacks use actual public speech and project flags. Proposed integration key `pryce_financing_project` captures the selected `great_project` value only when Lara asks an interested company to submit terms. A diplomatic expression of interest is not an offer. Exact relationship effects and concessions are deferred.
 
 ## arrival
 
@@ -25,6 +25,8 @@ He smiles as he hands you the book. Celeste Aroun is seated beside you.
 A member of the palace staff brings coffee. Pryce thanks her in fluent Kunasaian.
 
 > **Celeste Aroun:** "Ambassador Pryce and I have already discussed several matters our governments may want to address."
+
+→ discussion
 
 > **Lionel Pryce:** "Indeed. I hope we can establish a productive relationship with your administration."
 
@@ -75,9 +77,13 @@ He turns towards you.
 
 1. **"We've selected rare-earth development as a priority."** `[show if: flag.great_project == 1]`
    ↳ > **Lionel Pryce:** "Yes. Our embassy has received several inquiries from companies since the announcement. I would be pleased to facilitate discussions."
-2. **"Would your companies work with domestic partners?"**
+2. **"Ask an interested company to submit terms for our selected project."** `[show if: flag.great_project]`
+   ↳ > **Lionel Pryce:** "I can ask an interested company and its financing partner to prepare a proposal for the project you selected. They would need to show you the full cost, repayment schedule, procurement terms and any commercial rights they request."
+   ↳ > **Celeste Aroun:** "Treasury can compare it with the domestic estimate. A request for terms would not commit the government to borrow or award the work."
+   ↳ Record the requested project and submit it for independent review. The company may decline, return an incomplete proposal, or provide terms. Only a complete offer with an authorized lender, identified scope, repayment and rights can reach [The pages the bank will sign](TERM-DIPLOMACY.md#the-pages-the-bank-will-sign). A firm's interest alone creates no offer.
+3. **"Would your companies work with domestic partners?"**
    ↳ > **Lionel Pryce:** "Many would. The terms would depend on the investment and the degree of control required to justify the capital involved."
-3. **"We will consider the proposals on their merits."**
+4. **"We will consider the proposals on their merits."**
 
 → questions
 

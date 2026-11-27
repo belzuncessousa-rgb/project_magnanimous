@@ -10,21 +10,23 @@ portraits: [mertens, lessa, livia]
 background: vp-office
 ---
 
-⚙️ Staged rewrite. The filed representation proposal introduces the broader constitutional amendment (PEC) process. No final majority, fixed seat distribution, ratification or automatic vote purchase here. Existing reform_stance tracks the government's working direction; reform_draft_axis and reform_public_position are proposed flags. Additional package provisions require later negotiated text. The subsequent negotiation scenes and vote are integration blockers.
+⚙️ Staged rewrite. The filed representation proposal introduces the broader constitutional amendment (PEC) process. No final majority, fixed seat distribution, ratification or automatic vote purchase here. Existing `reform_stance` tracks the government's private working direction; proposed `reform_draft_axis` distinguishes population and economic approaches. This meeting makes no public announcement. Additional package provisions require later negotiated text and approvals.
 
 ## opening
 
 Mertens is standing by the window when you enter his office. The television shows a debate in Congress, and he lowers the volume with the remote.
 
-> **Caio Mertens:** "There she is."
+> **Caio Mertens:** "Augusta Lessa filed the motion this morning."
 
 On the screen, Augusta Lessa is speaking to a group of deputies outside the chamber.
 
-> **Caio Mertens:** "Her proposal has been filed. She's managed to get signatures from several parties, including some of the people who intend to oppose it when it comes to a vote."
+> **Caio Mertens:** "She's speaking to the deputies who signed it. Some agreed to put it on the docket and still intend to oppose it when it reaches a vote."
 
 Livia hands you a copy of the document.
 
 > **Livia Harvan:** "This is the initial text. It concerns Senate representation. There are also governors asking for changes to the distribution of powers and federal revenue."
+
+→ overview
 
 Mertens sits down and opens his notebook.
 
@@ -167,8 +169,10 @@ Lessa arrives a few minutes later. Mertens moves his notebook aside to make spac
 4. **"The government doesn't intend to support the proposal."** `[show if: flag.reform_stance == 3]`
    ↳ Lessa sits back.
    ↳ > **Augusta Lessa:** "Then I will continue discussing it with the parties. I hope you will reconsider when the terms are clearer."
-5. **"We haven't settled a government position yet."**
+5. **"We haven't settled a government position yet."** `[show if: flag.reform_stance == 2]`
    ↳ > **Augusta Lessa:** "I understand. I would appreciate the opportunity to participate in the discussions."
+6. **"I'd like to hear more from you before discussing our position."**
+   ↳ Lessa takes her own copy from the folder. “Then let me show you which part my cosponsors have agreed to.” She leaves Lara a copy. No government position is disclosed by this line.
 
 → lessa-out
 

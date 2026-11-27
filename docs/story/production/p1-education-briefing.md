@@ -20,6 +20,8 @@ Helena Kaval is waiting beneath the covered walkway. Several members of the univ
 
 > **Helena Kaval:** "I still turn around when someone calls me that."
 
+→ class
+
 She introduces you to the current rector and accompanies you through a laboratory building. In one room, a group of students is testing a small electric motor attached to a workbench.
 
 > **Helena Kaval:** "They've invited you to meet some of the graduating class. I thought it might be useful to hear what they're planning to do afterwards."
@@ -51,6 +53,8 @@ Kaval nods.
 ## other-students
 
 The rector introduces another student, and the conversation continues for a while. Several ask about employment and research funding.
+
+→ address
 
 ## address
 
@@ -160,5 +164,48 @@ After he goes, she smiles.
 Kaval accompanies you back to the entrance.
 
 1. **Leave for the airport.** `[flag: seen_education_briefing = true]`
+
+## The new term at the school
+
+*A later visit when Education can report on a funded teaching, placement, or university measure, or when staffing has become a documented regional issue. One opening remark at the graduation does not authorize a programme. Use the education budget and local delivery record.*
+
+A teacher has written the day's classrooms on the board beside the office. As you come in, a student asks her where the mathematics class is meeting.
+
+> **Teacher:** “The district sent today's timetable and the staffing list. There are a few changes they want us to explain before they send the next notice.”
+
+She leaves the list open on the desk. An Education official waits beside her with the current report.
+
+→ report
+
+## report
+
+1. **“How many places are in use now?”** `[show if: flag.education_places_in_use]` `[once]`
+   ↳ The teacher checks the latest register. “The additional places are in use. This list shows who has enrolled so far and which addresses the district has counted.”
+2. **“Which positions are still vacant?”** `[show if: flag.education_staff_vacancies]` `[once]`
+   ↳ The teacher opens the staffing list. “The district marked the posts that are still open and the shifts they affect. I'll check the next date with them before I tell the families.”
+3. **“Have the graduate placements started?”** `[show if: flag.education_placements_operating]` `[once]`
+   ↳ The Education official places the employers' confirmations beside the placement list. “These graduates have confirmed their start dates. We've listed only the starts their employers verified.” Count a placement only after the employer confirms the start.
+4. **“Show me the schools that are sending their attendance figures.”** `[show if: flag.education_floor_first]` `[once]`
+   ↳ The official places the attendance report beside the graduate figures. “You asked us to pay attention to the children who weren't reaching the next stage. These are the schools that could send reliable numbers.”
+5. **“Move on to the decisions we can make.”** `→ response`
+
+→ report
+
+## response
+
+The official lays the costed staffing requests beside the programme schedule. The teacher checks the classroom list once more before putting it away.
+
+1. **“Tell the schools when the funded appointments will begin.”** `[show if: flag.education_appointments_funded && flag.education_appointment_dates_confirmed]`
+   ↳ The teacher puts the dates beside the room board. “I'll tell the families once the district confirms the names.”
+2. **“Bring me a costed response for the schools that still need staff.”** `[show if: flag.education_staff_vacancies]`
+   ↳ The official marks the unresolved schools. “I'll ask the district why the positions remain open and what it would cost to fill them. Nothing starts until you have a funded schedule to approve.”
+3. **“Keep the graduate programme on its current schedule.”** `[show if: flag.education_placements_operating]`
+   ↳ The official checks the placements due to renew. “I'll send employers the dates we've agreed and list any vacancies separately.”
+4. **“Thank you. Keep me informed of the next confirmed change.”**
+   ↳ The teacher returns the classroom list to the district folder as the next bell sounds.
+
+At the budget or election review, report places, staffing or placements only once they actually exist. The technology hub can use available institutions and participants from this record if its separate prerequisites are met.
+
+⚙️ The status flags in this follow-up (`education_places_in_use`, `education_staff_vacancies`, `education_placements_operating`, `education_appointments_funded`, and `education_appointment_dates_confirmed`) are provisional integration keys. Derive them from authorized staffing, delivered capacity and employer-confirmed starts; do not set them from Lara's inaugural speech or proposal alone. `education_floor_first` is an existing flag.
 
 → END

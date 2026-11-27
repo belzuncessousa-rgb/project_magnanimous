@@ -27,6 +27,8 @@ Marne lays two maps on a table beneath the awning.
 
 > **Arturo Trembolo:** "We've spoken to several of the municipalities and producers. They believe the alternative would serve the region better."
 
+→ comparison
+
 Marne points to the difference between the lines.
 
 > **Tobias Marne:** "It would also make this section longer. We have not yet established whether the additional demand justifies the cost."
@@ -102,7 +104,7 @@ Marne nods.
 
 ## decision
 
-1. **"Proceed with the engineers' proposed alignment."** `[flag: rail_route = 1]`
+1. **"Use the engineers' alignment for the next assessment."** `[flag: rail_route = 1]`
    ↳ Marne nods.
    ↳ Trembolo looks down at the map.
    ↳ > **Arturo Trembolo:** "I hope there will still be an opportunity to discuss connections to some of those facilities."
@@ -124,3 +126,21 @@ The governor offers to show you one of the nearby storage facilities before you 
 2. **Return to the capital.** `[flag: seen_site_visit = true]`
 
 → END
+
+### The revised route
+
+*Before awarding the first railway section, when the route assessment is available. The proposed alignment, a second-round selection, and the alignment authorized for construction are distinct. Keep the actual route decision with this railway project.*
+
+Marne has pinned the two alignments side by side. A municipal official who attended the consultations has brought a copy of the minutes. She keeps it open at a question about access to the loading yard.
+
+> **Official:** “They asked whether smaller producers would use the same entrance. I said I'd wait until you had settled the plans before I answered.”
+
+Marne gives you the latest cost comparison. If the governor's alignment is still eligible, show its verified costs, demand, and disclosed interests. If a hearing ruled out part of either alignment, he points to the section that needs changing before it can appear in a funded contract.
+
+- **“Use the eligible engineers' alignment.”** Marne marks the stations it includes. “I'll send the towns the stops in this version. They'll ask about the other ones, so I'll tell them which part of the comparison decided it.” Bring this alignment to the award scene if funds and authority are in place.
+- **“Use the costed state alternative and give eligible smaller producers the same loading-yard access terms.”** `[show if: the state alignment is eligible, assessed and within the available authority]` Marne adds those conditions and any associated capacity cost to the contract before it can be awarded. The municipal official takes a copy of the terms for the towns. A benefit to an interested party is reported as such; a finding of misconduct still requires separate evidence.
+
+→ END
+- **“Settle the remaining access question first.”** Marne leaves both maps on the board. “We'll return with the supported alignment and the cost of those access terms.” Keep the award pending. A later reopening requires a feasible route.
+
+The official takes a copy of the instructions for the municipalities. She leaves the proposed opening dates where they are until a contract and an operating plan can support them.

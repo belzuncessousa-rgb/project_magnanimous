@@ -66,12 +66,14 @@ Works looks relieved.
 
 > **Kaval:** I can bring the relevant universities together. We will need to establish the scope of the programme and the funding available.
 
-If the higher-education initiative is already funded, the existing programme may provide a route to a more ambitious partnership.
+*If a higher-education programme has confirmed funding, staff and capacity for this work, Kaval can identify it as a possible route to a broader partnership. The existing funding does not authorize this company's research proposal; omit this line if those conditions are not confirmed.*
 
 > **Works:** We can contribute our engineers and access to the production line. I would like to be involved from the beginning.
 
 1. **Ask them to develop a shared programme with measurable goals.** `→ close`
 2. **Ask them to examine a broader national technology hub.** `[flag: tekoku_hub_study = true]` `→ close`
+
+⚙️ Provisional integration: `higher_education_programme_ready` gates the conditional line above and requires a funded, staffed programme with verified capacity. `tekoku_hub_study` records only the request for a study; it does not set this readiness key or authorize the technology hub.
 
 ## open
 

@@ -213,7 +213,7 @@ The port was at the centre of the bribery scandal that brought down the previous
 2. **"Do we know who would get these jobs?"** `[once]` `→ port-jobs`
 3. **"What would we get in return?"** `[once]` `→ port-return`
 4. **"The last government fell over this port."** `[once]` `→ port-scandal`
-5. **"I promised the public an honest administration."** `[show if: flag.promised_integrity]` `[once]` `→ port-pledge`
+5. **"I promised appointments would be made on merit."** `[show if: flag.promised_integrity]` `[once]` `→ port-pledge`
 6. **"Is this the first of many requests?"** `[once]` `→ port-requests`
 7. **"I'm ready to decide."** `→ port-decision`
 

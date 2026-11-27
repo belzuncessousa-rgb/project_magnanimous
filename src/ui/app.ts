@@ -39,12 +39,19 @@ export class App {
     private content: ContentBundle,
     private geo: Geometry,
   ) {
+    let mapScaleText: HTMLElement | null = null;
     this.map = new MapView(geo, {
       onSelect: (id, x, y) => this.showInfo(id, x, y),
       onMarker: (id) => void this.playScene(id),
       onTarget: (id) => this.finishTargeting(id),
       onBackground: () => { this.hideInfo(); this.hideCard(); },
       onReadable: (id, x, y) => this.showReadable(id, x, y),
+      onTablet: () => this.openTablet(),
+      onScaleChange: (scale) => {
+        this.settings.mapView = scale === 'kunasai' ? 'terrain' : 'political';
+        saveSettings(this.settings);
+        if (mapScaleText) mapScaleText.textContent = this.map.getScaleLabel();
+      },
     });
     this.map.setView(this.settings.mapView);
     const player = content.world.actors.find((a) => a.id === 'lara' || /vento/i.test(a.name));
@@ -57,25 +64,23 @@ export class App {
     this.hasTutorial = content.scenes.some((sc) => sc.source !== undefined && JSON.stringify(sc.beats).includes('tutorial_done'));
     this.applySettings();
 
-    const viewToggle = h('div', { class: 'view-toggle paper', role: 'group', 'aria-label': 'Map view and zoom', 'data-ui': 'map-toggle' },
-      h('button', { 'data-view': 'terrain', onclick: () => this.setView('terrain') }, 'Kunasai'),
-      h('button', { 'data-view': 'political', onclick: () => this.setView('political') }, 'Arvane'),
-      h('span', { class: 'sep' }),
-      h('button', { title: 'Zoom in', onclick: () => this.map.zoomBy(1.4) }, '+'),
-      h('button', { title: 'Zoom out', onclick: () => this.map.zoomBy(1 / 1.4) }, '−'),
-      h('button', { title: 'Reset view', onclick: () => this.map.resetZoom() }, '⌂'));
+    mapScaleText = h('strong', { 'aria-live': 'polite' }, this.map.getScaleLabel());
+    const mapControls = h('div', { class: 'map-controls', role: 'group', 'aria-label': 'Map navigation controls', 'data-ui': 'map-toggle' },
+      h('div', { class: 'map-scale-status' }, h('span', {}, 'MAP SCALE'), mapScaleText),
+      h('div', { class: 'map-zoom-control' },
+        h('button', { 'aria-label': 'Zoom out', title: 'Zoom out to the strategy table', onclick: () => this.map.zoomBy(1 / 1.4) }, '−'),
+        h('button', { 'aria-label': 'Fit Arvain', title: 'Fit the continent', onclick: () => this.map.resetZoom() }, 'Fit'),
+        h('button', { 'aria-label': 'Zoom in', title: 'Zoom in to Kunasai', onclick: () => this.map.zoomBy(1.4) }, '+')));
     const topLeft = h('div', { class: 'top-left', role: 'group', 'aria-label': 'Game controls' },
       h('button', { class: 'btn ghost', onclick: () => this.openMenu() }, '☰ Menu'),
-      h('button', { class: 'btn ghost', 'data-ui': 'tablet', onclick: () => this.openTablet() }, '▱ Tablet'),
       h('button', { class: 'btn ghost', 'data-ui': 'actions', 'data-tip': 'Free actions: rallies, envoys, calls — they cost resources', onclick: () => this.toggleSidebar() }, 'Actions'));
     this.endBtn.dataset.ui = 'end-turn';
     this.endBtn.addEventListener('click', () => void this.endTurn());
     const bottomRight = h('div', { class: 'bottom-right' }, this.endNote, this.endBtn);
-    this.layer.append(topLeft, this.hud.el, this.sidebar, viewToggle, bottomRight, this.info, this.card, this.banner, this.toast);
+    this.layer.append(topLeft, this.hud.el, this.sidebar, mapControls, bottomRight, this.info, this.card, this.banner, this.toast);
     this.hud.el.hidden = false;
     root.append(this.map.el, this.layer, this.vn.el, this.tip);
     this.bindTooltips();
-    this.updateViewToggle();
 
     window.addEventListener('keydown', (ev) => {
       if (ev.key === 'Escape') {
@@ -94,21 +99,6 @@ export class App {
     document.documentElement.dataset.textSize = this.settings.textSize;
     document.documentElement.classList.toggle('no-transitions', !this.settings.transitions);
     this.vn.setOptions({ transitions: this.settings.transitions });
-  }
-
-  private setView(v: 'terrain' | 'political') {
-    this.settings.mapView = v;
-    saveSettings(this.settings);
-    this.map.setView(v);
-    this.updateViewToggle();
-  }
-
-  private updateViewToggle() {
-    for (const b of this.layer.querySelectorAll<HTMLButtonElement>('.view-toggle [data-view]')) {
-      const active = b.dataset.view === this.settings.mapView;
-      b.classList.toggle('active', active);
-      b.setAttribute('aria-pressed', String(active));
-    }
   }
 
   // ---------------------------------------------------------------- title
@@ -410,7 +400,14 @@ export class App {
     let sub = '';
     const rid = resolveRegion(st, id);
     const cid = rid ? undefined : resolveCountry(st, id);
-    if (rid) {
+    if (id === 'kunasai') {
+      const regions = Object.values(st.regions);
+      title = 'Kunasai';
+      sub = 'Republic · national overview';
+      rows.push(['Regions', String(regions.length)],
+        ['Population', millions(regions.reduce((sum, region) => sum + region.population, 0))],
+        ['Economic output', `${money(regions.reduce((sum, region) => sum + region.output, 0))} / month`]);
+    } else if (rid) {
       const r = st.regions[rid]!;
       title = r.name;
       sub = 'Region of Kunasai';

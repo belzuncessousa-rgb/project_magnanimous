@@ -27,6 +27,8 @@ Fontes, seated beside him, closes a folder.
 
 Royce's assistant places a copy of the delegation's report in front of you.
 
+→ assessment
+
 > **Anselm Royce:** "Perhaps we could begin with our assessment."
 
 ## assessment

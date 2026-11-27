@@ -17,8 +17,9 @@ Only the **new GDD** in Notion ("📖 GDD — Project Magnanimous") counts. The 
 - Hand sketch: reference/map-sketch.jpg. Clean geometry: tools/map-geometry.mjs → public/map/regions.json.
 - Letters: A=Vassel, B(left)=Mondrath, B(right)=Tarev, C=Veldmoor, D=Orvane, E=Arenza, F=Selvara, G=Cabral, H=Torreval.
 - Strait (Mondrath/Vassel) on the far west opens into the gulf that bathes Ibicuí and Mognagna. Rivers Arvane & Ibira run north to Tekoku.
-- Feedback on first painted map: keep the terrain detail, but borders must be organic (not polygonal);
-  do NOT invent extra land at the edges; provide TWO views: (1) terrain/detail view, (2) political colour map by state.
+- Updated map-art direction (author, 26 Nov): keep the central dry regions plain, retain the northern highlands and the eastern mountain chain outside Kunasai, and extend rainforest south through neighboring land. Use one continuous terrain artwork across the zoomable map; borders remain separate, organic game geometry.
+- Arvain's southern land narrows into a Central American-style isthmus that continues to the bottom of the continental art frame. Two low-prominence background nations occupy it: Caurena to the north and Vayuma farther south. Vayuma is more oriented toward the Arennian Federation than toward the rest of Arvain. They are geographical context only for now; do not add playable mechanics or story arcs without later direction.
+- The sea texture should fill the full map viewport. Place inspectable tokens for off-map nations in that open water, rather than treating the water as empty margin. The current playable map geometry still stops at its existing boundary; the southern continuation is art/world context until separately integrated.
 - Art budget: Creative Claw, ~12 credits/image at 2K (88 left after map v1). Spend on map + map tokens.
 
 ## UI (locked in Design Rules)

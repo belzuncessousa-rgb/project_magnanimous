@@ -10,13 +10,13 @@ portraits: [celia, marco, amanda]
 background: tamarin-kitchen
 ---
 
-⚙️ Staged rewrite. Both parents and siblings exist per canon; no unapproved names, ages, illnesses or compulsory family commitments. Keep Celia savings and Marco labour threads and established choice flags with meanings noted. The staged first-night promised_mother_street means request for an update, not a guarantee to build; new mother_street_guaranteed explicitly records a construction promise. Reconcile downstream flags. Visit timing flexible; do not claim a monthly promise based on one promised visit.
+⚙️ Staged rewrite. Both parents and siblings exist. The staged first-night `promised_mother_street` means request for an update; `mother_street_guaranteed` records a separate construction promise. Visit timing is flexible. One promised visit does not create a recurring commitment. The [address on the notice](p1-tamarin-notice.md) uses the result for this particular street.
 
 ## arrival
 
 The road up to Vila Tamarin narrows near the neighbourhood's entrance. You leave the car and continue on foot with Amanda and members of the presidential staff.
 
-People recognise you as you pass. Several wave from their windows. A man outside a shop calls your name and asks if you remember him.
+People recognise you as you pass. Several wave from their windows. A shopkeeper calls your name from the doorway and raises one hand in greeting.
 
 > "Of course. Good afternoon."
 
@@ -59,7 +59,13 @@ She sets a bowl on the table.
    ↳ > **Celia Vento:** "Everyone wants to know if we've spoken to you. And whether I've been to the palace."
    ↳ > **Father:** "Your mother tells them everything you've told her, which isn't very much."
 2. **"How are my brother and sister?"**
-   ↳ Celia tells you about the family. Your father occasionally adds a detail she has left out.
+   ↳ > **Celia Vento:** "Your brother has been busy at the shop. He sent the same permit back twice because the address was written wrong."
+   ↳ > **Father:** "It was right the third time."
+   ↳ > **Celia Vento:** "After three trips."
+   ↳ She turns to the next page of the calendar.
+   ↳ > **Celia Vento:** "Your sister is still applying for work. One place wanted experience she hasn't had a chance to get yet."
+   ↳ > **Father:** "She said she'd be able to do the job."
+   ↳ > **Celia Vento:** "She did. She hasn't asked us to arrange anything for her."
 3. **"This is much better than the food at the palace."**
    ↳ Celia laughs.
    ↳ > **Celia Vento:** "You haven't even tasted it yet."
@@ -93,6 +99,8 @@ Your father turns off the tap.
 ## savings-request
 
 > **Celia Vento:** "What do you think?"
+
+→ savings
 
 ## savings
 
@@ -158,6 +166,8 @@ He pulls his chair closer to the table.
 ## marco-position
 
 > **Marco Prestes:** "If they decide to strike, I don't intend to tell them they shouldn't. I may be able to help people who are struggling while it happens."
+
+→ response
 
 ## response
 

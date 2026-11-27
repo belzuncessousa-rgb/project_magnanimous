@@ -20,6 +20,8 @@ Pelan Avros meets you outside his office in Congress. He greets you with a broad
 
 One of them thanks you for your work during the campaign. Avros asks them to give you a few minutes alone, and they leave.
 
+→ bench
+
 His office contains photographs from years of party conferences and campaigns. In one of them, former President Tercilio Luz is opening a hospital, with a much younger Avros standing among the people behind him.
 
 > **Pelan Avros:** "That was a good day. The old hospital was in such a state that they were treating patients in the courtyard."

@@ -20,6 +20,8 @@ Alexander Fontes is waiting at the door of his office.
 
 > **Alexander Fontes:** "I'm afraid we're still surrounded by boxes. My predecessor left rather more paper than I'd expected."
 
+→ balance
+
 He clears a space at the end of a small meeting table. One of his staff brings in two glasses of water and leaves.
 
 > **Alexander Fontes:** "I've prepared a summary of what we've found so far. There are three matters I would like you to know about before we start putting together a budget."

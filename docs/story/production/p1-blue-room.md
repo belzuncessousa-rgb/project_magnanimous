@@ -107,13 +107,9 @@ He moves one of the maps away from his water glass.
 
 ## regions
 
-> **Alexander Fontes:** "Ibicuí is our largest economy. It has the main commercial port, much of our industry and a large service sector. Tekoku has a relatively well-educated workforce and is important for technology and finance."
+> **Alexander Fontes:** "Ibicuí is our largest economy. It has the main commercial port, much of our industry and a large service sector. Tapira, for example, carries a substantial share of the agricultural exports."
 
-He points to two other rows on the sheet.
-
-> **Alexander Fontes:** "Tapira produces a considerable amount of our agricultural exports. Mognagna has a large population, with textiles and agriculture among its principal activities. Ibira contributes very little to recorded national output."
-
-> **Tobias Marne:** "Ibira has resources that we haven't had the infrastructure to develop. I'll show you the relevant studies when we meet."
+Fontes turns the page. Marne opens the folder beside him.
 
 → economy-q
 

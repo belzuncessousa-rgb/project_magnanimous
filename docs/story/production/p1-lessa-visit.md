@@ -20,6 +20,8 @@ She places a folder on the table and shakes your hand.
 
 > **Augusta Lessa:** "Congratulations, Madam President. I hope you've had an opportunity to settle in."
 
+→ numbers
+
 > "Please, sit."
 
 Livia takes a chair beside the table.
@@ -155,6 +157,8 @@ Lessa gathers her papers.
 ## departure
 
 She thanks you and leaves.
+
+→ livia
 
 ## livia
 

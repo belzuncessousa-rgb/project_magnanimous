@@ -38,6 +38,8 @@ Salgado notices you looking at it.
 
 She takes a seat.
 
+→ programme
+
 ## programme
 
 > **Renata Salgado:** "There are several areas where we could improve the work of the ministry within this term."
@@ -62,7 +64,7 @@ She rests her hand on the third folder.
 2. **"What are the main obstacles to enforcement in Ibira?"** `[once]` `→ ibira`
 3. **"How urgent are the labour negotiations?"** `[once]` `→ labour`
 4. **"Could we fund more than one of these programmes?"** `[once]` `→ capacity`
-5. **"Is there any reason we couldn't pursue the integrity commitment I made publicly?"** `[show if: flag.promised_integrity]` `[once]` `→ pledge`
+5. **"How do we keep my promise about appointments?"** `[show if: flag.promised_integrity]` `[once]` `→ pledge`
 6. **"Is there anything else you wanted to discuss?"** `→ envelope`
 
 ## unit
@@ -104,11 +106,11 @@ She rests her hand on the third folder.
 
 ## pledge
 
-> **Renata Salgado:** "I was pleased to hear you address the subject. What will matter is whether the institutions can act when the person involved is someone the government needs."
+> **Renata Salgado:** "Start by asking each office to record the requirements before it considers names. If someone challenges an appointment later, there should be a record of how it was made."
 
 She looks at the papers on her desk.
 
-> **Renata Salgado:** "We may find ourselves discussing that sooner than either of us expected."
+> **Renata Salgado:** "It will matter the first time someone brings you a name you would rather keep."
 
 → questions
 
@@ -131,6 +133,8 @@ She leaves the envelope where it is.
 ## assessment
 
 > **Renata Salgado:** "I intend to have it assessed. There is no reason to announce anything publicly before we know whether the information is credible."
+
+→ envelope-choice
 
 ## envelope-choice
 
@@ -205,6 +209,8 @@ She takes a breath.
 ## petition-request
 
 > **Rosa Delmar:** "I understand that you cannot make a decision about the archives in this room. I would like to know whether you are prepared to acknowledge what we are asking."
+
+→ delmar-response
 
 ## delmar-response
 

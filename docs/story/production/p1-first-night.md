@@ -104,7 +104,7 @@ She looks at you.
    ↳ `[if: flag.promised_power]` > **Amanda Troes:** "A couple of our old party colleagues were particularly pleased that you spoke about giving citizens a greater voice."
    ↳ `[if: flag.promised_integrity]` > **Amanda Troes:** "And someone from the newspaper asked whether your promise on appointments would apply to the coalition parties. I told him to send his question to the press office."
 2. **"I wanted to leave myself some room to manoeuvre."** `[show if: !flag.promised_CoL && !flag.promised_GDP && !flag.promised_power && !flag.promised_integrity]`
-   ↳ > **Amanda Troes:** "I noticed. There'll be people who want to hear more in the coming weeks, but at least you'll have the ministers' reports by then."
+   ↳ > **Amanda Troes:** "A reporter asked for a copy on the way out. I think he wanted to check whether you'd given him a date for anything. I told him to read it himself."
 3. **"I'm glad so many people came."**
    ↳ > **Amanda Troes:** "My mother watched the whole thing on television. She's already told everyone in her building that we went to university together."
 4. **"Well, we'll see what people say tomorrow."**
@@ -213,6 +213,8 @@ She reaches for her shoes.
 
 She gathers her things and heads towards the door.
 
+→ telephone
+
 ## telephone
 
 Your phone rings a few minutes later. Your mother's name appears on the screen.
@@ -227,14 +229,14 @@ Your phone rings a few minutes later. Your mother's name appears on the screen.
 
 She laughs.
 
-> **Celia Vento:** "We watched the speech at Ivone's. She has a bigger television than ours. Your sister was taking photographs of the screen to send to everyone."
+> **Celia Vento:** "We watched the speech at a neighbour's. She has a bigger television than ours. She was taking photographs of the screen to send to everyone."
 
 1. **"I wish you could all have been here."**
    ↳ > **Celia Vento:** "We'll come and visit when you've settled in. I don't know if I can persuade your father to spend the night there."
 2. **"You should come and see the house sometime."** `[flag: mother_invited_residence = true]`
    ↳ > **Celia Vento:** "I would like that. We'll have to find a time when we're all free."
 3. **"How was everything at home?"**
-   ↳ > **Celia Vento:** "Oh, you know. Ivone bought far too much food. We still have half of it in the fridge."
+   ↳ > **Celia Vento:** "Oh, you know. Your sister brought far too much food. We still have half of it in the fridge."
 
 ## family-neighbourhood
 
@@ -270,6 +272,8 @@ You hear someone speaking in the background.
 
 She hangs up.
 
+→ late-evening
+
 ## late-evening
 
 You go upstairs. A light has been left on in the study, and someone has placed a folder of documents on the desk.
@@ -278,7 +282,7 @@ You go upstairs. A light has been left on in the study, and someone has placed a
    ↳ There is a short summary of the ministries' upcoming meetings, followed by a list of documents you are expected to receive in the next few days.
    ↳ You spend some time reading the summary before returning to the bedroom.
 2. **Look through the photographs on your phone.** `[flag: first_night_activity = 2]`
-   ↳ There are messages from former colleagues, party members and relatives. Your sister has sent you a photograph of the family gathered around Ivone's television.
+   ↳ There are messages from former colleagues, party members and relatives. Your sister has sent you a photograph of the family gathered around a neighbour's television.
    ↳ You can see your father at the edge of the picture, holding a plate of food.
 3. **Sit by the window for a while.** `[flag: first_night_activity = 3]`
    ↳ Most of the lights in the garden have been switched off. The security staff are still making their rounds.

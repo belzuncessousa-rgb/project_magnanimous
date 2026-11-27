@@ -23,6 +23,8 @@ Marne introduces the engineer responsible for inspecting the existing work. Font
 
 The engineer explains which sections of the plant were completed and which remained unfinished when the construction stopped.
 
+→ status
+
 ## status
 
 1. **Review the existing-contract approach.** `[show if: flag.contractor == 1]` `→ existing`
@@ -131,3 +133,43 @@ Marne asks the engineer to locate Vila Tamarin on the plan.
 1. **Leave the site.** `[flag: seen_site_visit = true]`
 
 → END
+
+### The remaining streets
+
+*Before a work order or new award if the sanitation review determines which streets are eligible and which contract route is available. Use the response to any audit or price review that Lara actually requested.*
+
+The engineer lays out the inspection list in the site office. At one address a resident has added a handwritten house number. Marne checks it against the plan before he gives you the recommended work order.
+
+> **Marne:** “These are the connections the engineers have inspected. The last two are waiting on another survey.”
+
+*Existing terms remain usable.* Fontes gives you the clause that covers the work. “The reviewed order covers these addresses. The extra scope would need a decision of its own.”
+
+*A renegotiated offer is ready.* Fontes opens the old and new estimates together. “The company has agreed to price this part separately. This is the amount we'd still have to authorize.”
+
+*A replacement is possible.* Marne shows the decision on the previous contract and the eligible bid. “The old work order has been settled to this point. The new contractor can take these streets once the award is confirmed.”
+
+- **“Send the eligible work to the award decision.”** Confirm the actual contract route, funded scope and any conditions. The engineer copies the included addresses for the local office.
+- **“Cost the faster schedule before we decide.”** `[show if: flag.site_acceleration_feasible]` `[flag: site_acceleration_reestimate_requested = true]` Fontes keeps the confirmed scope beside the proposed addition. “I'll ask the engineer to price the shorter schedule and show what it would delay elsewhere. It won't change the current work order.” Marne brings back the estimate before Lara decides whether to fund or reject the acceleration.
+- **“Leave the remaining connections pending.”** The engineer takes the proposed dates off the public notice. “I'll give the residents the last inspection status. We can tell them when there is an order to start.”
+
+Use the exact address and service status in Celia's later scene only if the assessment covers her street.
+
+→ END
+
+### The faster schedule
+
+`[if: flag.site_acceleration_reestimate_returned]` Return only after the requested estimate identifies the accelerated scope, its full cost, funding source, affected contract terms and a dated schedule.
+
+Marne spreads the current work order beside the engineer's estimate. Fontes has marked the funds that could cover it and the other work they would delay.
+
+> **Fontes:** “This is what the shorter schedule costs. The existing order is still funded. The extra amount would come from this reserve, or from the second set of connections.”
+
+> **Marne:** “If we add the crews, the first addresses can be served earlier. These other streets move to the next date on the sheet.”
+
+- **“Authorize the accelerated scope from the available reserve.”** `[show if: flag.site_acceleration_funded && flag.site_acceleration_authority]` Lara authorizes only the listed scope and cost. Fontes records the charge against the reserve. Marne replaces the proposed notice with the authorized dates; actual construction and service operation remain separate reports.
+- **“Return with a smaller acceleration that fits the available funds.”** Marne circles the streets that can be moved forward without taking funds from the confirmed scope. The revised estimate returns for a separate decision; no extra work is yet authorized.
+- **“Keep the current work order and schedule.”** Fontes removes the proposed addition from the funding page. Marne leaves the confirmed dates on the notice; the requested acceleration is declined.
+
+→ END
+
+⚙️ Provisional integration: `site_acceleration_feasible` is true only when the engineer has identified a legal, technically viable faster schedule and its dependencies can be costed. `site_acceleration_reestimate_requested` records Lara's request for that estimate; it neither amends an existing contract nor authorizes the additional work. `site_acceleration_reestimate_returned` gates this decision module. `site_acceleration_funded` and `site_acceleration_authority` are separately confirmed prerequisites for approval. A revised-scope request requires a new estimate before another decision.

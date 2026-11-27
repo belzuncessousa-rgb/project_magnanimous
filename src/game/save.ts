@@ -16,7 +16,7 @@ export interface Settings {
   mapView: 'terrain' | 'political';
 }
 
-export const DEFAULT_SETTINGS: Settings = { textSize: 'medium', transitions: true, mapView: 'terrain' };
+export const DEFAULT_SETTINGS: Settings = { textSize: 'medium', transitions: true, mapView: 'political' };
 
 type StorageLike = Pick<Storage, 'getItem' | 'setItem' | 'removeItem'>;
 

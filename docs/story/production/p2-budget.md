@@ -26,6 +26,8 @@ She hands you the summary.
 
 Dara, sitting a few places down the table, opens his own copy.
 
+→ overview
+
 > **Owin Dara:** "Does the estimate include the money needed to renew the household assistance programmes?"
 
 > **Alexander Fontes:** "That is included among the programme requests. It hasn't been allocated yet."
@@ -97,7 +99,9 @@ Fontes nods.
 
 ## screen
 
-1. **Review the proposed budget.** `[open: budget]`
+1. **Review the proposed budget.**
+
+*Open the proposal editor when integration provides it. It drafts allocations and estimates without changing current ministry funding. The player may keep the existing levels as a starting proposal. Use the resulting draft for the next exchange.*
 
 ## judicial
 
@@ -141,21 +145,24 @@ He lays out the three alternatives.
 
 ## debt-choice
 
-1. **"Plan to repay part of the principal."** `[flag: debt_policy = 1]` `[open: debt]`
+1. **"Plan to repay part of the principal."** `[flag: debt_policy = 1]`
    ↳ > **Alexander Fontes:** "We'll establish the amount that can be accommodated within the budget."
-2. **"Seek additional financing from the Fund."** `[flag: debt_policy = 2]` `[open: debt]`
+2. **"Seek additional financing from the Fund."** `[flag: debt_policy = 2]`
    ↳ > **Alexander Fontes:** "I'll take the proposed amount and the budget to the Fund. Any additional conditions will need to be brought back for your approval."
+   ↳ `[if: flag.fund_tone == 1 && !flag.no_more_fund]` > **Alexander Fontes:** "We told Royce we would bring him a financial plan with the budget. I'll send the figures once we've settled them."
+   ↳ `[if: flag.fund_tone == 2]` > **Alexander Fontes:** "We told Royce that domestic priorities would shape the budget. I'll send him the figures we have actually approved."
+   ↳ `[if: flag.fund_tone == 3]` > **Alexander Fontes:** "We asked the Fund to examine a longer schedule without new policy conditions. Royce said Treasury would need to put forward a proposal."
    ↳ `[if: flag.no_more_fund]` > **Alexander Fontes:** "I note that this differs from your earlier preference. I'll prepare the comparison so we can explain why the proposal has changed."
 3. **"Continue servicing the debt under the existing agreement."** `[flag: debt_policy = 3]`
    ↳ > **Alexander Fontes:** "Very well. We'll retain the present obligations in the financial plan."
 
-⚙️ Existing engine may interpret debt screen as immediate disbursement. Integration blocker: replace or reconcile that behavior before this wording becomes playable.
+*Record a debt negotiating direction. If Lara wants to compare amounts, Fontes can show estimates. Actual repayments and new draws belong to [Signed terms](TERM-VOTES.md#the-signed-terms) or a later authorized payment scene.*
 
 ## close
 
 Livia closes her copy of the documents.
 
-> **Livia Harvan:** "We'll prepare the final proposal and arrange the discussions with the parties. If they ask for changes, we'll bring the implications back to you."
+> **Livia Harvan:** "We'll prepare the copy for the parties. If they ask for changes, we'll bring the figures back to you."
 
 > **Alexander Fontes:** "Please make sure Treasury sees any agreement that changes the expenditure figures."
 

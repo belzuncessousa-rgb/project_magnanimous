@@ -119,7 +119,7 @@ Livia places the three summaries beside one another.
 
 1. **Ibira rare-earth development.** `[flag: great_project = 1]` `[flag: project_rare_earths = true]` `→ rare`
 2. **National Railway Integration.** `[flag: great_project = 4]` `[flag: project_railway = true]` `→ rail`
-3. **Complete the housing and sanitation works.** `[flag: great_project = 6]` `[flag: project_sanitation = true]` `[flag: luz_works_resumed = true]` `→ sanitation`
+3. **Prioritize completion of the housing and sanitation works.** `[flag: great_project = 6]` `[flag: project_sanitation = true]` `→ sanitation`
 
 ## rare
 

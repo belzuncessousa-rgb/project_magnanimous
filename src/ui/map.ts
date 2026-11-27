@@ -28,9 +28,12 @@ export interface Geometry {
 
 /** Countries that are not drawn on the map get an edge chip (DECISIONS: Federation south, Zharan east). */
 export const OFFMAP: Record<string, { at: Pt; name: string; note: string }> = {
-  federation: { at: [690, 990], name: 'Arennian Federation', note: 'South, beyond the canal' },
-  zharan: { at: [1000, 520], name: 'Zharan', note: 'Across the eastern ocean' },
+  federation: { at: [505, 1325], name: 'Arennian Federation', note: 'South, beyond the canal' },
+  zharan: { at: [900, 540], name: 'Zharan', note: 'Across the eastern ocean' },
 };
+
+export type MapScale = 'table' | 'continent' | 'kunasai';
+const SCALE_LABEL: Record<MapScale, string> = { table: 'Strategy table', continent: 'Arvain', kunasai: 'Kunasai detail' };
 
 /** Muted atlas fills for the regional political map. Kunasai receives one national colour. */
 export const POLITICAL_COLORS: Record<string, string> = {
@@ -52,9 +55,12 @@ export const POLITICAL_COLORS: Record<string, string> = {
 
 const linePath = (pts: Pt[]) => 'M' + pts.map(([x, y]) => `${x},${y}`).join('L');
 const MAP_FRAMES = {
-  political: { x: -55, y: 140, w: 800, h: 1120 },
+  political: { x: -55, y: 135, w: 1150, h: 1280 },
   terrain: { x: 45, y: 350, w: 610, h: 700 },
 } as const;
+const TABLE_ZOOM = 0.72;
+const KUNASAI_ZOOM = 1.48;
+const MIN_ZOOM = 0.56;
 
 export interface MarkerSpec {
   id: string;
@@ -83,6 +89,8 @@ export interface MapCallbacks {
   onTarget(id: string): void;
   onBackground(): void;
   onReadable(id: string, clientX: number, clientY: number): void;
+  onTablet(): void;
+  onScaleChange(scale: MapScale): void;
 }
 
 function tokenImage(id: string): SVGImageElement {
@@ -111,13 +119,15 @@ export class MapView {
   private dragged = false;
   private targeting: Set<string> | null = null;
   private view: 'terrain' | 'political' = 'terrain';
+  private scale: MapScale = 'continent';
+  private tablet: HTMLButtonElement;
 
   constructor(
     readonly geo: Geometry,
     private cb: MapCallbacks,
   ) {
-    this.base = { ...geo.viewBox };
-    this.vb = { ...geo.viewBox };
+    this.base = { ...MAP_FRAMES.political };
+    this.vb = { ...this.base };
     this.el = h('div', { class: 'map', 'data-ui': 'map' });
     this.svg = s('svg', { class: 'map-svg', preserveAspectRatio: 'xMidYMid meet', role: 'group', 'aria-label': 'Map of Kunasai' });
     this.markerLayer = s('g', { class: 'markers' });
@@ -125,8 +135,23 @@ export class MapView {
     this.hotLayer = s('g', { class: 'hotspots' });
     this.toastLayer = h('div', { class: 'map-toasts', 'data-ui': 'readables' });
     this.tooltip = h('div', { class: 'map-tooltip', hidden: true });
+    this.tablet = h('button', {
+      class: 'map-tablet',
+      type: 'button',
+      'aria-label': 'Pick up the presidential tablet',
+      onclick: () => this.cb.onTablet(),
+    },
+      h('span', { class: 'map-tablet-screen' },
+        h('span', { class: 'tablet-status', 'aria-hidden': 'true' }, h('b', {}, '09:41'), h('span', {}, '◉  Wi-Fi  ▰')),
+        h('img', { src: 'identity/kunasai-flag.svg', alt: '', draggable: 'false' }),
+        h('span', { class: 'map-tablet-apps', 'aria-hidden': 'true' },
+          h('i', { class: 'mini-news' }, h('b', {}, '▤'), h('small', {}, 'News')),
+          h('i', { class: 'mini-social' }, h('b', {}, '◉'), h('small', {}, 'Social')),
+          h('i', { class: 'mini-codex' }, h('b', {}, '◫'), h('small', {}, 'Codex')),
+          h('i', { class: 'mini-reports' }, h('b', {}, '▥'), h('small', {}, 'Reports')))),
+      h('span', { class: 'map-tablet-caption' }, 'PRESIDENTIAL TABLET'));
     this.build();
-    this.el.append(this.svg, this.toastLayer, this.markerSvg, this.tooltip);
+    this.el.append(this.svg, this.toastLayer, this.markerSvg, this.tooltip, this.tablet);
     this.applyViewBox();
     this.bindPanZoom();
     window.addEventListener('resize', () => this.layoutToasts());
@@ -164,7 +189,16 @@ export class MapView {
     const sea = s('g', { class: 'sea' },
       s('rect', { x, y, width: w, height: hgt, fill: 'url(#sea-grad)' }),
       s('rect', { x, y, width: w, height: hgt, filter: 'url(#paper-noise)', fill: '#000', opacity: '0.45' }),
-      s('rect', { x, y, width: w, height: hgt, fill: 'url(#sea-lines)', opacity: '0.24' }));
+      s('rect', { x, y, width: w, height: hgt, fill: 'url(#sea-lines)', opacity: '0.24' }),
+      s('rect', { class: 'sea-frame', x: x + 3, y: y + 3, width: w - 6, height: hgt - 6, rx: 5 }));
+    // The approved Arvain painting is the continuous map surface at every map scale.
+    // Keep game hit areas and political borders above this art as separate layers.
+    const atlasArt = s('image', {
+      class: 'atlas-art', href: 'map/arvain-terrain-art.png',
+      x: this.geo.viewBox.x, y: this.geo.viewBox.y,
+      width: this.geo.viewBox.w, height: this.geo.viewBox.h,
+      preserveAspectRatio: 'none', 'aria-hidden': 'true',
+    });
     const kunasaiRegions = shapes.filter((g) => g.kind === 'region');
     const outerKunasaiBorders = (this.geo.borders ?? []).filter((b) =>
       b.between.some((id) => kunasaiRegions.some((r) => r.id === id)) && (b.type === 'coast' || b.type === 'international'));
@@ -218,24 +252,40 @@ export class MapView {
       p.addEventListener('mouseleave', () => this.hideTip());
       this.hotLayer.append(p);
     }
-    const kunasaiHot = s('g', { class: 'hot-kunasai', tabindex: 0, role: 'button', 'aria-label': 'Kunasai — open regional map' },
+    const kunasaiHot = s('g', { class: 'hot-kunasai', 'data-id': 'kunasai', tabindex: 0, role: 'button', 'aria-label': 'Inspect Kunasai' },
       ...kunasaiRegions.map((g) => s('path', { d: pathOf(g.polygon), class: 'hot-kunasai-piece' })));
-    kunasaiHot.addEventListener('click', (ev) => { ev.stopPropagation(); if (!this.targeting) this.setView('terrain'); });
-    kunasaiHot.addEventListener('keydown', (ev) => {
-      if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); ev.stopPropagation(); this.setView('terrain'); }
+    kunasaiHot.addEventListener('click', (ev) => {
+      ev.stopPropagation();
+      if (!this.targeting) this.selectShape('kunasai', (ev as MouseEvent).clientX, (ev as MouseEvent).clientY);
     });
-    kunasaiHot.addEventListener('mousemove', (ev) => this.showTip('Kunasai — open regional map', ev as MouseEvent));
+    kunasaiHot.addEventListener('keydown', (ev) => {
+      if (ev.key === 'Enter' || ev.key === ' ') {
+        ev.preventDefault();
+        ev.stopPropagation();
+        if (!this.targeting) {
+          const bounds = kunasaiHot.getBoundingClientRect();
+          this.selectShape('kunasai', bounds.left + bounds.width / 2, bounds.top + bounds.height / 2);
+        }
+      }
+    });
+    kunasaiHot.addEventListener('mousemove', (ev) => this.showTip('Kunasai — zoom in for regional detail', ev as MouseEvent));
     kunasaiHot.addEventListener('mouseleave', () => this.hideTip());
     this.hotLayer.append(kunasaiHot);
     const offmap = s('g', { class: 'offmap' });
     for (const [id, o] of Object.entries(OFFMAP)) {
-      const g = s('g', { class: 'offmap-chip hot-offmap', 'data-id': id, transform: `translate(${o.at[0]},${o.at[1]})` },
-        s('rect', { x: -95, y: -20, width: 190, height: 40, rx: 3 }),
-        s('text', { class: 'offmap-name', x: 0, y: -2 }, o.name),
-        s('text', { class: 'offmap-note', x: 0, y: 12 }, o.note));
+      const initials = id === 'federation' ? 'AF' : 'ZH';
+      const g = s('g', { class: 'offmap-token hot-offmap', 'data-id': id, transform: `translate(${o.at[0]},${o.at[1]})` },
+        s('g', { class: 'offmap-token-body' },
+          s('circle', { class: 'offmap-token-shadow', cy: 3, r: 31 }),
+          s('circle', { class: 'offmap-token-rim', r: 29 }),
+          s('circle', { class: 'offmap-token-face', r: 23 }),
+          s('circle', { class: 'offmap-token-inlay', r: 18 }),
+          s('text', { class: 'offmap-token-mark', y: 5 }, initials),
+          s('text', { class: 'offmap-token-name', y: 44 }, o.name),
+          s('text', { class: 'offmap-token-note', y: 57 }, o.note)));
       g.setAttribute('tabindex', '0');
       g.setAttribute('role', 'button');
-      g.setAttribute('aria-label', `${o.name}, ${o.note}`);
+      g.setAttribute('aria-label', `Inspect ${o.name}. ${o.note}`);
       g.addEventListener('click', (ev) => this.clickShape(id, ev as MouseEvent));
       g.addEventListener('keydown', (ev) => this.keySelectShape(id, ev as KeyboardEvent, g));
       offmap.append(g);
@@ -260,7 +310,7 @@ export class MapView {
       }
     }
     labels.append(s('text', { class: 'label label-water', x: 160, y: 600 }, 'Gulf of Katanaí'));
-    this.svg.append(defs, sea, terrain, terrainBorders, political, coastBorders, politicalBorderUnderlay, politicalBorders, nationalOutline, this.hotLayer, offmap, labels);
+    this.svg.append(defs, sea, atlasArt, terrain, terrainBorders, political, coastBorders, politicalBorderUnderlay, politicalBorders, nationalOutline, this.hotLayer, offmap, labels);
     this.svg.addEventListener('click', (ev) => {
       if (this.dragged) return;
       const t = ev.target as Element;
@@ -270,12 +320,12 @@ export class MapView {
 
   setView(view: 'terrain' | 'political') {
     this.view = view;
-    this.base = { ...MAP_FRAMES[view] };
-    this.vb = { ...this.base };
-    this.el.classList.toggle('view-political', view === 'political');
-    this.el.classList.toggle('view-terrain', view === 'terrain');
-    this.svg.setAttribute('aria-label', view === 'political' ? 'Political map of Arvane' : 'Terrain map of Kunasai and its regions');
+    this.vb = view === 'political' ? { ...this.base } : { ...MAP_FRAMES.terrain };
     this.applyViewBox();
+  }
+
+  getScaleLabel(): string {
+    return SCALE_LABEL[this.scale];
   }
 
   locate(id: string | undefined): Pt | undefined {
@@ -381,7 +431,7 @@ export class MapView {
   }
 
   setSelected(id: string | null) {
-    for (const el of this.svg.querySelectorAll<SVGElement>('.hot, .offmap-chip')) el.classList.toggle('selected', el.dataset.id === id);
+    for (const el of this.svg.querySelectorAll<SVGElement>('.hot, .hot-kunasai, .offmap-token')) el.classList.toggle('selected', el.dataset.id === id);
   }
 
   private clickShape(id: string, ev: MouseEvent) {
@@ -402,10 +452,6 @@ export class MapView {
     if (this.dragged) return;
     if (this.targeting) {
       if (this.targeting.has(id)) this.cb.onTarget(id);
-      return;
-    }
-    if (this.view === 'political' && this.geo.regions.some((g) => g.id === id && g.kind === 'region')) {
-      this.setView('terrain');
       return;
     }
     this.cb.onSelect(id, x, y);
@@ -447,20 +493,37 @@ export class MapView {
 
   private applyViewBox() {
     const b = this.base;
-    this.vb.w = Math.min(b.w, Math.max(b.w / 4, this.vb.w));
+    this.vb.w = Math.min(b.w / MIN_ZOOM, Math.max(b.w / 4, this.vb.w));
     this.vb.h = (this.vb.w * b.h) / b.w;
-    this.vb.x = Math.min(b.x + b.w - this.vb.w, Math.max(b.x, this.vb.x));
-    this.vb.y = Math.min(b.y + b.h - this.vb.h, Math.max(b.y, this.vb.y));
+    if (this.vb.w > b.w) {
+      this.vb.x = b.x + (b.w - this.vb.w) / 2;
+      this.vb.y = b.y + (b.h - this.vb.h) / 2;
+    } else {
+      this.vb.x = Math.min(b.x + b.w - this.vb.w, Math.max(b.x, this.vb.x));
+      this.vb.y = Math.min(b.y + b.h - this.vb.h, Math.max(b.y, this.vb.y));
+    }
     this.svg.setAttribute('viewBox', `${this.vb.x} ${this.vb.y} ${this.vb.w} ${this.vb.h}`);
     this.markerSvg.setAttribute('viewBox', `${this.vb.x} ${this.vb.y} ${this.vb.w} ${this.vb.h}`);
-    this.el.style.setProperty('--zoom', String(b.w / this.vb.w));
+    const zoom = b.w / this.vb.w;
+    this.el.style.setProperty('--zoom', String(zoom));
+    const nextScale: MapScale = zoom < TABLE_ZOOM ? 'table' : zoom >= KUNASAI_ZOOM ? 'kunasai' : 'continent';
+    const nextView = nextScale === 'kunasai' ? 'terrain' : 'political';
+    if (nextView !== this.view) this.view = nextView;
+    this.el.classList.toggle('view-political', this.view === 'political');
+    this.el.classList.toggle('view-terrain', this.view === 'terrain');
+    this.el.classList.toggle('table-revealed', nextScale === 'table');
+    this.svg.setAttribute('aria-label', this.view === 'political' ? 'Continental map of Arvain' : 'Kunasai regional map');
+    if (nextScale !== this.scale) {
+      this.scale = nextScale;
+      this.cb.onScaleChange(this.scale);
+    }
     this.layoutToasts();
   }
 
   zoomBy(f: number, clientX?: number, clientY?: number) {
     const r = this.svg.getBoundingClientRect();
     const [cx, cy] = this.toSvg(clientX ?? r.left + r.width / 2, clientY ?? r.top + r.height / 2);
-    const nw = Math.min(this.base.w, Math.max(this.base.w / 4, this.vb.w / f));
+    const nw = Math.min(this.base.w / MIN_ZOOM, Math.max(this.base.w / 4, this.vb.w / f));
     const k = nw / this.vb.w;
     this.vb = { x: cx - (cx - this.vb.x) * k, y: cy - (cy - this.vb.y) * k, w: nw, h: this.vb.h * k };
     this.applyViewBox();
@@ -487,7 +550,7 @@ export class MapView {
       const dx = ev.clientX - start.x;
       const dy = ev.clientY - start.y;
       if (!this.dragged && Math.hypot(dx, dy) < 5) return;
-      if (this.vb.w >= this.base.w) return; // nothing to pan at full view
+      if (this.vb.w >= this.base.w / TABLE_ZOOM) return; // table framing remains centered
       this.dragged = true;
       this.el.classList.add('panning');
       const m = this.svg.getScreenCTM();

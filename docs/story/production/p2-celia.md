@@ -10,7 +10,7 @@ portraits: [celia, marco, amanda]
 background: tamarin-kitchen
 ---
 
-⚙️ Staged family scene. Celia has a minor health incident; serious illness, exact diagnosis and later outcome not predetermined. Both parents alive; siblings unnamed. Celia's religious life is her own; photos/visits are distinct choices. Preserve relevant flags. Optional stay may compete for PT in final system, not automatically based on unchosen monthly promise.
+⚙️ Staged family scene. Celia has a minor health incident; serious illness, exact diagnosis and later outcome not predetermined. Both parents alive; siblings unnamed. Celia's religious life is her own; photos/visits are distinct choices. `pastor_photo` means she agrees to the church newsletter photo. `pastor_photo_party_exclusion_requested` records her request that the FFF not reuse it; the request is not proof that the party honored it. `pastor_photo_party_reused` must record later FFF use separately and gate the public-clipping callback in TERM-GOVERNING. These keys replace the live single-flag news gate at integration. Do not map legacy `celia_doctor` to an appointment completed; the new callback requires a request and a recorded clinic result. Optional stay may compete for PT in final system, not automatically based on an unchosen monthly promise.
 
 ## arrival
 
@@ -28,14 +28,14 @@ She greets Amanda and you, then leads you inside.
 
 Your father follows you into the kitchen.
 
-> **Father:** "She had to sit down during the service. Ivone brought her home."
+> **Father:** "She had to sit down during the service. A neighbour walked her home."
 
 1. **"Have you spoken to a doctor?"**
    ↳ > **Celia Vento:** "I've called the clinic. They gave me an appointment."
 2. **"How have you been feeling since then?"**
    ↳ > **Celia Vento:** "Better. I haven't been out in the heat as much."
 3. **"Dad, were you there when it happened?"**
-   ↳ > **Father:** "No. I was here. Ivone told me what happened."
+   ↳ > **Father:** "No. I was here. A neighbour told me what happened."
 4. **Sit down with them.**
 
 ## health
@@ -44,12 +44,11 @@ Celia sets three glasses on the table.
 
 > **Celia Vento:** "I didn't want you to make a special trip because of it. You have enough to do."
 
-1. **"Would you like me to help arrange a medical appointment?"** `[flag: celia_doctor = true]`
-   ↳ She considers the offer.
-   ↳ > **Celia Vento:** "If the clinic can see me sooner, that would be nice. I don't want anyone else losing an appointment because of me."
+1. **"I can call the clinic and ask whether they have an earlier appointment."** `[flag: celia_earlier_appointment_requested = true]`
+   ↳ > **Celia Vento:** "Ask, but don't move anyone else for me. If they have an opening, I'll go."
 2. **"Let me know how the clinic appointment goes."**
    ↳ > **Celia Vento:** "I will."
-3. **"You could stay with me in the capital for a while."** `[flag: mother_asked_to_move = true]`
+3. **"You could stay with me in the capital for a while."** `[flag: celia_move_offer_status = 1]`
    ↳ Celia looks towards your father.
    ↳ > **Celia Vento:** "I appreciate it. I would rather stay here for the moment."
 4. **"If you feel unwell again, please seek help promptly."**
@@ -71,15 +70,16 @@ Celia turns a page.
 
 > **Celia Vento:** "I don't know why they would be interested in me."
 
-1. **"It's your church, Mum. It's your decision."**
-   ↳ > **Celia Vento:** "All right. I'll see what he has in mind."
-2. **"I'd prefer that the photograph wasn't used for politics."**
+1. **"It's your church, Mum. It's your decision."** `[flag: pastor_photo = true]`
+   ↳ > **Celia Vento:** "All right. I'll see what he has in mind. I know the newsletter may be copied, but I still want to do it."
+2. **"I'd prefer that the photograph stay out of the party's material."** `[flag: pastor_photo = true]` `[flag: pastor_photo_party_exclusion_requested = true]`
    ↳ She looks at Amanda.
    ↳ > **Celia Vento:** "Can I ask him not to let them use it?"
    ↳ > **Amanda Troes:** "You can ask. Once it's published, it may be difficult to control."
+   ↳ > **Celia Vento:** "Then I'll ask him to keep it in the church newsletter. I'm willing to take that chance."
 3. **"Please decline the photograph."** `[flag: pastor_photo_refused = true]`
    ↳ Celia frowns.
-   ↳ > **Celia Vento:** "I'd rather explain it to him myself."
+   ↳ > **Celia Vento:** "I'll tell him myself that I won't sit for it."
 4. **"Tell him I'd be willing to visit the church sometime."** `[flag: promised_tabernacle_visit = true]`
    ↳ Celia looks pleased.
    ↳ > **Celia Vento:** "He would be very happy to have you there."

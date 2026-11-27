@@ -26,6 +26,8 @@ He places a folder on the table.
 
 He opens the folder.
 
+→ assessment
+
 > **Darian Kesht:** "The information is not sufficient to establish criminal liability in every case. It is sufficient to warrant further attention."
 
 ## assessment
@@ -114,6 +116,5 @@ He turns several pages.
 
 1. **"Arrange a separate meeting through Livia."** `[flag: seen_kesht = true]`
 2. **"Send me the proposal first."** `[flag: seen_kesht = true]`
-   ↳ > **Darian Kesht:** "Of course."
 
 → END

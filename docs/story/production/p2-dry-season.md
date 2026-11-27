@@ -26,6 +26,8 @@ The mayor shows you a map with the affected communities marked.
 
 Dara opens a report from his ministry.
 
+→ assessment
+
 > **Owin Dara:** "We are also seeing indications of financial difficulty among households that depend on the harvest. We should consider assistance before the situation becomes more serious."
 
 ## assessment
@@ -106,28 +108,43 @@ Porper points to the map.
 
 ## decision
 
-1. **"Prepare a federal emergency relief programme with the state."** `[flag: famine_relief = 1]`
+1. **"Prepare a federal emergency relief programme with the state."** `[flag: famine_relief = 1]` `[flag: famine_relief_proposal_requested = true]`
    ↳ Porper nods.
    ↳ > **Julio Porper:** "I'll have the municipalities' requests consolidated."
    ↳ > **Owin Dara:** "We'll prepare the health and household assistance requirements."
-2. **"Coordinate targeted relief with military logistics support."** `[flag: famine_relief = 2]`
+2. **"Coordinate targeted relief with military logistics support."** `[flag: famine_relief = 2]` `[flag: famine_relief_proposal_requested = true]`
    ↳ > **Owin Dara:** "I'll establish the distribution priorities with the regional authorities."
    ↳ > **Julio Porper:** "We'll coordinate the transport requirements with Defense."
-3. **"Use the state government's resources first. Review federal support as conditions develop."** `[flag: famine_relief = 3]` `[flag: famine_pressure = true]`
+3. **"Use the state government's resources first. Review federal support as conditions develop."** `[flag: famine_relief = 3]` `[flag: famine_pressure = true]` `[flag: famine_relief_proposal_requested = true]`
    ↳ Porper looks concerned.
    ↳ > **Julio Porper:** "I would like us to establish when that review will take place."
    ↳ > **Owin Dara:** "I'll make sure the government receives regular assessments."
-4. **"Bring me a joint funding proposal before we commit additional money."** `[flag: famine_relief_pending = true]`
+4. **"Bring me a joint funding proposal before we commit additional money."** `[flag: famine_relief_pending = true]` `[flag: famine_relief_proposal_requested = true]`
    ↳ > **Julio Porper:** "Very well. We'll prepare it with the ministries."
 
-⚙️ Federal relief choices set intent, not cost-free guaranteed delivery. Require actual funding step.
+⚙️ Federal relief choices set intent, not cost-free guaranteed delivery. Route every choice to the costed joint proposal before authorization. Flags are provisional; the game must show scope, appropriation and source of funds.
 
 ## close
 
 The mayor asks whether you would like to see the municipality's water distribution centre.
 
-1. **Visit the centre.** `[flag: seen_dry_season = true]`
-   ↳ Staff explain how they organize the deliveries and which areas have been difficult to serve.
-2. **Return to Sugar Bay.** `[flag: seen_dry_season = true]`
+1. **Visit the centre.** `[flag: seen_dry_season = true]` `→ centre`
+2. **Return to Sugar Bay.** `[flag: seen_dry_season = true]` `→ END`
+
+## centre
+
+At the municipal distribution centre, a clerk keeps a delivery book beside a wall map. Two water tanks stand outside. One truck is away on a route that can be reached by the main road; a smaller vehicle is used for the communities where it narrows.
+
+> **Clerk:** "This column is what left here. We have not confirmed every household got the amount written beside its town."
+
+> **Owin Dara:** "The clinic has reported more visits for heat-related symptoms. We are comparing its notes with the district records before we call that a trend."
+
+The mayor marks the delivery routes on the map. The names of households are kept in a separate register at the municipal office.
+
+1. **Ask which deliveries have been confirmed by the receiving towns.**
+   ↳ The clerk lists the signed receipts and the communities still awaiting confirmation. Porper asks for a copy to be included in the joint proposal.
+2. **Ask what makes the smaller routes difficult.**
+   ↳ The mayor explains which bridges and road sections restrict the vehicle. Dara notes that a delivery schedule will need to account for them.
+3. **Return to Sugar Bay.**
 
 → END
