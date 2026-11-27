@@ -60,8 +60,8 @@ const MAP_FRAMES = {
 const KUNASAI_ZOOM = 1.48;
 /** strategy-table-background.png: size and the inner edge of its painted glass display, in image pixels. */
 const DESK_ART = { w: 1672, h: 941, glass: { x0: 48, y0: 137, x1: 1123, y1: 791, r: 26 } } as const;
-/** public/map/sea-tile.jpg (506×502 px) in map units, matching the atlas painting's scale. */
-const SEA_TILE = { w: 380, h: 381 } as const;
+/** public/map/sea-tile.jpg (1024×1024 px) in map units at the atlas painting's scale (1065 px ↔ 800 units). */
+const SEA_TILE = { w: 769, h: 769 } as const;
 const MIN_ZOOM = 1;
 
 export interface MarkerSpec {
