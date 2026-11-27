@@ -18,6 +18,7 @@ export interface TabletOptions {
   initialApp?: TabletApp;
   footer?: string;
   closeLabel?: string;
+  onAppChange?(app: TabletApp, screen: HTMLElement): void;
 }
 
 const APPS: { id: Exclude<TabletApp, 'home'>; icon: string; name: string }[] = [
@@ -32,6 +33,7 @@ export function showTablet(root: HTMLElement, options: TabletOptions): Promise<v
     const previousFocus = document.activeElement instanceof HTMLElement ? document.activeElement : null;
     const reports = [...options.reports];
     let closing = false;
+    let currentApp: TabletApp = 'home';
     let closeTablet = () => {};
     const close = h('button', { class: 'np-close', 'aria-label': 'Close tablet' }, '×');
     const appNav = h('nav', { class: 'np-app-grid', 'aria-label': 'Tablet apps' });
@@ -72,6 +74,7 @@ export function showTablet(root: HTMLElement, options: TabletOptions): Promise<v
     closeTablet = () => {
       if (closing) return;
       closing = true;
+      options.onAppChange?.(currentApp, screen);
       overlay.classList.remove('open');
       window.setTimeout(() => {
         overlay.remove();
@@ -82,6 +85,7 @@ export function showTablet(root: HTMLElement, options: TabletOptions): Promise<v
     close.addEventListener('click', closeTablet);
 
     const openApp = (app: TabletApp) => {
+      currentApp = app;
       for (const [id, button] of navButtons) button.setAttribute('aria-current', String(id === app));
       screen.classList.add('is-switching');
       if (app === 'home') renderHome();
@@ -89,6 +93,7 @@ export function showTablet(root: HTMLElement, options: TabletOptions): Promise<v
       else if (app === 'social') renderSocial();
       else if (app === 'codex') renderCodex();
       else renderReports();
+      options.onAppChange?.(app, screen);
       screen.scrollTop = 0;
       requestAnimationFrame(() => requestAnimationFrame(() => screen.classList.remove('is-switching')));
     };
@@ -256,3 +261,4 @@ export function showTablet(root: HTMLElement, options: TabletOptions): Promise<v
     }));
   });
 }
+
