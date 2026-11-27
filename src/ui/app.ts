@@ -67,7 +67,16 @@ export class App {
       h('button', { class: 'btn ghost', onclick: () => this.openMenu() }, '☰ Menu'),
       h('button', { class: 'btn ghost', 'data-ui': 'actions', 'data-tip': 'Free actions: rallies, envoys, calls — they cost resources', onclick: () => this.toggleSidebar() }, 'Actions'));
     this.endBtn.dataset.ui = 'end-turn';
-    this.endBtn.addEventListener('click', () => void this.endTurn());
+    this.endBtn.addEventListener('click', () => {
+      if (this.endBtn.getAttribute('aria-disabled') === 'true') {
+        // Blocked: a short tactile nudge; the reason stays in the tooltip / accessible label.
+        this.endBtn.classList.remove('nudge');
+        void this.endBtn.offsetWidth;
+        this.endBtn.classList.add('nudge');
+        return;
+      }
+      void this.endTurn();
+    });
     this.endTurnWrap.append(this.endBtn);
     this.layer.append(topLeft, this.hud.el, this.sidebar, this.endTurnWrap, this.info, this.card, this.banner, this.toast);
     this.hud.el.hidden = false;
@@ -302,7 +311,11 @@ export class App {
     );
     // end turn
     const pending = g.pendingRequired().length;
-    this.endBtn.disabled = !g.canEndTurn() || this.busy;
+    // Blocked stays focusable (aria-disabled) so keyboard and pointer users can still read why in the tooltip.
+    const blocked = !g.canEndTurn() || this.busy;
+    this.endBtn.disabled = false;
+    this.endBtn.classList.toggle('is-blocked', blocked);
+    this.endBtn.setAttribute('aria-disabled', String(blocked));
     const pendingLabel = `${pending} required ${pending === 1 ? 'matter' : 'matters'} remain`;
     const endTip = g.state.ended ? 'The story has reached its current ending.' : pending
       ? `${pendingLabel}. Complete them before ending the turn.`

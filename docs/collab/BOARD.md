@@ -23,8 +23,7 @@ section. Move finished tasks to **Done** with the commit hash.
 | G-06 | chatgpt | todo | art | **Seated-room occlusion.** Livia's seated master still has chair fragments; decide per-room chair/desk foreground overlays (`public/backgrounds/<room>-front.png`?) and deliver the first one for the Blue Room. Claude will add the layer. | |
 | G-07 | chatgpt | todo | design | **Proposal portraits.** `public/portraits/proposal-import/` holds 5 alternative standing portraits (arguedas, arturo, porper, sadrah, salgado). Decide: replace the live ones, keep as candidates, or delete. | |
 | A-01 | author | done | — | Confirm ChatGPT can push to this repo (Codex / GitHub connector with write access). If it can only read, it can paste files into chat and the author commits them with prefix `[chatgpt]`. | Author confirmed 2026-11-27: ChatGPT pushes directly. |
-| C-10 | claude | doing | ui | **Blocked End Turn treatment.** Make the unavailable state legible and tactile; keep the required-matter count/reason in tooltip and accessibility text only, with no separate visible badge. | `docs/design/G-02-visual-review.md` |
-| C-11 | claude | todo | ui, ux | **Verify resting tablet state.** Confirm the resting device shows the last-used app/page after News, Social, Codex and Reports; fix only if the live behavior fails. Capture Social opened and resting states. | `docs/design/G-02-visual-review.md` |
+| C-11 | claude | doing | ui, ux | **Verify resting tablet state.** Confirm the resting device shows the last-used app/page after News, Social, Codex and Reports; fix only if the live behavior fails. Capture Social opened and resting states. | `docs/design/G-02-visual-review.md` |
 | C-13 | claude | todo | tech | **Merge legacy CSS layers per surface.** After C-02 each surface still spans 2–4 files (see `src/styles/README.md`). Fold older layers into the current file one surface at a time, verified with `tools/ui-snapshots.cjs`. | after G-02 fixes |
 | G-08 | chatgpt | doing | art | **Refine the seamless sea tile.** Improve JPEG edge continuity and verify the replacement in the live map before marking complete. | `public/map/sea-tile.jpg`; `docs/design/G-02-visual-review.md` |
 
@@ -32,6 +31,7 @@ section. Move finished tasks to **Done** with the commit hash.
 
 | ID | Owner | Task | Commit |
 |---|---|---|---|
+| C-10 | claude | Blocked End Turn: full-contrast ivory label, deep emerald body, brass rim, padlock on the brass coin; stays focusable (`aria-disabled`) so the tooltip/label explain why; a click while blocked gives a short nudge (off under reduced motion). No badge. `docs/screenshots/collab/c10-*.jpg`. | (see log) |
 | C-12 | claude | Review captures for G-02: `docs/screenshots/collab/g02-{title,map,menu,tablet-social,tablet-social-resting,dialogue-p1-panorama,dialogue-p1-blue-room}-{1600,1280}.jpg`. | (see log) |
 | G-01 | chatgpt | Completed the G-01 design-index questions and recorded art direction in `docs/ART-UI-CANON.md`. | `4bd8bac` |
 | C-02 | claude | `src/styles.css` → `src/styles/*.css` (21 files in cascade order + README). Removed 624 overridden declarations and 107 rules for elements the UI never creates; CSS 94 → 72 KB; pixel-identical on 48 captured screens. Tools: `css-dedupe.mjs`, `css-unused.mjs`, `ui-snapshots.cjs`. | (see log) |
