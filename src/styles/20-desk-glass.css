@@ -44,3 +44,32 @@
 .glass-hud i:nth-child(3) { left: 14px; bottom: 14px; border-left-width: 1.5px; border-bottom-width: 1.5px; }
 .glass-hud i:nth-child(4) { right: 14px; bottom: 14px; border-right-width: 1.5px; border-bottom-width: 1.5px; }
 body.vn-active .glass-hud, .map.dim .glass-hud { opacity: .4; }
+
+/* C-15: Menu and Actions are gold-tooled lettering on the desk's top leather rail — no button boxes.
+   Debossed gilt at rest, brighter leaf on hover, pressed deeper when active, a tooled gilt rule under the focused one. */
+.ui-layer .top-left { top: var(--rail-cy, 26px); left: var(--rail-x, 14px); transform: translateY(-50%); gap: 6px; align-items: center; }
+.ui-layer .top-left .btn.ghost {
+  position: relative; min-height: 0; padding: 4px 10px; border: 0; border-radius: 0; background: none; box-shadow: none;
+  font: 600 13px 'Source Serif 4', Georgia, serif; letter-spacing: .2em; text-transform: uppercase;
+  color: #c9a964; background-image: linear-gradient(180deg, #f3dc9c 0%, #c9a35a 48%, #8f6e33 100%);
+  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 1px 0 #0c1d16) drop-shadow(0 -1px 0 #3d5a4a66);
+  transition: filter .15s ease, transform .1s ease;
+}
+.ui-layer .top-left .btn.ghost:hover:not(:disabled) {
+  background: none; background-image: linear-gradient(180deg, #fff0c4 0%, #dcb96c 50%, #a5823f 100%);
+  -webkit-background-clip: text; background-clip: text;
+  filter: drop-shadow(0 1px 0 #0c1d16) drop-shadow(0 0 5px #f1d38c55);
+}
+.ui-layer .top-left .btn.ghost:active { transform: translateY(1px); filter: drop-shadow(0 -1px 0 #0c1d16); }
+.ui-layer .top-left .btn.ghost::after {
+  content: ''; position: absolute; left: 10px; right: 10px; bottom: 0; height: 1px; opacity: 0;
+  background: linear-gradient(90deg, transparent, #d9bb74, transparent); transition: opacity .15s ease;
+}
+.ui-layer .top-left .btn.ghost:hover::after { opacity: .5; }
+.ui-layer .top-left .btn.ghost:focus-visible { outline: none; }
+.ui-layer .top-left .btn.ghost:focus-visible::after { opacity: 1; }
+.ui-layer .top-left .btn.ghost + .btn.ghost::before {
+  content: ''; position: absolute; left: -5px; top: 50%; width: 5px; height: 5px; transform: translateY(-50%) rotate(45deg);
+  background: linear-gradient(135deg, #f3dc9c, #8f6e33); -webkit-text-fill-color: initial;
+}

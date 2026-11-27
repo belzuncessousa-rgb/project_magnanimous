@@ -65,7 +65,7 @@ export class App {
     this.applySettings();
 
     const topLeft = h('div', { class: 'top-left', role: 'group', 'aria-label': 'Game controls' },
-      h('button', { class: 'btn ghost', onclick: () => this.openMenu() }, '☰ Menu'),
+      h('button', { class: 'btn ghost', onclick: () => this.openMenu() }, 'Menu'),
       h('button', { class: 'btn ghost', 'data-ui': 'actions', 'data-tip': 'Free actions: rallies, envoys, calls — they cost resources', onclick: () => this.toggleSidebar() }, 'Actions'));
     this.endBtn.dataset.ui = 'end-turn';
     this.endBtn.addEventListener('click', () => {

@@ -221,6 +221,12 @@ export class MapView {
     st.setProperty('--wood-cx', `${woodLeft + woodW / 2}px`);
     st.setProperty('--tablet-w', `${Math.round(Math.min(310, Math.max(150, woodW * 0.78)))}px`);
     this.el.classList.toggle('desk-narrow', woodW < 190);
+    // Top leather rail (art y 0–86 px, straight from x ≈ 150): Menu and Actions are tooled into it (C-15).
+    const railTop = Math.max(0, oy);
+    const railBottom = oy + 86 * scale;
+    const rootStyle = document.documentElement.style;
+    rootStyle.setProperty('--rail-x', `${Math.max(12, ox + 165 * scale)}px`);
+    rootStyle.setProperty('--rail-cy', `${railBottom - railTop >= 30 ? (railTop + railBottom) / 2 : 26}px`);
     requestAnimationFrame(() => this.fitTabletPreview());
   }
 
