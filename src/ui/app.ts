@@ -39,7 +39,6 @@ export class App {
     private content: ContentBundle,
     private geo: Geometry,
   ) {
-    let mapScaleText: HTMLElement | null = null;
     this.map = new MapView(geo, {
       onSelect: (id, x, y) => this.showInfo(id, x, y),
       onMarker: (id) => void this.playScene(id),
@@ -50,7 +49,6 @@ export class App {
       onScaleChange: (scale) => {
         this.settings.mapView = scale === 'kunasai' ? 'terrain' : 'political';
         saveSettings(this.settings);
-        if (mapScaleText) mapScaleText.textContent = this.map.getScaleLabel();
       },
     });
     this.map.setView(this.settings.mapView);
@@ -64,20 +62,13 @@ export class App {
     this.hasTutorial = content.scenes.some((sc) => sc.source !== undefined && JSON.stringify(sc.beats).includes('tutorial_done'));
     this.applySettings();
 
-    mapScaleText = h('strong', { 'aria-live': 'polite' }, this.map.getScaleLabel());
-    const mapControls = h('div', { class: 'map-controls', role: 'group', 'aria-label': 'Map navigation controls', 'data-ui': 'map-toggle' },
-      h('div', { class: 'map-scale-status' }, h('span', {}, 'MAP SCALE'), mapScaleText),
-      h('div', { class: 'map-zoom-control' },
-        h('button', { 'aria-label': 'Zoom out', title: 'Zoom out to the strategy table', onclick: () => this.map.zoomBy(1 / 1.4) }, '−'),
-        h('button', { 'aria-label': 'Fit Arvain', title: 'Fit the continent', onclick: () => this.map.resetZoom() }, 'Fit'),
-        h('button', { 'aria-label': 'Zoom in', title: 'Zoom in to Kunasai', onclick: () => this.map.zoomBy(1.4) }, '+')));
     const topLeft = h('div', { class: 'top-left', role: 'group', 'aria-label': 'Game controls' },
       h('button', { class: 'btn ghost', onclick: () => this.openMenu() }, '☰ Menu'),
       h('button', { class: 'btn ghost', 'data-ui': 'actions', 'data-tip': 'Free actions: rallies, envoys, calls — they cost resources', onclick: () => this.toggleSidebar() }, 'Actions'));
     this.endBtn.dataset.ui = 'end-turn';
     this.endBtn.addEventListener('click', () => void this.endTurn());
     const bottomRight = h('div', { class: 'bottom-right' }, this.endNote, this.endBtn);
-    this.layer.append(topLeft, this.hud.el, this.sidebar, mapControls, bottomRight, this.info, this.card, this.banner, this.toast);
+    this.layer.append(topLeft, this.hud.el, this.sidebar, bottomRight, this.info, this.card, this.banner, this.toast);
     this.hud.el.hidden = false;
     root.append(this.map.el, this.layer, this.vn.el, this.tip);
     this.bindTooltips();
@@ -619,3 +610,4 @@ export class App {
     this.root.append(el);
   }
 }
+
