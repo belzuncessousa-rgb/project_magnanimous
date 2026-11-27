@@ -1,6 +1,6 @@
 # Lara Vento: portrait customization catalog
 
-**Status:** approved production direction; portrait catalog is not yet complete. Existing portraits are visual references until every listed combination passes review and the user approves the finished sheet. This is a cosmetic presentation feature and does not add narrative canon or mechanics.
+**Status:** approved production direction; portrait catalog is not yet complete. Existing portraits are visual references until every listed combination passes the review gates below. The user has authorized committing the finished catalog to `main`; the gates are production QA, not a second approval hold. This is a cosmetic presentation feature and does not add narrative canon or mechanics.
 
 ## Character and art anchors
 
@@ -94,7 +94,7 @@ Resolve the portrait deterministically from those three IDs. Each selector's pre
 4. Confirm the sun disk is centered behind the white wave on every patriotic pin; check the sash and pin remain legible at game display size.
 5. Check assets at native size and at the dialogue portrait size. Verify right-slot mirroring is disabled for Lara's patriotic/asymmetric details.
 6. Confirm the UI updates one selection at a time, preserves the other two IDs, handles keyboard input, and falls back cleanly when an asset is absent.
-7. Keep all 168 files as one catalog change. Do not describe a partial set as complete or replace the existing portrait masters until the review passes and the user approves the catalog.
+7. Keep all 168 files as one catalog change. Do not describe a partial set as complete or replace the existing portrait masters until the review passes.
 
 ## UI/UX and scene-art handoff
 
