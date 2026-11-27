@@ -23,12 +23,13 @@ export class App {
   private sidebar = h('aside', { class: 'sidebar paper' });
   private info = h('div', { class: 'info-panel paper', hidden: true });
   private endBtn = h('button', { class: 'btn primary end-turn' }, 'End turn');
-  private endNote = h('div', { class: 'end-note' });
+  private endTurnWrap = h('div', { class: 'bottom-right' });
   private banner = h('div', { class: 'target-banner', hidden: true });
   private toast = h('div', { class: 'toast', hidden: true });
   private titleScreen: HTMLElement | null = null;
   private targeting: FreeAction | null = null;
   private latestEdition: Edition | null = null;
+  private lastTabletApp: TabletApp = 'home';
   private busy = false;
   private hasTutorial = false;
   private card = h('div', { class: 'readable-card paper', hidden: true });
@@ -67,8 +68,8 @@ export class App {
       h('button', { class: 'btn ghost', 'data-ui': 'actions', 'data-tip': 'Free actions: rallies, envoys, calls — they cost resources', onclick: () => this.toggleSidebar() }, 'Actions'));
     this.endBtn.dataset.ui = 'end-turn';
     this.endBtn.addEventListener('click', () => void this.endTurn());
-    const bottomRight = h('div', { class: 'bottom-right' }, this.endNote, this.endBtn);
-    this.layer.append(topLeft, this.hud.el, this.sidebar, bottomRight, this.info, this.card, this.banner, this.toast);
+    this.endTurnWrap.append(this.endBtn);
+    this.layer.append(topLeft, this.hud.el, this.sidebar, this.endTurnWrap, this.info, this.card, this.banner, this.toast);
     this.hud.el.hidden = false;
     root.append(this.map.el, this.layer, this.vn.el, this.tip);
     this.bindTooltips();
@@ -225,7 +226,7 @@ export class App {
     this.hideInfo();
     this.hideCard();
     this.sidebar.classList.remove('open');
-    void showTablet(this.root, this.tabletOptions(this.latestEdition ?? this.publishedEdition()));
+    void showTablet(this.root, this.tabletOptions(this.latestEdition ?? this.publishedEdition(), this.lastTabletApp));
   }
 
   private tabletOptions(edition: Edition, initialApp: TabletApp = 'home', footer?: string, closeLabel?: string): TabletOptions {
@@ -243,6 +244,10 @@ export class App {
       initialApp,
       footer,
       closeLabel,
+      onAppChange: (app, screen) => {
+        this.lastTabletApp = app;
+        this.map.setTabletPreview(screen);
+      },
       onOpenReport: (id) => {
         const game = this.game;
         if (!game) return undefined;
@@ -298,7 +303,13 @@ export class App {
     // end turn
     const pending = g.pendingRequired().length;
     this.endBtn.disabled = !g.canEndTurn() || this.busy;
-    this.endNote.textContent = g.state.ended ? '' : pending ? `${pending} required ${pending === 1 ? 'matter remains' : 'matters remain'}` : 'You may end the turn';
+    const pendingLabel = `${pending} required ${pending === 1 ? 'matter' : 'matters'} remain`;
+    const endTip = g.state.ended ? 'The story has reached its current ending.' : pending
+      ? `${pendingLabel}. Complete them before ending the turn.`
+      : 'All required matters are complete. End the turn.';
+    this.endTurnWrap.dataset.tip = endTip;
+    this.endBtn.title = endTip;
+    this.endBtn.setAttribute('aria-label', pending ? `End turn. ${pendingLabel}.` : 'End turn. All required matters are complete.');
     this.renderSidebar();
   }
 
