@@ -1,3 +1,14 @@
+/* Compact tablet sizing (moved from the desk file, same cascade position). */
+@media (max-width: 600px) {
+  .np-wrap { width: calc(100vw - 16px); max-height: 95dvh; padding: 8px; }
+  .np-sheet.paper { padding: 1rem !important; }
+  .np-device-head { font-size: 11px; }
+  .np-tabs { overflow-x: auto; flex-wrap: nowrap; }
+  .np-tab { flex: none; padding: .55em .72em; }
+  .np-footer { gap: .7em; }
+  .np-note { max-width: 58%; }
+}
+
 /* Presidential tablet: a quiet instrument case with a clear app rail and working surface. */
 .np-wrap { height: min(790px, 90dvh); max-height: 90dvh;
 }

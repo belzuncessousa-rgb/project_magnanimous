@@ -41,19 +41,3 @@
 .map-tablet-apps .mini-reports b { color: #8a2e1e; }
 
 /* Keep the current painted atlas free of legacy geo overlays until its borders are redrawn to fit it. */
-
-@media (max-width: 900px) {
-  .map { background-position: 42% center; }
-}
-@media (max-width: 600px) {
-  .map { background-position: 36% center; }
-}
-@media (max-width: 600px) {
-  .np-wrap { width: calc(100vw - 16px); max-height: 95dvh; padding: 8px; }
-  .np-sheet.paper { padding: 1rem !important; }
-  .np-device-head { font-size: 11px; }
-  .np-tabs { overflow-x: auto; flex-wrap: nowrap; }
-  .np-tab { flex: none; padding: .55em .72em; }
-  .np-footer { gap: .7em; }
-  .np-note { max-width: 58%; }
-}

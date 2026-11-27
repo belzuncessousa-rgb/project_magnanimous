@@ -2,7 +2,6 @@
    single src/styles.css). See src/styles/README.md before adding rules. */
 @import './fonts/fonts.css';
 @import './00-base.css';
-@import './01-map.css';
 @import './02-rest-ui-tutorial.css';
 @import './03-overlays.css';
 @import './04-dialogue.css';
@@ -14,11 +13,12 @@
 @import './10-portraits.css';
 @import './11-control-surfaces.css';
 @import './12-interface-finish.css';
-@import './13-desk.css';
 @import './14-tablet-instrument.css';
 @import './15-tablet-device.css';
 @import './16-focus.css';
+@import './19-turn-ledger.css';
+@import './01-map.css';
+@import './13-desk.css';
 @import './17-desk-zoom.css';
 @import './18-desk-fixed-frame.css';
-@import './19-turn-ledger.css';
 @import './20-desk-glass.css';
