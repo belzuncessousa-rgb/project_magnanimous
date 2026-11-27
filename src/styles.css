@@ -730,9 +730,9 @@ body.vn-active .tutorial-on .map.tut-highlight, .tutorial-on .map.tut-highlight 
 
 /* The strategy view is one painted atlas on an executive map desk. */
 .map {
-  background: #1a211c url('/map/strategy-table-background.png') center / cover no-repeat;
+  background: #1a211c var(--strategy-table-background, none) center / cover no-repeat;
 }
-.map.table-revealed { background: #1a211c url('/map/strategy-table-background.png') center / cover no-repeat; }
+.map.table-revealed { background: #1a211c var(--strategy-table-background, none) center / cover no-repeat; }
 .map.table-revealed::before { opacity: 0; background: none; mask-image: none; }
 .map:not(.table-revealed)::before {
   content: '';
@@ -1181,4 +1181,66 @@ button:focus-visible { filter: brightness(1.08); }
   .map-tablet, .view-political .map-tablet { width: min(48vw, 204px); top: 65%; right: 3%; padding: 7px; border-radius: 17px; transform: translateY(-50%) rotate(2deg) scale(1); }
   .table-revealed .map-tablet { transform: translateY(-50%) rotate(-1deg) scale(1); }
 }
+/* Final game board corrections: full sea, readable geography and a usable tablet on phones. */
+.map-svg .sea { display: inline !important; }
+.map-svg .labels { display: inline !important; }
+.view-political .political-border-underlay,
+.view-political .political-borders,
+.view-political .national-outline,
+.view-terrain .terrain-borders { display: inline !important; }
+.map-svg .political-border-underlay path { stroke: #082d2b; stroke-width: 2; opacity: .34; }
+.map-svg .political-borders path { stroke: #e8d6ad; stroke-width: 1.2; opacity: .86; }
+.map-svg .national-outline path { stroke-width: 1.8; }
+.map-svg .terrain-borders .border-internal { stroke: #183c32; stroke-width: 1.6; opacity: .76; }
+.map-svg .label-country { font-size: 20px; }
+.map-svg .label-continent, .map-svg .label-canal { font-size: 17px; }
+.view-terrain .label-country { display: none; }
+.map-svg .hot:hover, .map-svg .hot.selected, .map-svg .hot:focus-visible,
+.map-svg .hot-kunasai:hover .hot-kunasai-piece, .map-svg .hot-kunasai:focus .hot-kunasai-piece {
+  fill: #f6e4bd26 !important; stroke: #f4d58f !important; stroke-width: 3 !important;
+}
+.view-political .hot-region { display: none !important; }
+.view-political:not(.targeting) .hot-kunasai { display: inline !important; }
+@media (max-width: 900px) {
+  .map-svg .label-country { font-size: 17px; }
+  .map-svg .label-region { font-size: 16px; }
+}
+@media (max-width: 600px) {
+  .map-tablet, .view-political .map-tablet {
+    width: min(36vw, 142px); top: 77%; right: 4%; padding: 5px; border-radius: 13px;
+    transform: translateY(-50%) rotate(2deg) scale(1);
+  }
+  .table-revealed .map-tablet { transform: translateY(-50%) rotate(-1deg) scale(1); }
+  .map-tablet-caption { font-size: 5px; }
+  .map-tablet-apps { gap: 3px; margin-top: 2px; }
+  .map-tablet-apps i { width: 22px; height: 25px; border-radius: 6px; }
+  .map-tablet-apps i b { font-size: 12px; }
+  .map-tablet-apps i small { font-size: 5px; }
+}
+.title-card.paper {
+  position: relative; isolation: isolate; overflow: hidden;
+  border: 1px solid #cfb676; border-radius: 22px 4px 18px 4px;
+  background: linear-gradient(152deg, #2a5a49 0%, #173e32 38%, #102c25 100%);
+  box-shadow: 0 30px 72px #020a08b8, 0 5px 0 #0b241d, inset 0 2px 2px #f3e4bf38, inset 0 -5px 12px #06150f88;
+}
+.title-card .title-name { font-size: clamp(2.3rem, 3vw, 3rem); letter-spacing: -.025em; white-space: nowrap; }
+.title-card.paper::before {
+  content: ''; position: absolute; z-index: -1; inset: 10px;
+  border: 1px solid #c8a96470; border-radius: 14px 2px 12px 2px; pointer-events: none;
+}
+.title-card .btn { border-radius: 8px 2px 8px 2px; box-shadow: 0 3px 0 #071b15, inset 0 1px 1px #fff4; transition: transform .16s ease, box-shadow .16s ease, background .16s ease; }
+.title-card .btn:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 4px 0 #071b15, inset 0 1px 1px #fff5; }
+.title-card .btn.primary { box-shadow: 0 3px 0 #765f39, inset 0 1px 1px #fff7; }
+.modal-card.paper { border-radius: 16px 3px 14px 3px; box-shadow: 0 26px 72px #020907b8, 0 3px 0 #b99a60, inset 0 1px 1px #fff; }
+.menu-option {
+  padding-inline: .7rem; border: 1px solid transparent; border-bottom-color: #aab8ac;
+  border-radius: 10px 2px 9px 2px; transition: transform .16s ease, background .16s ease, border-color .16s ease, box-shadow .16s ease;
+}
+.menu-option:hover, .menu-option:focus-visible {
+  transform: translateX(3px); border-color: #b99a606e; background: linear-gradient(100deg, #e5eadf, #f5f1e5);
+  box-shadow: inset 3px 0 #b99a60, 0 3px 10px #26382d1b;
+}
+.menu-option-icon { border-color: #b99a608c; border-radius: 50% 50% 44% 44%; background: radial-gradient(circle at 35% 25%, #f3e6c6, #cbb681 78%); color: #1e4c3d; box-shadow: 0 2px 0 #9c7b45, inset 0 1px 1px #fff; }
+.menu-option-arrow { color: #9a7843; }
+@media (prefers-reduced-motion: reduce) { .title-card .btn, .menu-option { transition: none; } }
 
