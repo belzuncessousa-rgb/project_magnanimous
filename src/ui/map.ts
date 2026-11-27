@@ -198,7 +198,9 @@ export class MapView {
     const cw = this.el.clientWidth || window.innerWidth;
     const ch = this.el.clientHeight || window.innerHeight;
     const scale = Math.max(cw / DESK_ART.w, ch / DESK_ART.h);
-    const ox = (cw - DESK_ART.w * scale) / 2;
+    // Narrower than the art (16:10, 4:3, portrait): keep the painted left frame and crop only bare wood on the right.
+    // Wider than the art (21:9): crop the leather rails top and bottom evenly.
+    const ox = cw < DESK_ART.w * scale ? 0 : (cw - DESK_ART.w * scale) / 2;
     const oy = (ch - DESK_ART.h * scale) / 2;
     const g = DESK_ART.glass;
     const margin = 6;
@@ -207,11 +209,19 @@ export class MapView {
     const right = Math.min(cw - margin, ox + g.x1 * scale);
     const bottom = Math.min(ch - margin, oy + g.y1 * scale);
     const st = this.el.style;
+    st.backgroundSize = `${DESK_ART.w * scale}px ${DESK_ART.h * scale}px`;
+    st.backgroundPosition = `${ox}px ${oy}px`;
     st.setProperty('--glass-l', `${left}px`);
     st.setProperty('--glass-t', `${top}px`);
     st.setProperty('--glass-w', `${Math.max(0, right - left)}px`);
     st.setProperty('--glass-h', `${Math.max(0, bottom - top)}px`);
     st.setProperty('--glass-r', `${Math.max(6, g.r * scale)}px`);
+    // The bare wood to the right of the glass frame: the resting tablet is centred in it and sized to fit.
+    const woodLeft = Math.min(cw, ox + (g.x1 + 30) * scale);
+    const woodW = Math.max(0, cw - woodLeft);
+    st.setProperty('--wood-cx', `${woodLeft + woodW / 2}px`);
+    st.setProperty('--tablet-w', `${Math.round(Math.min(370, Math.max(150, woodW * 0.78)))}px`);
+    this.el.classList.toggle('desk-narrow', woodW < 190);
   }
 
   private resizeFrame() {

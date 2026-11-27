@@ -11,3 +11,11 @@
   border-radius: var(--glass-r, 18px);
 }
 .map-svg:not(.marker-svg) { background: #0f4d4c; }
+
+/* C-03: on desktop widths the resting tablet sits centred on the bare wood right of the glass (set by layoutGlass).
+   With too little wood (4:3 and narrower, .desk-narrow) it keeps the older placement over the glass corner. */
+@media (min-width: 901px) {
+  .map:not(.desk-narrow) .map-tablet, .map:not(.desk-narrow).view-political .map-tablet {
+    right: auto; left: calc(var(--wood-cx, 83%) - var(--tablet-w, 300px) / 2); width: var(--tablet-w, 300px);
+  }
+}
