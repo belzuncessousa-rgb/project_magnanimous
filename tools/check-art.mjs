@@ -10,6 +10,7 @@
 //   public/map/*, public/identity/*                      files the UI references directly
 import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs';
 import { join, relative } from 'node:path';
+import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 
 const ROOT = join(fileURLToPath(import.meta.url), '../..');
@@ -97,6 +98,17 @@ export function checkArt(root = ROOT) {
       if (size > PORTRAIT_WARN_BYTES) warnings.push(`portrait ${name} is ${(size / MB).toFixed(1)} MB (> ${PORTRAIT_WARN_BYTES / MB} MB)`);
     }
   }
+
+  // ---- web derivatives (tools/make-portrait-webp.py); missing or stale ones fall back to the PNG master
+  let manifest = {};
+  try { manifest = JSON.parse(readFileSync(p('public/portraits/web/manifest.json'), 'utf8')); } catch { /* none yet */ }
+  const stale = [];
+  for (const f of readdirSync(p('public/portraits')).filter((n) => n.endsWith('.png'))) {
+    const webp = p('public/portraits/web', f.replace(/\.png$/, '.webp'));
+    const digest = createHash('sha1').update(readFileSync(p('public/portraits', f))).digest('hex');
+    if (!existsSync(webp) || manifest[f] !== digest) stale.push(f);
+  }
+  if (stale.length) warnings.push(`${stale.length} portrait master(s) without an up-to-date web copy (run python3 tools/make-portrait-webp.py): ${stale.join(', ')}`);
 
   // ---- files the UI references directly
   const direct = ['public/map/regions.json', 'public/map/arvain-terrain-art.png', 'public/map/kunasai-terrain-art.png',

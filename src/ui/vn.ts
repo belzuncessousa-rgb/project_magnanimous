@@ -6,6 +6,7 @@ import type { Prose } from '../scene/types';
 import { clear, h, initials, inlineMd, wait } from './dom';
 import { costText } from './format';
 import { dialoguePortraitPose, resolveDialogueStage, type DialoguePose } from './dialogue-stage';
+import { loadPortrait } from './portraits';
 
 export interface VNHooks {
   /** `[open: …]` / `[vote: …]` tokens: show the screen, resolve when done */
@@ -143,14 +144,8 @@ export class VNView {
       const rightSlotPortrait = slot === this.right ? rightSlotPortraits[stem] : undefined;
       const source = rightSlotPortrait && rightSlotPortrait !== 'original' ? rightSlotPortrait : stem;
       if (slot === this.right && rightSlotPortrait !== 'original') img.classList.add('mirror-inward');
-      let legacy = false;
-      img.addEventListener('error', () => {
-        if (!legacy) { legacy = true; img.src = `portraits/${who.portrait}.png`; }
-        else img.remove();
-      });
-      img.addEventListener('load', () => fig.classList.add(legacy ? 'has-img' : 'has-master'));
       fig.querySelector('.silhouette')!.append(img);
-      img.src = `portraits/${source}.png`;
+      loadPortrait(img, [source, who.portrait], (i) => fig.classList.add(i === 0 ? 'has-master' : 'has-img'));
     }
     slot.append(fig);
   }
@@ -190,14 +185,9 @@ export class VNView {
     const icon = h('span', { class: fixed ? 'vn-speaker-icon compact-only' : 'vn-speaker-icon', 'aria-hidden': 'true' }, initials(w.name));
     if (w.portrait) {
       const img = h('img', { alt: '' });
-      let legacy = false;
-      img.addEventListener('error', () => {
-        if (!legacy) { legacy = true; img.src = `portraits/${w.portrait}.png`; }
-        else img.remove();
-      });
       img.loading = 'lazy';
       icon.append(img);
-      img.src = `portraits/${w.portrait}-standing.png`;
+      loadPortrait(img, [`${w.portrait}-standing`, `${w.portrait}-seated`, w.portrait]);
     }
     return icon;
   }

@@ -2,6 +2,7 @@ import type { Actor } from '../core/types';
 import type { Popup } from '../content/schema';
 import type { Edition } from '../game/game';
 import { clear, h, initials, inlineMd } from './dom';
+import { loadPortrait } from './portraits';
 
 export type TabletApp = 'home' | 'news' | 'social' | 'codex' | 'reports';
 
@@ -203,8 +204,7 @@ export function showTablet(root: HTMLElement, options: TabletOptions): Promise<v
           const avatar = h('span', { class: 'np-person-portrait', 'aria-hidden': 'true' }, initials(person.name));
           if (person.portrait) {
             const image = h('img', { alt: '', loading: 'lazy' });
-            image.addEventListener('error', () => image.remove());
-            image.src = `portraits/${person.portrait}-standing.png`;
+            loadPortrait(image, [`${person.portrait}-standing`, `${person.portrait}-seated`, person.portrait]);
             avatar.append(image);
           }
           return h('li', { class: 'np-person-entry' }, avatar, h('span', {}, h('strong', {}, person.name), person.role ? h('small', {}, person.role) : ''));
