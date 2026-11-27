@@ -1,0 +1,45 @@
+/* C-22: the vote screen is a whip-count sheet from Congress — paper with the national letterhead, a hemicycle of
+   every seat coloured by stance, and party rows. Red is reserved for crises: "against" is slate ink, not red. */
+.vote-screen .screen-card {
+  width: min(1120px, 96vw); background: #f6f1e3 linear-gradient(180deg, #fbf8ef, #f1ead8); border: 0; border-radius: 3px;
+  box-shadow: 0 2px 4px #0a14104d, 0 24px 60px #05100cb3;
+}
+.vote-screen .screen-head h2 { font: 600 clamp(1.4rem, 2.4vw, 1.9rem)/1.15 'Source Serif 4', Georgia, serif; color: #173f35; text-align: center; }
+.vote-screen .screen-head .screen-sub { text-align: center; max-width: 70ch; margin: .3em auto 0; color: #5d5745; font: italic 14px/1.5 'Source Serif 4', Georgia, serif; }
+.vote-screen .executive-letterhead { justify-content: center; }
+.vote-body { display: grid; grid-template-columns: minmax(240px, 34%) minmax(0, 1fr); gap: clamp(1rem, 3vw, 2rem); align-items: start; margin-top: 1rem; }
+.vote-chamber { position: sticky; top: 0; display: grid; justify-items: center; padding: 10px 6px 4px; }
+.vote-hemicycle { width: 100%; max-width: 340px; height: auto; overflow: visible; }
+.hemi-party circle { transition: fill .25s ease; }
+.hemi-party.stance-for circle { fill: #1f5a47; }
+.hemi-party.stance-leaning circle { fill: #79a892; }
+.hemi-party.stance-undecided circle { fill: #d9d1bb; stroke: #b6ad94; stroke-width: .5; }
+.hemi-party.stance-against circle { fill: #4a535b; }
+.hemi-party:hover circle { stroke: #b99a60; stroke-width: 1.2; }
+.hemi-majority { stroke: #b99a60; stroke-width: 1.2; stroke-dasharray: 2 2; }
+.vote-count { display: grid; justify-items: center; margin-top: -28px; }
+.vote-count strong { color: #173f35; font: 600 2.2rem/1 'Source Serif 4', Georgia, serif; }
+.vote-count span { color: #6d6857; font: 600 10px var(--ui-sans); letter-spacing: .14em; text-transform: uppercase; }
+.vote-screen .vote-table { border-top: 1px solid #b99a6066; }
+.vote-screen .vote-row { grid-template-columns: minmax(150px, 210px) 110px 1fr; padding: .45em 0; border-color: #d8cfb7; }
+.vote-screen .vote-party strong { font: 600 14px 'Source Serif 4', Georgia, serif; color: #24302b; }
+.vote-screen .vote-stance { font: 700 11px var(--ui-sans); letter-spacing: .08em; text-transform: uppercase; }
+.vote-screen .vote-stance::before { content: ''; display: inline-block; width: 8px; height: 8px; margin-right: 6px; border-radius: 50%; vertical-align: 1px; background: currentColor; }
+.vote-screen .stance-for .vote-stance { color: #1f5a47; }
+.vote-screen .stance-leaning .vote-stance { color: #4f8670; }
+.vote-screen .stance-undecided .vote-stance { color: #8d8571; }
+.vote-screen .stance-against .vote-stance { color: #4a535b; }
+.vote-screen .vote-deals .deal { border-color: #cdbf9e; background: #fffcf3; color: #3a3a32; }
+.vote-screen .vote-deals .deal.corrupt { border-style: dashed; border-color: #9a7a3a; }
+.vote-screen .vote-deals .deal[aria-pressed="true"] { background: #173f35; border-color: #173f35; color: #f3ecd9; }
+.vote-screen .screen-foot { border-top: 1px solid #b99a6066; background: none; }
+.vote-screen .vote-outlook { color: #173f35; font: 600 18px 'Source Serif 4', Georgia, serif; letter-spacing: 0; }
+.vote-screen .vote-spend { color: #6d6857; }
+.vote-screen .vote-spend.over { color: #7a4a14; }
+.vote-screen .vote-result { color: #173f35; }
+.vote-screen .vote-result.result-failed { color: #4a535b; }
+@media (max-width: 800px) { .vote-body { grid-template-columns: minmax(0, 1fr); } .vote-chamber { position: static; } }
+@media (max-width: 600px) {
+  .vote-screen .vote-row { grid-template-columns: 1fr auto; gap: .3em .6em; }
+  .vote-screen .vote-deals { grid-column: 1 / -1; }
+}

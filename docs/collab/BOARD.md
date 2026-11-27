@@ -27,6 +27,7 @@ section. Move finished tasks to **Done** with the commit hash.
 | G-08 | chatgpt | doing | art | **Refine the seamless sea tile.** Improve JPEG edge continuity and verify the replacement in the live map before marking complete. | `public/map/sea-tile.jpg`; `docs/design/G-02-visual-review.md` |
 | C-21 | claude | review | ui | **Actions panel as a physical object.** The free-actions sidebar is still a flat emerald rectangle; make it a leather folio / card file that matches the desk. Also: each free action appears twice in the list (content loader merging demo + real?) — investigate. | `docs/screenshots/collab/c15-desk-1280.jpg` |
 | A-02 | author | todo | — | **Real free actions.** There is no `content/free-actions.json`, so the game ships the four `[DEMO]` placeholder actions (rally, envoy, benches, interview). `docs/story/production/TERM-FREE-ACTIONS.md` exists — the narrative track needs to turn it into content. | narrative track |
+| C-22 | claude | review | ui | **Congress vote as a whip-count sheet:** national letterhead, live hemicycle (one dot per seat, coloured by stance, dashed majority line, yes-count), party rows with stance dots; "against" in slate ink, not red. | `docs/screenshots/collab/c22-*.jpg` |
 
 ## Done
 

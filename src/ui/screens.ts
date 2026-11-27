@@ -12,6 +12,7 @@ import {
   projectVote,
   resolveVote,
   STANCE_WORD,
+  VOTE,
   whipOptions,
   type BudgetChoice,
   type VoteResult,
@@ -124,17 +125,72 @@ export function showBudget(root: HTMLElement, state: GameState, ministries: Mini
 
 // ------------------------------------------------------------------------------------------------ vote
 
+const STANCE_ORDER: Record<string, number> = { for: 0, leaning: 1, undecided: 2, against: 3 };
+
+/**
+ * Congress as a hemicycle: one dot per seat, filled left to right by stance (for → leaning → undecided → against),
+ * each party a contiguous block, with the majority line marked. Pure SVG, regenerated on every deal change.
+ */
+function hemicycle(parties: { party: string; name: string; seats: number; stance: string }[], majority: number): SVGSVGElement {
+  const NS = 'http://www.w3.org/2000/svg';
+  const el = <K extends keyof SVGElementTagNameMap>(tag: K, attrs: Record<string, string | number>) => {
+    const n = document.createElementNS(NS, tag);
+    for (const [k, v] of Object.entries(attrs)) n.setAttribute(k, String(v));
+    return n;
+  };
+  const total = parties.reduce((n, p) => n + p.seats, 0);
+  const rows = total > 120 ? 7 : total > 60 ? 5 : 4;
+  const r0 = 46, r1 = 100;
+  const radii = Array.from({ length: rows }, (_, i) => r0 + (i * (r1 - r0)) / (rows - 1));
+  const sumR = radii.reduce((a, b) => a + b, 0);
+  const counts = radii.map((r) => Math.round((total * r) / sumR));
+  counts[rows - 1]! += total - counts.reduce((a, b) => a + b, 0);
+  const seats: { x: number; y: number; a: number }[] = [];
+  radii.forEach((r, i) => {
+    const n = counts[i]!;
+    for (let k = 0; k < n; k++) {
+      const a = Math.PI - (n === 1 ? Math.PI / 2 : (k * Math.PI) / (n - 1));
+      seats.push({ x: 110 + r * Math.cos(a), y: 108 - r * Math.sin(a), a });
+    }
+  });
+  seats.sort((p, q) => q.a - p.a);
+  const ordered = [...parties].sort((p, q) => (STANCE_ORDER[p.stance] ?? 9) - (STANCE_ORDER[q.stance] ?? 9) || q.seats - p.seats);
+  const svg = el('svg', { class: 'vote-hemicycle', viewBox: '0 0 220 116', role: 'img' });
+  svg.setAttribute('aria-label', ordered.map((p) => `${p.name}: ${p.seats} seats, ${p.stance}`).join('; '));
+  let at = 0;
+  for (const p of ordered) {
+    const g = el('g', { class: `hemi-party stance-${p.stance}` });
+    const title = el('title', {}); title.textContent = `${p.name} — ${p.seats} seats`; g.append(title);
+    for (let k = 0; k < p.seats && at < seats.length; k++, at++) {
+      const s = seats[at]!;
+      g.append(el('circle', { cx: s.x.toFixed(2), cy: s.y.toFixed(2), r: 3.3 }));
+    }
+    svg.append(g);
+  }
+  // majority marker: the angle where seat number `majority` sits
+  const m = seats[Math.min(seats.length - 1, majority - 1)];
+  if (m) {
+    const ux = Math.cos(m.a), uy = -Math.sin(m.a);
+    svg.append(el('line', { class: 'hemi-majority', x1: (110 + ux * (r0 - 9)).toFixed(1), y1: (108 + uy * (r0 - 9)).toFixed(1), x2: (110 + ux * (r1 + 7)).toFixed(1), y2: (108 + uy * (r1 + 7)).toFixed(1) }));
+  }
+  return svg;
+}
+
 export function showVote(root: HTMLElement, state: GameState, bill: Bill | undefined): Promise<VoteResult | null> {
   return new Promise((resolve) => {
     if (!bill) { resolve(null); return; }
     const deals: Record<string, string> = {};
     const table = h('div', { class: 'vote-table' });
     const outlook = h('div', { class: 'vote-outlook' });
+    const chamber = h('div', { class: 'vote-chamber' });
     const spend = h('div', { class: 'vote-spend' });
     const callBtn = h('button', { class: 'btn primary' }, 'Call the vote');
     const render = () => {
       const p = projectVote(state, bill, deals);
       clear(table);
+      clear(chamber);
+      chamber.append(hemicycle(p.parties, VOTE.majority),
+        h('div', { class: 'vote-count' }, h('strong', {}, String(Math.round(p.yes))), h('span', {}, `of ${VOTE.majority} needed`)));
       for (const row of p.parties) {
         const opts = whipOptions(bill, row.party);
         table.append(
@@ -171,8 +227,10 @@ export function showVote(root: HTMLElement, state: GameState, bill: Bill | undef
       requestAnimationFrame(() => continueButton.focus());
     });
     const card = h('div', { class: 'screen-card paper vote' },
-      h('div', { class: 'screen-head' }, h('h2', {}, bill.title), bill.summary ? h('div', { class: 'screen-sub' }, bill.summary) : null),
-      table,
+      h('div', { class: 'screen-head' },
+        h('div', { class: 'executive-letterhead' }, h('img', { src: 'identity/kunasai-arms.svg', alt: '' }), h('span', {}, 'Congress of the Republic · Whip count')),
+        h('h2', {}, bill.title), bill.summary ? h('div', { class: 'screen-sub' }, bill.summary) : null),
+      h('div', { class: 'vote-body' }, chamber, table),
       h('div', { class: 'screen-foot' }, h('div', {}, outlook, spend), callBtn));
     render();
     const o = overlay(root, 'vote-screen', card);
