@@ -6,5 +6,5 @@ export default defineConfig({
   base: './',
   build: { outDir: 'dist', assetsInlineLimit: 0 },
   server: { watch: { ignored: ['**/.claude/**'] } },
-  test: { exclude: [...configDefaults.exclude, '**/.claude/**'] },
+  test: { exclude: [...configDefaults.exclude, '**/.claude/**', '**/e2e/**'] },
 });

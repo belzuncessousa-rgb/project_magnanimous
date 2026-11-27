@@ -1,0 +1,30 @@
+name: Temporary player interface visual QA
+
+on:
+  push:
+    branches: [visual-ui-qa]
+
+permissions:
+  contents: read
+
+jobs:
+  browser-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm test
+      - run: npm run build
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:ui
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: player-interface-visual-review
+          path: |
+            artifacts/ui-review/**
+            test-results/**
