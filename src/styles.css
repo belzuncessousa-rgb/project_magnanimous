@@ -1017,3 +1017,71 @@ button:focus-visible { filter: brightness(1.08); }
   .np-wrap, .np-screen, .np-app-icon { transition: none; }
 }
 
+
+/* Zoomable strategy table: let the artwork read as a digital map floating over a real workspace. */
+.map { transition: filter .6s ease, background .45s ease; }
+.map.table-revealed {
+  background-color: #102a24;
+  background-image: radial-gradient(ellipse at 50% 48%, #24483d 0%, #18372e 48%, #0b201b 100%), var(--noise);
+}
+.map.table-revealed::before {
+  content: ''; position: absolute; inset: 0; pointer-events: none; opacity: .42;
+  background: repeating-linear-gradient(0deg, transparent 0 47px, #b99a6010 48px), repeating-linear-gradient(90deg, transparent 0 47px, #b99a6010 48px);
+  mask-image: radial-gradient(ellipse at center, #000 12%, transparent 74%);
+}
+.sea-frame { display: none; }
+.view-political .offmap, .table-revealed .offmap { display: inline; }
+.view-terrain:not(.targeting) .hot-country { display: none; }
+.view-political .hot-region { display: none; }
+.view-political:not(.targeting) .hot-kunasai.selected .hot-kunasai-piece { fill: rgba(255, 244, 214, .13); }
+.offmap-token { cursor: pointer; outline: none; }
+.offmap-token-body { transform: scale(calc(.92 / var(--zoom, 1))); transform-box: fill-box; transform-origin: center; transition: transform .18s ease; }
+.offmap-token:hover .offmap-token-body, .offmap-token:focus-visible .offmap-token-body, .offmap-token.selected .offmap-token-body { transform: scale(calc(1.08 / var(--zoom, 1))); }
+.offmap-token-shadow { fill: #061510; opacity: .52; }
+.offmap-token-rim { fill: #b99a60; stroke: #e0c995; stroke-width: 1.4; }
+.offmap-token-face { fill: #173f35; stroke: #0d281f; stroke-width: 1.5; }
+.offmap-token-inlay { fill: none; stroke: #d4c297; stroke-width: 1; opacity: .8; }
+.offmap-token-mark { font: 700 12px var(--ui-sans); letter-spacing: .04em; text-anchor: middle; fill: #f0ebdd; }
+.offmap-token-name { font: 700 12px var(--ui-sans); text-anchor: middle; fill: #f0ebdd; paint-order: stroke; stroke: #142d26; stroke-width: 3px; stroke-linejoin: round; }
+.offmap-token-note { font: italic 10px var(--serif); text-anchor: middle; fill: #d5cdae; paint-order: stroke; stroke: #142d26; stroke-width: 2.5px; stroke-linejoin: round; }
+.offmap-token:hover .offmap-token-rim, .offmap-token:focus-visible .offmap-token-rim, .offmap-token.selected .offmap-token-rim { fill: #d1b783; stroke: #fff1d2; stroke-width: 2; }
+.targeting .offmap-token { opacity: .34; pointer-events: none; }
+.targeting .offmap-token.valid { opacity: 1; pointer-events: auto; }
+.targeting .offmap-token.valid .offmap-token-rim { stroke: #f1d38c; stroke-width: 3; stroke-dasharray: 5 3; }
+
+.map-controls { position: absolute; bottom: 14px; left: 14px; display: flex; align-items: center; gap: 12px; padding: 7px 9px; color: #f0ebdd; background: #173f35ee; border: 1px solid #b99a6080; border-radius: 6px; box-shadow: 0 5px 18px #08181266; font: 500 .72em var(--ui-sans); backdrop-filter: blur(8px); }
+.map-scale-status { display: grid; gap: 2px; min-width: 105px; }
+.map-scale-status span { color: #c2cdbf; font-size: .68em; font-weight: 700; letter-spacing: .14em; }
+.map-scale-status strong { font: 600 1em 'Source Serif 4', Georgia, serif; color: #f0ebdd; }
+.map-zoom-control { display: flex; align-items: center; gap: 3px; padding-left: 8px; border-left: 1px solid #b99a6066; }
+.map-zoom-control button { min-width: 32px; min-height: 32px; border: 1px solid #668172; border-radius: 4px; background: #244f42; color: #f0ebdd; cursor: pointer; font: 600 1.05em var(--ui-sans); }
+.map-zoom-control button:hover { background: #326554; border-color: #d1b783; }
+.map-zoom-control button:nth-child(2) { min-width: 48px; font-size: .84em; }
+
+.map-tablet { position: absolute; z-index: 5; top: 50%; right: max(4vw, 34px); width: clamp(126px, 13vw, 194px); aspect-ratio: 1.34 / 1; padding: 8px; border: 1px solid #cfb676; border-radius: 15px; background: linear-gradient(145deg, #414d48, #121b19 42%, #303b36); box-shadow: 0 18px 34px #06151099, inset 0 1px 2px #ffffff54, inset 0 -3px 5px #0009; transform: translateY(-50%) rotate(2deg) scale(.66); opacity: 0; pointer-events: none; transition: opacity .35s, transform .4s cubic-bezier(.2,.8,.2,1); cursor: pointer; }
+.view-political .map-tablet, .table-revealed .map-tablet { opacity: .88; pointer-events: auto; }
+.table-revealed .map-tablet { transform: translateY(-50%) rotate(2deg) scale(1); opacity: 1; }
+.map-tablet:hover, .map-tablet:focus-visible { transform: translateY(-50%) rotate(0) scale(1.045); border-color: #f4d78f; outline: 2px solid #f1d38c; outline-offset: 3px; }
+.map-tablet-screen { display: flex; position: relative; width: 100%; height: 100%; flex-direction: column; align-items: center; justify-content: center; overflow: hidden; border: 2px solid #090e0d; border-radius: 9px; background: radial-gradient(ellipse at 50% 15%, #2f6853, #173f35 67%); box-shadow: inset 0 0 18px #071b13; }
+.map-tablet-screen img { width: 32%; height: 38%; object-fit: contain; filter: drop-shadow(0 2px 3px #07130e); }
+.map-tablet-apps { display: flex; gap: 5px; margin-top: 5px; }
+.map-tablet-apps i { display: grid; place-items: center; width: 20px; height: 20px; border: 1px solid #e0c99580; border-radius: 6px; background: linear-gradient(145deg, #f1ead7, #c7ba9c); color: #173f35; font: 700 9px var(--ui-sans); font-style: normal; box-shadow: 0 2px 3px #07130e88; }
+.map-tablet-caption { position: absolute; right: 11px; bottom: 5px; color: #d9c89e; font: 700 7px var(--ui-sans); letter-spacing: .13em; text-shadow: 0 1px 2px #000; }
+
+.ui-layer .map-controls { background: #173f35f2; color: #f0ebdd; border-color: #547163; }
+.ui-layer .map-zoom-control { border-color: #547163; }
+.ui-layer .map-zoom-control button { font-family: var(--ui-sans); }
+:where(button, select, input):focus-visible, .hot:focus-visible, .offmap-token:focus-visible, .marker:focus-visible { outline: none; }
+@media (max-width: 600px) {
+  .ui-layer .map-controls { bottom: 8px; left: 8px; gap: 6px; padding: 5px 6px; font-size: .66em; }
+  .ui-layer .map-scale-status { min-width: 74px; }
+  .ui-layer .map-scale-status span { font-size: .58em; }
+  .ui-layer .map-zoom-control { gap: 2px; padding-left: 5px; }
+  .ui-layer .map-zoom-control button { min-width: 30px; min-height: 34px; }
+  .ui-layer .map-zoom-control button:nth-child(2) { min-width: 39px; }
+  .map-tablet { top: 46%; right: 8px; width: 108px; padding: 6px; border-radius: 12px; }
+  .view-political .map-tablet { transform: translateY(-50%) rotate(2deg) scale(.65); }
+  .map-tablet-apps { gap: 3px; }
+  .map-tablet-apps i { width: 16px; height: 16px; border-radius: 5px; font-size: 7px; }
+  .map-tablet-caption { right: 8px; font-size: 6px; }
+}

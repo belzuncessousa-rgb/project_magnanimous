@@ -13,7 +13,7 @@ export interface SaveFile {
 export interface Settings {
   textSize: 'small' | 'medium' | 'large';
   transitions: boolean;
-  mapView: 'terrain' | 'political';
+  mapView: 'political' | 'political';
 }
 
 export const DEFAULT_SETTINGS: Settings = { textSize: 'medium', transitions: true, mapView: 'terrain' };
