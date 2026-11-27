@@ -116,3 +116,57 @@ body.vn-active .glass-hud, .map.dim .glass-hud { opacity: .4; }
 }
 .ui-layer .sidebar .fa-empty { color: #cdd8cf; font: italic 13px 'Source Serif 4', Georgia, serif; text-align: center; }
 .ui-layer .sidebar, .ui-layer .sidebar.paper { bottom: auto; max-height: calc(100dvh - var(--rail-cy, 26px) - 120px); }
+
+/* G-04 proposal (Claude): scene markers are teardrop map pins — brushed-brass body, the enamel token as the face,
+   a glass highlight, and a soft beacon on the map where the tip points. Required = gilt rim + beacon;
+   crisis = red enamel face (red stays crisis-only); locked = pewter. */
+.marker .pin-body { fill: url(#none); fill: #b99a60; stroke: #6e5a33; stroke-width: 1.2; filter: drop-shadow(0 4px 4px #04100bb3); }
+.marker .ring { fill: #173f35; stroke: #e7d3a0; stroke-width: 1.6; }
+.marker .token { filter: none; }
+.marker .glyph { font-size: 15px; }
+.marker .pin-gloss { fill: #ffffff; opacity: .28; pointer-events: none; }
+.marker .pin-shadow { fill: #020806; opacity: .55; }
+.marker .pulse { fill: #f1d38c33; stroke: #f1d38c; stroke-width: 1.4; opacity: 0; }
+.marker.required .pulse { opacity: 1; }
+.marker.required .pin-body { fill: #d1b783; stroke: #8a6f3c; }
+.marker.kind-crisis .pin-body { fill: #8a2e1e; stroke: #4a160e; }
+.marker.kind-crisis .pulse { stroke: #e06a50; fill: #8a2e1e33; opacity: 1; }
+.marker.locked .pin-body { fill: #8b9089; stroke: #4c524b; }
+.marker:hover .pin-body, .marker:focus-visible .pin-body { fill: #e3c98d; }
+.marker:hover .ring, .marker:focus-visible .ring { stroke: #fff1cf; }
+
+/* G-04 proposal (Claude): readable pins are small objects with distinct silhouettes instead of coloured discs —
+   reaction = speech bubble, note = sealed letter, report = document with the green seal, incident = amber warning
+   plate (amber, not red: red is for crises). Readable without colour; titles stay in the hover tooltip. */
+.map-toasts .map-toast, .map-toasts.compact .map-toast {
+  padding: 0; gap: 0; border: 0; border-radius: 0; background: none; box-shadow: none;
+  filter: drop-shadow(0 3px 3px #04100bb3); transition: transform .15s ease, filter .15s ease;
+}
+.map-toasts .map-toast:hover, .map-toasts .map-toast:focus-visible { background: none; transform: translateY(-2px) scale(1.12); filter: drop-shadow(0 5px 6px #04100bcc) drop-shadow(0 0 4px #f1d38c88); outline: none; }
+.map-toasts .toast-title { display: none; }
+.map-toasts .toast-icon, .map-toasts.compact .toast-icon {
+  width: 34px; height: 34px; border-radius: 0; font-size: 0; color: transparent;
+  background: center / contain no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Cpath d='M9 4h17l7 7v25H9z' fill='%23fbf7ea' stroke='%236d6857' stroke-width='1.4'/%3E%3Cpath d='M26 4v7h7' fill='%23e8dfc6' stroke='%236d6857' stroke-width='1.4'/%3E%3Cpath d='M13 15h12M13 19h16M13 23h16' stroke='%239a937f' stroke-width='1.4'/%3E%3Ccircle cx='26' cy='30' r='5' fill='%23173f35' stroke='%23c9a35a' stroke-width='1.3'/%3E%3C/svg%3E");
+}
+.map-toasts .map-toast.kind-reaction .toast-icon { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Cpath d='M6 6h28a3 3 0 0 1 3 3v17a3 3 0 0 1-3 3H17l-8 7v-7H6a3 3 0 0 1-3-3V9a3 3 0 0 1 3-3z' fill='%23f6efdc' stroke='%238f6e33' stroke-width='1.6'/%3E%3Cpath d='M13 21c0-4 2-7 5-8v2c-1.5.8-2.3 2-2.4 3.5H18V21zm9 0c0-4 2-7 5-8v2c-1.5.8-2.3 2-2.4 3.5H27V21z' fill='%23173f35'/%3E%3C/svg%3E"); }
+.map-toasts .map-toast.kind-note .toast-icon { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Cg transform='rotate(-6 20 20)'%3E%3Crect x='5' y='9' width='30' height='22' rx='1.5' fill='%23f3ead2' stroke='%238f6e33' stroke-width='1.5'/%3E%3Cpath d='M5.8 10l14.2 11 14.2-11' fill='none' stroke='%238f6e33' stroke-width='1.5'/%3E%3Ccircle cx='20' cy='21' r='3.6' fill='%23a0782f'/%3E%3C/g%3E%3C/svg%3E"); }
+.map-toasts .map-toast.kind-report .toast-icon { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Cpath d='M9 4h17l7 7v25H9z' fill='%23fbf7ea' stroke='%236d6857' stroke-width='1.4'/%3E%3Cpath d='M26 4v7h7' fill='%23e8dfc6' stroke='%236d6857' stroke-width='1.4'/%3E%3Cpath d='M13 15h12M13 19h16M13 23h16' stroke='%239a937f' stroke-width='1.4'/%3E%3Ccircle cx='26' cy='30' r='5' fill='%23173f35' stroke='%23c9a35a' stroke-width='1.3'/%3E%3C/svg%3E"); }
+.map-toasts .map-toast.kind-incident .toast-icon { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Cpath d='M20 3l17 17-17 17L3 20z' fill='%23d9a53b' stroke='%236e4d12' stroke-width='1.6'/%3E%3Cpath d='M20 6.5L33.5 20 20 33.5 6.5 20z' fill='none' stroke='%23f6dc96' stroke-width='1'/%3E%3Crect x='18.2' y='11' width='3.6' height='12' rx='1.4' fill='%232a1f0a'/%3E%3Ccircle cx='20' cy='27.5' r='2.2' fill='%232a1f0a'/%3E%3C/svg%3E"); width: 32px; height: 32px; }
+.map-toasts .map-toast.read { opacity: 1; filter: saturate(.35) brightness(.8) drop-shadow(0 2px 2px #04100b99); }
+.marker-body { transform: scale(calc(1.2 / var(--zoom, 1))); }
+.marker:hover .marker-body, .marker:focus .marker-body { transform: scale(calc(1.36 / var(--zoom, 1))); }
+
+/* Off-map nations: engraved brass nameplates with a direction arrow (no letter discs). */
+.offmap-plate { fill: #b99a60; stroke: #6e5a33; stroke-width: 1; }
+.offmap-plate-shadow { fill: #020806; opacity: .45; }
+.offmap-plate-inlay { fill: none; stroke: #f1dfb0; stroke-width: .8; opacity: .7; }
+.offmap-plate-arrow { fill: #b99a60; stroke: #6e5a33; stroke-width: 1; }
+.offmap-plate-name { fill: #24301f; font: 700 12px 'Source Serif 4', Georgia, serif; text-anchor: middle; letter-spacing: .04em; }
+.offmap-plate-note { fill: #4a4126; font: italic 9.5px 'Source Serif 4', Georgia, serif; text-anchor: middle; }
+.offmap-token:hover .offmap-plate, .offmap-token:focus-visible .offmap-plate, .offmap-token.selected .offmap-plate { fill: #d9bd80; stroke: #fff1cf; }
+.targeting .offmap-token.valid .offmap-plate { stroke: #f1d38c; stroke-width: 2.4; stroke-dasharray: 5 3; }
+/* the closed actions folio must not peek in from the left edge */
+.ui-layer .sidebar:not(.open) { transform: translateX(calc(-100% - var(--rail-x, 14px) - 40px)); visibility: hidden; transition: transform .25s ease, visibility 0s .25s; }
+.ui-layer .sidebar.open { visibility: visible; transition: transform .25s ease; }
+.offmap-token-body { transform: scale(calc(1.55 / var(--zoom, 1))); }
+.offmap-token:hover .offmap-token-body, .offmap-token:focus-visible .offmap-token-body, .offmap-token.selected .offmap-token-body { transform: scale(calc(1.65 / var(--zoom, 1))); }

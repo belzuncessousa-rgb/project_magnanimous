@@ -98,11 +98,15 @@ export interface MapCallbacks {
 }
 
 function tokenImage(id: string): SVGImageElement {
-  const img = s('image', { class: 'token', href: `map/tokens/${id}.png`, x: -32, y: -32, width: 64, height: 64 });
+  // The enamel token sits in the pin's head (clipped to it), slightly enlarged so its painted rim is hidden.
+  const img = s('image', { class: 'token', href: `map/tokens/${id}.png`, x: -27, y: -27, width: 54, height: 54, 'clip-path': 'url(#pin-head-clip)' });
   // CSS fallback (ring + glyph) stays visible when the token art is missing
   img.addEventListener('error', () => img.remove());
   return img;
 }
+
+/** Teardrop map pin: round head (r 22) centred on the marker, tapering to a point 36 units below it. */
+const PIN_PATH = 'M0,36 C-5,26 -22,15 -22,0 A22,22 0 1 1 22,0 C22,15 5,26 0,36 Z';
 
 const pathOf = (poly: Pt[]) => 'M' + poly.map(([x, y]) => `${x},${y}`).join('L') + 'Z';
 
@@ -146,7 +150,9 @@ export class MapView {
     this.seaTileHref = new URL(`${import.meta.env.BASE_URL}map/sea-tile.jpg`, document.baseURI).href;
     this.svg = s('svg', { class: 'map-svg', preserveAspectRatio: 'xMidYMid meet', role: 'group', 'aria-label': 'Map of Arvain', tabindex: 0 });
     this.markerLayer = s('g', { class: 'markers' });
-    this.markerSvg = s('svg', { class: 'map-svg marker-svg', preserveAspectRatio: 'xMidYMid meet', role: 'group', 'aria-label': 'Available scenes', 'data-ui': 'markers' }, this.markerLayer);
+    this.markerSvg = s('svg', { class: 'map-svg marker-svg', preserveAspectRatio: 'xMidYMid meet', role: 'group', 'aria-label': 'Available scenes', 'data-ui': 'markers' },
+      s('defs', {}, s('clipPath', { id: 'pin-head-clip' }, s('circle', { r: 17 }))),
+      this.markerLayer);
     this.hotLayer = s('g', { class: 'hotspots' });
     this.toastLayer = h('div', { class: 'map-toasts', 'data-ui': 'readables' });
     this.tooltip = h('div', { class: 'map-tooltip', hidden: true });
@@ -403,16 +409,17 @@ export class MapView {
     this.hotLayer.append(kunasaiHot);
     const offmap = s('g', { class: 'offmap' });
     for (const [id, o] of Object.entries(OFFMAP)) {
-      const initials = id === 'federation' ? 'AF' : 'ZH';
+      // An engraved brass nameplate on the glass with an arrow toward the nation beyond the map's edge.
+      const w = Math.max(o.name.length, o.note.length * 0.78) * 7.4 + 34;
+      const arrow = id === 'federation' ? 'M0,34 l-7,-8 h14 z' : 'M' + (w / 2 + 10) + ',0 l-9,-7 v14 z';
       const g = s('g', { class: 'offmap-token hot-offmap', 'data-id': id, transform: `translate(${o.at[0]},${o.at[1]})` },
         s('g', { class: 'offmap-token-body' },
-          s('circle', { class: 'offmap-token-shadow', cy: 3, r: 31 }),
-          s('circle', { class: 'offmap-token-rim', r: 29 }),
-          s('circle', { class: 'offmap-token-face', r: 23 }),
-          s('circle', { class: 'offmap-token-inlay', r: 18 }),
-          s('text', { class: 'offmap-token-mark', y: 5 }, initials),
-          s('text', { class: 'offmap-token-name', y: 44 }, o.name),
-          s('text', { class: 'offmap-token-note', y: 57 }, o.note)));
+          s('rect', { class: 'offmap-plate-shadow', x: -w / 2, y: -20, width: w, height: 44, rx: 4, transform: 'translate(0,3)' }),
+          s('rect', { class: 'offmap-plate', x: -w / 2, y: -20, width: w, height: 44, rx: 4 }),
+          s('rect', { class: 'offmap-plate-inlay', x: -w / 2 + 4, y: -16, width: w - 8, height: 36, rx: 2 }),
+          s('path', { class: 'offmap-plate-arrow', d: arrow }),
+          s('text', { class: 'offmap-plate-name', y: -1 }, o.name),
+          s('text', { class: 'offmap-plate-note', y: 13 }, o.note)));
       g.setAttribute('tabindex', '0');
       g.setAttribute('role', 'button');
       g.setAttribute('aria-label', `Inspect ${o.name}. ${o.note}`);
@@ -525,10 +532,14 @@ export class MapView {
         'data-scene': m.id,
       },
         s('g', { class: 'marker-body' },
-          s('circle', { class: 'pulse', r: 27 }),
-          s('circle', { class: 'ring', r: 26 }),
+          // ground glow where the pin points, then the teardrop pin: brass body, enamel face, highlight
+          s('ellipse', { class: 'pin-shadow', cx: 0, cy: 36, rx: 9, ry: 3 }),
+          s('circle', { class: 'pulse', cx: 0, cy: 36, r: 12 }),
+          s('path', { class: 'pin-body', d: PIN_PATH }),
+          s('circle', { class: 'ring', r: 19 }),
           s('text', { class: 'glyph', y: 7 }, KIND_GLYPH[m.kind] ?? '•'),
-          m.token ? tokenImage(m.token) : null),
+          m.token ? tokenImage(m.token) : null,
+          s('path', { class: 'pin-gloss', d: 'M-14,-9 A17,17 0 0 1 9,-16 A20,20 0 0 0 -14,-4 Z' })),
       );
       const open = () => { if (!m.locked && !this.dragged && !this.targeting) this.cb.onMarker(m.id); };
       g.addEventListener('click', (ev) => { ev.stopPropagation(); open(); });
