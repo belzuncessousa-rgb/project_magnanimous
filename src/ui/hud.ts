@@ -27,7 +27,12 @@ export class Hud {
       this.vals[k] = v;
       row.append(h('div', { class: `hud-res res-${k}`, 'data-tip': TIPS[k], 'data-ui': UI_ID[k], tabindex: 0 }, h('span', { class: 'hud-key' }, k === 'APP' ? 'Approval' : k), v));
     }
-    this.el = h('div', { class: 'hud paper', hidden: true, 'data-ui': 'hud' }, h('div', { class: 'hud-top' }, this.chapter, this.date), row);
+    this.el = h('section', { class: 'hud paper ledger', hidden: true, 'data-ui': 'hud', role: 'group', 'aria-label': 'Current turn ledger' },
+      h('div', { class: 'ledger-letterhead' },
+        h('img', { src: 'identity/kunasai-arms.svg', alt: '', draggable: 'false' }),
+        h('span', {}, h('small', {}, 'OFFICE OF THE PRESIDENCY'), h('strong', {}, 'Turn ledger'))),
+      h('div', { class: 'hud-top' }, this.chapter, this.date),
+      row);
   }
 
   update(st: GameState, chapterTitle: string) {
@@ -54,3 +59,4 @@ export class Hud {
     set('APP', pct1(nationalApproval(st)));
   }
 }
+
