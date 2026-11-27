@@ -13,10 +13,10 @@ export interface SaveFile {
 export interface Settings {
   textSize: 'small' | 'medium' | 'large';
   transitions: boolean;
-  mapView: 'political' | 'political';
+  mapView: 'political' | 'terrain';
 }
 
-export const DEFAULT_SETTINGS: Settings = { textSize: 'medium', transitions: true, mapView: 'terrain' };
+export const DEFAULT_SETTINGS: Settings = { textSize: 'medium', transitions: true, mapView: 'political' };
 
 type StorageLike = Pick<Storage, 'getItem' | 'setItem' | 'removeItem'>;
 
