@@ -192,7 +192,7 @@ export class MapView {
       s('rect', { x, y, width: w, height: hgt, fill: 'url(#sea-lines)', opacity: '0.24' }),
       s('rect', { class: 'sea-frame', x: x + 3, y: y + 3, width: w - 6, height: hgt - 6, rx: 5 }));
     // The approved Arvain painting is the continuous map surface at every map scale.
-    // Keep game hit areas and political borders above this art as separate layers.
+    // Game hit areas and political borders stay above the artwork as separate layers.
     const atlasArt = s('image', {
       class: 'atlas-art', href: 'map/arvain-terrain-art.png',
       x: this.geo.viewBox.x, y: this.geo.viewBox.y,
