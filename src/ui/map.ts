@@ -119,6 +119,8 @@ export class MapView {
   private view: 'terrain' | 'political' = 'terrain';
   private scale: MapScale = 'continent';
   private tablet: HTMLButtonElement;
+  private tabletScreen: HTMLSpanElement;
+  private atlasArtHref: string;
   private seaLayer: SVGGElement | null = null;
   private glassClipRect: SVGRectElement | null = null;
 
@@ -126,33 +128,34 @@ export class MapView {
     readonly geo: Geometry,
     private cb: MapCallbacks,
   ) {
-    this.base = this.responsivePoliticalFrame((window.innerWidth * 0.58) / Math.max(1, window.innerHeight * 0.86));
+    this.base = this.responsivePoliticalFrame((window.innerWidth * 0.60) / Math.max(1, window.innerHeight * 0.94));
     this.vb = { ...this.base };
     this.el = h('div', { class: 'map', 'data-ui': 'map' });
     const tableBackground = new URL(`${import.meta.env.BASE_URL}map/strategy-table-background.png`, document.baseURI);
     this.el.style.setProperty('--strategy-table-background', `url("${tableBackground.href}")`);
+    this.atlasArtHref = new URL(`${import.meta.env.BASE_URL}map/arvain-terrain-art.png`, document.baseURI).href;
     this.svg = s('svg', { class: 'map-svg', preserveAspectRatio: 'xMidYMid meet', role: 'group', 'aria-label': 'Map of Arvain', tabindex: 0 });
     this.markerLayer = s('g', { class: 'markers' });
     this.markerSvg = s('svg', { class: 'map-svg marker-svg', preserveAspectRatio: 'xMidYMid meet', role: 'group', 'aria-label': 'Available scenes', 'data-ui': 'markers' }, this.markerLayer);
     this.hotLayer = s('g', { class: 'hotspots' });
     this.toastLayer = h('div', { class: 'map-toasts', 'data-ui': 'readables' });
     this.tooltip = h('div', { class: 'map-tooltip', hidden: true });
+    this.tabletScreen = h('span', { class: 'map-tablet-screen' },
+      h('span', { class: 'tablet-status', 'aria-hidden': 'true' }, h('b', {}, '09:41'), h('span', {}, '◉  Wi-Fi  ▰')),
+      h('img', { class: 'map-tablet-wallpaper', src: 'identity/kunasai-flag.svg', alt: '', draggable: 'false' }),
+      h('span', { class: 'map-tablet-shade', 'aria-hidden': 'true' }),
+      h('span', { class: 'map-tablet-apps', 'aria-hidden': 'true' },
+        h('i', { class: 'mini-news' }, h('b', {}, '▤'), h('small', {}, 'News')),
+        h('i', { class: 'mini-social' }, h('b', {}, '◉'), h('small', {}, 'Social')),
+        h('i', { class: 'mini-codex' }, h('b', {}, '✣'), h('small', {}, 'Codex')),
+        h('i', { class: 'mini-reports' }, h('b', {}, '▧'), h('small', {}, 'Reports'))));
     this.tablet = h('button', {
       class: 'map-tablet',
       type: 'button',
-      'aria-label': 'Pick up the presidential tablet',
+      'aria-label': 'Open the tablet where you left it',
       onclick: () => this.cb.onTablet(),
     },
-      h('span', { class: 'map-tablet-screen' },
-        h('span', { class: 'tablet-status', 'aria-hidden': 'true' }, h('b', {}, '09:41'), h('span', {}, '◉  Wi-Fi  ▰')),
-        h('img', { class: 'map-tablet-wallpaper', src: 'identity/kunasai-flag.svg', alt: '', draggable: 'false' }),
-        h('span', { class: 'map-tablet-shade', 'aria-hidden': 'true' }),
-        h('span', { class: 'map-tablet-apps', 'aria-hidden': 'true' },
-          h('i', { class: 'mini-news' }, h('b', {}, '▤'), h('small', {}, 'News')),
-          h('i', { class: 'mini-social' }, h('b', {}, '◉'), h('small', {}, 'Social')),
-          h('i', { class: 'mini-codex' }, h('b', {}, '✣'), h('small', {}, 'Codex')),
-          h('i', { class: 'mini-reports' }, h('b', {}, '▧'), h('small', {}, 'Reports')))),
-      h('span', { class: 'map-tablet-caption' }, 'PRESIDENTIAL TABLET'));
+      this.tabletScreen);
     this.build();
     this.el.append(this.svg, this.toastLayer, this.markerSvg, this.tooltip, this.tablet);
     this.applyViewBox();
@@ -229,7 +232,7 @@ export class MapView {
         id: 'atlas-land-mask', maskUnits: 'userSpaceOnUse', maskContentUnits: 'userSpaceOnUse', 'mask-type': 'alpha',
         x: this.geo.viewBox.x, y: this.geo.viewBox.y, width: this.geo.viewBox.w, height: this.geo.viewBox.h,
       }, s('image', {
-        href: 'map/arvain-terrain-art.png', x: this.geo.viewBox.x, y: this.geo.viewBox.y,
+        href: this.atlasArtHref, x: this.geo.viewBox.x, y: this.geo.viewBox.y,
         width: this.geo.viewBox.w, height: this.geo.viewBox.h, preserveAspectRatio: 'none', filter: 'url(#atlas-land-key)',
       })),
       s('clipPath', { id: 'strategy-glass-clip', clipPathUnits: 'userSpaceOnUse' },
@@ -245,7 +248,7 @@ export class MapView {
     // The approved Arvain painting is the continuous map surface at every map scale.
     // Game hit areas and political borders stay above the artwork as separate layers.
     const atlasArt = s('image', {
-      class: 'atlas-art', href: 'map/arvain-terrain-art.png',
+      class: 'atlas-art', href: this.atlasArtHref,
       x: this.geo.viewBox.x, y: this.geo.viewBox.y,
       width: this.geo.viewBox.w, height: this.geo.viewBox.h,
       preserveAspectRatio: 'none', 'aria-hidden': 'true',
@@ -373,6 +376,15 @@ export class MapView {
       const t = ev.target as Element;
       if (!t.closest('.hot, .hot-offmap, .marker')) this.cb.onBackground();
     });
+  }
+
+  setTabletPreview(screen: HTMLElement) {
+    const clone = screen.cloneNode(true) as HTMLElement;
+    clone.removeAttribute('tabindex');
+    clone.removeAttribute('aria-live');
+    clone.setAttribute('aria-hidden', 'true');
+    clone.classList.remove('is-switching');
+    this.tabletScreen.replaceChildren(h('span', { class: 'map-tablet-preview' }, clone));
   }
 
   setView(view: 'terrain' | 'political') {
