@@ -531,11 +531,33 @@ export class MapView {
       const c = this.toScreen(this.toasts[i]!.at);
       return { at: [c.x, c.y] as Pt, w: el.offsetWidth || 160, h: el.offsetHeight || 24 };
     });
-    const pos = stackPins(pins, obstacles);
+    const pos = stackPins(pins, [...obstacles, ...this.labelRects()], 3, this.glassRect());
     els.forEach((el, i) => {
       el.style.left = `${pos[i]![0]}px`;
       el.style.top = `${pos[i]![1]}px`;
     });
+  }
+
+  /** Screen rectangles (relative to the map element) of every map label currently drawn, so pins keep clear of them. */
+  private labelRects(): Rect[] {
+    const host = this.el.getBoundingClientRect();
+    const rects: Rect[] = [];
+    for (const t of this.svg.querySelectorAll<SVGTextElement>('text')) {
+      const r = t.getBoundingClientRect();
+      if (r.width < 1 || r.height < 1) continue;
+      const cs = getComputedStyle(t);
+      if (cs.visibility === 'hidden' || Number(cs.opacity) < 0.15) continue;
+      rects.push({ x: r.left - host.left - 2, y: r.top - host.top - 1, w: r.width + 4, h: r.height + 2 });
+    }
+    return rects;
+  }
+
+  /** The visible glass display (relative to the map element); pins stay inside it. */
+  private glassRect(): Rect | undefined {
+    const host = this.el.getBoundingClientRect();
+    const r = this.svg.getBoundingClientRect();
+    if (r.width < 1) return undefined;
+    return { x: r.left - host.left + 4, y: r.top - host.top + 4, w: r.width - 8, h: r.height - 8 };
   }
 
   setTargeting(valid: string[] | null) {

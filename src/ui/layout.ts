@@ -60,7 +60,11 @@ const hit = (a: Rect, b: Rect, pad: number) =>
  * Place pins (centred horizontally on their anchor, just below it) so they overlap neither each other nor the
  * obstacles (markers). Each pin slides down, then up, in small steps until free. Returns top-left corners.
  */
-export function stackPins(pins: { at: P; w: number; h: number }[], obstacles: Rect[], pad = 4): P[] {
+/**
+ * Place pins near their anchors without overlapping each other or the obstacles (markers, map labels).
+ * With `bounds`, a pin is only placed fully inside it unless no free slot exists (then the nearest free slot wins).
+ */
+export function stackPins(pins: { at: P; w: number; h: number }[], obstacles: Rect[], pad = 4, bounds?: Rect): P[] {
   const placed: Rect[] = [...obstacles];
   const out: P[] = [];
   const order = pins.map((_, i) => i).sort((a, b) => pins[a]!.at[1] - pins[b]!.at[1] || pins[a]!.at[0] - pins[b]!.at[0]);
@@ -81,6 +85,7 @@ export function stackPins(pins: { at: P; w: number; h: number }[], obstacles: Re
         }
       }
       for (const cand of cands) {
+        if (bounds && !inside(bounds, cand)) continue;
         if (!placed.some((r) => hit(r, cand, pad))) { found = cand; break search; }
       }
     }
@@ -89,4 +94,8 @@ export function stackPins(pins: { at: P; w: number; h: number }[], obstacles: Re
   }
   out.push(...res);
   return out;
+}
+
+function inside(b: Rect, r: Rect): boolean {
+  return r.x >= b.x && r.y >= b.y && r.x + r.w <= b.x + b.w && r.y + r.h <= b.y + b.h;
 }
