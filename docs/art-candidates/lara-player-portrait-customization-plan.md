@@ -98,6 +98,7 @@ Resolve the portrait deterministically from those three IDs. Each selector's pre
 
 ## UI/UX and scene-art handoff
 
+- **Cross-session handoff:** This note is being added by a separate assistant session with the strongest current Lara-design context. Luc explicitly instructed this session to relay the decisions to the UI/UX work: use three one-at-a-time selectors for outfit, hairstyle, and paired pose/expression; keep the other selections fixed when one changes; plan 168 pre-rendered portraits; and add a small framed portrait of Lara on her own desk to the scene art.
 - The customization screen should present three clear selectors-outfit, hairstyle, and pose/expression-with one complete portrait preview. A change to one selector leaves the other two visible selections fixed. Arrows/carousels should allow players to browse without moving through all 168 portraits as one flat list.
 - Lara is usually offscreen in play. For the presidential office art plan, include a small physical framed portrait of Lara on her own desk. Make it a plausible formal portrait in an understated frame, visible as a warm environmental detail rather than a joke or a prominent hero shot. Use the approved Lara identity and established art style.
 - Keep the customization portrait catalog separate from the desk prop. The framed desk portrait is a scene asset and should not change when the player edits Lara's appearance unless a later implementation deliberately supports that link.
