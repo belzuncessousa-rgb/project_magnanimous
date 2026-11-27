@@ -1,5 +1,6 @@
 /* Stylesheet entry point. Files load in this order and LATER FILES OVERRIDE EARLIER ONES (same cascade as the old
    single src/styles.css). See src/styles/README.md before adding rules. */
+@import './fonts/fonts.css';
 @import './00-base.css';
 @import './01-map.css';
 @import './02-rest-ui-tutorial.css';
