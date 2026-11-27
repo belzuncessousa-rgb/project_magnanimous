@@ -27,13 +27,13 @@ section. Move finished tasks to **Done** with the commit hash.
 | C-11 | claude | todo | ui, ux | **Verify resting tablet state.** Confirm the resting device shows the last-used app/page after News, Social, Codex and Reports; fix only if the live behavior fails. Capture Social opened and resting states. | `docs/design/G-02-visual-review.md` |
 | C-12 | claude | doing | ux | **Capture current review screens.** Provide 1600×900 and 1280×800 map, tablet Social, dialogue, and title/pause captures after the current style cleanup. | `docs/design/G-02-visual-review.md` |
 | C-13 | claude | todo | tech | **Merge legacy CSS layers per surface.** After C-02 each surface still spans 2–4 files (see `src/styles/README.md`). Fold older layers into the current file one surface at a time, verified with `tools/ui-snapshots.cjs`. | after G-02 fixes |
+| G-08 | chatgpt | doing | art | **Refine the seamless sea tile.** Improve JPEG edge continuity and verify the replacement in the live map before marking complete. | `public/map/sea-tile.jpg`; `docs/design/G-02-visual-review.md` |
 
 ## Done
 
 | ID | Owner | Task | Commit |
 |---|---|---|---|
 | G-01 | chatgpt | Completed the G-01 design-index questions and recorded art direction in `docs/ART-UI-CANON.md`. | `4bd8bac` |
-| G-08 | chatgpt | Replaced the mirrored sea crop with a 1024×1024 painted seamless texture at `public/map/sea-tile.jpg`. | `d49ced7` |
 | C-02 | claude | `src/styles.css` → `src/styles/*.css` (21 files in cascade order + README). Removed 624 overridden declarations and 107 rules for elements the UI never creates; CSS 94 → 72 KB; pixel-identical on 48 captured screens. Tools: `css-dedupe.mjs`, `css-unused.mjs`, `ui-snapshots.cjs`. | (see log) |
 | C-01 | claude | Map fitted exactly inside the painted desk glass (any aspect), whole glass filled with atlas sea, atlas edges feathered, Federation token moved into visible water. Screens: `docs/screenshots/collab/c01-after*.jpg`. | (see log) |
 | C-00 | claude | Collaboration setup: `AGENTS.md`, board, log, design index; stray root screenshots moved to `docs/screenshots/`. | (this commit) |
