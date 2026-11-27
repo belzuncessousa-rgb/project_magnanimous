@@ -9,7 +9,7 @@ import { costText, int, militaryWord, millions, money, pct1, relationWord, stabi
 import { Hud } from './hud';
 import { MapView, OFFMAP, type Geometry, type MarkerSpec } from './map';
 import { showBudget, showDebt, showVote } from './screens';
-import { showTablet, type TabletApp, type TabletOptions } from './tablet';
+import { showTablet, type TabletApp, type TabletOptions, type TabletPage } from './tablet';
 import { tokenFor } from './tokens';
 import { VNView } from './vn';
 
@@ -29,7 +29,7 @@ export class App {
   private titleScreen: HTMLElement | null = null;
   private targeting: FreeAction | null = null;
   private latestEdition: Edition | null = null;
-  private lastTabletApp: TabletApp = 'home';
+  private lastTabletPage: TabletPage = { app: 'home' };
   private busy = false;
   private hasTutorial = false;
   private card = h('div', { class: 'readable-card paper', hidden: true });
@@ -235,10 +235,11 @@ export class App {
     this.hideInfo();
     this.hideCard();
     this.sidebar.classList.remove('open');
-    void showTablet(this.root, this.tabletOptions(this.latestEdition ?? this.publishedEdition(), this.lastTabletApp));
+    void showTablet(this.root, this.tabletOptions(this.latestEdition ?? this.publishedEdition(), this.lastTabletPage));
   }
 
-  private tabletOptions(edition: Edition, initialApp: TabletApp = 'home', footer?: string, closeLabel?: string): TabletOptions {
+  private tabletOptions(edition: Edition, initial: TabletApp | TabletPage = 'home', footer?: string, closeLabel?: string): TabletOptions {
+    const initialPage: TabletPage = typeof initial === 'string' ? { app: initial } : initial;
     const g = this.game!;
     const ids = new Set(['lara', ...g.state.completedScenes.flatMap((id) => g.scene(id)?.meta.portraits ?? [])]);
     const people = Object.values(g.state.actors).filter((actor) => actor.kind === 'character' && ids.has(actor.id));
@@ -250,12 +251,12 @@ export class App {
         .filter((popup) => popup.kind === 'report' && seenReports.has(popup.id))
         .sort((a, b) => g.state.shownPopups.indexOf(b.id) - g.state.shownPopups.indexOf(a.id))
         .map((popup) => ({ popup, read: g.isRead(popup.id) })),
-      initialApp,
+      initialPage,
       footer,
       closeLabel,
-      onAppChange: (app, screen) => {
-        this.lastTabletApp = app;
-        this.map.setTabletPreview(screen);
+      onAppChange: (_app, screen, page) => {
+        this.lastTabletPage = page;
+        this.map.setTabletPreview(screen, page.scroll ?? 0);
       },
       onOpenReport: (id) => {
         const game = this.game;

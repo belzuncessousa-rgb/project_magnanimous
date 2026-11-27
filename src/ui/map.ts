@@ -421,13 +421,14 @@ export class MapView {
     });
   }
 
-  setTabletPreview(screen: HTMLElement) {
+  setTabletPreview(screen: HTMLElement, scroll = 0) {
     const clone = screen.cloneNode(true) as HTMLElement;
     clone.removeAttribute('tabindex');
     clone.removeAttribute('aria-live');
     clone.setAttribute('aria-hidden', 'true');
     clone.classList.remove('is-switching');
     this.tabletScreen.replaceChildren(h('span', { class: 'map-tablet-preview' }, clone));
+    clone.scrollTop = scroll;
   }
 
   setView(view: 'terrain' | 'political') {
