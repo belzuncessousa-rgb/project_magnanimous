@@ -562,12 +562,15 @@ export class App {
       for (const el of document.querySelectorAll('[aria-describedby="ui-tip"]')) el.removeAttribute('aria-describedby');
     };
     document.addEventListener('mouseover', (ev) => {
-      const el = (ev.target as Element).closest<HTMLElement>('[data-tip]');
+      let el = (ev.target as Element).closest<HTMLElement>('[data-tip]');
+      // pins are re-rendered under the cursor when a card opens; their titles would cover the card
+      if (el?.classList.contains('map-toast') && !this.card.hidden) el = null;
       if (el) show(el);
       else hide();
     });
     document.addEventListener('focusin', (ev) => {
-      const el = (ev.target as Element).closest<HTMLElement>('[data-tip]');
+      // keyboard focus only: a click already hid the tip on pointerdown and must not bring it back over what it opened
+      const el = (ev.target as Element).matches(':focus-visible') ? (ev.target as Element).closest<HTMLElement>('[data-tip]') : null;
       if (el) show(el);
       else hide();
     });

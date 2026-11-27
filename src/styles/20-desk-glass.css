@@ -170,3 +170,32 @@ body.vn-active .glass-hud, .map.dim .glass-hud { opacity: .4; }
 .ui-layer .sidebar.open { visibility: visible; transition: transform .25s ease; }
 .offmap-token-body { transform: scale(calc(1.55 / var(--zoom, 1))); }
 .offmap-token:hover .offmap-token-body, .offmap-token:focus-visible .offmap-token-body, .offmap-token.selected .offmap-token-body { transform: scale(calc(1.65 / var(--zoom, 1))); }
+
+/* Never a rectangular focus box on map targets: focus is the gold contour on the actual geometry
+   (Interface system rule). Covers the Kunasai group, region/country shapes, pins and nameplates. */
+.map-svg [tabindex]:focus, .map-svg [tabindex]:focus-visible, .marker-svg [tabindex]:focus { outline: none; }
+
+/* Map readables as physical objects (pairs with the pin silhouettes). */
+.ui-layer .readable-card h3 { white-space: normal; overflow: visible; text-overflow: clip; }
+.ui-layer .readable-card.paper { border: 0; border-radius: 2px; box-shadow: 0 2px 3px #04100b59, 0 18px 36px #04100b8c; }
+.ui-layer .readable-card .info-sub { font: 700 9px var(--ui-sans); letter-spacing: .18em; text-transform: uppercase; color: #7b7565; }
+.ui-layer .readable-card .x { color: #6d6857; }
+/* reaction: a press clipping — newsprint, torn edges, serif headline */
+.ui-layer .readable-card.kind-reaction {
+  padding: 1.1rem 1.2rem 1.2rem; background: #efe9d8 linear-gradient(180deg, #f5f0e1, #e9e2cd); color: #26251f;
+  clip-path: polygon(0 3px, 6% 0, 14% 4px, 23% 1px, 34% 4px, 46% 0, 57% 3px, 68% 0, 79% 4px, 90% 1px, 100% 3px, 100% calc(100% - 3px), 92% 100%, 81% calc(100% - 4px), 70% 100%, 58% calc(100% - 3px), 45% 100%, 33% calc(100% - 4px), 21% 100%, 10% calc(100% - 3px), 0 100%);
+  transform: rotate(-.6deg);
+}
+.ui-layer .readable-card.kind-reaction h3 { font: 700 1.35em/1.15 'Source Serif 4', Georgia, serif; color: #1f1e1a; }
+.ui-layer .readable-card.kind-reaction .readable-text { font: 14px/1.55 'Source Serif 4', Georgia, serif; columns: 2 150px; column-gap: 1.1rem; column-rule: 1px solid #00000014; }
+/* note: a correspondence card — heavy cream stock with a brass edge */
+.ui-layer .readable-card.kind-note { padding: 1.2rem 1.3rem 1.1rem; background: #fbf6e6; color: #2a2a24; box-shadow: inset 0 0 0 6px #fbf6e6, inset 0 0 0 7px #c9a96488, 0 2px 3px #04100b59, 0 18px 36px #04100b8c; transform: rotate(.5deg); }
+.ui-layer .readable-card.kind-note h3 { font: 600 1.2em/1.2 'Source Serif 4', Georgia, serif; color: #173f35; }
+.ui-layer .readable-card.kind-note .readable-text { font: italic 15px/1.6 'Source Serif 4', Georgia, serif; }
+.ui-layer .readable-card.kind-note .readable-from { font: 600 1.35em 'Caveat', cursive; color: #1f2f57; }
+/* incident: a dispatch slip — amber band, typed text */
+.ui-layer .readable-card.kind-incident { padding: 0 1.1rem 1rem; background: #f4f1e8; color: #26251f; border-top: 0; }
+.ui-layer .readable-card.kind-incident .info-head { margin: 0 -1.1rem .6rem; padding: .7rem 1.1rem .6rem; background: repeating-linear-gradient(-45deg, #d9a53b 0 10px, #c8922a 10px 20px); }
+.ui-layer .readable-card.kind-incident .info-sub, .ui-layer .readable-card.kind-incident h3, .ui-layer .readable-card.kind-incident .x { color: #241a06; }
+.ui-layer .readable-card.kind-incident h3 { font: 700 1.1em/1.2 var(--ui-sans); letter-spacing: .01em; }
+.ui-layer .readable-card.kind-incident .readable-text { font: 13.5px/1.6 ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace; }
