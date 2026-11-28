@@ -219,3 +219,8 @@ Only the **new GDD** in Notion ("📖 GDD — Project Magnanimous") counts. The 
 - Give News, Social, Codex and Reports individually considered in-app layouts. Social should read as a familiar vertically scrolling short-post feed, with inline photos only where authored content/art exists; do not invent accounts, reactions, engagement counts or story mechanics.
 - Remove the top-of-map ARVAINE/ARVAIN label. The interactive map must read as a purpose-built screen seated in the table's glass opening, not a separate rectangular map image laid over leather; sea texture should continue around the atlas within the glass.
 - Replace plain circular map markers that rely on a letter or tiny generic symbol with more distinctive, tactile tokens whose silhouette and material communicate their role. Keep them tied to actual cities/locations, readable at PC scale, and away from map labels.
+
+
+## Seated dialogue portraits (author, 2026-11-28)
+- Keep seated characters in the foreground portrait positions. Lower the portrait until the character reads naturally as seated at the table; the character may appear to sit in air.
+- A chair does not need to match the room furniture. Do not spend art/UI work on matching chairs or room-specific chair/table overlays for this purpose.
