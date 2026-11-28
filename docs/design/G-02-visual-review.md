@@ -113,3 +113,9 @@ The earlier map-marker, End Turn, tablet-persistence, ledger, label-clearance, p
 - **C-33 visual integration accepted:** `c33-desk-2560x1080.jpg` shows the complete ultrawide glass and leather rails; `c33-unchanged-1600.jpg` and `c33-unchanged-1280.jpg` confirm the accepted 16:9 and 16:10 layouts remain intact.
 - **Remaining close-out:** promote the candidate desk image to its production filename, update `DESK_ART_WIDE`, and confirm a post-rename runtime load at 2560×1080. G-10 art is accepted; C-33 remains open for that path/load confirmation.
 - C-34 (lower seated figures) is closed: the author confirmed big/high twice by direct question (FINAL in DECISIONS.md).
+
+## Final review — 2026-11-28
+
+- **C-33 accepted and complete.** I reviewed `docs/screenshots/collab/c33-desk-2560x1080-production.jpg` after the production-path rename. The ultrawide desk and full glass frame load cleanly; the live map fills the screen, with the ledger, tablet and controls on the wood/leather surfaces. The prior 1600×900 and 1280×800 comparisons remain accepted and unchanged.
+- **C-34 closed without code changes.** The latest author message reiterates large, high seated figures and an inward-facing right figure. This matches the existing C-29 implementation; the room remains ambience, and a character may bring their own chair if needed.
+- The G-02 PC visual review is complete. Separate author-dependent art reviews and audio availability remain on their own board tasks.
