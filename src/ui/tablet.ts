@@ -84,7 +84,7 @@ export function showTablet(root: HTMLElement, options: TabletOptions): Promise<v
         class: 'np-app-icon-button', 'data-app': app.id, 'aria-current': 'false',
         'aria-label': app.name,
         onclick: () => openApp(app.id),
-      }, h('span', { class: `np-app-icon np-icon-${app.id}`, 'aria-hidden': 'true' }, app.icon),
+      }, h('span', { class: `np-app-icon np-icon-${app.id}`, 'aria-hidden': 'true' }, h('img', { src: `tablet/apps/${app.id}.svg`, alt: '', draggable: 'false' })),
       h('span', { class: 'np-app-name' }, app.name));
       const count = app.id === 'reports' ? unreadReports() : app.id === 'news' ? newsCount : 0;
       if (count > 0) button.append(h('span', { class: 'np-app-count', 'data-count': app.id }, String(count)));
@@ -123,7 +123,7 @@ export function showTablet(root: HTMLElement, options: TabletOptions): Promise<v
       const app = APPS.find((entry) => entry.id === id)!;
       return h('div', { class: 'np-appbar' },
         h('button', { class: 'np-home-back', 'aria-label': 'Back to home screen', onclick: () => openApp('home') }, '‹'),
-        h('span', { class: `np-appbar-icon np-icon-${id}`, 'aria-hidden': 'true' }, app.icon),
+        h('span', { class: `np-appbar-icon np-icon-${id}`, 'aria-hidden': 'true' }, h('img', { src: `tablet/apps/${id}.svg`, alt: '', draggable: 'false' })),
         h('strong', {}, app.name),
         h('span', { class: 'np-appbar-date' }, options.edition.dateLabel));
     };

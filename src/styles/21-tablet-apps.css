@@ -161,3 +161,10 @@
 .np-screen .np-reports, .np-screen .np-codex { display: flex; flex-direction: column; height: 100%; padding-bottom: 0; }
 .np-reports-body, .np-codex-body { flex: 1; min-height: 0; }
 .np-codex-index, .np-screen .np-reports .np-report-list, .np-report-reader { overflow-y: auto; }
+
+/* C-26: ChatGPT's dimensional app tiles (public/tablet/apps/*.svg) on the home screen and in each app bar.
+   The SVG is the whole tile, so the old coloured squares, borders and glyph styling are dropped. */
+.np-app-icon, .np-appbar-icon { padding: 0; border: 0; background: none; box-shadow: none; overflow: visible; }
+.np-app-icon img, .np-appbar-icon img { display: block; width: 100%; height: 100%; filter: drop-shadow(0 4px 6px #04100b66); }
+.np-appbar-icon img { filter: drop-shadow(0 1px 2px #04100b55); }
+.np-appbar-icon { width: 28px; height: 28px; }
