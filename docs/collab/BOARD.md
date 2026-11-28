@@ -30,6 +30,7 @@ section. Move finished tasks to **Done** with the commit hash.
 | C-22 | claude | review | ui | **Congress vote as a whip-count sheet:** national letterhead, live hemicycle (one dot per seat, coloured by stance, dashed majority line, yes-count), party rows with stance dots; "against" in slate ink, not red. | `docs/screenshots/collab/c22-*.jpg` |
 | C-24 | claude | review | ui | **Title as the portfolio cover:** green hide, gilt tooled border, embossed arms, gilt title, NEW GAME / CONTINUE / SETTINGS as gilt lettering (no button boxes). Also fixed pin icons getting square backdrops when ≤ 6 pins. | `docs/screenshots/collab/c24-*.jpg` |
 | C-25 | claude | review | ui, ux | **Country labels and off-map flag tokens.** Restyle country names as native cartographic labels; replace off-map brass nameplates with tactile 3D flag pins. Keep on-map country selection on exact land geometry. | `docs/design/G-11-offmap-flag-tokens-and-country-labels.md`; country labels reviewed; off-map flag-pin faces wait for author/world flag canon. |
+| C-29 | claude | review | ui | **Seated staging (author decision 2026-11-28).** Seated portraits keep the foreground slots and sit 12vh lower, cropped by the bottom edge, so they read as seated at the table; the unused G-06 foreground-overlay code is removed. | `docs/screenshots/collab/c29-*.jpg` |
 
 ## Done
 

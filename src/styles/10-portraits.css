@@ -6,3 +6,8 @@
 .vn .portrait[data-pose="standing"] .has-master .silhouette { height: 88vh; }
 .vn[data-room="residence-night"] .has-master .silhouette { height: 80vh; }
 .vn .has-master figcaption { display: none; }
+
+/* Author decision 2026-11-28 (seated dialogue portraits): seated figures stay in the foreground slots but sit
+   lower, cropped by the bottom edge, so they read as seated at the table. No chair matching or overlays. */
+.vn .portrait[data-pose="seated"] { overflow: hidden; }
+.vn .portrait[data-pose="seated"] .has-master { transform: translateY(12vh); }
