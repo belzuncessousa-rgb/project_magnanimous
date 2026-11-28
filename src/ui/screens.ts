@@ -20,6 +20,7 @@ import {
 import { applyDebtPolicy, debtLimits, debtPreview, type DebtPolicy } from '../game/debt';
 import { TUNING } from '../core/tuning';
 import { clear, h } from './dom';
+import { letterhead, showDossier, type DossierPage } from './dossier';
 import { bn, costText as fmtCost } from './format';
 
 const TIER_LABEL: Record<Tier, string> = { cut: 'Cut', low: 'Low', regular: 'Regular', high: 'High' };
@@ -70,56 +71,83 @@ function close(o: HTMLElement): Promise<void> {
 
 // ------------------------------------------------------------------------------------------------ budget
 
-export function showBudget(root: HTMLElement, state: GameState, ministries: Ministry[]): Promise<void> {
-  return new Promise((resolve) => {
-    if (!ministries.length) { resolve(); return; }
-    const choices: Record<string, BudgetChoice> = {};
-    const cur = currentBudget(state, ministries);
-    for (const m of ministries) {
+/**
+ * The budget as a desk document (author direction 2026-11-28): one sheet per ministry, then a summary sheet to sign.
+ * Only names and costs are shown — never effects, never explanations.
+ *   formal = true  → the green document case; signing applies the budget.
+ *   formal = false → loose working papers for the simulation; nothing is applied.
+ */
+export async function showBudget(root: HTMLElement, state: GameState, ministries: Ministry[], formal = true): Promise<boolean> {
+  if (!ministries.length) return false;
+  const choices: Record<string, BudgetChoice> = {};
+  const cur = currentBudget(state, ministries);
+  for (const m of ministries) {
+    const tiers = TIERS.filter((t) => m.tiers[t]);
+    choices[m.id] = cur[m.id] ?? { tier: tiers.includes('regular') ? 'regular' : tiers[0]! };
+    if (choices[m.id]!.tier === 'low' && !choices[m.id]!.initiative) choices[m.id]!.initiative = m.initiatives[0]?.id;
+  }
+  let signed = false;
+  const office = 'Ministry of the Treasury';
+  const ministryPage = (m: Ministry): DossierPage => ({
+    tab: m.name,
+    render: () => {
+      const c = choices[m.id]!;
       const tiers = TIERS.filter((t) => m.tiers[t]);
-      choices[m.id] = cur[m.id] ?? { tier: tiers.includes('regular') ? 'regular' : tiers[0]! };
-      if (choices[m.id]!.tier === 'low' && !choices[m.id]!.initiative) choices[m.id]!.initiative = m.initiatives[0]?.id;
-    }
-    const rows = h('div', { class: 'budget-rows' });
-    const total = h('div', { class: 'budget-total' });
-    const render = () => {
-      clear(rows);
-      for (const m of ministries) {
-        const c = choices[m.id]!;
-        const tiers = TIERS.filter((t) => m.tiers[t]);
-        rows.append(
-          h('div', { class: 'budget-row' },
-            h('div', { class: 'budget-name' }, h('strong', {}, m.name), m.minister ? h('span', { class: 'budget-minister' }, m.minister) : null),
-            h('div', { class: 'budget-tiers', role: 'group', 'aria-label': `${m.name} funding tier` },
-              ...tiers.map((t) =>
-                h('button', {
-                  class: `tier${c.tier === t ? ' active' : ''}`,
-                  'aria-pressed': String(c.tier === t),
-                  'data-tip': m.tiers[t]!.label ?? (t === 'low' ? 'Keeps one initiative alive' : t === 'cut' ? 'Shuts the ministry’s programmes' : t === 'high' ? 'Everything, and faster' : 'Every initiative funded'),
-                  onclick: () => {
-                    choices[m.id] = { tier: t, initiative: t === 'low' ? (c.initiative ?? m.initiatives[0]?.id) : undefined };
-                    render();
-                  },
-                }, TIER_LABEL[t], h('span', { class: 'tier-fc' }, bn(m.tiers[t]!.fc))))),
-            c.tier === 'low' && m.initiatives.length
-              ? h('div', { class: 'budget-init' }, 'Keep: ',
-                  ...m.initiatives.map((i) =>
-                    h('button', { class: `init${c.initiative === i.id ? ' active' : ''}`, 'aria-pressed': String(c.initiative === i.id), 'data-tip': i.summary || undefined, onclick: () => { c.initiative = i.id; render(); } }, i.name)))
-              : c.tier === 'cut' ? h('div', { class: 'budget-init muted' }, 'No initiatives') : h('div', { class: 'budget-init muted' }, m.initiatives.map((i) => i.name).join(' · ')),
-          ),
-        );
+      const sheet = h('div', { class: 'sheet sheet-budget' },
+        formal ? letterhead(office) : h('div', { class: 'sheet-draft-mark' }, 'Working draft'),
+        h('h2', { class: 'sheet-title' }, m.name),
+        m.minister ? h('p', { class: 'sheet-sub' }, m.minister) : '');
+      const list = h('div', { class: 'budget-lines', role: 'radiogroup', 'aria-label': `${m.name} allocation` });
+      for (const t of tiers) {
+        const on = c.tier === t;
+        list.append(h('button', {
+          class: `budget-line${on ? ' chosen' : ''}`, role: 'radio', 'aria-checked': String(on),
+          onclick: () => {
+            choices[m.id] = { tier: t, initiative: t === 'low' ? (c.initiative ?? m.initiatives[0]?.id) : undefined };
+            sheet.replaceWith(ministryPage(m).render());
+          },
+        }, h('span', { class: 'budget-mark', 'aria-hidden': 'true' }), h('span', { class: 'budget-line-name' }, TIER_LABEL[t]),
+          h('span', { class: 'budget-line-cost' }, `${bn(m.tiers[t]!.fc)} per period`)));
       }
+      sheet.append(list);
+      if (m.initiatives.length) {
+        const keepOne = c.tier === 'low';
+        sheet.append(h('h3', { class: 'sheet-section' }, keepOne ? 'Programme kept' : 'Programmes'),
+          h('ul', { class: 'budget-programmes' }, ...m.initiatives.map((i) => {
+            const funded = c.tier === 'regular' || c.tier === 'high' || (keepOne && c.initiative === i.id);
+            return h('li', { class: funded ? 'funded' : 'unfunded' },
+              keepOne
+                ? h('button', { class: `programme-pick${c.initiative === i.id ? ' chosen' : ''}`, 'aria-pressed': String(c.initiative === i.id), onclick: () => { c.initiative = i.id; sheet.replaceWith(ministryPage(m).render()); } }, i.name)
+                : h('span', {}, i.name),
+              i.costOnce ? h('span', { class: 'budget-line-cost' }, `${bn(i.costOnce)} once`) : '');
+          })));
+      }
+      return sheet;
+    },
+  });
+  const summary: DossierPage = {
+    tab: formal ? 'Signature' : 'Totals',
+    render: () => {
       const fc = budgetCostPerTurn(ministries, choices);
       const free = formulaFC(state) - debtInterestDue(state);
-      total.textContent = `Spending ${bn(fc)} per turn · about ${bn(free)} per turn left after fixed costs and interest`;
-      total.classList.toggle('over', fc > free);
-    };
-    const card = h('div', { class: 'screen-card paper budget' },
-      h('div', { class: 'screen-head' }, h('div', { class: 'executive-letterhead' }, h('img', { src: 'identity/kunasai-arms.svg', alt: '' }), h('span', {}, 'Republic of Kunasai · Ministry of the Treasury')), h('h2', {}, 'The Budget'), h('div', { class: 'screen-sub' }, 'Set each ministry’s tier. Costs are paid every turn.')),
-      rows,
-      h('div', { class: 'screen-foot' }, total, h('button', { class: 'btn primary', onclick: async () => { applyBudget(state, ministries, choices); await close(o); resolve(); } }, 'Sign the budget')));
-    render();
-    const o = overlay(root, 'budget-screen', card);
+      const over = fc > free;
+      return h('div', { class: 'sheet sheet-budget sheet-summary' },
+        formal ? letterhead(office) : h('div', { class: 'sheet-draft-mark' }, 'Working draft'),
+        h('h2', { class: 'sheet-title' }, formal ? 'Budget of the Republic' : 'Draft totals'),
+        h('table', { class: 'budget-totals' },
+          h('tbody', {},
+            ...ministries.map((m) => h('tr', {}, h('th', {}, m.name), h('td', {}, TIER_LABEL[choices[m.id]!.tier]), h('td', {}, bn(m.tiers[choices[m.id]!.tier]!.fc)))),
+            h('tr', { class: 'total' }, h('th', {}, 'Total per period'), h('td', {}), h('td', {}, bn(fc))),
+            h('tr', { class: `available${over ? ' over' : ''}` }, h('th', {}, 'Available per period'), h('td', {}), h('td', {}, bn(free))))),
+        formal ? h('div', { class: `signature-line${signed ? ' signed' : ''}` }, h('span', { class: 'signature' }, 'Lara Vento'), h('small', {}, 'President of the Republic')) : '');
+    },
+  };
+  return showDossier(root, {
+    variant: formal ? 'case' : 'papers',
+    title: formal ? 'Budget of the Republic' : 'Budget working papers',
+    pages: [...ministries.map(ministryPage), summary],
+    finish: formal ? { label: 'Sign the budget', onFinish: () => { signed = true; applyBudget(state, ministries, choices); } } : undefined,
+    closeLabel: 'Put the papers down',
   });
 }
 

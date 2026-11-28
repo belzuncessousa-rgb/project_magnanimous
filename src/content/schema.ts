@@ -592,6 +592,8 @@ export interface Initiative {
   summary: string;
   perTurn: CondEffect[];
   once: CondEffect[];
+  /** One-time cost in FC, shown on budget papers when the content provides it (`cost_once`). */
+  costOnce?: number;
 }
 
 export interface Ministry {
@@ -675,6 +677,7 @@ export function normalizeMinistries(raw: unknown, warn: (m: string) => void): Mi
         summary: s(i, 'summary', 'description') ?? '',
         perTurn: effectsFromTokens(pick(i, 'effects_per_turn', 'effectsPerTurn', 'effects'), warn, `initiative ${s(i, 'id')}`),
         once: effectsFromTokens(pick(i, 'once'), warn, `initiative ${s(i, 'id')}`),
+        costOnce: typeof pick(i, 'cost_once', 'one_time_cost') === 'number' ? (pick(i, 'cost_once', 'one_time_cost') as number) : undefined,
       })),
     };
   });

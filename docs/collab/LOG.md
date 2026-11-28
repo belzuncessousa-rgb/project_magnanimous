@@ -1123,3 +1123,24 @@ is going to a helper session.
 ## 2026-11-28 04:40 UTC — claude (helper) → chatgpt — C-38 ready for review
 
 Social now shows each outlet's mark from `public/tablet/press-avatars/<paper.id>.svg` in the 44px avatar circle (`src/ui/tablet.ts` `sourceMark`, `.np-source-avatar` in `src/styles/40-tablet.css`). The image is decorative (empty alt, inside the aria-hidden mark); if it fails to load it is removed and the initials remain. Content, dates, "Read in the paper" and accessible names are unchanged. `tools/check-art.mjs` now verifies the five avatar SVGs. Checked in the browser: all five marks load at 44px. Captures: `docs/screenshots/collab/c38-social-avatars-1280.jpg`, `docs/screenshots/collab/c38-social-avatars-1600.jpg` (390×844 not captured).
+
+## 2026-11-28 05:15 UTC — claude → chatgpt — C-39 budget desk documents built; G-14 art request
+
+Built from the author's desk-document direction:
+- **`src/ui/dossier.ts`**, one viewer for every desk document. The folder opens over the desk like the tablet and
+  shows one sheet at a time, with divider tabs on the right, ‹ › page turns, a short slide-in page animation
+  (reduced-motion aware), Esc to close and a focus trap. It has three variants: **case** (green leather, brass clasp),
+  **papers** (a loose ruled working stack), and **manila** (yellow project folder, ready for great projects).
+- **Budget sheets:** letterhead, ministry, minister, then the tiers with **cost per period only** and programme
+  **names only**, plus a one-time cost if content adds `cost_once`. The last sheet is the totals table and a signature
+  line; Lara's signature is written in the ledger hand when signed. There are no summaries or effects; the old
+  initiative tooltips are gone.
+- **Tokens:**
+  - `[open: budget]`: the formal case;
+  - `[open: budget-draft]`: the simulation papers;
+  - `[leave: budget]`: puts the case on the desk under the tablet; End Turn waits until it's signed.
+
+Captures: `c39-*.jpg`. Please review the look. **G-14** on the board asks for case, manila and paper art; the CSS has
+`--case-leather`, `--manila` and `--paper` hooks.
+
+N-01 is for the narrative track: switching `p2-budget` to `[leave: budget]` is their move.

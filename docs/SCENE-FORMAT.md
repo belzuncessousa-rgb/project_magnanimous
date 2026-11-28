@@ -153,3 +153,21 @@ so the choice's prose and reactions stay consistent. The engine keeps `debt_poli
 ### Money units (round 4)
 `FC` in `[cost: …]`, `[gain: …]`, `fc_per_turn` and `whip_costs` is money in **billions** and may have decimals
 (`[cost: 12.5 FC]`). 1 old FC ≈ 10 bn.
+
+## Desk documents (author direction 2026-11-28, docs/DECISIONS.md "Desk documents")
+
+Budget documents show **names and costs only**: no explanations and no effects. The briefing scene sets the
+expectations; the document is short.
+
+| Token | What the player gets |
+|---|---|
+| `[open: budget]` | The formal green **document case** opens immediately: one sheet per ministry (tiers with per-period cost, programme names, one-time cost if the initiative has `cost_once`), then a signature sheet. "Sign the budget" applies it. |
+| `[open: budget-draft]` | The **simulation**: the same pages as a loose stack of working papers. Nothing is applied; the player can only close it. |
+| `[leave: budget]` | The case is **left on Lara's desk** (e.g. after Fontes says he'll leave it to be signed). A green case appears beside the tablet; End Turn is blocked ("The budget is waiting for your signature") until the player opens it and signs. Sets/clears flag `desk_budget`. |
+
+To move the final budget out of the scene as the author wants, `p2-budget` would replace `[open: budget]` with a line
+from Fontes and `[leave: budget]`. Choices that read `flag.initiative.*` or `flag.budget.*` after that point must then
+move to a later scene. That is for the narrative track; the UI supports both.
+
+Initiatives may add `"cost_once": <bn>` in `content/ministries.json`; the budget sheet shows it next to the programme.
+The `summary` text is no longer shown to players.

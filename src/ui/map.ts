@@ -96,6 +96,7 @@ export interface MapCallbacks {
   onBackground(): void;
   onReadable(id: string, clientX: number, clientY: number): void;
   onTablet(): void;
+  onDeskCase(): void;
   onScaleChange(scale: MapScale): void;
 }
 
@@ -137,6 +138,7 @@ export class MapView {
   private scale: MapScale = 'continent';
   private tablet: HTMLButtonElement;
   private tabletScreen: HTMLSpanElement;
+  private deskCase!: HTMLButtonElement;
   /** Last measured size of the open tablet (.np-wrap) in CSS px; the resting clone is laid out at this size. */
   private deviceSize = { w: 1220, h: 790 };
   private atlasArtHref: string;
@@ -172,9 +174,12 @@ export class MapView {
     },
       this.tabletScreen);
     this.build();
+    // The official document case: placed on the desk by a scene (`[leave: budget]`), opened like the tablet.
+    this.deskCase = h('button', { class: 'desk-case', type: 'button', hidden: true, 'data-ui': 'desk-case', 'aria-label': 'Open the budget document case', onclick: () => this.cb.onDeskCase() },
+      h('span', { class: 'desk-case-clasp', 'aria-hidden': 'true' }), h('span', { class: 'desk-case-label' }, 'Budget of the Republic'));
     // Planning-display furniture on the glass: thin corner brackets (decorative, fixed to the glass, not the map).
     const glassHud = h('div', { class: 'glass-hud', 'aria-hidden': 'true' }, h('i', {}), h('i', {}), h('i', {}), h('i', {}));
-    this.el.append(this.svg, glassHud, this.toastLayer, this.markerSvg, this.tooltip, this.tablet);
+    this.el.append(this.svg, this.deskCase, glassHud, this.toastLayer, this.markerSvg, this.tooltip, this.tablet);
     this.layoutGlass();
     new ResizeObserver(() => this.resizeFrame()).observe(this.el);
     this.applyViewBox();
@@ -486,6 +491,10 @@ export class MapView {
    * Show the real device on the desk: `screen` is the tablet's .np-screen (inside its .np-wrap). The whole device is
    * cloned at its real pixel size and scaled down, so the resting tablet is exactly what the player picks up.
    */
+  setDeskCase(visible: boolean) {
+    this.deskCase.hidden = !visible;
+  }
+
   setTabletPreview(screen: HTMLElement, scroll = 0) {
     const device = (screen.closest('.np-wrap') as HTMLElement | null) ?? screen;
     if (device.offsetWidth > 0) this.deviceSize = { w: device.offsetWidth, h: device.offsetHeight };

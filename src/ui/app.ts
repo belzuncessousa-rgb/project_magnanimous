@@ -50,6 +50,7 @@ export class App {
       onBackground: () => { this.hideInfo(); this.hideCard(); },
       onReadable: (id, x, y) => this.showReadable(id, x, y),
       onTablet: () => this.openTablet(),
+      onDeskCase: () => void this.openDeskCase(),
       onScaleChange: (scale) => {
         this.settings.mapView = scale === 'kunasai' ? 'terrain' : 'political';
         saveSettings(this.settings);
@@ -283,6 +284,21 @@ export class App {
     m = this.modal('Menu', body);
   }
 
+  /** The green document case on the desk: opening it shows the budget to sign; signing clears it. */
+  private async openDeskCase() {
+    const g = this.game;
+    if (!g || this.busy) return;
+    sound.play('document-open');
+    this.busy = true;
+    try {
+      const signed = await showBudget(this.root, g.state, this.content.ministries, true);
+      if (signed) { delete g.state.flags.desk_budget; saveGame(g.state); }
+    } finally {
+      this.busy = false;
+      this.refresh();
+    }
+  }
+
   private openTablet() {
     const g = this.game;
     if (!g || this.busy) return;
@@ -375,18 +391,20 @@ export class App {
     // end turn
     const pending = g.pendingRequired().length;
     // Blocked stays focusable (aria-disabled) so keyboard and pointer users can still read why in the tooltip.
-    const blocked = !g.canEndTurn() || this.busy;
+    const caseWaiting = g.state.flags.desk_budget === true;
+    const blocked = !g.canEndTurn() || this.busy || caseWaiting;
     this.endBtn.disabled = false;
     this.endBtn.classList.toggle('is-blocked', blocked);
     this.endBtn.setAttribute('aria-disabled', String(blocked));
     const pendingLabel = `${pending} required ${pending === 1 ? 'matter' : 'matters'} remain`;
-    const endTip = g.state.ended ? 'The story has reached its current ending.' : pending
+    const endTip = g.state.ended ? 'The story has reached its current ending.' : caseWaiting ? 'The budget is waiting for your signature.' : pending
       ? `${pendingLabel}. Complete them before ending the turn.`
       : 'All required matters are complete. End the turn.';
     this.endTurnWrap.dataset.tip = endTip;
     this.endBtn.title = endTip;
     this.endBtn.setAttribute('aria-label', pending ? `End turn. ${pendingLabel}.` : 'End turn. All required matters are complete.');
     this.renderSidebar();
+    this.map.setDeskCase(g.state.flags.desk_budget === true);
     this.refreshTabletFace();
   }
 
@@ -617,7 +635,10 @@ export class App {
   private async openScreen(action: string, arg: string): Promise<void> {
     const g = this.game;
     if (!g) return;
-    if (action === 'open' && arg === 'budget') await showBudget(this.root, g.state, this.content.ministries);
+    if (action === 'open' && arg === 'budget') await showBudget(this.root, g.state, this.content.ministries, true);
+    else if (action === 'open' && arg === 'budget-draft') await showBudget(this.root, g.state, this.content.ministries, false);
+    // `[leave: budget]` — the case is left on Lara's desk to be signed later (DECISIONS "Desk documents").
+    else if (action === 'leave' && arg === 'budget') { g.state.flags.desk_budget = true; this.refresh(); }
     else if (action === 'open' && arg === 'debt') await showDebt(this.root, g.state);
     else if (action === 'vote') await showVote(this.root, g.state, this.content.bills.find((b) => b.id === arg));
     else console.warn(`[ui] unknown screen ${action}: ${arg}`);
@@ -665,7 +686,7 @@ export class App {
 
   private async endTurn() {
     const g = this.game;
-    if (!g || !g.canEndTurn() || this.busy) return;
+    if (!g || !g.canEndTurn() || this.busy || g.state.flags.desk_budget === true) return;
     this.busy = true;
     this.hideInfo();
     this.cancelTargeting();

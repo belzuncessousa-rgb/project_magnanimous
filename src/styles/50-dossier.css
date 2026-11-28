@@ -1,0 +1,116 @@
+/* Desk documents (src/ui/dossier.ts). The open folder sits over the desk like the tablet; one sheet at a time, a page
+   index of tabs, and page-turn arrows. Variants: green document case, loose working papers, manila project folder.
+   Sheets are clean formal paper: names and costs only. Art hooks for ChatGPT: --case-leather, --manila, --paper. */
+.dossier-overlay { z-index: 70; background: radial-gradient(ellipse at 50% 50%, #0a1a1430, #04100cc0 80%); }
+.dossier { position: relative; outline: none; transform: translateY(26px) scale(.97); transition: transform .34s cubic-bezier(.2,.7,.2,1); }
+.dossier-overlay.open .dossier { transform: none; }
+.dossier-object { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) 150px; grid-template-rows: minmax(0, 1fr) auto;
+  width: min(1000px, 94vw); height: min(780px, 90dvh); padding: 26px 22px 18px 30px; }
+
+/* the open folder behind the sheet */
+.dossier-cover { position: absolute; inset: 0; border-radius: 8px; box-shadow: 0 34px 80px #020907c0, 0 4px 12px #02090799; }
+.dossier-stack { position: absolute; left: 30px; right: 172px; top: 34px; bottom: 54px; border-radius: 2px;
+  background: #e8dfc6; box-shadow: 3px 3px 0 #ddd2b4, 6px 6px 0 #d2c6a6, 0 10px 24px #2a26193a; }
+
+/* the sheet */
+.dossier-sheet { position: relative; z-index: 1; grid-column: 1; grid-row: 1; overflow: auto; outline: none; margin: 8px 0 0;
+  border-radius: 2px; color: #2a2a24;
+  background: var(--paper, #fbf8ee) linear-gradient(180deg, #fffdf6, #f5efdf);
+  box-shadow: 0 1px 2px #2a261933, 0 8px 22px #2a261930; }
+.dossier-sheet.turn-fwd { animation: sheet-in-fwd .28s ease both; }
+.dossier-sheet.turn-back { animation: sheet-in-back .28s ease both; }
+@keyframes sheet-in-fwd { from { opacity: 0; transform: translateX(18px) rotate(.4deg); } }
+@keyframes sheet-in-back { from { opacity: 0; transform: translateX(-18px) rotate(-.4deg); } }
+@media (prefers-reduced-motion: reduce) { .dossier-sheet.turn-fwd, .dossier-sheet.turn-back { animation: none; } }
+
+/* page index: tabs down the right edge, like divider tabs */
+.dossier-tabs { position: relative; z-index: 1; grid-column: 2; grid-row: 1; display: flex; flex-direction: column; gap: 4px; padding: 22px 0 0 0; overflow: auto; }
+.dossier-tab { margin-left: -6px; padding: 8px 10px 8px 14px; border: 0; border-radius: 0 6px 6px 0; text-align: left; cursor: pointer;
+  font: 600 12px 'Source Serif 4', Georgia, serif; color: #4a4636; background: #e7dcc0; box-shadow: inset 6px 0 6px -6px #2a261955;
+  transition: transform .15s ease, background .15s ease; }
+.dossier-tab:hover { transform: translateX(3px); background: #efe5cc; }
+.dossier-tab[aria-current='true'] { transform: translateX(6px); background: #fbf8ee; color: #173f35; }
+.dossier-tab:focus-visible { outline: none; box-shadow: inset 6px 0 6px -6px #2a261955, 0 0 0 2px #d1b783; }
+
+/* footer: page turns, folio, finish */
+.dossier-foot { position: relative; z-index: 1; grid-column: 1 / -1; grid-row: 2; display: flex; align-items: center; gap: 14px; padding: 12px 4px 0; }
+.dossier-turn { width: 38px; height: 38px; border: 1px solid #c9a96499; border-radius: 50%; background: #0000002a; color: #f3dc9c; cursor: pointer; font: 600 22px/1 'Source Serif 4', Georgia, serif; }
+.dossier-turn:disabled { opacity: .3; cursor: default; }
+.dossier-turn:hover:not(:disabled), .dossier-turn:focus-visible { outline: none; background: #c9a96433; }
+.dossier-folio { color: #e9dfc0; font: italic 13px 'Source Serif 4', Georgia, serif; }
+.dossier-finish { margin-left: auto; padding: 10px 22px; border: 1px solid #d3b779; border-radius: 999px; cursor: pointer;
+  color: #f3ecd9; background: linear-gradient(180deg, #285b46, #143a2e 76%); box-shadow: 0 3px 0 #0a251c, inset 0 1px 1px #ffffff44;
+  font: 700 12px var(--ui-sans); letter-spacing: .1em; text-transform: uppercase; }
+.dossier-finish:hover, .dossier-finish:focus-visible { outline: none; background: linear-gradient(180deg, #347458, #1a4838 76%); }
+.dossier-close { position: absolute; z-index: 2; top: 6px; right: 10px; border: 0; background: none; color: #e9dfc0; font: 24px/1 'Source Serif 4', Georgia, serif; cursor: pointer; }
+.dossier-close:hover, .dossier-close:focus-visible { outline: none; color: #fff3d0; }
+
+/* variant: green document case (formal) */
+.dossier-case .dossier-cover { background: var(--case-leather, linear-gradient(160deg, #1f4a3c, #12322a 70%, #0d261f));
+  box-shadow: inset 0 0 0 1px #0b1f18, inset 0 0 0 9px #173f35, inset 0 0 0 10px #c9a96466, 0 34px 80px #020907c0, 0 4px 12px #02090799; }
+.dossier-case .dossier-cover::after { content: ''; position: absolute; left: 50%; bottom: 7px; width: 54px; height: 10px; transform: translateX(-50%);
+  border-radius: 3px; background: linear-gradient(180deg, #f3dc9c, #8f6e33); box-shadow: 0 1px 2px #0008; } /* brass clasp */
+
+/* variant: loose working papers (simulation) — no cover, just the stack on the desk */
+.dossier-papers .dossier-cover { background: none; box-shadow: none; }
+.dossier-papers .dossier-stack { transform: rotate(-1.2deg); }
+.dossier-papers .dossier-sheet { transform: rotate(.5deg); background: #fbf9f2 repeating-linear-gradient(180deg, transparent 0 27px, #9fb6c522 28px); }
+.dossier-papers .dossier-tab { background: #f2ede0; }
+.dossier-papers .dossier-folio, .dossier-papers .dossier-close { text-shadow: 0 1px 3px #000c; }
+
+/* variant: manila project folder */
+.dossier-manila .dossier-cover { background: var(--manila, linear-gradient(170deg, #e2c77f, #cfae5e 70%, #b8964a));
+  box-shadow: inset 0 0 0 1px #9c7c3a, 0 34px 80px #020907c0, 0 4px 12px #02090799; }
+.dossier-manila .dossier-folio, .dossier-manila .dossier-close { color: #3d2f12; }
+.dossier-manila .dossier-turn { color: #3d2f12; border-color: #7a5c2788; background: #ffffff33; }
+.dossier-manila .dossier-tab { background: #efd99c; }
+
+/* ---- sheet content: formal, short, costs only */
+.sheet { padding: clamp(1.4rem, 3.5vw, 2.8rem) clamp(1.4rem, 5vw, 3.6rem); }
+.sheet-letterhead { display: grid; justify-items: center; gap: 2px; margin-bottom: 1.2rem; padding-bottom: .8rem; border-bottom: 1px solid #b99a6080;
+  color: #5d5745; font: 700 9px var(--ui-sans); letter-spacing: .2em; text-transform: uppercase; }
+.sheet-letterhead img { width: 40px; height: 46px; object-fit: contain; margin-bottom: 4px; }
+.sheet-draft-mark { display: inline-block; margin-bottom: 1rem; padding: 2px 8px; border: 1px solid #7a90a3; color: #4b6275; transform: rotate(-2deg);
+  font: 700 10px var(--ui-sans); letter-spacing: .18em; text-transform: uppercase; }
+.sheet-title { margin: 0; color: #173f35; font: 600 clamp(1.6rem, 3vw, 2.2rem)/1.15 'Source Serif 4', Georgia, serif; }
+.sheet-sub { margin: .3rem 0 1.2rem; color: #6d6857; font: italic 14px 'Source Serif 4', Georgia, serif; }
+.sheet-section { margin: 1.6rem 0 .5rem; color: #8f6e33; font: 700 10px var(--ui-sans); letter-spacing: .2em; text-transform: uppercase; }
+
+.budget-lines { display: grid; gap: 2px; margin-top: 1rem; border-top: 1px solid #d8cfb7; }
+.budget-line { display: grid; grid-template-columns: 22px minmax(0, 1fr) auto; align-items: center; gap: 12px; padding: 12px 6px;
+  border: 0; border-bottom: 1px solid #d8cfb7; background: none; text-align: left; cursor: pointer; color: #2a2a24; }
+.budget-line:hover { background: #f1e9d3; }
+.budget-line:focus-visible { outline: none; background: #f1e9d3; }
+.budget-mark { width: 16px; height: 16px; border: 1.5px solid #8f8a76; border-radius: 50%; }
+.budget-line.chosen .budget-mark { border-color: #173f35; background: radial-gradient(circle, #173f35 0 4px, transparent 4.5px); }
+.budget-line-name { font: 600 16px 'Source Serif 4', Georgia, serif; }
+.budget-line.chosen .budget-line-name { color: #173f35; }
+.budget-line-cost { color: #4a4636; font: 600 13px var(--ui-sans); font-variant-numeric: tabular-nums; }
+.budget-programmes { margin: 0; padding: 0; list-style: none; }
+.budget-programmes li { display: flex; justify-content: space-between; gap: 1rem; padding: 7px 2px; border-bottom: 1px dotted #cfc5a8; font: 15px 'Source Serif 4', Georgia, serif; }
+.budget-programmes li.unfunded { color: #9a9483; text-decoration: line-through; text-decoration-color: #9a948388; }
+.programme-pick { border: 0; background: none; padding: 0; cursor: pointer; font: inherit; color: inherit; text-align: left; }
+.programme-pick.chosen { color: #173f35; font-weight: 600; }
+.programme-pick.chosen::before { content: '✓ '; color: #173f35; }
+.programme-pick:focus-visible { outline: none; text-decoration: underline; text-underline-offset: 3px; }
+
+.budget-totals { width: 100%; margin-top: 1.2rem; border-collapse: collapse; font: 15px 'Source Serif 4', Georgia, serif; }
+.budget-totals th { text-align: left; font-weight: 500; padding: 7px 0; border-bottom: 1px dotted #cfc5a8; }
+.budget-totals td { padding: 7px 0 7px 1rem; border-bottom: 1px dotted #cfc5a8; text-align: right; font-variant-numeric: tabular-nums; color: #4a4636; }
+.budget-totals tr.total th, .budget-totals tr.total td { padding-top: 12px; border-top: 2px solid #173f35; border-bottom: 0; font-weight: 700; color: #173f35; }
+.budget-totals tr.available th, .budget-totals tr.available td { border-bottom: 0; color: #4a4636; font-style: italic; }
+.budget-totals tr.available.over td { color: #7a4a14; font-weight: 700; }
+.signature-line { display: grid; justify-items: start; width: min(320px, 100%); margin: 3rem 0 0 auto; padding-top: .4rem; border-top: 1px solid #2a2a24; }
+.signature-line small { color: #6d6857; font: italic 12px 'Source Serif 4', Georgia, serif; }
+.signature-line .signature { order: -1; height: 2.4rem; color: transparent; font: 600 2.1rem/1 'Caveat', cursive; }
+.signature-line.signed .signature { color: #1f2f57; }
+
+@media (max-width: 700px) {
+  .dossier-object { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto minmax(0, 1fr) auto; padding: 14px 10px 12px; }
+  .dossier-tabs { grid-column: 1; grid-row: 1; flex-direction: row; overflow-x: auto; padding: 0 0 6px; }
+  .dossier-tab { margin: 0; border-radius: 6px 6px 0 0; white-space: nowrap; }
+  .dossier-tab[aria-current='true'] { transform: translateY(3px); }
+  .dossier-sheet { grid-row: 2; }
+  .dossier-foot { grid-row: 3; }
+  .dossier-stack { right: 10px; left: 10px; }
+}

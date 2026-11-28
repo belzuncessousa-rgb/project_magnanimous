@@ -440,3 +440,24 @@ body.vn-active .glass-hud, .map.dim .glass-hud { opacity: .4; }
 /* ---- resting-tablet rules moved from 21-tablet-apps.css (C-13) */
 .map-tablet .map-tablet-device .np-footer { visibility: hidden; }
 .map-tablet .map-tablet-device { box-shadow: inset 0 -2px 4px #000; }
+
+/* Official document case on the desk (`[leave: budget]`): green leather portfolio with a brass clasp, lying on the wood
+   below the tablet. Art hook: --case-leather (ChatGPT can supply a painted case image). */
+.desk-case {
+  position: absolute; z-index: 5; left: calc(var(--wood-cx, 83%) - var(--tablet-w, 300px) * .4); top: 66%;
+  width: calc(var(--tablet-w, 300px) * .8); aspect-ratio: 1.42; padding: 0; border: 0; border-radius: 6px; cursor: pointer;
+  background: var(--case-leather, linear-gradient(160deg, #24574a, #143a2e 70%, #0f2c23));
+  box-shadow: inset 0 0 0 1px #0b1f18, inset 0 0 0 7px #173f35, inset 0 0 0 8px #c9a96477, 0 14px 22px #04100bb3, 0 2px 0 #0a1f18;
+  transform: rotate(-4deg); transition: transform .2s ease, filter .2s ease;
+}
+.desk-case[hidden] { display: none; }
+.desk-case:hover, .desk-case:focus-visible { outline: none; transform: rotate(-3deg) translateY(-3px); filter: brightness(1.08) drop-shadow(0 0 6px #f1d38c66); }
+.desk-case-clasp { position: absolute; right: -4px; top: 50%; width: 16px; height: 30px; transform: translateY(-50%); border-radius: 3px;
+  background: linear-gradient(90deg, #8f6e33, #f3dc9c 50%, #8f6e33); box-shadow: 0 2px 3px #0008; }
+.desk-case-label { position: absolute; inset: auto 12% 38% 12%; text-align: center; font: 600 clamp(9px, .8vw, 13px) 'Source Serif 4', Georgia, serif;
+  letter-spacing: .12em; text-transform: uppercase;
+  background-image: linear-gradient(180deg, #f3dc9c, #c9a35a 50%, #8f6e33); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+.desk-case::before { content: ''; position: absolute; left: 50%; top: 24%; width: 28px; height: 32px; transform: translateX(-50%);
+  background: center / contain no-repeat url('/identity/kunasai-arms.svg'); opacity: .55; filter: sepia(1) saturate(.6) brightness(1.1); }
+body.vn-active .desk-case, .map.dim .desk-case { display: none; }
+@media (max-width: 900px) { .desk-case { left: auto; right: 4%; top: 84%; width: 150px; } }
