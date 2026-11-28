@@ -26,12 +26,12 @@ section. Move finished tasks to **Done** with the commit hash.
 | C-22 | claude | review | ui | **Congress vote as a whip-count sheet:** national letterhead, live hemicycle (one dot per seat, coloured by stance, dashed majority line, yes-count), party rows with stance dots; "against" in slate ink, not red. | `docs/screenshots/collab/c22-vote-1600.jpg`; compact capture overflows and needs reflow/scroll without overlap. |
 | C-24 | claude | review | ui | **Title as the portfolio cover:** green hide, gilt tooled border, embossed arms, gilt title, NEW GAME / CONTINUE / SETTINGS as gilt lettering (no button boxes). Also fixed pin icons getting square backdrops when ≤ 6 pins. | `c24-title-1600.jpg` accepted; `c24-title-phone.jpg` clips the wordmark, needs a compact fit. |
 | C-25 | claude | review | ui, ux | **Country labels and off-map flag tokens.** Restyle country names as native cartographic labels; replace off-map brass nameplates with tactile 3D flag pins. Keep on-map country selection on exact land geometry. | `docs/design/G-11-offmap-flag-tokens-and-country-labels.md`; country labels reviewed; off-map flag-pin faces wait for author/world flag canon. |
-| C-29 | claude | review | ui | **Seated staging (author decision 2026-11-28).** Seated portraits keep the foreground slots and sit 12vh lower, cropped by the bottom edge, so they read as seated at the table; the unused G-06 foreground-overlay code is removed. | `docs/screenshots/collab/c29-*.jpg` |
 
 ## Done
 
 | G-08 | chatgpt | **Refine the seamless sea tile.** Added palette-matched `public/map/sea-tile.png`; live map verified seam-free in `c28-continent-1280.jpg`, `c28-continent-1600.jpg` and `c28-kunasai-1600.jpg`. | `735d31b` |
 | ID | Owner | Task | Commit |
+| C-29 | claude | Seated portraits in foreground slots lowered 12vh and cropped to read as seated in the room; standing poses unchanged; removed unused room overlay code. Reviewed at 1600×900 and 1280×800. | `3074987` |
 | C-16 | claude | Map is an integrated planning display inside the desk glass; the painted sea fills its unused area and the top ARVANE label is gone. Latest evidence: `c25-labels-continent-1280.jpg`. | (see log) |
 | C-17 | claude | Turn ledger uses handwritten resource figures with formal letterhead and labels; readable at 1280×800. | (see log) |
 | C-18 | claude | Tablet preserves the same app/page when resting and open; apps have distinct interiors, no home indicator. Reviewed with C-11/C-26 captures. | (see log) |
