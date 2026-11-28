@@ -97,6 +97,21 @@ export interface MapCallbacks {
 }
 
 
+/** Area (map units²) and principal-axis angle (degrees, -90..90, 0 = horizontal) of a polygon. */
+function shapeStats(poly: Pt[]): { area: number; angle: number } {
+  let a = 0;
+  for (let i = 0; i < poly.length; i++) { const [x1, y1] = poly[i]!; const [x2, y2] = poly[(i + 1) % poly.length]!; a += x1 * y2 - x2 * y1; }
+  const n = poly.length, mx = poly.reduce((t, p) => t + p[0], 0) / n, my = poly.reduce((t, p) => t + p[1], 0) / n;
+  let sxx = 0, syy = 0, sxy = 0;
+  for (const [x, y] of poly) { sxx += (x - mx) ** 2; syy += (y - my) ** 2; sxy += (x - mx) * (y - my); }
+  let angle = (0.5 * Math.atan2(2 * sxy, sxx - syy) * 180) / Math.PI;
+  // only tilt clearly elongated shapes
+  const l1 = (sxx + syy) / 2 + Math.sqrt(((sxx - syy) / 2) ** 2 + sxy ** 2), l2 = (sxx + syy) / 2 - Math.sqrt(((sxx - syy) / 2) ** 2 + sxy ** 2);
+  if (l1 < 2.2 * Math.max(l2, 1)) angle = 0;
+  if (angle > 60 || angle < -60) angle = 0; // near-vertical shapes read better horizontal
+  return { area: Math.abs(a) / 2, angle };
+}
+
 const pathOf = (poly: Pt[]) => 'M' + poly.map(([x, y]) => `${x},${y}`).join('L') + 'Z';
 
 export class MapView {
@@ -417,7 +432,16 @@ export class MapView {
     }
     const labels = s('g', { class: 'labels' });
     for (const g of shapes) {
-      if (g.kind === 'country') labels.append(s('text', { class: 'label label-country', x: g.center[0], y: g.center[1] + 4 }, g.name));
+      if (g.kind === 'country') {
+        // C-25: printed-on-the-atlas names — size follows territory, elongated countries get a gentle tilt.
+        const { area, angle } = shapeStats(g.polygon);
+        const size = Math.max(18, Math.min(30, 10 + Math.sqrt(area) / 9));
+        const tilt = Math.max(-18, Math.min(18, angle));
+        labels.append(s('text', {
+          class: 'label label-country', x: g.center[0], y: g.center[1] + 4, style: `font-size: ${size.toFixed(1)}px`,
+          transform: Math.abs(tilt) > 6 ? `rotate(${tilt.toFixed(1)} ${g.center[0]} ${g.center[1]})` : '',
+        }, g.name));
+      }
       else labels.append(s('text', { class: 'label label-region', x: g.center[0], y: g.center[1] + 5 }, g.name.toUpperCase()));
     }
     labels.append(s('text', { class: 'label label-national', x: 355, y: 700 }, 'KUNASAI'));

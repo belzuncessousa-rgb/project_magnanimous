@@ -205,3 +205,13 @@ body.vn-active .glass-hud, .map.dim .glass-hud { opacity: .4; }
 .ui-layer .top-left .btn.ghost:hover::after { opacity: 0; }
 .ui-layer .top-left .btn.ghost:focus-visible::after { opacity: 1; }
 .ui-layer .top-left .btn.ghost:focus-visible { filter: drop-shadow(0 1px 0 #0c1d16) drop-shadow(0 0 6px #f1d38c66); }
+
+/* C-25: country names printed into the atlas — tracked serif small caps in warm ivory ink with a fine
+   map-coloured edge; size and tilt come from each territory (MapView). Unboxed. */
+.map-svg .label-country {
+  font-family: 'Source Serif 4', Georgia, serif; font-style: normal; font-weight: 600; font-variant: small-caps;
+  letter-spacing: .14em; fill: #f1e6c6; stroke: #2a3a22; stroke-width: 2.4px; stroke-opacity: .75; paint-order: stroke;
+  filter: none; text-transform: lowercase;
+}
+.map-svg .label-country::first-letter { text-transform: uppercase; }
+.map-svg .label-national { font-family: 'Source Serif 4', Georgia, serif; font-weight: 700; letter-spacing: .22em; fill: #fbf1d4; stroke: #1f2e1b; stroke-width: 3px; paint-order: stroke; }
