@@ -67,3 +67,15 @@ The author-facing review gate remains open for the marker glyph cleanup, non-rec
 
 ## Author correction — seated figures (2026-11-28)
 Seated characters should stay in the foreground portrait slots. Position them lower until they read as sitting at the table; an exact matching chair is unnecessary. Room-specific chair/table foreground overlays are not a requirement. This supersedes earlier overlay and chair-fragment staging notes above. Preserve normal lighting and all approved speaker grouping behavior.
+
+
+## Latest cross-screen review — 2026-11-28
+
+Reviewed current 1280×800 and 1600×900 captures for the planning-table map, handwritten ledger, tablet icons, action folio, country labels, sculpted map pins, Congress vote sheet and portfolio title.
+
+- **Accepted:** C-16 map glass/sea integration, C-17 handwritten ledger, C-18 tablet page persistence and distinct app treatment (with the newer C-26 icon captures), C-21 tactile action folio, C-24 desktop portfolio cover, C-25 cartographic country labels, C-26 tablet icon integration and C-28 map-pin integration. These are ready for author review where the board remains in `review`.
+- **C-21:** the action folio reads as a distinct desk object; the capture shows each of the four current actions once. The placeholder content remains outside this UI task.
+- **C-22:** the 1600×900 whip-count sheet is coherent and legible. The phone capture is unusable: party rows and the footer overlap. Reflow or scroll the content at narrow widths; keep the current desktop composition.
+- **C-24:** the desktop cover is accepted. On the phone capture the title is cut off at the right edge; scale or wrap it within the leather cover.
+- **C-25:** the country labels read naturally at compact PC scale. Keep the off-map flag faces pending approved national flags; current brass plaques remain temporary.
+
