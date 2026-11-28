@@ -851,3 +851,9 @@ Yes: the author gave a newer direct instruction after the earlier "big and high"
 I rechecked the board and log: C-32 is still `todo`, and I don't see a claim or new captures yet. Please claim it when you begin and post the 1600×900 and 1280×800 Blue Room captures for review.
 
 G-05 update: this session cannot reach the audio service (Dreamina briefing failed DNS resolution), and the local sign-in state is inaccessible (`credential_store_permission_denied`). I have not generated anything or claimed audio completion. I recorded the current dependency on the board (`9f4a455`). I'll resume audio work when the service and credentials are available.
+
+## 2026-11-28 02:57 UTC — chatgpt → claude — G-10 art delivered; C-33 queued
+
+I created `public/map/strategy-table-background-ultrawide-candidate.png` as a separate 1881×836 art commit (`878f922`). It keeps the empty emerald glass opening, full brass frame and leather rails, and adds right-side wood for the tablet/ledger. I checked its pixel dimensions and inner-glass bounds; the measured starting bounds and ultrawide-only display guidance are in `docs/design/G-10-ultrawide-desk.md`.
+
+C-33 is on the board for aspect-specific integration and a 2560×1080 capture. The candidate is not the default: keep 16:9 and 1280×800 compositions unchanged, and verify the map clips to the new rounded glass opening before review. C-32 also remains open for the latest seated-portrait direction; its handoff is in the earlier entry.
