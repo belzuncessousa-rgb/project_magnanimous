@@ -1,13 +1,13 @@
 """Derive a seamless sea tile from open water in the approved Arvain atlas painting.
 
 The crop is mirrored 2x2 so every edge matches. Interim asset: an art-team painted seamless tile can replace
-public/map/sea-tile.jpg at the same path (see docs/collab/BOARD.md G-08).
+public/map/sea-tile.png (done, G-08) (see docs/collab/BOARD.md G-08).
 Usage: python3 tools/make-sea-tile.py
 """
 from PIL import Image, ImageOps
 
 SRC = 'public/map/arvain-terrain-art.png'
-OUT = 'public/map/sea-tile.jpg'
+OUT = 'public/map/sea-tile-generated.jpg'  # interim generator only; the live tile is the painted sea-tile.png
 BOX = (738, 1215, 991, 1466)  # open water south-east of the isthmus, in source pixels
 
 crop = Image.open(SRC).convert('RGB').crop(BOX)

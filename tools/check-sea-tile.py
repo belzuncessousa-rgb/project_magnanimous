@@ -1,13 +1,13 @@
-"""Check that public/map/sea-tile.jpg tiles seamlessly and matches the atlas painting's open water.
+"""Check that public/map/sea-tile.png tiles seamlessly and matches the atlas painting's open water.
 
-Usage: python3 tools/check-sea-tile.py [tile path]
+Usage: python3 tools/check-sea-tile.py [tile path, default public/map/sea-tile.png]
 Pass criteria (rule of thumb): each edge-to-opposite-edge difference within ~2x the difference between two
 neighbouring interior columns/rows, and the mean colour within ~3 levels per channel of the atlas sea sample.
 """
 import sys
 from PIL import Image, ImageStat
 
-path = sys.argv[1] if len(sys.argv) > 1 else 'public/map/sea-tile.jpg'
+path = sys.argv[1] if len(sys.argv) > 1 else 'public/map/sea-tile.png'
 t = Image.open(path).convert('RGB')
 w, h = t.size
 lum = lambda p: sum(p) / 3

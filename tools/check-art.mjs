@@ -112,11 +112,17 @@ export function checkArt(root = ROOT) {
 
   // ---- files the UI references directly
   const direct = ['public/map/regions.json', 'public/map/arvain-terrain-art.png', 'public/map/kunasai-terrain-art.png',
-    'public/map/strategy-table-background.png', 'public/map/sea-tile.jpg',
+    'public/map/strategy-table-background.png', 'public/map/sea-tile.png',
     ...['kunasai-arms', 'kunasai-flag', 'kunasai-mark', 'presidential-standard'].map((n) => `public/identity/${n}.svg`)];
   const tokenSrc = readFileSync(p('src/ui/tokens.ts'), 'utf8').match(/TOKENS = \[([^\]]*)\]/)?.[1] ?? '';
   for (const t of tokenSrc.matchAll(/'([a-z-]+)'/g)) direct.push(`public/map/tokens/${t[1]}.png`);
-  for (const f of direct) if (!existsSync(p(f))) errors.push(`missing ${f}`);
+  for (const t of tokenSrc.matchAll(/'([a-z-]+)'/g)) direct.push(`public/map/markers/${t[1]}.svg`);
+  for (const k of ['reaction', 'note', 'report', 'incident']) direct.push(`public/map/pins/${k}.svg`);
+  for (const k of ['news', 'social', 'codex', 'reports']) direct.push(`public/tablet/apps/${k}.svg`);
+  for (const f of direct) {
+    if (!existsSync(p(f))) { errors.push(`missing ${f}`); continue; }
+    if (f.endsWith('.svg') && !/<svg[\s>]/.test(readFileSync(p(f), 'utf8').slice(0, 400))) errors.push(`${f} is not an SVG document`);
+  }
 
   return {
     errors, warnings,

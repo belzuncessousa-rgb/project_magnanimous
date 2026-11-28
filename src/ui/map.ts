@@ -1,6 +1,5 @@
 // Rest-state map: data-aligned atlas layers, hotspots, labels, markers and pan/zoom.
 import { clear, h, s } from './dom';
-import { KIND_GLYPH } from './format';
 import { fanOut, stackPins, type Rect } from './layout';
 
 export type Pt = [number, number];
@@ -60,10 +59,10 @@ const MAP_FRAMES = {
 const KUNASAI_ZOOM = 1.48;
 /** strategy-table-background.png: size and the inner edge of its painted glass display, in image pixels. */
 const DESK_ART = { w: 1672, h: 941, glass: { x0: 48, y0: 137, x1: 1123, y1: 791, r: 26 } } as const;
-/** public/map/sea-tile.jpg (1024×1024 px) in map units at the atlas painting's scale (1065 px ↔ 800 units). */
+/** public/map/sea-tile.png (1024×1024 px, painted by ChatGPT) in map units at the atlas painting's scale (1065 px ↔ 800 units). */
 const SEA_TILE = { w: 769, h: 769 } as const;
-/** Colour correction for the sea tile → atlas water (tile mean ≈ 8,67,67; atlas ≈ 1,75,75). Identity once they match. */
-const SEA_MATCH = '0.1 0 0 0 0  0 1.11 0 0 0  0 0 1.13 0 0  0 0 0 1 0';
+/** Colour correction hook for the sea tile → atlas water (identity while they match; check with tools/check-sea-tile.py). */
+const SEA_MATCH = '1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0'; // identity: the PNG tile matches the atlas
 const MIN_ZOOM = 1;
 
 export interface MarkerSpec {
@@ -97,16 +96,6 @@ export interface MapCallbacks {
   onScaleChange(scale: MapScale): void;
 }
 
-function tokenImage(id: string): SVGImageElement {
-  // The enamel token sits in the pin's head (clipped to it), slightly enlarged so its painted rim is hidden.
-  const img = s('image', { class: 'token', href: `map/tokens/${id}.png`, x: -27, y: -27, width: 54, height: 54, 'clip-path': 'url(#pin-head-clip)' });
-  // CSS fallback (ring + glyph) stays visible when the token art is missing
-  img.addEventListener('error', () => img.remove());
-  return img;
-}
-
-/** Teardrop map pin: round head (r 22) centred on the marker, tapering to a point 36 units below it. */
-const PIN_PATH = 'M0,36 C-5,26 -22,15 -22,0 A22,22 0 1 1 22,0 C22,15 5,26 0,36 Z';
 
 const pathOf = (poly: Pt[]) => 'M' + poly.map(([x, y]) => `${x},${y}`).join('L') + 'Z';
 
@@ -147,11 +136,10 @@ export class MapView {
     const tableBackground = new URL(`${import.meta.env.BASE_URL}map/strategy-table-background.png`, document.baseURI);
     this.el.style.setProperty('--strategy-table-background', `url("${tableBackground.href}")`);
     this.atlasArtHref = new URL(`${import.meta.env.BASE_URL}map/arvain-terrain-art.png`, document.baseURI).href;
-    this.seaTileHref = new URL(`${import.meta.env.BASE_URL}map/sea-tile.jpg`, document.baseURI).href;
+    this.seaTileHref = new URL(`${import.meta.env.BASE_URL}map/sea-tile.png`, document.baseURI).href;
     this.svg = s('svg', { class: 'map-svg', preserveAspectRatio: 'xMidYMid meet', role: 'group', 'aria-label': 'Map of Arvain', tabindex: 0 });
     this.markerLayer = s('g', { class: 'markers' });
     this.markerSvg = s('svg', { class: 'map-svg marker-svg', preserveAspectRatio: 'xMidYMid meet', role: 'group', 'aria-label': 'Available scenes', 'data-ui': 'markers' },
-      s('defs', {}, s('clipPath', { id: 'pin-head-clip' }, s('circle', { r: 17 }))),
       this.markerLayer);
     this.hotLayer = s('g', { class: 'hotspots' });
     this.toastLayer = h('div', { class: 'map-toasts', 'data-ui': 'readables' });
@@ -532,14 +520,10 @@ export class MapView {
         'data-scene': m.id,
       },
         s('g', { class: 'marker-body' },
-          // ground glow where the pin points, then the teardrop pin: brass body, enamel face, highlight
-          s('ellipse', { class: 'pin-shadow', cx: 0, cy: 36, rx: 9, ry: 3 }),
-          s('circle', { class: 'pulse', cx: 0, cy: 36, r: 12 }),
-          s('path', { class: 'pin-body', d: PIN_PATH }),
-          s('circle', { class: 'ring', r: 19 }),
-          s('text', { class: 'glyph', y: 7 }, KIND_GLYPH[m.kind] ?? '•'),
-          m.token ? tokenImage(m.token) : null,
-          s('path', { class: 'pin-gloss', d: 'M-14,-9 A17,17 0 0 1 9,-16 A20,20 0 0 0 -14,-4 Z' })),
+          // invisible hit target, beacon where the tip lands, then ChatGPT's sculpted object pin (72×88, tip = anchor)
+          s('circle', { class: 'marker-hit', cx: 0, cy: 8, r: 24 }),
+          s('circle', { class: 'pulse', cx: 0, cy: 34, r: 11 }),
+          s('image', { class: 'marker-art', href: `map/markers/${m.token ?? (m.kind === 'crisis' ? 'crisis' : 'palace')}.svg`, x: -21, y: 34 - 51.3, width: 42, height: 51.3 })),
       );
       const open = () => { if (!m.locked && !this.dragged && !this.targeting) this.cb.onMarker(m.id); };
       g.addEventListener('click', (ev) => { ev.stopPropagation(); open(); });
