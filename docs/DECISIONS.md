@@ -224,3 +224,8 @@ Only the **new GDD** in Notion ("📖 GDD — Project Magnanimous") counts. The 
 ## Seated dialogue portraits (author, 2026-11-28)
 - Keep seated characters in the foreground portrait positions. Lower the portrait until the character reads naturally as seated at the table; the character may appear to sit in air.
 - A chair does not need to match the room furniture. Do not spend art/UI work on matching chairs or room-specific chair/table overlays for this purpose.
+
+## Dialogue figures (author, 2026-11-28, supersedes the same-day "lower seated portraits" note)
+- Seated figures stay big and high in the foreground slots; players accept the room as backdrop. Do not lower them.
+- The right-hand figure is always mirrored to face the centre — no per-character exceptions.
+- If needed, characters can "bring their own chair" in their portrait art; the room is only ambience.

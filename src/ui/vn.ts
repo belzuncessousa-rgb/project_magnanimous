@@ -25,12 +25,12 @@ export interface VNOptions {
 }
 
 // Preserve jacket pins on these masters. Other right-slot portraits mirror inward.
-const rightSlotPortraits: Record<string, 'original' | `${string}-${DialoguePose}`> = {
-  'livia-seated': 'original',
-  'livia-standing': 'original',
-  'mertens-seated': 'original',
-  'mertens-standing': 'original',
-};
+/**
+ * Right-slot figures are always mirrored to face the centre (author, 2026-11-28). An entry here can point a pose at a
+ * dedicated right-facing master (e.g. `'mertens-seated': 'mertens-seated-right'`) when a mirrored detail looks wrong;
+ * it is never used to leave a figure facing outward.
+ */
+const rightSlotPortraits: Record<string, `${string}-${DialoguePose}-right`> = {};
 
 interface Who {
   id?: string;
@@ -143,8 +143,8 @@ export class VNView {
       const img = h('img', { alt: '' });
       const stem = who.portrait + '-' + pose;
       const rightSlotPortrait = slot === this.right ? rightSlotPortraits[stem] : undefined;
-      const source = rightSlotPortrait && rightSlotPortrait !== 'original' ? rightSlotPortrait : stem;
-      if (slot === this.right && rightSlotPortrait !== 'original') img.classList.add('mirror-inward');
+      const source = rightSlotPortrait ?? stem;
+      if (slot === this.right && !rightSlotPortrait) img.classList.add('mirror-inward');
       fig.querySelector('.silhouette')!.append(img);
       loadPortrait(img, [source, who.portrait], (i) => fig.classList.add(i === 0 ? 'has-master' : 'has-img'));
     }

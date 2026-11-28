@@ -7,7 +7,14 @@
 .vn[data-room="residence-night"] .has-master .silhouette { height: 80vh; }
 .vn .has-master figcaption { display: none; }
 
-/* Author decision 2026-11-28 (seated dialogue portraits): seated figures stay in the foreground slots but sit
-   lower, cropped by the bottom edge, so they read as seated at the table. No chair matching or overlays. */
-.vn .portrait[data-pose="seated"] { overflow: hidden; }
-.vn .portrait[data-pose="seated"] .has-master { transform: translateY(12vh); }
+/* Author feedback 2026-11-28: characters first, big and high; the room is ambience behind them. Portraits are sized by
+   HEIGHT, centred on their side column; the outer edge is cropped by the screen and the inner edge slides under the
+   transcript, so near-square seated masters are no longer shrunk to the column width. */
+.vn .portrait .has-master .silhouette { position: relative; overflow: visible; height: calc(100vh - 54px); }
+.vn .portrait .has-master .silhouette img {
+  position: absolute; top: auto; right: auto; bottom: 0; left: 50%; width: auto; max-width: none; height: 100%;
+  transform: translateX(-50%); object-fit: contain;
+}
+.vn .portrait .has-master .silhouette img.mirror-inward { transform: translateX(-50%) scaleX(-1); }
+.vn .portrait[data-pose="seated"] .has-master .silhouette img { height: 76%; }
+.vn .portrait[data-pose="standing"] .has-master .silhouette img { height: 94%; }
