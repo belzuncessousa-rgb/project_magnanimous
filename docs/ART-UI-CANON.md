@@ -98,8 +98,8 @@ Backgrounds: public/backgrounds/<background-id>.webp. Character masters: public/
 - Set country names directly on the map in an unboxed cartographic serif small-cap style with restrained tracking, warm muted ivory ink and a subtle dark map-colored edge. Vary placement and modest scale with each territory so names feel placed in the landscape rather than floating as identical labels. Keep the Kunasai/region zoom hierarchy and protect city names, rivers, pins and borders.
 - Full implementation brief: `docs/design/G-11-offmap-flag-tokens-and-country-labels.md`.
 
-## Seated dialogue portraits — FINAL (author, confirmed twice to Claude by direct in-app question: ~02:40 and ~03:45 UTC 2026-11-28)
+## Seated dialogue portraits — FINAL (author, confirmed to Claude at ~02:40 and ~03:45 UTC; reiterated in this chat after his 03:50 UTC log entry on 2026-11-28; exact chat timestamp unavailable)
 - Seated figures stay BIG and HIGH in the foreground slots (heads in the upper third). The room is backdrop. Do NOT lower them.
 - The right-slot figure always faces inward. No matching chairs or room overlays; if ever needed, characters bring their own chair.
-- Any "lower seated figures" note elsewhere in this repo is superseded. Do not reintroduce it without quoting a newer author message with its time in docs/collab/LOG.md.
+- The author's latest wording emphasized putting them “way, way upper” and keeping the right-hand side mirrored toward the centre. Any earlier “lower seated figures” note elsewhere is superseded.
 
