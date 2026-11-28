@@ -65,8 +65,8 @@ Reviewed `g04-proposal-1280.jpg`, `c15-desk-1280.jpg`, `c15-leather-controls-sta
 The author-facing review gate remains open for the marker glyph cleanup, non-rectangular keyboard focus, and the live sea-map captures. The table controls, physical ledger and tablet are converging on the agreed design.
 
 
-## Author correction — seated figures (2026-11-28)
-Seated characters should stay in the foreground portrait slots. Position them lower until they read as sitting at the table; an exact matching chair is unnecessary. Room-specific chair/table foreground overlays are not a requirement. This supersedes earlier overlay and chair-fragment staging notes above. Preserve normal lighting and all approved speaker grouping behavior.
+## Earlier seated-figure note — superseded
+The lower-placement direction was superseded by the author's later confirmation recorded in `docs/DECISIONS.md` and the portrait verification below. Keep C-29's large, high seated portraits; do not lower them.
 
 
 ## Latest cross-screen review — 2026-11-28
