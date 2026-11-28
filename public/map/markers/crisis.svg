@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 88" role="img" aria-label="Crisis map pin"><defs>
+<linearGradient id="brass" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#f0d58b"/><stop offset=".44" stop-color="#b99a60"/><stop offset="1" stop-color="#705331"/></linearGradient>
+<linearGradient id="jade" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#4b8a70"/><stop offset="1" stop-color="#173f35"/></linearGradient>
+<linearGradient id="ivory" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fff9e8"/><stop offset="1" stop-color="#d6c6a1"/></linearGradient>
+<linearGradient id="slate" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#65766b"/><stop offset="1" stop-color="#263a32"/></linearGradient>
+<linearGradient id="amber" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f0ca72"/><stop offset=".65" stop-color="#c57b3e"/><stop offset="1" stop-color="#803a2a"/></linearGradient>
+<filter id="lift" x="-.3" y="-.3" width="1.6" height="1.7"><feGaussianBlur in="SourceAlpha" stdDeviation="2"/><feOffset dy="2.2"/><feComponentTransfer><feFuncA type="linear" slope=".45"/></feComponentTransfer><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+</defs>
+<path d="M32 47Q36 51 40 47L37 79Q36 82 35 79Z" fill="url(#brass)" stroke="#71532f" stroke-width="1"/>
+<path d="M36 54 36 76" stroke="#f5dda0" stroke-opacity=".72" stroke-width=".8"/><g filter="url(#lift)"><path d="m36 8 7 9 12-1-2 12 9 8-11 7-1 12-12-4-11 6-4-12-11-7 8-10-1-12 12 1Z" fill="url(#amber)" stroke="#682e27" stroke-width="2" stroke-linejoin="round"/><path d="m36 13-3 16 8 6-6 14m17-31-12 16 5 7m-29-8 13 1 4 7" fill="none" stroke="#3b3028" stroke-width="2" stroke-linecap="round"/><path d="m30 19 6-7 5 6" fill="none" stroke="#ffe3a0" stroke-width="1.1"/></g></svg>
