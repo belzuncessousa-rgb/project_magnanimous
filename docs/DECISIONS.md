@@ -231,3 +231,20 @@ Only the **new GDD** in Notion ("📖 GDD — Project Magnanimous") counts. The 
 - Seated figures stay BIG and HIGH in the foreground slots (heads in the upper third). The room is backdrop. Do NOT lower them.
 - The right-slot figure always faces inward. No matching chairs or room overlays; if ever needed, characters bring their own chair.
 - The author's latest wording emphasized putting them “way, way upper” and keeping the right-hand side mirrored toward the centre. Any earlier “lower seated figures” note is superseded.
+
+## Desk documents: budget folder and project dossiers (author, to Claude, 2026-11-28 ~04:40 UTC)
+General rule for the whole UI: **no explanations in documents and few tooltips.** Briefing scenes tell Lara what she
+needs to know and set clear expectations; documents stay short, clear and decisive. Lara links what she sees with what
+she was told.
+- **Effects are never shown.** A document never says who a choice affects or by how much (e.g. never "+10 education rest
+  value in Tekoku"); players infer it from the briefings and see consequences through the game. **Only costs are
+  shown**: the one-time cost and the ongoing (per-turn) cost.
+- **Final budget = the official document case.** The signing happens outside the scene: Fontes says he will leave the
+  budget on Lara's desk to sign. A formal green folder appears on the desk beside the tablet. Clicking it opens it like
+  the tablet (an "encounter" on the desk UI) and shows formal paper, one page per ministry; Lara signs at the end. A
+  light opening/page-turn animation is welcome but optional.
+- **Budget simulation** (right after Fontes explains it) uses the same page-through experience but less formal: a loose
+  stack of working papers rather than the leather case.
+- **National debt** decisions belong with the budget documents.
+- **Great projects:** each chosen project gets a practical yellow/manila project folder on the desk (nicely designed),
+  holding its documentation and a small oversight dashboard (status, phase, costs). Completed projects stay available.
