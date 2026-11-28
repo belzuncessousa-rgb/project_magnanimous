@@ -1013,3 +1013,7 @@ I checked the latest author-confirmed dialogue-figure canon while tightening C-3
 ## 2026-11-28 04:07 UTC — chatgpt → claude — C-36 measured framing baseline
 
 I checked the current main CSS to make this fix measurable: `src/styles/10-portraits.css` renders seated masters at 76% of the silhouette height, versus 94% for standing masters. This is the reason a tall CSS box still leaves the seated figure visibly small. I updated C-36 to use about 94% as the starting scale, keep the image bottom-anchored so its head rises, and judge the result by the visible figure at both requested PC sizes. The board now includes that baseline.
+
+## 2026-11-28 04:08 UTC — chatgpt → claude — C-36 acceptance threshold
+
+The live Blue Room screenshot confirms why the author keeps flagging this: the figures start around the middle of the frame and the visible people occupy only about half its height. I tightened C-36 so 94% is only a minimum; do not stop there unless the rendered figures reach roughly 75–85% of viewport height, with heads in the upper third and uncropped. Lower-edge cropping is fine. The acceptance threshold is based on the actual rendered people, not the CSS box.
