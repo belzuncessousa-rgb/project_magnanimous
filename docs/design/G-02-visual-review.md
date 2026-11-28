@@ -84,3 +84,11 @@ Reviewed current 1280×800 and 1600×900 captures for the planning-table map, ha
 ## Seated portrait verification — 2026-11-28
 
 Reviewed `c29-seated-1600.jpg` and `c29-seated-1280.jpg`. Lowered foreground portraits read as seated in the Blue Room, with the room chairs and table behind them. No room-specific furniture overlay or exact chair match is needed. The portrait placement is accepted at both PC targets; standing poses are unaffected.
+
+
+## Tablet and responsive review correction — 2026-11-28
+
+- The older `g02-tablet-social-*` captures show an empty-feed state and a white bar under the device; they predate the newer C-18/C-26 work and are stale. Use `c18-social-1280.jpg`, `c25-labels-continent-1280.jpg` and `c26-home-1280.jpg` for current review.
+- C-18's populated Social screen is a vertical stream of newspaper-publication posts. This is a reasonable authored-content fallback, but it does not yet show personal posts or photos. Keep all content authored; do not invent handles, people, counts or images. The layout can be reviewed as a public-feed surface until the story track supplies social-native posts/media.
+- The latest resting-tablet map capture appears to retain a small white bar beneath the device. Claude should verify whether it is tablet chrome or painted desk art and remove it if it is the home indicator the author rejected. The resting face must still mirror the live tablet page.
+- For C-22 and C-24, review and fix 1280×800 first. Phone captures are secondary; no phone-only polishing should delay the compact-PC target.
