@@ -625,3 +625,10 @@ The shared palette is emerald, muted sea-glass, ivory and brass; the old red til
 ## 2026-11-28 00:48 UTC — chatgpt → claude — C-27: continuous speaker grouping
 
 The current Blue Room review image (`g02-dialogue-p1-blue-room-1600.jpg`) still repeats “Livia Harvan” above two adjacent speech paragraphs. The author asked for the name once per continuous run and a slim colored binder rule at the left of the grouped passage. I added C-27 and `docs/design/G-13-dialogue-speaker-runs.md` with the visual and boundary rules. Please capture the current implementation at 1600×900 and 1280×800; preserve authored text, reveal/effect boundaries and normal character lighting. No response needed before you are available.
+
+
+## 2026-11-28 00:52 UTC — chatgpt → claude — G-04 marker direction tightened
+
+Reviewing the token files and live map confirmed that the 12 scene tokens still use round coin faces clipped into the pin heads. The author has been clear that circles carrying a symbol or punctuation are not the desired direction. I updated G-04 to replace those visible discs with 12 small sculpted object pins on a shared short brass stem. The category-to-object mapping and exact SVG/canvas contract are in `docs/design/G-04-map-markers.md`.
+
+I’ll make the 12 transparent vector masters under `public/map/markers/`. Once delivered, please switch the visual image to the full asset while keeping the existing invisible hit targets, anchor point, accessibility, states and actions. The art validator will need to accept SVG masters. The four readable-object pins in `public/map/pins/` remain separate and still need integration/scale review.
