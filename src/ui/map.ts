@@ -58,7 +58,10 @@ const MAP_FRAMES = {
 } as const;
 const KUNASAI_ZOOM = 1.48;
 /** strategy-table-background.png: size and the inner edge of its painted glass display, in image pixels. */
-const DESK_ART = { w: 1672, h: 941, glass: { x0: 48, y0: 137, x1: 1123, y1: 791, r: 26 } } as const;
+const DESK_ART = { file: 'strategy-table-background.png', w: 1672, h: 941, rail: 86, railX: 165, glass: { x0: 48, y0: 137, x1: 1123, y1: 791, r: 26 } } as const;
+/** Ultrawide desk (G-10, ChatGPT): used from 2.1:1 up, stretched to fill (≤ ~4 %) so no rail or glass is cropped. */
+const DESK_ART_WIDE = { file: 'strategy-table-background-ultrawide-candidate.png', w: 1881, h: 836, rail: 76, railX: 150, glass: { x0: 39, y0: 105, x1: 1004, y1: 705, r: 24 } } as const;
+const WIDE_FROM = 2.1;
 /** public/map/sea-tile.png (1024×1024 px, painted by ChatGPT) in map units at the atlas painting's scale (1065 px ↔ 800 units). */
 const SEA_TILE = { w: 769, h: 769 } as const;
 /** Colour correction hook for the sea tile → atlas water (identity while they match; check with tools/check-sea-tile.py). */
@@ -148,8 +151,7 @@ export class MapView {
     this.base = this.responsivePoliticalFrame((window.innerWidth * 0.60) / Math.max(1, window.innerHeight * 0.94));
     this.vb = { ...this.base };
     this.el = h('div', { class: 'map', 'data-ui': 'map' });
-    const tableBackground = new URL(`${import.meta.env.BASE_URL}map/strategy-table-background.png`, document.baseURI);
-    this.el.style.setProperty('--strategy-table-background', `url("${tableBackground.href}")`);
+
     this.atlasArtHref = new URL(`${import.meta.env.BASE_URL}map/arvain-terrain-art.png`, document.baseURI).href;
     this.seaTileHref = new URL(`${import.meta.env.BASE_URL}map/sea-tile.png`, document.baseURI).href;
     this.svg = s('svg', { class: 'map-svg', preserveAspectRatio: 'xMidYMid meet', role: 'group', 'aria-label': 'Map of Arvain', tabindex: 0 });
@@ -205,36 +207,48 @@ export class MapView {
   private layoutGlass() {
     const cw = this.el.clientWidth || window.innerWidth;
     const ch = this.el.clientHeight || window.innerHeight;
-    const scale = Math.max(cw / DESK_ART.w, ch / DESK_ART.h);
-    // Narrower than the art (16:10, 4:3, portrait): keep the painted left frame and crop only bare wood on the right.
-    // Wider than the art (21:9): crop the leather rails top and bottom evenly.
-    const ox = cw < DESK_ART.w * scale ? 0 : (cw - DESK_ART.w * scale) / 2;
-    const oy = (ch - DESK_ART.h * scale) / 2;
-    const g = DESK_ART.glass;
+    const art = cw / ch >= WIDE_FROM ? DESK_ART_WIDE : DESK_ART;
+    if (this.el.dataset.desk !== art.file) {
+      this.el.dataset.desk = art.file;
+      const href = new URL(`${import.meta.env.BASE_URL}map/${art.file}`, document.baseURI).href;
+      this.el.style.setProperty('--strategy-table-background', `url("${href}")`);
+    }
+    let sx: number, sy: number, ox: number, oy: number;
+    if (art === DESK_ART_WIDE) {
+      // stretch to fill: keeps both rails and the whole glass frame
+      sx = cw / art.w; sy = ch / art.h; ox = 0; oy = 0;
+    } else {
+      const scale = Math.max(cw / art.w, ch / art.h);
+      sx = sy = scale;
+      // Narrower than the art (16:10, 4:3, portrait): keep the painted left frame and crop only bare wood on the right.
+      ox = cw < art.w * scale ? 0 : (cw - art.w * scale) / 2;
+      oy = (ch - art.h * scale) / 2;
+    }
+    const g = art.glass;
     const margin = 6;
-    const left = Math.max(margin, ox + g.x0 * scale);
-    const top = Math.max(margin, oy + g.y0 * scale);
-    const right = Math.min(cw - margin, ox + g.x1 * scale);
-    const bottom = Math.min(ch - margin, oy + g.y1 * scale);
+    const left = Math.max(margin, ox + g.x0 * sx);
+    const top = Math.max(margin, oy + g.y0 * sy);
+    const right = Math.min(cw - margin, ox + g.x1 * sx);
+    const bottom = Math.min(ch - margin, oy + g.y1 * sy);
     const st = this.el.style;
-    st.backgroundSize = `${DESK_ART.w * scale}px ${DESK_ART.h * scale}px`;
+    st.backgroundSize = `${art.w * sx}px ${art.h * sy}px`;
     st.backgroundPosition = `${ox}px ${oy}px`;
     st.setProperty('--glass-l', `${left}px`);
     st.setProperty('--glass-t', `${top}px`);
     st.setProperty('--glass-w', `${Math.max(0, right - left)}px`);
     st.setProperty('--glass-h', `${Math.max(0, bottom - top)}px`);
-    st.setProperty('--glass-r', `${Math.max(6, g.r * scale)}px`);
+    st.setProperty('--glass-r', `${Math.max(6, g.r * Math.min(sx, sy))}px`);
     // The bare wood to the right of the glass frame: the resting tablet is centred in it and sized to fit.
-    const woodLeft = Math.min(cw, ox + (g.x1 + 30) * scale);
+    const woodLeft = Math.min(cw, ox + (g.x1 + 30) * sx);
     const woodW = Math.max(0, cw - woodLeft);
     st.setProperty('--wood-cx', `${woodLeft + woodW / 2}px`);
     st.setProperty('--tablet-w', `${Math.round(Math.min(310, Math.max(150, woodW * 0.78)))}px`);
     this.el.classList.toggle('desk-narrow', woodW < 190);
     // Top leather rail (art y 0–86 px, straight from x ≈ 150): Menu and Actions are tooled into it (C-15).
     const railTop = Math.max(0, oy);
-    const railBottom = oy + 86 * scale;
+    const railBottom = oy + art.rail * sy;
     const rootStyle = document.documentElement.style;
-    rootStyle.setProperty('--rail-x', `${Math.max(12, ox + 165 * scale)}px`);
+    rootStyle.setProperty('--rail-x', `${Math.max(12, ox + art.railX * sx)}px`);
     rootStyle.setProperty('--rail-cy', `${railBottom - railTop >= 30 ? (railTop + railBottom) / 2 : 26}px`);
     requestAnimationFrame(() => this.fitTabletPreview());
   }

@@ -26,7 +26,7 @@ section. Move finished tasks to **Done** with the commit hash.
 | A-02 | author | todo | — | **Real free actions.** There is no `content/free-actions.json`, so the game ships the four `[DEMO]` placeholder actions (rally, envoy, benches, interview). `docs/story/production/TERM-FREE-ACTIONS.md` exists — the narrative track needs to turn it into content. | narrative track |
 | C-25 | claude | review | ui, ux | **Country labels and off-map flag tokens.** Restyle country names as native cartographic labels; replace off-map brass nameplates with tactile 3D flag pins. Keep on-map country selection on exact land geometry. | `docs/design/G-11-offmap-flag-tokens-and-country-labels.md`; country labels reviewed; off-map flag-pin faces wait for author/world flag canon. |
 
-| C-33 | claude | todo | ui, art | **Integrate the ultrawide desk art variant.** Select the art only at ultrawide widths and align the live map to its glass opening. | `docs/design/G-10-ultrawide-desk.md`; candidate `public/map/strategy-table-background-ultrawide-candidate.png`. Capture 2560×1080 and confirm 16:9/16:10 compositions remain unchanged. |
+| C-33 | claude | review | ui, art | **Integrate the ultrawide desk art variant.** Select the art only at ultrawide widths and align the live map to its glass opening. | `docs/design/G-10-ultrawide-desk.md`; candidate `public/map/strategy-table-background-ultrawide-candidate.png`. Capture 2560×1080 and confirm 16:9/16:10 compositions remain unchanged. |
 ## Done
 
 | C-32 | chatgpt | Closed after the author's newer confirmation (2026-11-28 ~02:40 UTC): preserve C-29's large, high seated portraits; do not lower them. | 72a0a56c, 10b64c8a |
