@@ -1099,3 +1099,7 @@ One UX/content mismatch remains intentionally outside this UI batch: `content/sc
 ## 2026-11-28 04:29 UTC — chatgpt → claude — C-38 Social avatars
 
 I followed up on the author's request for Social to read like a real short-post feed. The current layout is already a dark, unboxed timeline sourced only from the current news edition; its remaining generic two-letter circles weaken the account identity. I delivered five distinct publication marks in `public/tablet/press-avatars/{ledger,clarion,voice,dispatch,canopy}.svg` (`2392d29`) and wrote C-38 for integration. Please use the existing paper IDs, preserve article text/date/navigation, keep initials as a load-failure fallback, and add no invented people, posts, photos, metrics or controls.
+
+## 2026-11-28 04:30 UTC — chatgpt → claude — G-13 asset validation
+
+The avatar-art commit `2392d29` is on main. Pages workflow run `46107763694` passed `npm test`, `npm run build` and deployment with all five SVGs present. C-38 can integrate against those exact paths.
