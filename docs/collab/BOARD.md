@@ -11,7 +11,6 @@ section. Move finished tasks to **Done** with the commit hash.
 
 |---|---|---|---|---|---|
 | C-08 | claude | todo | ui | **Lara portrait selector** per the updated plan (`docs/art-candidates/lara-player-portrait-customization-plan.md`, cross-session handoff): three one-at-a-time selectors (outfit, hairstyle, paired pose/expression), others stay fixed when one changes; 168 pre-rendered portraits (no layer compositing). | waits on the portrait catalog |
-| G-02 | chatgpt | doing | design, ui | **Visual review of the playable build.** Review current screens at 1600×900 and 1280×800 against the art direction; file focused UI follow-ups for Claude. | Current review: `docs/design/G-02-visual-review.md`; PC layouts accepted for C-16–C-18, C-21–C-24; C-29 portrait placement is under renewed review in C-34. C-31 is complete: the phone vote list and final action scroll clear of the footer; authored social-media content is a separate narrative-track dependency. C-33 visual review passed at 2560×1080, 1600×900 and 1280×800; close-out still needs production filename/path and one post-rename 2560×1080 load capture. The latest author direction on seated figures supersedes the C-29 scale; C-34 implementation and PC review are now also required. |
 | G-03 | chatgpt | todo | art | **Lara layered portrait sources** per the customization plan (starter set: 2 hair × 4 outfits × 2 poses × 3 expressions, aligned transparent layers). Needs author approval of Lara's face first. | |
 | G-12 | chatgpt | review | art, design | **Tablet app icon family.** Four coordinated dimensional SVG tiles for News, Social, Codex and Reports. | Assets: `public/tablet/apps/{news,social,codex,reports}.svg`; integration reviewed in C-26 at 1280×800 and 1600×900; awaiting author review. |
 | C-28 | claude | review | ui, tech | **Integrate sculpted map pins.** Replace the circular coin images with the 12 full transparent SVG pins, using the bottom tip as the location anchor; update art validation. Preserve marker IDs, hit areas, accessibility, selection states and actions. | `docs/design/G-04-map-markers.md`; art delivered at `public/map/markers/*.svg`. Reviewed: `c28-continent-1280.jpg`, `c28-continent-1600.jpg`, `c28-kunasai-1600.jpg`; implementation ready for author review. |
@@ -26,12 +25,16 @@ section. Move finished tasks to **Done** with the commit hash.
 | A-02 | author | todo | — | **Real free actions.** There is no `content/free-actions.json`, so the game ships the four `[DEMO]` placeholder actions (rally, envoy, benches, interview). `docs/story/production/TERM-FREE-ACTIONS.md` exists — the narrative track needs to turn it into content. | narrative track |
 | C-25 | claude | review | ui, ux | **Country labels and off-map flag tokens.** Restyle country names as native cartographic labels; replace off-map brass nameplates with tactile 3D flag pins. Keep on-map country selection on exact land geometry. | `docs/design/G-11-offmap-flag-tokens-and-country-labels.md`; country labels reviewed; off-map flag-pin faces wait for author/world flag canon. |
 
-| C-33 | claude | review | ui, art | **Integrate the ultrawide desk art variant.** Select the art only at ultrawide widths and align the live map to its glass opening. | `docs/design/G-10-ultrawide-desk.md`; visual review accepted from `c33-desk-2560x1080.jpg`; promote the candidate path to production, update `DESK_ART_WIDE`, and post a clean post-rename 2560×1080 capture. 1600×900 and 1280×800 remain unchanged. |
 ## Done
+
+| G-02 | chatgpt | Completed the PC visual review at 1600×900 and 1280×800, including the post-rename 2560×1080 C-33 production capture; C-34 closed without code change under the latest large/high and inward-facing portrait direction. | `4f18cc2` |
+
+| C-33 | claude | Promoted the ultrawide art to `public/map/strategy-table-background-ultrawide.png`; post-rename 2560×1080 load accepted. | `e8bff86` |
+
 
 | G-10 | chatgpt | Ultrawide desk art accepted after live C-33 captures at 2560×1080, 1600×900 and 1280×800; glass, map and wood/tablet composition read cleanly. | 878f922d, 6a127f15 |
 
-| C-32 | chatgpt | Closed after the then-latest author confirmation to keep seated portraits large/high; that direction was superseded by the author's newer instruction on 2026-11-28. See C-34. | 72a0a56c, 10b64c8a |
+| C-32 | chatgpt | Closed after reconciling conflicting seated-portrait guidance; latest author direction again confirms the large/high C-29 treatment. See C-34 and the final author confirmations. | 72a0a56c, 10b64c8a |
 
 | G-07 | chatgpt | Reviewed five RGBA proposal portraits. Kept them as candidates; their full-body framing conflicts with the established portrait crop, so they do not replace the live in-game portraits. | (see log) |
 
@@ -42,7 +45,7 @@ section. Move finished tasks to **Done** with the commit hash.
 | C-18 | claude | Removed the tablet's three faint bottom light lines from the open and resting device; page mirror preserved. Verified at 3×. | `aa0c32f` |
 | C-22 | claude | Whip-count sheet accepted at 1600×900 and 1280×800; paper-letterhead layout, hemicycle and party counts read clearly. | `aa0c32f` |
 | C-24 | claude | Portfolio title accepted at 1600×900 and 1280×800; wordmark also fits at phone width after wrapping. | `aa0c32f` |
-| C-29 | claude | Previous portrait placement: seated at 76%, standing at 94%, centered in slot, right slot mirrored inward. The seated scale/position is superseded by the latest author instruction; see C-34. | `7e96681` |
+| C-29 | claude | Seated portraits at 76%, standing at 94%, centered in their slot; right slot mirrored inward. Large/high seated treatment remains the latest author-approved direction. | `7e96681` |
 | C-16 | claude | Map is an integrated planning display inside the desk glass; the painted sea fills its unused area and the top ARVANE label is gone. Latest evidence: `c25-labels-continent-1280.jpg`. | (see log) |
 | C-17 | claude | Turn ledger uses handwritten resource figures with formal letterhead and labels; readable at 1280×800. | (see log) |
 | C-21 | claude | Actions folio reviewed: leather-and-gilt folio with distinct ivory action cards and brass costs; capture shows no duplicate action entries. | (see log) |
