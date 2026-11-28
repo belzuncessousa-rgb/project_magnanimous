@@ -89,3 +89,11 @@ Backgrounds: public/backgrounds/<background-id>.webp. Character masters: public/
 - The resting tablet shows the same app and page left open on the physical device. Remove the white home-indicator line beneath it. Design the News, Social, Codex and Reports interiors as real, app-specific screens rather than interchangeable cards. Social uses a familiar vertical short-post timeline and may show inline photography only when content/art exists; do not invent accounts, reactions, engagement counts or narrative mechanics.
 - Remove the ARVANE title at the top edge of the map. Make the atlas and its sea one coherent digital surface inside the table's actual glass opening; the geographic painting must not read as an opaque rectangular print floating on leather. Preserve the fitted glass frame and fill the screen beyond the continent with matching painted sea.
 - Map tokens should be tactile, distinctive location markers with recognizable silhouettes and designed material, not bare circles with a letter or generic glyph. Anchor them to cities/locations and protect nearby labels. Keep the map's actual region contours as the only geographic selection outline.
+
+## Off-map foreign tokens and cartographic labels (2026-11-28)
+
+- Represent countries outside the drawn map with small, tactile 3D flag pins. Keep on-map countries selectable by their actual land geometry; do not put extra pins on top of all territories.
+- Use one shared brass/pennant hardware treatment. The authored national flag supplies identity; do not add country initials or invented animal/object emblems.
+- The foreign-country pages currently do not define the Arennian Federation or Zharan flags. Do not derive them from real-world flags; create country-specific flag faces only after their world-art decisions are approved.
+- Set country names directly on the map in an unboxed cartographic serif small-cap style with restrained tracking, warm muted ivory ink and a subtle dark map-colored edge. Vary placement and modest scale with each territory so names feel placed in the landscape rather than floating as identical labels. Keep the Kunasai/region zoom hierarchy and protect city names, rivers, pins and borders.
+- Full implementation brief: `docs/design/G-11-offmap-flag-tokens-and-country-labels.md`.
