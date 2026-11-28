@@ -36,7 +36,7 @@ edit the source document listed below and only update this index if the location
 |---|---|---|---|
 | Title | `src/ui/app.ts` (`showTitle`) | arms + emerald card | G-02 review |
 | Map desk (rest state) | `src/ui/map.ts`, `src/ui/hud.ts` | painted atlas in a glass display on a wood/leather desk; turn ledger; tablet on the wood | C-01 frame alignment, C-03 compact, C-06 markers |
-| Dialogue (VN mode) | `src/ui/vn.ts`, `src/ui/dialogue-stage.ts`, `src/ui/layout.ts` | room plate + fixed portrait slots + central transcript, numbered inline choices | G-06 chair/desk occlusion |
+| Dialogue (VN mode) | `src/ui/vn.ts`, `src/ui/dialogue-stage.ts`, `src/ui/layout.ts` | room ambience + large, high fixed portrait slots + central transcript + numbered inline choices | G-02 visual review |
 | Tablet (News, Social, Codex, Reports) | `src/ui/tablet.ts` | consumer device, home screen with app icons | G-02 review |
 | Reports / readables | `src/ui/app.ts` (readable card) | paper with national arms | — |
 | Budget, debt, vote | `src/ui/screens.ts` | letterhead paper; vote is analytic | mechanics to be reconciled with narrative redesign |
