@@ -231,3 +231,6 @@ Only the **new GDD** in Notion ("📖 GDD — Project Magnanimous") counts. The 
 - Seated figures stay BIG and HIGH in the foreground slots (heads in the upper third). The room is backdrop. Do NOT lower them.
 - The right-slot figure always faces inward. No matching chairs or room overlays; if ever needed, characters bring their own chair.
 - Any "lower seated figures" note elsewhere in this repo is superseded. Do not reintroduce it without quoting a newer author message with its time in docs/collab/LOG.md.
+
+## Dialogue portraits — latest author direction (2026-11-28 03:40 UTC)
+The author clarified that the lowered seated portraits are too low. Keep seated characters large and high in the foreground so they occupy more than roughly half the screen height; the room is only ambience. The right-side figure must be mirrored inward to face the centre. If a seated pose looks strange, the character may bring their own chair as part of the portrait art. This supersedes the immediately preceding request to lower seated figures until they appear to sit in open air.
