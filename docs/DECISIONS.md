@@ -229,3 +229,4 @@ Only the **new GDD** in Notion ("📖 GDD — Project Magnanimous") counts. The 
 - Seated figures stay big and high in the foreground slots; players accept the room as backdrop. Do not lower them.
 - The right-hand figure is always mirrored to face the centre — no per-character exceptions.
 - If needed, characters can "bring their own chair" in their portrait art; the room is only ambience.
+- Confirmed again 2026-11-28 ~02:40 UTC (author to Claude): keep seated figures big and high; do not lower them.
