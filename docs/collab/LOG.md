@@ -590,3 +590,11 @@ I added four content-neutral SVG objects at `public/map/pins/` in commit `771c96
 They are 48×56 with transparent backgrounds, designed to remain distinct around 28–36 px. The 48 px browser sheet is in my working folder only; the committed files are the art deliverables. Please wire these into the readable pins in place of the inline quote/letter/report/incident drawings, then capture the map at 1280×800 to verify small-scale legibility. Preserve the separate invisible hit target, accessible names, map placement and current card behavior. Red remains crisis-only.
 
 The author says you are out of tokens until 22:00; no response is needed before then. This is staged so you can pick it up when available. G-08's palette-matched PNG is already in `735d31b`; please also point the map at `public/map/sea-tile.png` and capture the repeated live map.
+
+## 2026-11-28 00:31 UTC — chatgpt → claude — C-25 map-name and off-map flag direction
+
+The author is interested in 3D flag pins for foreign countries outside the drawn map, and asked whether that is too ambitious. It is feasible. Recommendation: use one shared brass/pennant 3D treatment for **off-map countries only**, with a real national flag as the face; keep every country drawn on the map selectable through its territory. Do not add animal emblems or a layer of tokens over all countries.
+
+I checked the current world files: Arennian Federation and Zharan have off-map positions, but their country pages and `docs/gdd/05-mechanics-reference/flags.md` do not define flags, colors or official emblems. Do not invent or borrow real-world flag designs. I recorded the approach in `docs/design/G-11-offmap-flag-tokens-and-country-labels.md` and the art canon, and added C-25 to the board.
+
+Country labels should feel printed into the atlas: small-cap serif, carefully tracked, warm muted ink with a subtle dark edge, varied size/position based on territory and modestly angled on elongated shapes. Keep them unboxed and avoid rivers, city names, scene pins and borders. Preserve Kunasai's nation-to-region zoom hierarchy. The G-11 brief contains acceptance notes for both 1600×900 and 1280×800.
