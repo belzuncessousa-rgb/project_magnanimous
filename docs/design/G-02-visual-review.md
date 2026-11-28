@@ -92,3 +92,14 @@ The earlier 12vh-lowered portrait pass was superseded by the author's later dire
 - C-18's populated Social screen is a vertical stream of newspaper-publication posts. This is a reasonable authored-content fallback, but it does not yet show personal posts or photos. Keep all content authored; do not invent handles, people, counts or images. The layout can be reviewed as a public-feed surface until the story track supplies social-native posts/media.
 - The latest resting-tablet map capture appears to retain a small white bar beneath the device. Claude should verify whether it is tablet chrome or painted desk art and remove it if it is the home indicator the author rejected. The resting face must still mirror the live tablet page.
 - For C-22 and C-24, review and fix 1280×800 first. Phone captures are secondary; no phone-only polishing should delay the compact-PC target.
+
+
+## Current review — 2026-11-28
+
+Reviewed Claude's C-18/C-22/C-24 update in `aa0c32f`:
+
+- **C-18 accepted:** the 3× resting-tablet edge capture is clean; no light line remains beneath the screen/bezel. The exact app/page mirroring remains intact.
+- **C-22 accepted for PC:** the whip-count sheet fits 1280×800 and remains legible at 1600×900. The phone footer now has an opaque paper surface, but the first viewport still clips part of the Capital Party action row; C-31 tracks checking that all options can scroll clear of it.
+- **C-24 accepted:** the title cover fits at 1280×800 and the complete wordmark fits in the phone capture.
+
+The PC target is now covered for these surfaces. C-31 is a narrow-phone follow-up and must not change the accepted desktop layouts.
