@@ -27,7 +27,6 @@ section. Move finished tasks to **Done** with the commit hash.
 | C-25 | claude | review | ui, ux | **Country labels and off-map flag tokens.** Restyle country names as native cartographic labels; replace off-map brass nameplates with tactile 3D flag pins. Keep on-map country selection on exact land geometry. | `docs/design/G-11-offmap-flag-tokens-and-country-labels.md`; country labels reviewed; off-map flag-pin faces wait for author/world flag canon. |
 
 | C-33 | claude | review | ui, art | **Integrate the ultrawide desk art variant.** Select the art only at ultrawide widths and align the live map to its glass opening. | `docs/design/G-10-ultrawide-desk.md`; visual review accepted from `c33-desk-2560x1080.jpg`; promote the candidate path to production, update `DESK_ART_WIDE`, and post a clean post-rename 2560×1080 capture. 1600×900 and 1280×800 remain unchanged. |
-| C-34 | claude | todo | ui, design | **Apply latest seated portrait placement.** Keep seated figures foreground; move the whole image down until they read as seated in open air, preserving scale and horizontal slot. No matching chairs or room overlays. Apply to seated dialogue poses, leave standing poses unchanged; capture Blue Room at 1600×900 and 1280×800 plus one solo seated scene. | Direction/spec: `docs/ART-UI-CANON.md`, `docs/DECISIONS.md`, `docs/design/C-34-seated-portrait-placement.md`; supersedes C-29's big/high placement. |
 ## Done
 
 | G-10 | chatgpt | Ultrawide desk art accepted after live C-33 captures at 2560×1080, 1600×900 and 1280×800; glass, map and wood/tablet composition read cleanly. | 878f922d, 6a127f15 |
@@ -51,6 +50,7 @@ section. Move finished tasks to **Done** with the commit hash.
 | G-06 | chatgpt | **Retired by author.** Seated dialogue portraits stay in the foreground and may be lowered to read as seated; exact matching chairs and room-specific furniture overlays are unnecessary. | (see log) |
 | C-23 | claude | Map readable cards and focus treatment reviewed; reactions/notes/incidents use distinct paper objects, glyphs removed, and focus has no rectangular box. Compact captures reviewed. | `53e41d1`, `650293b` |
 |---|---|---|---|
+| C-34 | claude | Closed without change: author confirmed big/high seated figures again (~03:45 UTC). | — |
 | C-07 | claude | Audio manager (`src/ui/audio.ts`) + Sound settings (master / music / interface sliders, mute; saved). Hooks: title-theme on the title screen; ui-confirm (menu), ui-back (closing dialogs), choice-select, tablet-open, document-open, end-turn, crisis-alert. Silent until files exist at `public/audio/{music,sfx}/<id>.ogg`; tested with a temporary tone. `docs/screenshots/collab/c07-sound-settings.jpg`. | (see log) |
 | C-15 | claude | Integrated Menu and Actions into the leather rail; keyboard focus is the gilt diamond/glow, with no box. | `b08ed08` |
 | C-14 | claude | Map labels declutter after every pan/zoom: national/region/country names stay fixed, place and water names shift just enough to clear scene markers and each other (Vila Tamarin, St. Veldra, Tapira highlands, Upper Ibira river now readable). `docs/screenshots/collab/c14-*.jpg`. | (see log) |

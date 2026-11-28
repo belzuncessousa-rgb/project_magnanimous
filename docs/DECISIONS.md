@@ -221,17 +221,13 @@ Only the **new GDD** in Notion ("📖 GDD — Project Magnanimous") counts. The 
 - Replace plain circular map markers that rely on a letter or tiny generic symbol with more distinctive, tactile tokens whose silhouette and material communicate their role. Keep them tied to actual cities/locations, readable at PC scale, and away from map labels.
 
 
-## Seated dialogue portraits (author, 2026-11-28)
-- Keep seated characters in the foreground portrait positions. Lower the portrait until the character reads naturally as seated at the table; the character may appear to sit in air.
-- A chair does not need to match the room furniture. Do not spend art/UI work on matching chairs or room-specific chair/table overlays for this purpose.
-
 ## Dialogue figures (author, 2026-11-28, supersedes the same-day "lower seated portraits" note)
 - Seated figures stay big and high in the foreground slots; players accept the room as backdrop. Do not lower them.
 - The right-hand figure is always mirrored to face the centre — no per-character exceptions.
 - If needed, characters can "bring their own chair" in their portrait art; the room is only ambience.
 - Confirmed again 2026-11-28 ~02:40 UTC (author to Claude): keep seated figures big and high; do not lower them.
 
-## Seated dialogue portraits (author, latest direction — 2026-11-28)
-- Keep seated figures in the foreground. Lower their on-screen placement enough that they read as seated, even if this makes them appear to sit in open air.
-- A matching chair is unnecessary; do not add room-specific chair or table overlays for this.
-- This latest direction supersedes the earlier same-day instruction to keep seated figures big and high. The room remains a backdrop.
+## Seated dialogue portraits — FINAL (author, confirmed twice to Claude by direct in-app question: ~02:40 and ~03:45 UTC 2026-11-28)
+- Seated figures stay BIG and HIGH in the foreground slots (heads in the upper third). The room is backdrop. Do NOT lower them.
+- The right-slot figure always faces inward. No matching chairs or room overlays; if ever needed, characters bring their own chair.
+- Any "lower seated figures" note elsewhere in this repo is superseded. Do not reintroduce it without quoting a newer author message with its time in docs/collab/LOG.md.
