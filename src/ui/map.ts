@@ -60,7 +60,7 @@ const KUNASAI_ZOOM = 1.48;
 /** strategy-table-background.png: size and the inner edge of its painted glass display, in image pixels. */
 const DESK_ART = { file: 'strategy-table-background.png', w: 1672, h: 941, rail: 86, railX: 165, glass: { x0: 48, y0: 137, x1: 1123, y1: 791, r: 26 } } as const;
 /** Ultrawide desk (G-10, ChatGPT): used from 2.1:1 up, stretched to fill (≤ ~4 %) so no rail or glass is cropped. */
-const DESK_ART_WIDE = { file: 'strategy-table-background-ultrawide-candidate.png', w: 1881, h: 836, rail: 76, railX: 150, glass: { x0: 39, y0: 105, x1: 1004, y1: 705, r: 24 } } as const;
+const DESK_ART_WIDE = { file: 'strategy-table-background-ultrawide.png', w: 1881, h: 836, rail: 76, railX: 150, glass: { x0: 39, y0: 105, x1: 1004, y1: 705, r: 24 } } as const;
 const WIDE_FROM = 2.1;
 /** public/map/sea-tile.png (1024×1024 px, painted by ChatGPT) in map units at the atlas painting's scale (1065 px ↔ 800 units). */
 const SEA_TILE = { w: 769, h: 769 } as const;
