@@ -50,3 +50,16 @@ Add these constraints to the current implementation and review. They are author-
 - Replace generic circle-plus-letter/glyph markers with a tactile token family. Protect map labels and anchor markers to their real location. G-04 is active and will supply the art direction.
 
 These changes are presentation-only. Preserve the map geometry, game interactions, current content and narrative/state behavior.
+
+## Latest browser review — 2026-11-28
+
+Reviewed `g04-proposal-1280.jpg`, `c15-desk-1280.jpg`, `c15-leather-controls-states.jpg`, `c16-planning-glass-1280.jpg`, `c17-desk-1280.jpg`, `c18-social-1280.jpg`, `c18-open-home-1280.jpg`, `c18-resting-apps.jpg`, and `c23-readable-cards.jpg`.
+
+- **C-15:** Menu and Actions now sit naturally in the leather edge with no idle button boxes. The control-state capture still shows a thin rectangular focus frame; use the gilt lettering and diamond detail to show focus instead.
+- **C-16:** the top map title is gone and the map reads more clearly as a display fitted to the table's glass. Confirm the new sea asset in the live map before review closure.
+- **C-17:** the resource figures now look hand-annotated by Lara while the labels and letterhead stay formal; legibility at 1280×800 is good.
+- **C-18:** the new open-device capture has no home-indicator line. The Social timeline has a clear short-post hierarchy and the resting display mirrors app/page state.
+- **G-04/C-23:** paper, letter, and hazard silhouettes are more tangible and distinct. The reaction pin still uses quotation punctuation and the incident sign an exclamation mark; remove both glyphs. Use the object silhouette alone, keep red for crises, and preserve the brass off-map plaques.
+- **G-08:** added `public/map/sea-tile.png` in `735d31b`. The 1024px palette-matched PNG repeats in a browser at the in-game 769px scale without a visible grid seam. It still needs a capture in the live game map at 1280×800 and 1600×900.
+
+The author-facing review gate remains open for the marker glyph cleanup, non-rectangular keyboard focus, and the live sea-map captures. The table controls, physical ledger and tablet are converging on the agreed design.
