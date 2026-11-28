@@ -52,6 +52,7 @@ export class VNView {
   private advanceResolve: (() => void) | null = null;
   private cast: Who[] = [];
   private background: HTMLElement;
+  private foreground: HTMLElement;
   private roomLabel: HTMLElement;
   private latest: HTMLButtonElement;
   private topbar: HTMLElement;
@@ -69,13 +70,16 @@ export class VNView {
     this.left = h('div', { class: 'portrait portrait-left' });
     this.right = h('div', { class: 'portrait portrait-right' });
     this.background = h('div', { class: 'vn-background', 'aria-hidden': 'true' });
+    // Optional room foreground (chair backs, desk edges) drawn over the portraits: backgrounds/<room>-front.png,
+    // same size and framing as the room plate, transparent elsewhere (G-06). Absent file = nothing drawn.
+    this.foreground = h('div', { class: 'vn-foreground', 'aria-hidden': 'true' });
     this.roomLabel = h('div', { class: 'vn-room-label' });
     this.latest = h('button', { class: 'vn-latest', hidden: true, onclick: () => { this.followLog = true; this.latest.hidden = true; this.scrollToEnd(); } }, 'Return to latest ↓');
     this.topbar = h('div', { class: 'vn-topbar' }, h('span', { class: 'vn-wordmark' }, h('img', { src: 'identity/kunasai-mark.svg', alt: '' }), 'KUNASAI'), h('span', { class: 'vn-date' }));
     this.log.append(this.choices);
     this.log.tabIndex = 0;
     const column = h('div', { class: 'vn-column paper' }, this.roomLabel, this.titleEl, this.latest, this.log);
-    this.el = h('div', { class: 'vn', hidden: true }, this.background, this.topbar, this.left, column, this.right);
+    this.el = h('div', { class: 'vn', hidden: true }, this.background, this.topbar, this.left, column, this.right, this.foreground);
     this.log.addEventListener('scroll', () => {
       this.followLog = this.log.scrollHeight - this.log.clientHeight - this.log.scrollTop < 48;
       this.latest.hidden = this.followLog;
@@ -170,6 +174,7 @@ export class VNView {
     if (this.background.dataset.environment === environment) return;
     this.background.dataset.environment = environment;
     clear(this.background);
+    clear(this.foreground);
     this.el.classList.remove('has-environment');
     if (st.showEnvironment) {
       const bg = h('img', { alt: '' });
@@ -179,6 +184,10 @@ export class VNView {
       bg.addEventListener('error', () => bg.remove());
       this.background.append(bg);
       bg.src = `backgrounds/${st.background}.webp`;
+      const front = h('img', { alt: '' });
+      front.addEventListener('error', () => front.remove());
+      this.foreground.append(front);
+      front.src = `backgrounds/${st.background}-front.png`;
     }
   }
 

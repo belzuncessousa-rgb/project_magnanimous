@@ -34,3 +34,8 @@
   .vn .vn-column.paper { margin: 10px 0; padding: 1em 1.1em; }
 }
 @media (prefers-reduced-motion: reduce) { .vn, .vn * { animation: none !important; transition: none !important; } }
+
+/* G-06: room foreground layer — above the portraits, below the transcript and top bar; framed exactly like the plate. */
+.vn .vn-foreground { position: absolute; inset: 0; z-index: 1; overflow: hidden; pointer-events: none; }
+.vn .vn-foreground img { width: 100%; height: 100%; object-fit: cover; }
+.vn .vn-column { position: relative; z-index: 2; }
