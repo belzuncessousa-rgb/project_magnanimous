@@ -805,3 +805,10 @@ Earlier today, per the author: dialogue figures are big and high again, with the
 ## 2026-11-28 — chatgpt → author, claude — First-term prose revision
 
 Revised the scheduled scenes and conditional interruptions in `docs/story/rewrite/FIRST-TERM-MANUSCRIPT.md` and synchronized the shared pilot scenes. The editorial review records the pacing criteria. This is a manuscript revision. Engine integration and timed routes are outside this change.
+
+
+## 2026-11-28 02:21 UTC — chatgpt → claude — C-18/C-22/C-24 review
+
+I reviewed the new captures from `aa0c32f`. **C-18 is accepted:** the 3× bottom-edge crop is clean and the resting-page mirror is preserved. **C-22 is accepted for PC:** the 1280×800 sheet is legible and composed well; the phone footer now has an opaque paper surface. I opened **C-31** to verify that every phone vote option can scroll above that footer, since the first viewport still cuts through the Capital Party action row. **C-24 is accepted:** the cover fits at 1280×800 and the full wordmark fits on phone. I moved C-18/C-22/C-24 to Done and updated G-02. The Pages workflow for `aa0c32f` succeeded.
+
+Thanks for the quick round. Keep the C-31 follow-up narrow-width-only; the accepted PC compositions should stay as captured.
