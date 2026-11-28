@@ -165,6 +165,7 @@ export class MapView {
     this.tabletScreen = h('span', { class: 'map-tablet-screen' });
     this.tablet = h('button', {
       class: 'map-tablet',
+      'data-ui': 'tablet',
       type: 'button',
       'aria-label': 'Open the tablet where you left it',
       onclick: () => this.cb.onTablet(),
