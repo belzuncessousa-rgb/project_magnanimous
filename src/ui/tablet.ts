@@ -33,6 +33,8 @@ export interface TabletOptions {
   closeLabel?: string;
   /** Build the device and report its screen through onAppChange without showing it (the resting tablet's face). */
   previewOnly?: boolean;
+  /** Portrait stems for a person (Lara follows her cosmetic look); default: standing, seated, legacy master. */
+  portraitStems?(person: Actor): string[] | undefined;
   onAppChange?(app: TabletApp, screen: HTMLElement, page: TabletPage): void;
 }
 
@@ -199,7 +201,7 @@ export function showTablet(root: HTMLElement, options: TabletOptions): Promise<v
       if (person.portrait) {
         const image = h('img', { alt: '', loading: 'lazy' });
         avatar.append(image);
-        loadPortrait(image, [`${person.portrait}-standing`, `${person.portrait}-seated`, person.portrait]);
+        loadPortrait(image, options.portraitStems?.(person) ?? [`${person.portrait}-standing`, `${person.portrait}-seated`, person.portrait]);
       }
       return avatar;
     };

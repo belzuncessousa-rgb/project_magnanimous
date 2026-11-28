@@ -13,6 +13,8 @@ import { showTablet, type TabletApp, type TabletOptions, type TabletPage } from 
 import { tokenFor } from './tokens';
 import { VNView } from './vn';
 import { sound } from './audio';
+import { labelOf, laraPortraitStems, stepLook, type LaraLook } from './lara';
+import { loadPortrait } from './portraits';
 
 export class App {
   private game: Game | null = null;
@@ -229,6 +231,39 @@ export class App {
     this.modal('Settings', body);
   }
 
+  /** Three one-at-a-time selectors over Lara's pre-rendered portrait catalog (C-08). Cosmetic only. */
+  private openAppearance() {
+    let look: LaraLook = { ...this.settings.laraLook };
+    const frame = h('div', { class: 'look-portrait' });
+    const caption = h('p', { class: 'look-note', 'aria-live': 'polite' });
+    const values: Record<keyof LaraLook, HTMLElement> = {
+      outfit: h('output', { class: 'look-value' }), hair: h('output', { class: 'look-value' }), demeanor: h('output', { class: 'look-value' }),
+    };
+    const render = () => {
+      for (const k of Object.keys(values) as (keyof LaraLook)[]) values[k].textContent = labelOf(k, look[k]);
+      const img = h('img', { alt: `Lara Vento: ${labelOf('outfit', look.outfit)}, ${labelOf('hair', look.hair)}, ${labelOf('demeanor', look.demeanor)}` });
+      clear(frame); frame.append(img);
+      caption.textContent = '';
+      loadPortrait(img, laraPortraitStems(look), (i) => {
+        if (i > 0) {
+          console.info('[lara] portrait not in the catalog yet:', laraPortraitStems(look)[0]);
+          caption.textContent = 'This combination has not been painted yet; the current portrait is shown.';
+        }
+      });
+      this.settings.laraLook = look;
+      saveSettings(this.settings);
+    };
+    const row = (field: keyof LaraLook, label: string) => h('div', { class: 'look-row' },
+      h('span', { class: 'look-label' }, label),
+      h('button', { class: 'look-step', 'aria-label': `Previous ${label.toLowerCase()}`, onclick: () => { look = stepLook(look, field, -1); render(); } }, '‹'),
+      values[field],
+      h('button', { class: 'look-step', 'aria-label': `Next ${label.toLowerCase()}`, onclick: () => { look = stepLook(look, field, 1); render(); } }, '›'));
+    const body = h('div', { class: 'look' }, frame,
+      h('div', { class: 'look-controls' }, row('outfit', 'Outfit'), row('hair', 'Hair'), row('demeanor', 'Bearing'), caption));
+    render();
+    this.modal('Lara’s appearance', body);
+  }
+
   private openMenu() {
     sound.play('ui-confirm');
     let m: HTMLElement;
@@ -243,6 +278,7 @@ export class App {
       option('▣', 'Save', 'Keep your current progress', () => { if (this.game) saveGame(this.game.state); this.flash('Game saved.'); m.remove(); }),
       h('div', { class: 'menu-section-label menu-section-secondary' }, 'PREFERENCES'),
       option('☷', 'Settings', 'Text and display options', () => { m.remove(); this.openSettings(); }),
+      option('◐', 'Lara’s appearance', 'Outfit, hair and bearing', () => { m.remove(); this.openAppearance(); }),
       option('⇱', 'Save & quit to title', 'Save before leaving this session', () => { if (this.game) saveGame(this.game.state); m.remove(); this.game = null; this.showTitle(); }, 'menu-option-quit'));
     m = this.modal('Menu', body);
   }
@@ -277,6 +313,7 @@ export class App {
         .sort((a, b) => g.state.shownPopups.indexOf(b.id) - g.state.shownPopups.indexOf(a.id))
         .map((popup) => ({ popup, read: g.isRead(popup.id) })),
       initialPage,
+      portraitStems: (person) => (person.id === 'lara' ? laraPortraitStems(this.settings.laraLook) : undefined),
       footer,
       closeLabel,
       onAppChange: (_app, screen, page) => {

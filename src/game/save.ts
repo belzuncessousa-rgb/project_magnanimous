@@ -19,11 +19,14 @@ export interface Settings {
   musicVolume: number;
   sfxVolume: number;
   muted: boolean;
+  /** Lara's cosmetic appearance (src/ui/lara.ts); never affects the story. */
+  laraLook: { outfit: string; hair: string; demeanor: string };
 }
 
 export const DEFAULT_SETTINGS: Settings = {
   textSize: 'medium', transitions: true, mapView: 'political',
   masterVolume: 0.8, musicVolume: 0.6, sfxVolume: 0.7, muted: false,
+  laraLook: { outfit: 'official-dark', hair: 'shoulder-waves', demeanor: 'neutral' },
 };
 
 type StorageLike = Pick<Storage, 'getItem' | 'setItem' | 'removeItem'>;
