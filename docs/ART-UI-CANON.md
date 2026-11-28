@@ -98,12 +98,9 @@ Backgrounds: public/backgrounds/<background-id>.webp. Character masters: public/
 - Set country names directly on the map in an unboxed cartographic serif small-cap style with restrained tracking, warm muted ivory ink and a subtle dark map-colored edge. Vary placement and modest scale with each territory so names feel placed in the landscape rather than floating as identical labels. Keep the Kunasai/region zoom hierarchy and protect city names, rivers, pins and borders.
 - Full implementation brief: `docs/design/G-11-offmap-flag-tokens-and-country-labels.md`.
 
-## Dialogue figure scale (author, 2026-11-28)
-- Characters come first; the room plate is ambience behind them. Figures are large and high in the side slots
-  (heads in the upper third), sized by height and centred on their column; the outer edge may crop and the inner edge
-  slides under the transcript. Do not lower seated figures to fake sitting at the room's table.
-- If a big seated figure ever reads oddly, the fallback is for each character to bring their own chair in the
-  portrait art (not a room-matched chair).
+## Dialogue figure scale (earlier author direction, superseded 2026-11-28)
+- The room plate is ambience behind foreground figures; the outer edge may crop and the inner edge slides under the transcript. The earlier instruction to keep seated figures large/high and not lower them is superseded by the latest seated-portrait direction below.
+- Do not add matching chairs or room furniture to the reusable portrait masters.
 
 ## Seated dialogue portraits (author, latest direction — 2026-11-28)
 - Keep seated characters in the foreground. Lower their on-screen placement until they read as seated, even if they appear to sit in open air; the room remains a backdrop.
