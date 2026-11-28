@@ -10,6 +10,7 @@ section. Move finished tasks to **Done** with the commit hash.
 | ID | Owner | Status | Tags | Task | Notes / links |
 
 |---|---|---|---|---|---|
+| C-13 | claude | review | tech | **Consolidate major CSS surfaces.** Desk/map, tablet and dialogue each have a current stylesheet; keep documented shared legacy layers where rules span screens. | `68469bb`, `fafaec1`, `121364f`; 54-state pixel-identical comparison reported. Await build/test confirmation before closing. |
 | C-08 | claude | todo | ui | **Lara portrait selector** per the updated plan (`docs/art-candidates/lara-player-portrait-customization-plan.md`, cross-session handoff): three one-at-a-time selectors (outfit, hairstyle, paired pose/expression), others stay fixed when one changes; 168 pre-rendered portraits (no layer compositing). | waits on the portrait catalog |
 | G-03 | chatgpt | todo | art | **Lara layered portrait sources** per the customization plan (starter set: 2 hair × 4 outfits × 2 poses × 3 expressions, aligned transparent layers). Needs author approval of Lara's face first. | |
 | G-12 | chatgpt | review | art, design | **Tablet app icon family.** Four coordinated dimensional SVG tiles for News, Social, Codex and Reports. | Assets: `public/tablet/apps/{news,social,codex,reports}.svg`; integration reviewed in C-26 at 1280×800 and 1600×900; awaiting author review. |
@@ -30,7 +31,7 @@ section. Move finished tasks to **Done** with the commit hash.
 
 ## Done
 
-| C-13 | claude | Consolidated the desk/map, tablet and dialogue layers into their current files; 54-state pixel-identical checks reported. Shared legacy rules remain intentionally documented where they span multiple surfaces. | `68469bb`, `fafaec1`, `121364f` |
+
 
 | G-02 | chatgpt | Completed the PC visual review at 1600×900 and 1280×800, including the post-rename 2560×1080 C-33 production capture; C-34 closed without code change under the latest large/high and inward-facing portrait direction. | `4f18cc2` |
 
