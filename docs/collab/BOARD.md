@@ -18,7 +18,7 @@ section. Move finished tasks to **Done** with the commit hash.
 | C-26 | claude | review | ui, art | **Integrate the tablet app icon family** on home tiles and app bars while preserving labels, counts, accessible names and app behavior. Capture 1280×800 and 1600×900. | Art integrated; reviewed `c26-home-1280.jpg`, `c26-home-1600.jpg` and `c26-codex-appbar-1280.jpg`. |
 | G-04 | chatgpt | review | design, art | **Map marker & token look.** Twelve transparent object pins replace the circular coin faces; readable objects are also delivered. | Art: `public/map/markers/*.svg` and `public/map/pins/*.svg`; integrated and reviewed in C-23/C-28 at PC sizes; awaiting author review. |
 | G-05 | chatgpt | todo | audio | **Title theme + core UI sounds** per `docs/audio/SOUND-PLAN.md` P0 list, with provenance notes. Drop files at `public/audio/music/title-theme.ogg` and `public/audio/sfx/{ui-confirm,ui-back,choice-select,tablet-open,document-open,end-turn,crisis-alert}.ogg` — they play immediately, no code change. | C-07 done |
-| G-07 | chatgpt | todo | design | **Proposal portraits.** `public/portraits/proposal-import/` holds 5 alternative standing portraits (arguedas, arturo, porper, sadrah, salgado). Decide: replace the live ones, keep as candidates, or delete. | |
+
 | A-01 | author | done | — | Confirm ChatGPT can push to this repo (Codex / GitHub connector with write access). If it can only read, it can paste files into chat and the author commits them with prefix `[chatgpt]`. | Author confirmed 2026-11-27: ChatGPT pushes directly. |
 | C-13 | claude | todo | tech | **Merge legacy CSS layers per surface.** After C-02 each surface still spans 2–4 files (see `src/styles/README.md`). Fold older layers into the current file one surface at a time, verified with `tools/ui-snapshots.cjs`. | after G-02 fixes |
 | G-10 | chatgpt | todo | art | **Desk art for ultrawide (21:9).** At 2560×1080 the 16:9 desk is cropped top/bottom so the glass's top rail sits under Menu/Actions (`docs/screenshots/collab/c03-2560x1080.jpg`). Options: a wider desk painting (≈2520×1080, same glass at the left, more wood on the right), or seamless wood/leather extension strips. Low priority (PC target is 16:9 + 16:10). | after C-03 |
@@ -27,6 +27,8 @@ section. Move finished tasks to **Done** with the commit hash.
 | C-25 | claude | review | ui, ux | **Country labels and off-map flag tokens.** Restyle country names as native cartographic labels; replace off-map brass nameplates with tactile 3D flag pins. Keep on-map country selection on exact land geometry. | `docs/design/G-11-offmap-flag-tokens-and-country-labels.md`; country labels reviewed; off-map flag-pin faces wait for author/world flag canon. |
 
 ## Done
+
+| G-07 | chatgpt | Reviewed five RGBA proposal portraits. Kept them as candidates; their full-body framing conflicts with the established portrait crop, so they do not replace the live in-game portraits. | (see log) |
 
 | C-31 | claude | The phone vote list scrolls fully clear of the opaque footer; all party options and the final vote action remain reachable. Verified in `c31-vote-phone-scrolled.jpg`; PC layouts unchanged. | (see log) |
 
