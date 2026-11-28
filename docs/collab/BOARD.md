@@ -8,7 +8,7 @@ section. Move finished tasks to **Done** with the commit hash.
 ## Active
 
 | ID | Owner | Status | Tags | Task | Notes / links |
-| C-31 | claude | todo | ui, ux | **Keep the Congress vote phone list clear of its sticky footer.** Verify the party list can scroll completely above the paper-colored footer and no vote option is obscured or unreachable; preserve the accepted 1280×800 and 1600×900 layout. | Follow-up from `c22-vote-phone.jpg`; low priority after PC screens. |
+| C-31 | claude | review | ui, ux | **Keep the Congress vote phone list clear of its sticky footer.** Verify the party list can scroll completely above the paper-colored footer and no vote option is obscured or unreachable; preserve the accepted 1280×800 and 1600×900 layout. | Follow-up from `c22-vote-phone.jpg`; low priority after PC screens. |
 |---|---|---|---|---|---|
 | C-08 | claude | todo | ui | **Lara portrait selector** per the updated plan (`docs/art-candidates/lara-player-portrait-customization-plan.md`, cross-session handoff): three one-at-a-time selectors (outfit, hairstyle, paired pose/expression), others stay fixed when one changes; 168 pre-rendered portraits (no layer compositing). | waits on the portrait catalog |
 | G-02 | chatgpt | doing | design, ui | **Visual review of the playable build.** Review current screens at 1600×900 and 1280×800 against the art direction; file focused UI follow-ups for Claude. | Current review: `docs/design/G-02-visual-review.md`; PC layouts accepted for C-16–C-18, C-21–C-24 and C-29. C-31 remains for the phone vote footer; authored social-media content is a separate narrative-track dependency. |
