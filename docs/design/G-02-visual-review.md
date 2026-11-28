@@ -23,7 +23,7 @@ The current blocked button is too faint to read and feels detached from the desk
 
 The hardware now reads as a consumer tablet and the turn summary reads as presidential stationery; retain both directions. Verify the resting tablet after opening News, Social, Codex and Reports: on returning it to the table, its visible face should show the same last-used app/page, not reset to the app launcher. The caption under the device stays removed. Keep the ledger fixed in the screen HUD and ensure it does not obscure important map content at 1280×800.
 
-## Screens still needing a fresh look
+## Initial screenshots requested — captured in the 2026-11-28 review
 
 Please provide captures in `docs/screenshots/collab/` for:
 
@@ -34,7 +34,7 @@ Please provide captures in `docs/screenshots/collab/` for:
 
 Use existing current content and scenes. The screenshots are for visual review; do not add temporary story content to make them.
 
-## Review gate
+## Initial review gate — superseded by the current status at the end of this file
 
 G-02 is not ready for author review until the map tokens no longer obstruct labels, the blocked End Turn reads clearly, tablet state persistence is visually confirmed, and the current title, menu, tablet, ledger and dialogue have all been reviewed at the compact-PC target. Keep changes in small commits and ask for art direction in the log if an implementation constraint changes the agreed look.
 
@@ -51,7 +51,7 @@ Add these constraints to the current implementation and review. They are author-
 
 These changes are presentation-only. Preserve the map geometry, game interactions, current content and narrative/state behavior.
 
-## Latest browser review — 2026-11-28
+## Initial browser review — before follow-up fixes — 2026-11-28
 
 Reviewed `g04-proposal-1280.jpg`, `c15-desk-1280.jpg`, `c15-leather-controls-states.jpg`, `c16-planning-glass-1280.jpg`, `c17-desk-1280.jpg`, `c18-social-1280.jpg`, `c18-open-home-1280.jpg`, `c18-resting-apps.jpg`, and `c23-readable-cards.jpg`.
 
@@ -103,3 +103,13 @@ Reviewed Claude's C-18/C-22/C-24 update in `aa0c32f`:
 - **C-24 accepted:** the title cover fits at 1280×800 and the complete wordmark fits in the phone capture.
 
 The PC target is covered for these surfaces. The narrow-phone C-31 check is also complete; the accepted desktop layouts were unchanged.
+
+
+## Current review status — 2026-11-28 03:16 UTC
+
+The earlier map-marker, End Turn, tablet-persistence, ledger, label-clearance, phone vote/footer and portfolio-title items in this file are historical review notes. The board and later review sections record the follow-up captures and acceptances; do not treat the old first-pass comments as active defects.
+
+- **Accepted for the current PC review:** the integrated tablet apps and persisted resting face; handwritten turn-ledger figures; leather Menu/Actions controls; map label decluttering; tactile readable/map pins; the responsive vote sheet and portfolio title; large, high dialogue portraits with inward-facing right-slot figures. The corresponding evidence and commits are listed on `docs/collab/BOARD.md` and in the later review sections above.
+- **Still open:** C-33 must integrate the separate ultrawide desk art and provide a 2560×1080 runtime capture. Verify its glass/map alignment and preserve the accepted 1600×900 and 1280×800 compositions. G-10 remains in review until that comparison is complete.
+- **G-02 stays open** until the integrated ultrawide result and unchanged 16:9/16:10 screens have current runtime captures. Do not use the old first-pass screenshots as evidence for post-integration behavior.
+- C-32 was closed after the later author confirmation: retain C-29's large/high seated portraits; do not lower them.
