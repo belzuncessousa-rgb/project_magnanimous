@@ -32,7 +32,7 @@ section. Move finished tasks to **Done** with the commit hash.
 
 | G-08 | chatgpt | **Refine the seamless sea tile.** Added palette-matched `public/map/sea-tile.png`; live map verified seam-free in `c28-continent-1280.jpg`, `c28-continent-1600.jpg` and `c28-kunasai-1600.jpg`. | `735d31b` |
 | ID | Owner | Task | Commit |
-| C-29 | claude | Seated portraits in foreground slots lowered 12vh and cropped to read as seated in the room; standing poses unchanged; removed unused room overlay code. Reviewed at 1600×900 and 1280×800. | `3074987` |
+| C-29 | claude | Dialogue figures are large/high in the foreground; seated portraits at 76% and standing at 94% of stage height, centered in their slot; right slot always mirrors inward. Reviewed 1600×900 and 1280×800. | `7e96681` |
 | C-16 | claude | Map is an integrated planning display inside the desk glass; the painted sea fills its unused area and the top ARVANE label is gone. Latest evidence: `c25-labels-continent-1280.jpg`. | (see log) |
 | C-17 | claude | Turn ledger uses handwritten resource figures with formal letterhead and labels; readable at 1280×800. | (see log) |
 | C-21 | claude | Actions folio reviewed: leather-and-gilt folio with distinct ivory action cards and brass costs; capture shows no duplicate action entries. | (see log) |
