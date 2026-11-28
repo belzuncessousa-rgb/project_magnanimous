@@ -79,3 +79,10 @@ This revision edits all 78 scheduled scenes in the full manuscript, plus the res
 Counting Votes puts political exposure and the alternatives to Odel on every route. Optional questions distinguish an adviser's informed guess from what a deputy actually said. The budget vote now gives the player separate conversations about the school undertaking, the version the benches saw, and the practical fallback before the clerk is asked to proceed. The later scenes have additions specific to their cast and situation.
 
 The author's dense-budget pacing targets are roughly 25–30 minutes on the shortest route and around 40 minutes for a fuller one. The manuscript has no timing telemetry. It needs single-route reads to measure these targets, and the current text alone does not establish that they are met. Some scenes have a short new exchange and remain shorter than the major encounters.
+
+
+## Deeper pass
+
+The first budget now develops through the working comparison, the school undertaking and deputy reply, the division and its outcome, and the Treasury allocation and instructions. The ordinary route to the second budget gets the cash-and-authority discussion even when no lender decision is due. The procurement, drought response, constitutional negotiation, tax, second project selection, nomination, campaign encounter and election close carry additional exchanges and distinct choices.
+
+The review checks the 78 scheduled sections across 24 turn windows. The pacing figures are targets. Script word counts include alternatives and cannot establish timed play duration.

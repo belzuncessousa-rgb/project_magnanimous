@@ -1098,6 +1098,80 @@ Dara looks down at his copy of the rota. “Can we find out when the hospital wi
 - **“What can I count from the Fund?”** Fontes lifts out Royce's paper. “These are his preliminary conditions. Use the receipts on our own schedule for this estimate.” *If Lara requested a longer schedule:* “I've kept the request with his letter. The payments here still follow our existing agreement.”
 - **“Where is there room to save?”** Fontes opens the Defense sheet. “Voss identified an overhaul we could defer at the Ibira River Post. Once the inspection expires, they'll have one vehicle in service. If Treasury verifies that the saving covers the gap, we can keep the Health rota and household payments.” *Show the verified saving when available.*
 
+Dara takes a pencil out of the binding of his rota and sets it beside the slip. “Can I write here?”
+
+Fontes passes him a blank page.
+
+“I was hoping to draw on yours,” Dara says. “I want to show her what happens if we get the room before we get the staff.”
+
+Fontes watches him add a thin line across the afternoon. “Leave my figure where it is and I'll work beside you.”
+
+Dara puts a small cross through a place on the rota. The first few names are hidden under his hand.
+
+“They used to tell people to wait in case somebody didn't come back from lunch,” he says. “There were afternoons when nobody did. Then the clerk had to go out and tell the last two people that waiting wouldn't get them anything. The director changed the way they filled the book. Before we send her new hours, I'd like to see which book she means to put them in.”
+
+“You could speak to the clerk,” you say.
+
+“I did. She thought I'd come to ask her why she was turning people away. It took a while before she told me what she wanted. An answer she could give over the telephone, mainly.”
+
+Livia has brought a clean copy of the proposed notice. She reads the first sentence. “It says we've expanded the hours.”
+
+Dara reaches for it. “Who wrote that?”
+
+“I did. For the day we can say it.”
+
+She holds on to the paper for a moment, then gives it to him. He changes the verb and puts the pencil back in the book.
+
+- **“Read me the version reception can use as things stand.”** Dara reads the current hours and the way to contact the responsible desk. If a consultation already has a date, keep it. An unstaffed change can go to the director as a proposal rather than an announcement.
+- **“What do you want me to protect if we can’t expand?”** Dara names the existing hours and the separate payment run supported by this route. “If these are the services we can keep, tell me who they'll keep reaching. I can give the people outside the list a better answer if I know where to ask.”
+- **“Tell reception we’ll speak to them when the new rota is ready.”** Dara says what he can tell staff now and when the director can be asked again. Continue on the inherited rota until there is a verified change.
+
+Fontes asks whether he can have his page back. Dara looks at the line he drew.
+
+“Can I have a copy of this one first?”
+
+“We'll make two,” says Livia. “Put the date on yours. Somebody will ring me in three weeks and say you did it this morning.”
+
+There is a knock and the clerk asks whether to take the other copies downstairs. Fontes tells him to leave one here. You look through the five departmental headings before answering.
+
+“What shall I tell the minister who brings me the first proposal after this?” you ask.
+
+“Ask which version they saw,” says Fontes. “They may have seen the forecast from before we put the scheduled payments in. I'll give them the comparison when you're ready. Give them the version we can discuss today and we'll see where it gets us.”
+
+The clerk takes the blank copies away. He returns with one that's already been used on the back. Livia starts to send him out again, then reads the back and asks him to sit down. The figures are older, but the office that prepared them is still waiting for an answer. Lara can hear which office that is and what it can be told under current authority before choosing the working proposal.
+
+#### What is left if the larger ceiling falls
+
+*Play before marking the working proposal. Use the actual continuing authority. Where an overhaul saving is feasible, Fontes can show it in the contraction comparison.*
+
+*Use this exchange only when the prospective overhaul saving is feasible to price. Otherwise use the available continuing-authority comparison described below.*
+
+Voss arrives with the maintenance dates on a folded sheet. He takes the seat Dara has left empty and waits until he can see the two columns.
+
+“Is that the figure you want from Defense?” he asks.
+
+“It's the saving we'd use in this comparison,” Fontes says. “Tell her what it costs at the post.”
+
+Voss gives you the end date of the reserve vehicle's inspection. He checks it against the note the post sent him.
+
+“Does that mean it comes in on that day?” you ask.
+
+“It means they stop using it when the inspection is over. If you're asking what work they can do with the other one, I can show you the regular schedule. The last time they had to cover two jobs on the same day, they called before putting either of them off. I'd ask them to do that again.”
+
+Fontes asks how long the work could wait. Voss says he can get an answer from the post, but he would want to know whether anyone had spoken to the garage before he gave another date.
+
+“Who'd you like me to tell?” you ask.
+
+“If you choose it, tell me what the change is meant to protect. I'll tell the commander which instruction to give his people. I'd like them to hear it from us before they see that we've taken something out of the sheet.”
+
+- **“Show me the funded services the saving would protect.”** Fontes compares the verified saving with the existing service cost. If it fails to cover the shortfall, he shows the remaining gap and what else would require review. The comparison does not instruct Voss to defer work.
+- **“Show me what happens if we keep the overhaul.”** Voss keeps the present inspection and maintenance plan on the page. Fontes shows the affordable comparison and what additional cash or authority would be needed to keep other proposals.
+- **“Leave the fallback beside the draft.”** Livia clips the two versions together. She asks the clerk to keep their labels visible when making copies.
+
+*If authority, cost or service timing does not support the overhaul comparison, give the equivalent exchange with the responsible office for the feasible line. If there is no feasible reduction, Fontes shows what can legally continue and identifies the unresolved shortfall. Never present an infeasible reduction as a choice.*
+
+Voss gathers his copy. He leaves the folder open at the date the post actually sent him. “If you want a new date, ask for it on this one. They've given me three answers in the last month, and this is the one they were prepared to sign.”
+
 **Mark a working proposal.**
 
 - **“Cost the additional Sugar Bay sessions.”** *Show when scope, setup and ongoing costs are available.* Fontes adds the expansion to the Health draft and shows the share of projected surplus it would use. “This is the request for the expanded ceiling. The appointments already in Dara's book are on the inherited line.”
@@ -1242,6 +1316,76 @@ When she has gone, Avros stands for a moment with his fingertips on the wall.
 
 *Continue with the list for the current version. The exchange supplies no additional vote or spending promise.*
 
+Livia finds you a chair on the chamber side of the corridor. It has been put there for a member whose ankle is in plaster. When he arrives, you give it back. He sits down with some difficulty and puts his crutches across his knees.
+
+“Someone told me you'd found the money,” he says.
+
+“Who told you that?”
+
+“A man who wanted me to find some for him. I said I'd ask you how you'd done it.”
+
+Avros comes back carrying a copy of the bill and a sheet bearing the seal of his district. The member asks him if the government's found enough to mend his ankle. Avros says he'd like the department to cost it first. The member laughs. A moment later he asks whether he can keep the bill while he waits for his assistant.
+
+Livia gives him the circulated copy. She asks him to leave the district sheet with Avros. He reads the title across the top before he gives it back.
+
+“Is that what they're calling it now?” he asks.
+
+“That's the name of the school,” Avros says. “It's been the name since you went there.”
+
+“It had a different sign.”
+
+“Go back sometime. They might still have it.”
+
+The member starts to say that he was there last year. He stops, looks at the district sheet again, and asks whether the building is still open.
+
+Use the verified scope of the school request. Avros can describe the two closed classrooms. Where the request has been discussed, he explains exactly what the municipality was told. Leave the member's vote out of this exchange unless he actually offers a reply for the current text.
+
+Livia touches your sleeve. The clerk has left his door open for you. Inside, a woman in spectacles has been looking through a stack of copies with one finger between the pages. She puts the stack down when she sees Avros.
+
+“I can lend you this if you promise to take it back before somebody writes on it,” she says.
+
+Avros shows her his copy.
+
+“Then you probably have what I have,” she says. “What did you want to talk to me about?”
+
+“The date they can put on the notice.”
+
+“Which notice?”
+
+“The one in your district.”
+
+“I have two. One of them's on a door we can't open.” She moves the stack again so Avros can lean on the desk. “You probably mean the other one.”
+
+If the clerk and deputy have already spoken to Lara by phone, use the actual request they voiced there. Otherwise the deputy explains what she has been telling people under the existing payment schedule. She separates this from the question of whether to support a larger ceiling.
+
+“Could the ministry ring the clerk?”
+
+“He works until five. If they ring at five to five he'll be there tomorrow as well, but the people he has to call back may have gone home.”
+
+Fontes stands in the doorway until the deputy notices him. He tells her which date he can confirm from the existing authority. When another payment is still awaiting verification, he names the office that owes a reply.
+
+The deputy reads his answer back. She does it in a slightly different order.
+
+“That's what your clerk can say,” Fontes tells her. “If he sends people to my office, I'll answer the same question.”
+
+“I'd like him to have your answer, then. I'd also like to read the new lines before I tell you what I'm doing about the bill.”
+
+Livia shows her where the ceilings differ. The deputy keeps her finger between two pages while she asks what happens if the expansion fails.
+
+Play the terms available on the current version. If a deputy has already made a specific request and can address it here, use it. A response to a question about existing service may keep a conversation open. It need not produce an undertaking or support.
+
+- **“Take the time you need to read it. Tell me when we can ask again.”** She checks the clock and says when she has to go back into the chamber. Livia looks to the clerk to see whether the bill can wait that long.
+- **“If something in this version would keep you from voting for it, I'd like to hear it.”** She looks first at the page she had marked. Use her actual objection. If no objection is established, she asks you to let her finish. Avros waits until she lifts her eyes before he responds.
+- **“Give the district the answer we have today. We can discuss the bill separately.”** The deputy writes the name of the office in the margin. “That's what I came for this morning,” she says. “When I've read the rest, you can ask me again.”
+
+In the corridor, a messenger asks Livia whether the deputy was one of yours. Livia asks him whether he means one of the government members or one of the people on the list. He tells her he was asked to find out whether the deputy needed her old seat.
+
+“Then ask her where she'd like to sit,” Livia says. The messenger goes back into the room.
+
+Avros watches him leave. “This is why you ask what people have actually been told.” He looks at his folded list. “If the deputy can answer this afternoon, I'll take her answer. If she wants another version, I need to know whether you'll hear it before I tell her we'll wait.”
+
+If a credible revision returns, show what changes, who asked for it and who must hear it again before submission. If Lara wants to proceed on the present text, leave the proposal open without counting anyone who has not replied. If time is withdrawn, use the release path at the clerk's door.
+
 Livia has folded down a corner of the bill to mark the ceiling. In the corridor, the clerk stops a deputy to replace a page in his copy.
 
 > **Livia:** “The clerk sent this version to all the members. Here are the replies we have for it.”
@@ -1268,21 +1412,17 @@ Mertens puts his pencil across the OPP column.
 
 *Show confirmed supporters and outstanding replies for this exact version. The independent run has a sufficient list organized by Avros without an OPP undertaking. In the transactional run, Mertens's version-bound OPP commitments supply the missing support. Both show the same expanded ceiling. The clerk's actual division settles the vote.*
 
-Fontes opens a second sheet.
+*Before submission, walk through the verified fallback. If a smaller bill needs its own vote, show its separate gate.*
 
-> **Fontes:** “This is what we can use if the expansion fails. If we defer the reserve vehicle overhaul at the river post, we can cover the old rota and household payments. Dara's additional sessions would have to wait.”
+Fontes puts the fallback beside the circulated text. The pages are nearly the same size. He asks you to point to the first difference you can see.
 
-*Read the verified fallback before offering submission. If the contraction needs its own bill, display that proposal and its vote gate.*
-
-*Before submission, walk through the effective fallback with Fontes. Use only the reductions or postponements feasible on this run.*
-
-Fontes leaves the bill where it is and puts the fallback beside it. The pages are nearly the same size. He asks you to point to the first difference you can see.
+*If it uses the overhaul saving:*
 
 “The extra clinic hours.”
 
 “That's the one they'll notice first,” he says. “There's a difference further down. The post at Ibira has a reserve vehicle due for work.”
 
-*Play the ensuing exchange about the vehicle only if the verified fallback uses the overhaul saving. On other routes Fontes names the affected service, the change the responsible office can verify and when it would take effect. Livia asks him to make that date clear to the department before the figures are circulated. Rejoin at the choices below.*
+*Otherwise, name the service sustained by the fallback, the work that would wait and the date the responsible office can confirm. Skip the ensuing exchange about the vehicle and rejoin at the choices.*
 
 “Has Voss seen this version?” you ask.
 
@@ -1300,13 +1440,55 @@ Fontes takes back his note. “He can have the dates when we've made the decisio
 - **“If we go ahead today, what am I risking?”** Livia draws the current version toward you. “The clerk can call this one. The people who said they'd support it have seen these terms. Some of the answers are still open. If we lose, this is the authority Fontes can work with, unless you decide to bring back a different bill.” On this option she reads any actual deadline or remaining procedural step from the clerk's advice.
 - **“Put both copies in front of me.”** Fontes moves the fallback and the submitted version side by side. He leaves his hand on the edge of the table so neither page moves when the clerk comes through the door.
 
-The clerk asks Livia how much time she needs. Livia asks him for the time he actually has. He tells her, and waits. Neither of them looks at the list of names while they are talking.
+Livia walks the length of the corridor, comes back and checks the clock over the clerk's door. Avros asks whether she's waiting for somebody.
 
-Livia puts down her pen. “If you want another version circulated, tell me before I give him this one. If you want him to call the bill, I'll give him the copy the benches have.”
+“I'm waiting for him to finish giving them the paper. There are people in there who will answer the bill they took home last night if they still have it in front of them.”
 
-- **“Submit this version.”** Livia hands it to the clerk. A deputy lowers his lunch bag to the floor when the call begins. **Pass:** Livia writes the effective date on the copy she brings you. “I'll send Treasury the ceiling this afternoon.” Avros asks when Education can decide on the works if the repair is included, or who will answer the deputy if it's under ordinary review. **Defeat:** Fontes writes HOLD beside the new sessions. “I'll tell the departments what they can keep paying. The proposed orders can wait.” Use the verified continuing authority or offer the smaller bill.
+Avros goes to help. A deputy standing against the wall asks him to tell her which copy the government is using. He asks which one she's got. She opens it to a page with a date written in blue at the bottom.
+
+“That's the day we sent it to you,” he says. “If you're asking what day people get paid, use the dated schedule Fontes gave us. It's in the new copy.”
+
+She checks the next page and goes back inside. Avros watches her long enough to see her take the copy the clerk is offering. When he comes back, he sits in the nearest chair and rubs a place at the back of his neck.
+
+“You've been doing this since breakfast,” Livia says.
+
+“I had breakfast.”
+
+“Did you sit down?”
+
+“I sat in the car.” He leaves his hand where it is. “If you want time for another text, we'll ask for it. I'd like to know before I go back in and tell them to stay.”
+
+Ask the clerk how much time remains. Use a confirmed deadline, or state that he is waiting for the presiding officer's answer. If a reduced bill can be circulated in time, he names whom it still has to reach. If the option depends on a later sitting, he says what would have to be arranged. Nobody treats a revised paper as an agreed motion before the necessary steps occur.
+
+Fontes reads the fallback aloud in the order in which the offices would hear it. He names one service that keeps running and one proposal that would have to wait. Where the reserve vehicle is the saving, he leaves the inspection date visible. Where the school undertaking was conditional, Avros gives the precise condition and asks what he can still tell the deputy if the allocation changes.
+
+“If we lose, does he hear it from us?” you ask.
+
+“He should,” Avros says. “I can tell him what the vote did. I'd like you to tell me what happens to the part we told him we'd look at.”
+
+Use Lara's actual undertaking and the authority still in force.
+
+- **“Tell him what we can do under the continuing budget.”** Avros reads back the standing review or other action that remains available. If the earlier undertaking still needs a name, a date or a price, he says which office owes it.
+- **“I’ll hear another proposal before we leave.”** Offer only with time and an office or deputy authorized to bring it. Hear it using the existing revision route. An offer still needs its own acceptance and circulation.
+- **“Let's finish deciding what goes to the clerk.”** Livia sets the circulated text beside the fallback. She waits for Lara to instruct her.
+
+A bell sounds inside. Nobody in the corridor moves until the clerk comes back. He asks who is holding the copy that will be called if the government proceeds. Livia lifts it high enough for him to see. She keeps it in her hand while you decide.
+
+- **“Submit this version.”** Livia gives the circulated copy to the clerk. He calls the division when it can convene. Record the actual result and effective authority, then use the result scene below.
 - **“Circulate the smaller bill.”** *Show if costed and legally available.* Fontes marks the cut and gives the new copy to Livia. The new text goes back to the affected benches, with notice to the deputy if his school commitment is affected. Return to the door when the replies arrive. A negotiated modest ceiling uses the same sequence and its own spendable figures.
 - **“Release the slot.”** Livia calls the clerk. **“Wait for revised figures”** leaves the bill pending without new authority. **“Close this attempt”** moves to the verified continuing authority as final fallback.
+
+*After a verified division. If the motion was not submitted, go straight to the applicable revision or close.*
+
+The clerk reads the result once. From the corridor you hear it again, less clearly, as a member repeats it into his telephone. Livia asks for the official copy and waits while the clerk finds the place for the receipt.
+
+*On passage:* Avros takes his notes back from the corner of her folder. “Somebody's going to say the clinic's open tomorrow.” Livia asks him who. “Somebody who needs it to be,” he says. “If you give me the words Dara can stand behind, I can use them before I leave.” Fontes names the effective ceiling and lets the clinic report its own staffing date. If the classroom proposal is included, Avros says which rooms the terms cover and what approval the work still needs.
+
+*On defeat:* Fontes puts the fallback above his tally. He starts to make a note for Dara, then asks you whether you want him to use the existing authority or check the route for a smaller bill. He reads the ordinary hours and the first contribution that would still be due before anyone writes a new date. Avros stays until he hears what he can tell the deputy about the school. If Lara has not promised a repair, he gives the status the responsible office can actually confirm.
+
+Livia asks whether there is someone you would like to tell before the offices begin making their calls. You can choose to speak to someone already available, ask Livia to give them the verified result, or leave the notifications to the responsible offices.
+
+Continue to the next lawful decision. On any route with outstanding paperwork, a call from the corridor changes no effective authority, promise, payment or service opening.
 
 ### 2.3 · The signature page
 
@@ -1334,6 +1516,34 @@ You ask Fontes which schedule he would choose if he were preparing it for his ow
 - **“What does keeping the schedule buy us?”** Fontes turns the papers so the reserve sits closest to you. “Time to find out what we can collect. It also means making these payments for longer. If you want to see the cost of that, I'll show you the total beside the amount we'd still have in hand.”
 - **“Show me the choices on today's figures.”** Livia sets aside both sets of papers until Fontes can lay out the available options next to each other.
 
+A woman from Accounts comes in for the copy Fontes has been marking. He asks her to wait and reads a line back to her. The woman says the amount is right. The date is when they expect to receive it.
+
+“Has anyone told you it'll arrive then?” you ask.
+
+“They told me when they were sending it.” She looks at Fontes. “I'll call again when I get back.”
+
+He gives her the copy. “Just ask them the question you came in with. We've already got the other answer.”
+
+After she's gone, Livia opens her diary. “Suppose we give a ministry the larger figure this morning and the receipt comes late. When does the minister find out?”
+
+“When he asks us to release the money,” Fontes says.
+
+“Can we tell him before he asks?”
+
+“Yes. Give him the date we can check again. If we have to tell him we can't release it, I'd like him to hear from us before his supplier hears from him.”
+
+You ask whether the Fund's timetable would change the answer. Fontes puts the offer beside the dated schedule, if there is an offer to show. He keeps his finger on the payment that would fall before the earliest confirmed receipt.
+
+“If we draw, there are two calls I'd have to make. The first is to the lender about the conditions. The second is to the office waiting to issue an order. I can make the first today. I can make the second once there's cash and authority to issue that order.”
+
+“And if we leave the debt alone?”
+
+“The instalments already due stay here. The ministries can use the money that remains after those payments. If you'd like to pay something extra, we can look at the days after the payment and see whom we'd be asking to wait.”
+
+Livia crosses a sentence out of her draft note. “I was going to say we'd settled it this morning.”
+
+“Tell them you've settled what they can plan against,” he says. “That should give them a better afternoon.”
+
 - **“Keep the existing debt schedule.”** Fontes runs his pencil down the instalments. “These dates stand. I'll prepare the signature page from the money Treasury can use.” This is the choice for the three traced runs.
 - **“Use the authorized draw.”** *Show only with complete executable terms and authority.* Fontes reads out the conditions, revised service and confirmed receipt schedule. Credit cash and principal on actual receipt. Until then, Lara may wait or sign a schedule affordable from available funds.
 - **“Make the additional principal payment.”** *Show for an authorized and affordable repayment with the effect on reserve and service visible.* Debit cash and principal on payment. Bring back the updated schedule.
@@ -1341,6 +1551,26 @@ You ask Fontes which schedule he would choose if he were preparing it for his ow
 Fontes gives you the five rows together.
 
 > **Fontes:** “Mark which existing commitments you want to protect. I'll show you what changing the rest leaves for the ministries.”
+
+Livia has one blank copy for each minister. Fontes moves the signed ceiling above the five slips so the number stays in sight as they talk.
+
+“If I ask the departments to tell me what they can cut,” you say, “will they tell me what will happen when they do it?”
+
+“Ask them while they still have time to answer,” says Fontes. “The people at the post can tell you when the inspection ends. The people at the clinic can tell you what hours they can staff. They may need to ask somebody else what it will cost.”
+
+Livia reads the current Health line aloud. When the fallback includes the reserve overhaul, she takes out the post's note and reads the expiry date. “If I call Voss with this, I can tell him what the figure protects. He'll still want to know who tells the post.”
+
+“Let him tell them,” you say. “I'd like to know what they say back.”
+
+*With a different feasible reduction, use that ministry's verified line, the service it supports and the official responsible for applying it.*
+
+Fontes checks the five entries again. “One reason I want you to see them together is that a change can leave someone else waiting. If we reserve money for a clinic session from an eligible unused line, I want the person who was expecting to use that line to hear what we've decided. If we hold the money in reserve, say so. They'll keep sending me the proposals either way.”
+
+- **“Read back what we’re protecting.”** Fontes goes through continuing commitments with dates. Where an inherited programme changes, he names the service people currently receive and what the new allocation can actually sustain.
+- **“Tell me what would still have to wait.”** Livia names the pending proposal with the clearest next step. Fontes says what additional cash, authority or cost information would change the answer.
+- **“Let me see the five figures together.”** Fontes turns the signed ceiling so you can read it next to the allocations and the remaining reserve.
+
+*Return to the allocation choice. The discussion itself leaves each amount unassigned until Lara chooses and signs.*
 
 - **“Build the schedule from inherited services.”** Load the effective baseline. If authority or available funds fall short, name the reductions required before signing.
 - **“Move available funds between ministries.”** Choose an eligible reduction or unused line, then an affordable destination or reserve. The affected ministers give Fontes the services and dates for both revisions. Existing obligations remain due.
