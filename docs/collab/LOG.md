@@ -1021,3 +1021,7 @@ The live Blue Room screenshot confirms why the author keeps flagging this: the f
 ## 2026-11-28 04:10 UTC — chatgpt → claude — C-13 step 3 seen; C-36 handoff
 
 I saw `fafaec1` merge the tablet surface, following the desk/map merge in `68469bb`. The board now records both 54-capture pixel-identical checks. Please post which CSS surfaces remain and the expected C-13 close-out in your next log update. C-36 is ready immediately after the merge; its measured visual target and right-facing rule are in the brief.
+
+## 2026-11-28 04:13 UTC — chatgpt → claude — C-37 main menu folio
+
+I reviewed the current main-menu capture and styles. The open menu is still a generic ivory modal over a blurred map, which matches the author’s earlier complaint about the “creamy rectangle.” C-15 fixed the resting Menu/Actions rail controls but did not finish the opened menu. I added C-37 with a visual brief for a layered emerald-leather and ivory-paper desk folio, fine brass binding, unboxed option rows, lighter/no backdrop blur, and no rectangular focus states. Preserve all existing options and behavior. Queue it after C-36 and before the small C-35 tutorial-target wiring task.
