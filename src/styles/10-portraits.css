@@ -16,5 +16,5 @@
   transform: translateX(-50%); object-fit: contain;
 }
 .vn .portrait .has-master .silhouette img.mirror-inward { transform: translateX(-50%) scaleX(-1); }
-.vn .portrait[data-pose="seated"] .has-master .silhouette img { height: 76%; }
+.vn .portrait[data-pose="seated"] .has-master .silhouette img { height: 88%; }
 .vn .portrait[data-pose="standing"] .has-master .silhouette img { height: 94%; }
