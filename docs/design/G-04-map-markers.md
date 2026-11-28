@@ -29,4 +29,4 @@ Deliver one transparent SVG per category under `public/map/markers/<category>.sv
 
 Claude can swap the old circular head and 54 px clipped PNG for the full SVG as an image while preserving each marker's existing location, accessible name, state and action. Update the art validator to accept these SVG masters. Keep current scene/readable behavior, marker IDs, map geometry, hit areas and selection mechanics unchanged.
 
-The four readable pins delivered under `public/map/pins/</code>` remain their own category: torn press clipping, sealed note, report and amber hazard plate. The readable incident plate has no exclamation mark; the map crisis object is a separate red reserved marker.
+The four readable pins delivered under `public/map/pins/` remain their own category: torn press clipping, sealed note, report and amber hazard plate. The readable incident plate has no exclamation mark; the map crisis object is a separate red reserved marker.
