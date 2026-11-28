@@ -206,7 +206,8 @@ export class VNView {
     if (p.role === 'speech') {
       const w = this.who(p.speaker);
       const fixed = this.cast.some(c => (c.id ?? c.name) === (w.id ?? w.name));
-      return h('div', { class: `blk speech${w.id === this.opts.playerId ? ' speech-player' : ''}` },
+      const key = w.id ?? w.name;
+      return h('div', { class: `blk speech${w.id === this.opts.playerId ? ' speech-player' : ''}`, 'data-speaker': key, style: `--speaker-color: ${speakerColor(key)}` },
         h('div', { class: 'speaker' }, w.id === this.opts.playerId ? null : this.speakerIcon(w, fixed), w.name),
         h('div', { class: 'text', html: inlineMd(p.text) }));
     }
@@ -215,6 +216,13 @@ export class VNView {
 
   private async appendBlock(el: HTMLElement) {
     for (const old of this.log.querySelectorAll('.blk.current')) old.classList.remove('current');
+    // G-13: adjacent speech by the same person forms one run — one name, one binder bar. Any other block between
+    // (narration, thought, choice echo, a different speaker) ends the run; text and reveal boundaries are unchanged.
+    const prev = this.choices.previousElementSibling as HTMLElement | null;
+    if (el.classList.contains('speech') && prev?.classList.contains('speech') && prev.dataset.speaker === el.dataset.speaker) {
+      el.classList.add('speech-cont');
+      prev.classList.add('speech-runs-on');
+    }
     const animate = this.opts.transitions && !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     el.classList.add('current');
     if (animate) el.classList.add('enter');
@@ -357,4 +365,12 @@ export class VNView {
     await wait(this.opts.transitions ? 450 : 0);
     this.el.hidden = true;
   }
+}
+
+/** A restrained, stable ink colour per speaker for names and run binders (never red: red is for crises). */
+const SPEAKER_INKS = ['#1f5a47', '#3b5f86', '#7a5a2a', '#5b4a7a', '#2f6b6b', '#6b5a3a', '#4a6b3a', '#7a4f5e'];
+function speakerColor(key: string): string {
+  let h = 0;
+  for (const ch of key) h = (h * 31 + ch.charCodeAt(0)) >>> 0;
+  return SPEAKER_INKS[h % SPEAKER_INKS.length]!;
 }

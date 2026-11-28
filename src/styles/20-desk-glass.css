@@ -196,3 +196,12 @@ body.vn-active .glass-hud, .map.dim .glass-hud { opacity: .4; }
 /* C-28: object pins read at ~44 px tall at both map scales */
 .marker-body { transform: scale(calc(1.7 / var(--zoom, 1))); }
 .marker:hover .marker-body, .marker:focus .marker-body { transform: scale(calc(1.85 / var(--zoom, 1))); }
+
+/* C-15 review: keyboard focus on the leather controls is a small gilt diamond under the word, never a rule or box. */
+.ui-layer .top-left .btn.ghost::after {
+  display: block; content: '◆'; left: 50%; right: auto; bottom: -9px; width: auto; height: auto; transform: translateX(-50%);
+  background: none; font-size: 7px; letter-spacing: 0; -webkit-text-fill-color: #f3dc9c; opacity: 0;
+}
+.ui-layer .top-left .btn.ghost:hover::after { opacity: 0; }
+.ui-layer .top-left .btn.ghost:focus-visible::after { opacity: 1; }
+.ui-layer .top-left .btn.ghost:focus-visible { filter: drop-shadow(0 1px 0 #0c1d16) drop-shadow(0 0 6px #f1d38c66); }
