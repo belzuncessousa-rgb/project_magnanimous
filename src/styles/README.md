@@ -11,7 +11,7 @@ rules there too, unless you are deliberately cleaning up a legacy file.
 | Desk, map glass, atlas, markers, off-map tokens | `30-desk-map.css` (merged, C-13) | — |
 | Turn ledger (HUD), End Turn | `19-turn-ledger.css` | `02-rest-ui-tutorial.css`, `11-control-surfaces.css` |
 | Tablet (device, apps, news, social, codex, reports) | `40-tablet.css` (merged, C-13); resting tablet in `30-desk-map.css` | `05-newspaper.css`, `09-documents-tablet-frame.css` |
-| Dialogue / VN | `08-dialogue-presentation.css`, `10-portraits.css` | `04-dialogue.css` |
+| Dialogue / VN | `08-dialogue.css` (merged, C-13), `10-portraits.css` (figure size/placement) | — |
 | Menus, modals, sidebar, controls | `12-interface-finish.css`, `16-focus.css` | `03-overlays.css`, `11-control-surfaces.css` |
 | Readables, budget, vote, debt | `07-readables-screens.css`, `09-documents-tablet-frame.css` | — |
 | Tutorial highlights | `02-rest-ui-tutorial.css` | — |
