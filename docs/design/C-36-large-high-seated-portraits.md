@@ -6,7 +6,7 @@ Adjust seated dialogue portraits so the visible character fills most of the vert
 
 ## Direction
 
-- Judge the opaque person, not the PNG canvas or CSS box. Main currently sets seated master images to `height: 76%` of the portrait silhouette, while standing is `94%`; the near-square seated art is therefore still visibly too small. Raise seated art to about the standing scale (start at `94%`) and keep it bottom-anchored so the added height moves the head up. Adjust only as needed to keep the head clear. Cropping at the lower edge is acceptable; the visible figure should fill most of the scene height.
+- Judge the opaque person, not the PNG canvas or CSS box. Main currently sets seated master images to `height: 76%` of the portrait silhouette, while standing is `94%`; the seated setting is still visibly too small. Use at least the standing scale, then keep enlarging and bottom-anchor the image until the visible person fills roughly 75–85% of the viewport height, with the head in the upper third and never clipped. Cropping the lower edge is acceptable. Do not stop at 94% if the screenshot still reads as a half-height figure.
 - Treat the room plate as ambience. Do not anchor the character to furniture in the background. A self-contained chair may be used if the seated pose needs one, but it must travel with that character.
 - Preserve the approved portrait identity, costume and lighting. Every participant remains equally lit.
 - The right-slot figure must always face inward; do not leave an unmirrored per-character exception. If mirroring damages a pin, lettering, uniform detail or directional lighting, provide a corrected right-facing master (for example, `<id>-seated-right.png`).
