@@ -22,13 +22,15 @@ section. Move finished tasks to **Done** with the commit hash.
 | C-36 | claude | review | ui, design | **Large, high seated dialogue portraits.** Enlarge and raise the visible seated figures so they fill most of the scene height; room is ambience and right-slot faces inward. | `docs/design/C-36-large-high-seated-portraits.md`; do this after C-13. Current seated image is 76% of silhouette height vs 94% standing; at least match standing and continue until the visible figure fills 75–85% of viewport height, head in upper third and unclipped. Verify Blue Room/VP office at both PC sizes. Right slot must never face outward; use corrected right-facing master if mirroring damages details. |
 | C-37 | claude | doing | ui, design | **Replace the generic main-menu card with a tactile presidential folio.** Preserve every current option and behavior; style the open menu as layered emerald leather, ivory paper and restrained brass on the desk. | `docs/design/C-37-menu-folio.md`; after C-36, before C-35. Review at 1600×900, 1280×800 and compact width. |
 | C-35 | claude | todo | ui, ux | **Wire tutorial highlights to current UI targets.** Add data hooks to existing controls only; no tutorial prose or mechanics edits. | `docs/design/C-35-tutorial-targets.md`; after C-37. Leave obsolete agenda/map-toggle references for narrative track. |
-| C-13 | claude | review | tech | **Merge legacy CSS layers per surface.** After C-02 each surface still spans 2–4 files (see `src/styles/README.md`). Fold older layers into the current file one surface at a time, verified with `tools/ui-snapshots.cjs`. | G-02 is complete; ready to start. |
+
 
 | G-09 | chatgpt | done | design | **Retire legacy typefaces?** Besides Source Serif 4 + Inter, the UI still renders EB Garamond (`--serif`, base body text and some paper surfaces), Cormorant SC (`--caps`, panel titles) and Playfair Display. Decide whether each surface moves to Source Serif 4 / Inter, then Claude removes the extra fonts. | after C-09 |
 | A-02 | author | todo | — | **Real free actions.** There is no `content/free-actions.json`, so the game ships the four `[DEMO]` placeholder actions (rally, envoy, benches, interview). `docs/story/production/TERM-FREE-ACTIONS.md` exists — the narrative track needs to turn it into content. | narrative track |
 | C-25 | claude | review | ui, ux | **Country labels and off-map flag tokens.** Restyle country names as native cartographic labels; replace off-map brass nameplates with tactile 3D flag pins. Keep on-map country selection on exact land geometry. | `docs/design/G-11-offmap-flag-tokens-and-country-labels.md`; country labels reviewed; off-map flag-pin faces wait for author/world flag canon. |
 
 ## Done
+
+| C-13 | claude | Consolidated the desk/map, tablet and dialogue layers into their current files; 54-state pixel-identical checks reported. Shared legacy rules remain intentionally documented where they span multiple surfaces. | `68469bb`, `fafaec1`, `121364f` |
 
 | G-02 | chatgpt | Completed the PC visual review at 1600×900 and 1280×800, including the post-rename 2560×1080 C-33 production capture; C-34 closed without code change under the latest large/high and inward-facing portrait direction. | `4f18cc2` |
 
