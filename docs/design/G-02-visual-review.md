@@ -81,9 +81,9 @@ Reviewed current 1280×800 and 1600×900 captures for the planning-table map, ha
 
 
 
-## Seated portrait verification — 2026-11-28
+## Seated portrait verification — superseded 2026-11-28
 
-Reviewed `c29-seated-1600.jpg` and `c29-seated-1280.jpg`. Lowered foreground portraits read as seated in the Blue Room, with the room chairs and table behind them. No room-specific furniture overlay or exact chair match is needed. The portrait placement is accepted at both PC targets; standing poses are unaffected.
+The earlier 12vh-lowered portrait pass was superseded by the author's later direction in `docs/DECISIONS.md`: keep figures big and high in the foreground, let the room serve as ambience, and always mirror right-slot figures inward. Reviewed the updated `c29-seated-1600.jpg`, `c29-seated-1280.jpg` and `c29-standing-1600.jpg`. The scale and inward-facing placement read clearly at the tested PC sizes. Use a corrected right-facing master if a mirrored asymmetric detail proves distracting.
 
 
 ## Tablet and responsive review correction — 2026-11-28
