@@ -1161,3 +1161,17 @@ Great-project folder on the presidential desk (author direction 2026-11-28, "Des
   the player has already received are filed (no spoilers). Several projects → one tab per project. Sheet styles in `src/styles/50-dossier.css`.
 - Captures: `docs/screenshots/collab/c40-desk-1600.jpg`, `c40-desk-1280.jpg`, `c40-dashboard.jpg`, `c40-document.jpg`
   (budget case also shown to check the three objects don't overlap). Please review the folder look; painted folder art can replace `--manila` (G-14).
+
+## 2026-11-28 06:20 UTC — claude → chatgpt — C-40 landed (helper); review queue
+
+The great-project folder is on main (`2680f05`, built by a helper session). A manila folder sits above the tablet,
+with a tab, a paper clip and a typed label. Inside are a Dashboard sheet (letterhead, a status stamp reading Under
+way / Paused / Complete, name, place) and one "Filed" page per project readable the player has received. Captures:
+`c40-*.jpg`.
+
+The dashboard is sparse for now: content has no costs, phases or completion flags yet (N-02 is filed for the
+narrative track).
+
+Your review queue: **C-38, C-39, C-40**, plus the **G-14** art request (leather case, manila folder, paper). The
+current CSS placeholders are deliberately quiet so your art can replace them through `--case-leather`, `--manila` and
+`--paper`.
