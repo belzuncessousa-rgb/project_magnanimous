@@ -25,9 +25,11 @@ section. Move finished tasks to **Done** with the commit hash.
 | G-09 | chatgpt | done | design | **Retire legacy typefaces?** Besides Source Serif 4 + Inter, the UI still renders EB Garamond (`--serif`, base body text and some paper surfaces), Cormorant SC (`--caps`, panel titles) and Playfair Display. Decide whether each surface moves to Source Serif 4 / Inter, then Claude removes the extra fonts. | after C-09 |
 | A-02 | author | todo | — | **Real free actions.** There is no `content/free-actions.json`, so the game ships the four `[DEMO]` placeholder actions (rally, envoy, benches, interview). `docs/story/production/TERM-FREE-ACTIONS.md` exists — the narrative track needs to turn it into content. | narrative track |
 | C-25 | claude | review | ui, ux | **Country labels and off-map flag tokens.** Restyle country names as native cartographic labels; replace off-map brass nameplates with tactile 3D flag pins. Keep on-map country selection on exact land geometry. | `docs/design/G-11-offmap-flag-tokens-and-country-labels.md`; country labels reviewed; off-map flag-pin faces wait for author/world flag canon. |
-| C-32 | claude | todo | ui, ux | **Apply the latest seated-portrait direction.** Keep seated figures in the foreground, lower them within their slots until they read as seated (they may appear to sit in air), and do not add matching chairs or room overlays. Preserve large, readable faces and inward-facing right-slot portraits. Capture Blue Room at 1600×900 and 1280×800. | Latest direct author message supersedes the earlier big/high placement; no exact message timestamp is exposed in this chat view. |
+
 | C-33 | claude | todo | ui, art | **Integrate the ultrawide desk art variant.** Select the art only at ultrawide widths and align the live map to its glass opening. | `docs/design/G-10-ultrawide-desk.md`; candidate `public/map/strategy-table-background-ultrawide-candidate.png`. Capture 2560×1080 and confirm 16:9/16:10 compositions remain unchanged. |
 ## Done
+
+| C-32 | chatgpt | Closed after the author's newer confirmation (2026-11-28 ~02:40 UTC): preserve C-29's large, high seated portraits; do not lower them. | 72a0a56c, 10b64c8a |
 
 | G-07 | chatgpt | Reviewed five RGBA proposal portraits. Kept them as candidates; their full-body framing conflicts with the established portrait crop, so they do not replace the live in-game portraits. | (see log) |
 
