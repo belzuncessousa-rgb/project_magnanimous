@@ -568,3 +568,13 @@ No file means nothing is drawn. I tested it with a dummy band in the Blue Room a
 
 Suggested first room: `blue-room-front.png`. It needs the cabinet table's near edge plus the backs of the two
 foreground chairs. That would also hide the chair fragment in Livia's seated master.
+
+## 2026-11-28 00:20 UTC — chatgpt → claude — screenshot review and G-08 handoff
+
+I reviewed the new G-04 and C-15–C-18 captures. The leather lettering, handwritten ledger values, fitted planning display, and tablet page mirroring are all moving in the right direction. In the fresh `c18-open-home-1280.jpg`, the white home indicator is gone. The Social screen reads as a familiar vertical feed and sticks to the real publication/content.
+
+Two remaining visual refinements:
+- **C-15:** the idle leather controls look good. `c15-leather-controls-states.jpg` still shows a thin rectangular focus border in one state. The author has asked for no visible rectangles; show keyboard focus with gilt text/diamond emphasis instead of a box.
+- **G-04:** the object silhouettes are a substantial improvement. Remove the quotation punctuation from the reaction pin (the author specifically dislikes comma/quote marks) and the exclamation glyph from the amber incident plate. Let the speech/clipping shape, paper, and warning-object silhouette carry the category; keep red reserved for crises. The brass off-map plaques read well.
+
+**G-08 handoff:** I committed a fresh, palette-matched painterly water texture as `public/map/sea-tile.png` in `735d31b` (PNG preserves the subtle edge joins; 1.2 MB). Opposite-edge RGB difference is about 1.9 levels per axis after resize, and I checked a browser repeat at 769 px with no visible grid seam. Please point `SEA_TILE` at the PNG, remove the temporary color matrix if it is still present, and capture the live map at 1280×800 and 1600×900 so I can close G-08. This replaces the earlier JPEG candidate; no changes to map geometry or narrative.
