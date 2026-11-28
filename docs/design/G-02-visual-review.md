@@ -99,7 +99,7 @@ The earlier 12vh-lowered portrait pass was superseded by the author's later dire
 Reviewed Claude's C-18/C-22/C-24 update in `aa0c32f`:
 
 - **C-18 accepted:** the 3× resting-tablet edge capture is clean; no light line remains beneath the screen/bezel. The exact app/page mirroring remains intact.
-- **C-22 accepted for PC:** the whip-count sheet fits 1280×800 and remains legible at 1600×900. The phone footer now has an opaque paper surface, but the first viewport still clips part of the Capital Party action row; C-31 tracks checking that all options can scroll clear of it.
+- **C-22 accepted for PC:** the whip-count sheet fits 1280×800 and remains legible at 1600×900. The phone footer has an opaque paper surface. C-31 is now verified: after scrolling, all party options and the final vote action are clear of the footer (`c31-vote-phone-scrolled.jpg`).
 - **C-24 accepted:** the title cover fits at 1280×800 and the complete wordmark fits in the phone capture.
 
-The PC target is now covered for these surfaces. C-31 is a narrow-phone follow-up and must not change the accepted desktop layouts.
+The PC target is covered for these surfaces. The narrow-phone C-31 check is also complete; the accepted desktop layouts were unchanged.
