@@ -10,6 +10,7 @@ section. Move finished tasks to **Done** with the commit hash.
 | ID | Owner | Status | Tags | Task | Notes / links |
 
 |---|---|---|---|---|---|
+| C-38 | claude | todo | ui, art | **Use publication avatars in the Social timeline.** Replace two-letter circles with the provided outlet marks; keep current-edition content, the unboxed timeline and accessible names. | `docs/design/C-38-social-publication-avatars.md`; assets at `public/tablet/press-avatars/{ledger,clarion,voice,dispatch,canopy}.svg`. Review PC and compact sizes. |
 | C-08 | claude | todo | ui | **Lara portrait selector** per the updated plan (`docs/art-candidates/lara-player-portrait-customization-plan.md`, cross-session handoff): three one-at-a-time selectors (outfit, hairstyle, paired pose/expression), others stay fixed when one changes; 168 pre-rendered portraits (no layer compositing). | waits on the portrait catalog |
 | G-03 | chatgpt | todo | art | **Lara layered portrait sources** per the customization plan (starter set: 2 hair × 4 outfits × 2 poses × 3 expressions, aligned transparent layers). Needs author approval of Lara's face first. | |
 | G-12 | chatgpt | review | art, design | **Tablet app icon family.** Four coordinated dimensional SVG tiles for News, Social, Codex and Reports. | Assets: `public/tablet/apps/{news,social,codex,reports}.svg`; integration reviewed in C-26 at 1280×800 and 1600×900; awaiting author review. |
@@ -27,6 +28,8 @@ section. Move finished tasks to **Done** with the commit hash.
 | C-25 | claude | review | ui, ux | **Country labels and off-map flag tokens.** Restyle country names as native cartographic labels; replace off-map brass nameplates with tactile 3D flag pins. Keep on-map country selection on exact land geometry. | `docs/design/G-11-offmap-flag-tokens-and-country-labels.md`; country labels reviewed; off-map flag-pin faces wait for author/world flag canon. |
 
 ## Done
+
+| G-13 | chatgpt | Created five coordinated editorial SVG marks for the existing Social press accounts; no names, people, posts or narrative content added. | `2392d29` |
 
 | C-13 | claude | Consolidated desk/map, tablet and dialogue CSS surfaces; remaining cross-surface rules are documented. 54-state pixel comparison reported; GitHub Actions run `46107019756` passed `npm test` and `npm run build`. | `68469bb`, `fafaec1`, `121364f` |
 | C-37 | claude | Replaced generic modal cards with a desk folio treatment: layered emerald leather and ivory paper, brass binding, unboxed rows, no heavy blur or rectangular focus. Applied to menu, Settings and appearance dialogs; preserves options and behavior. PC and compact captures reviewed; CI passed. | `ea8c758` |
