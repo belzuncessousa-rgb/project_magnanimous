@@ -10,7 +10,6 @@ section. Move finished tasks to **Done** with the commit hash.
 | ID | Owner | Status | Tags | Task | Notes / links |
 
 |---|---|---|---|---|---|
-| C-13 | claude | review | tech | **Consolidate major CSS surfaces.** Desk/map, tablet and dialogue each have a current stylesheet; keep documented shared legacy layers where rules span screens. | `68469bb`, `fafaec1`, `121364f`; 54-state pixel-identical comparison reported. Await build/test confirmation before closing. |
 | C-08 | claude | todo | ui | **Lara portrait selector** per the updated plan (`docs/art-candidates/lara-player-portrait-customization-plan.md`, cross-session handoff): three one-at-a-time selectors (outfit, hairstyle, paired pose/expression), others stay fixed when one changes; 168 pre-rendered portraits (no layer compositing). | waits on the portrait catalog |
 | G-03 | chatgpt | todo | art | **Lara layered portrait sources** per the customization plan (starter set: 2 hair × 4 outfits × 2 poses × 3 expressions, aligned transparent layers). Needs author approval of Lara's face first. | |
 | G-12 | chatgpt | review | art, design | **Tablet app icon family.** Four coordinated dimensional SVG tiles for News, Social, Codex and Reports. | Assets: `public/tablet/apps/{news,social,codex,reports}.svg`; integration reviewed in C-26 at 1280×800 and 1600×900; awaiting author review. |
@@ -21,8 +20,6 @@ section. Move finished tasks to **Done** with the commit hash.
 
 | A-01 | author | done | — | Confirm ChatGPT can push to this repo (Codex / GitHub connector with write access). If it can only read, it can paste files into chat and the author commits them with prefix `[chatgpt]`. | Author confirmed 2026-11-27: ChatGPT pushes directly. |
 
-| C-37 | claude | review | ui, design | **Replace the generic main-menu card with a tactile presidential folio.** Preserve every current option and behavior; style the open menu as layered emerald leather, ivory paper and restrained brass on the desk. | `docs/design/C-37-menu-folio.md`; after C-36, before C-35. Review at 1600×900, 1280×800 and compact width. |
-| C-35 | claude | review | ui, ux | **Wire tutorial highlights to current UI targets.** Add data hooks to existing controls only; no tutorial prose or mechanics edits. | `docs/design/C-35-tutorial-targets.md`; after C-37. Leave obsolete agenda/map-toggle references for narrative track. |
 
 
 | G-09 | chatgpt | done | design | **Retire legacy typefaces?** Besides Source Serif 4 + Inter, the UI still renders EB Garamond (`--serif`, base body text and some paper surfaces), Cormorant SC (`--caps`, panel titles) and Playfair Display. Decide whether each surface moves to Source Serif 4 / Inter, then Claude removes the extra fonts. | after C-09 |
@@ -30,6 +27,10 @@ section. Move finished tasks to **Done** with the commit hash.
 | C-25 | claude | review | ui, ux | **Country labels and off-map flag tokens.** Restyle country names as native cartographic labels; replace off-map brass nameplates with tactile 3D flag pins. Keep on-map country selection on exact land geometry. | `docs/design/G-11-offmap-flag-tokens-and-country-labels.md`; country labels reviewed; off-map flag-pin faces wait for author/world flag canon. |
 
 ## Done
+
+| C-13 | claude | Consolidated desk/map, tablet and dialogue CSS surfaces; remaining cross-surface rules are documented. 54-state pixel comparison reported; GitHub Actions run `46107019756` passed `npm test` and `npm run build`. | `68469bb`, `fafaec1`, `121364f` |
+| C-37 | claude | Replaced generic modal cards with a desk folio treatment: layered emerald leather and ivory paper, brass binding, unboxed rows, no heavy blur or rectangular focus. Applied to menu, Settings and appearance dialogs; preserves options and behavior. PC and compact captures reviewed; CI passed. | `ea8c758` |
+| C-35 | claude | Added `data-ui="tablet"` to the resting device; verified tutorial targets for map, markers, readables, ledger/resources, Actions, date and End Turn, plus tablet availability. No mechanics or scene prose changed; stale agenda/map-toggle references remain for narrative reconciliation. | `e1a5dc4` |
 
 | C-36 | claude | Raised seated masters from 76% to 88% of stage height (~83% viewport); heads about 17% from top, no clipping, lower edge crops, right slot faces inward. Blue Room and VP office at both PC sizes. | `0393396`; captures: `docs/screenshots/collab/c36-{blue-room,vp-office}-*.jpg` |
 
