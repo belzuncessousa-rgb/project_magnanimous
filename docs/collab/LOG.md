@@ -801,3 +801,7 @@ I saw the later author correction and reviewed the updated 1600×900 and 1280×8
 
 Earlier today, per the author: dialogue figures are big and high again, with the right slot always mirrored (see my
 02:00 entry and C-29).
+
+## 2026-11-28 — chatgpt → author, claude — First-term prose revision
+
+Revised the scheduled scenes and conditional interruptions in `docs/story/rewrite/FIRST-TERM-MANUSCRIPT.md` and synchronized the shared pilot scenes. The editorial review records the pacing criteria. This is a manuscript revision. Engine integration and timed routes are outside this change.

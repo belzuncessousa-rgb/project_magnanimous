@@ -6,15 +6,69 @@ The playable pilot begins after the inaugural address and cabinet introduction. 
 
 ### 1.1 · Counting Votes
 
-Mertens is pouring coffee when you arrive. Livia hands you a sheet with the parties in two columns.
+There is a third place set at the table, but the coffee at it has already gone cold. Mertens reaches for the cup and Livia puts two fingers on its saucer.
 
-> **Livia:** “One hundred seats. Fifty-one for an ordinary bill.”
+“That's mine.”
+
+“You've got one by your elbow.”
+
+“I was here before you.”
+
+He leaves both cups where they are. “Can I get you something, Lara?”
+
+- **“Coffee, please. I'll take it as it comes.”** Mertens pours. The handle has been repaired with a thin band of metal. He turns it toward you. “Livia won't let them throw that one out.”
+- **“Just water.”** Livia pushes the jug toward you. There is a little paper label on it asking whoever finishes it to bring another. Mertens reads it and gets up.
+- **“I'm fine. How long have you two been here?”** “I came in early,” Livia says. “He came in when he saw the light.” Mertens opens his mouth, then checks the clock and lets that stand.
+
+The top sheet is a photocopy. A name near the foot of the page has been underlined hard enough that you can see where the pen went through on the original.
+
+“Did somebody change parties?” you ask.
+
+“He changed offices,” Livia says. “The list they sent me had his old number on it. I rang and got a man who sells carpet. He was quite willing to discuss the budget.”
+
+“That'll be the best conversation you have about it all week,” says Mertens.
+
+Livia lifts the top sheet. Underneath is another copy with a column beside each name. Only a few of the columns have anything in them.
+
+“What's the second list for?”
+
+“That's for people who've actually said they'll take a meeting. Caio wants a third list, for people he thinks will say yes.”
+
+“I want the third list,” Mertens says, “because by the time they've all taken a meeting we'll need a different bill.”
+
+“You can have the list. Just keep it here. I don't want anyone taking it downstairs and briefing the press that we've got a majority.”
+
+Livia hands you the first sheet, with the parties in two columns.
+
+> **Livia:** “There are a hundred seats in Congress. We’ll need fifty-one to pass an ordinary bill.”
 >
 > **Mertens:** “We have twenty-four. My party has twenty, and the Communists have six.”
 >
 > **Lara:** “That's fifty.”
 >
 > **Mertens:** “If the Communists like the bill.”
+
+Livia folds her copy so that only the first two columns are visible. “When you hear our people say they can bring twenty-four, ask them whether they've spoken to all twenty-four. We've got one who can't tell me when he's coming back from his district. We've got another who'll vote for the hospitals and ask why she has to vote for the rest of the bill to get them.”
+
+“Ask Avros about that one,” Mertens says. “He knows what she wants to take home.”
+
+“What does he want to take home?” you ask.
+
+Mertens glances at Livia. “Something he can tell his deputies on the way out. It doesn't have to be money. It does have to be something that will still be true when they get off the train.”
+
+“Then we'd better be careful about dates,” Livia says. “They have the dates from the campaign. I had a mayor send me a photograph of one from the leaflet. He'd put it on his office wall.”
+
+You can see yourself in the corner of the photograph she brings up on her phone. You are wearing a coat you no longer own. The date is quite large.
+
+“Did he take anything else from the leaflet?”
+
+“He cut out the photograph,” Livia says. “That's the part he sent separately.”
+
+She puts the phone face down.
+
+“Before we talk to the benches,” she says, “I'd like Fontes to tell us what we can get done with the money that's already coming in. After that we can have an argument about what to ask Congress for. Otherwise we'll offer the same spare money to three people and spend the rest of the month explaining that each of them heard us correctly.”
+
+“One of them usually makes you explain it in front of the other two,” Mertens says.
 
 The Capital Party has seventeen, the National Front twelve, Faith and Family nine, the Civic Alliance eight. Four names are listed separately. Livia lays a second sheet beside the first.
 
@@ -31,6 +85,44 @@ The Capital Party has seventeen, the National Front twelve, Faith and Family nin
 > **Mertens:** “I'm glad one of us wrote it down.”
 
 You recognize two department names from the investigation that brought down the last government.
+
+“Suppose I tell Odel he can have a fair hearing and nothing more,” you say. “Do we start again with a different set of names?”
+
+“With some of the same names,” Mertens says. “There are people in my party who'll want to see a spending bill whatever he decides. He can make it easier for them to say yes together. If he sends word that he has an agreement with you, I can get their questions in one room. If you tell him to get lost, I can still go round asking. I'll have to tell him I'm doing it.”
+
+“Would he ask you to stop?”
+
+“He might. He'd ask me in front of people who rely on him for things I can't give them.” Mertens straightens the corner of the list. “Some of them would be glad I asked anyway. A few would make me wait a week for the pleasure of saying yes. If you want me to do it, I'll do it. I'd like to hear it from you before he hears about it from somebody who wasn't here.”
+
+Livia gives him a moment before she says anything. “You can also ask Pelan to sound out his own bench and find people outside it who'll read the figures. Capital's worth a conversation. So are the other names on the sheet. We know who might take a call. We won't know what they're prepared to vote for until we've got something to show them.”
+
+“And Odel would want to see that too?” you ask.
+
+“Yes,” says Mertens. “He can call a meeting. The bill still has to come out of it.”
+
+You look at the line that names the port director. There is room under it for a name and a date. The sheet that Livia has put beside it begins with a list of vacancies.
+
+“Can he fill those?” you ask.
+
+“He can send us names,” Livia says. “The authority has to check the applications. It can return them. If you say you'll put a director forward once she clears review, I need to be able to tell the authority exactly what you said. The people who do the checks will want to know whether they can write down what they find.”
+
+Mertens runs his thumb across the fold in the sheet. “Odel will want to know whether he can tell the candidate she has a chance or whether he can tell her she has your word, subject to the checks. He'll hear the difference.”
+
+A telephone rings on the sideboard. Livia goes over to turn down the volume. “They put that in yesterday. I asked if they could move it closer to the table. They said they could send somebody with a longer cord.”
+
+“Should we answer it?” you ask.
+
+“It's my office calling to see whether we're ready,” she says. She returns to her place. “Are we?”
+
+*Lara can move to Set the terms now, ask one or more of the existing questions, or follow any of these topics. Return to the remaining topics after each exchange.*
+
+- **“Tell me who might listen on the Capital bench.”** Livia names two deputies who asked for Treasury's figures before their leader did. Mertens thinks the deputy from the coast will ask about the freight road.
+  - **“Did she say that herself?”** “No,” says Mertens. “Last year she invited me to see it. I thought we were going to lunch. We spent forty minutes in her car behind a truck with a broken axle.” Livia waits for the rest. “She bought me an egg at the service station.” “She asked me when Treasury would publish its arrears,” Livia says. “That's what she actually said. I can get her on the phone when we've got the figures.”
+  - **“What would she be able to say publicly about voting with us?”** Livia considers it. “If we gave her a figure she could defend in her own district, she could say she got an answer she'd been asking for under the last government. I don't know whether she'd think that was worth the trouble with her leader.” Mertens says, “She'll tell you if it isn't. She's quite good about returning calls she doesn't want to make.”
+- **“What would you offer Odel if I keep the director independent?”** “A chance to put forward people for the other jobs,” says Mertens. “I'd ask whether he can live with that. Last time he gave up a nomination, I spent a month hearing how generously he'd done it. He might think this one is worth a month.”
+  - **“What if he says no?”** “I'll bring you his answer and find out who else still wants to talk. If you're asking me whether I can get a promise out of him today, I can't.” Livia asks if he would put the question to Odel in writing. He looks genuinely surprised. “Before we know the answer? I'd rather he had somewhere to go if he changes his mind.”
+- **“Which of our people worries you?”** Mertens looks at the names before answering. “The ones who are going to say yes to your face and then ask Pelan to get them out of it.” Livia turns the sheet around and asks him to point to one. He puts his finger down, then lifts it. “I haven't spoken to her since she got back. Ask Pelan how the meeting in her district went before you treat this as anything more than my bad memory.”
+- **“What did you tell people we'd do first?”** “I said we'd find out what we owed,” Livia says. “Someone asked me when we'd find out, and I gave them the date of the first Treasury meeting. That was before I knew what was still in boxes.” Mertens asks who it was. Livia tells him. He stops turning his cup. “Then you'd better call him yourself. He's been repeating that date for you.”
 
 Ask any of these once, or decide. The existing party questions can precede the port discussion.
 
@@ -100,6 +192,8 @@ Celia asks if you have the number for the residence switchboard. She writes it o
 
 #### Go upstairs
 
+Upstairs, a light is still on in the corridor. You find the switch behind a curtain and discover that it turns off the one at the other end. Leave it on or pull the curtain back to look for a second switch. From downstairs, if Amanda is still there, she calls, “I tried that one too.” A moment later you hear her putting a plate in the sink.
+
 Your sister has sent a photograph of the family at Ivone's. Your father is at the edge of the picture holding two plates. On the desk is tomorrow's diary. Choose **Look at the photograph** or **Turn off the light**. If you look, the television in the corner of the picture shows the wide shot of the square. You put the phone down and turn off the light.
 
 *The Treasury inherited-obligations briefing precedes the working folder. Portfolio sheets are filed even if Lara skips their optional questions.*
@@ -137,6 +231,16 @@ He points to a line marked interest.
 He turns to a second page.
 
 > **Alexander Fontes:** "There is another matter. My staff have found invoices from public suppliers which were not properly reflected in the previous government's accounts. Some of the suppliers haven't been paid for months."
+
+Before you sit, Fontes asks an employee whether she needs the folder on the empty chair. She says she can wait. He gives it to her anyway.
+
+“What was that?” you ask after she leaves.
+
+“A bill I've been asking somebody to explain since before you took office. She found the man who delivered the work. He can give us the date he finished.” He moves the chair closer to the table. “If his date matches what the department has, the bill is still a bill. I can give him a better answer once I know whether it's ours to pay.”
+
+“Do you want me to look at that one?”
+
+“I'd like to show you what we've been doing with it. Everybody wants an answer about the total. This is what one part of the total has been doing all week.”
 
 1. **"How could the accounts have missed them?"**
    ↳ > **Alexander Fontes:** "Some departments had not submitted the invoices to the Treasury. Others had submitted them and were waiting for approval. We are trying to establish which were delayed deliberately."
@@ -302,6 +406,14 @@ A woman shifts her son to her other shoulder when the ticket number changes. Dar
 
 The director shows you the afternoon roster. One nurse covers both outpatient bookings and calls from the district clinics. On Dara’s second page, household payment authority ends before the next full cycle.
 
+The boy twists around to read the numbers on the other side of the room. His mother tells him they are the same numbers. He asks how she can tell from here, and she has to turn to check.
+
+“Do you usually come on this bus?” Ask only if Lara chooses to speak to her.
+
+“Every time I've had to come here. The driver knows where to let me off now.” She takes a folded timetable out of her bag. “The woman at work always asks when I'll be back. I show her this. I've never managed to catch the one I've pointed at.”
+
+Dara waits until she is looking back at the display before asking the director how the desk handles follow-up bookings.
+
 **Inspect** · Current outpatient sessions and household renewals serve existing patients and registered households in Mognagna and Ibira. A shorter staffed rota moves appointments. A lower payment reaches the same households with less money. Narrower eligibility removes households from the list. Public Health System can add staffed follow-up sessions at Sugar Bay after cover and bookings are arranged. Staff cost continues after setup. Social Assistance / Transfers can extend household coverage at the first funded, verified payment run. Transfers recur.
 
 **“What if we reduce the payments?”** Dara puts the two lists side by side. “Here, every household gets less. On this other list, the people we take off get nothing. The district still has to tell each of them before the next payment.” Return to the visit. If Lara pledged better living conditions, she can ask which change people would feel first. Continue the dry-season discussion and Sollis’s tobacco proposal under their own gates.
@@ -311,6 +423,12 @@ The director shows you the afternoon roster. One nurse covers both outpatient bo
 The last pair lifts its halberds again. This time they move together. Voss waits until the command carries across the gravel before unfolding his estimate.
 
 > **Voss** — “Armour and halberds are two orders. Protecting your residence is a different line.”
+
+Voss folds his estimate when a member of the guard stops to adjust a buckle. He waits for him to catch up before he says anything.
+
+“Did he have to ask to step out?” you ask.
+
+“He's supposed to tell the man beside him. That man will be the first to notice he's gone.” Voss looks back down at the estimate. “If you change what we do here, tell me which part you still want people turning up to do. I'll tell you what it takes.”
 
 **Inspect** · Protective duties and inherited readiness, including the Ibira River Post vehicle maintenance order. Defer its scheduled overhaul and the reserve vehicle stays out of service after its inspection expires. The post moves to one vehicle until a replacement or funded overhaul is ready. Ballistics Institute of Technology requires a host with Infrastructure above 50, a build and opening period, then staff and running costs. Modernise Border Staff brings equipment and facilities to Ibira when installed and crews are trained, with upkeep. Domestic Security Deployment requires trained personnel, an effective order and civil coordination, with recurring deployment costs. Its stability benefit comes with a cost to living conditions.
 
@@ -326,7 +444,50 @@ Salgado moves a court calendar away from the coffee. Two travelling dates have b
 
 > **Salgado** — “Ask the workers which shifts can send someone. Then ask the employers.”
 
+Salgado waits until the clerk is out of earshot. “She'll have an answer about Friday before she goes home. I can promise her that much.” She touches the calendar once more. “If I ask somebody to bring me an account of what they saw, I need a way of telling them what happens to it after it leaves their hands. There are calls I can make on my own. There are others where I need to know what you're prepared to authorize.”
+
 **Inspect** · Existing investigation and referral offices, travelling court dates and mediation days. Fewer visits or days mean later hearings or fewer places for negotiations. Judicial Strengthening supplies continuing staff for cartel casework in Ibira or coercion cases in Tapira and Mognagna after teams are posted. An Anti-Corruption Department needs staffed intake and effective authority, then continuing casework support. Labour Rights & Compact funds an ongoing bargaining mechanism once convened. The parties can decline. The envelope and Delmar petition retain their own custody and knowledge.
+
+→ envelope
+
+#### envelope
+
+Salgado moves an unmarked envelope towards the edge of her desk.
+
+> **Renata Salgado:** "An anonymous allegation was sent to this office shortly after the election. It concerns contracts in Mognagna and appears to name Pelan Avros."
+
+She leaves the envelope where it is.
+
+> **Renata Salgado:** "I have not yet examined its contents in detail. It will need to be assessed by the appropriate authorities. I wanted to inform you because Avros leads your deputies in Congress."
+
+1. **"What do you know about the allegation?"**
+   ↳ > **Renata Salgado:** "Only what was indicated when it arrived. An allegation is not proof. We need to establish whether there is anything that can be corroborated."
+2. **"Have other people received it?"**
+   ↳ > **Renata Salgado:** "I don't know. Whoever sent this may have sent copies elsewhere."
+3. **"I see."**
+
+#### assessment
+
+> **Renata Salgado:** "I intend to have it assessed. There is no reason to announce anything publicly before we know whether the information is credible."
+
+→ envelope-choice
+
+#### envelope-choice
+
+1. **"Have it assessed through the proper channels."** `[flag: avros_envelope = 1]`
+   ↳ > **Renata Salgado:** "I will. If we establish grounds for an investigation, I'll let you know what can appropriately be shared with your office."
+2. **"I want you to delay action until the budget has passed."** `[flag: avros_envelope = 2]`
+   ↳ Salgado looks at you for a moment.
+   ↳ > **Renata Salgado:** "I can establish what needs to be done and when. I cannot agree to suspend a legitimate investigation for a congressional vote."
+   ↳ She moves the envelope back towards her files.
+   ↳ > **Renata Salgado:** "I'll take legal advice on how the matter must proceed."
+3. **"Give me the allegation. I want to decide what happens next."** `[flag: avros_envelope = 3]`
+   ↳ She rests her hand on the envelope.
+   ↳ > **Renata Salgado:** "I can provide you with an appropriate briefing. The original has to remain in the ministry's custody."
+   ↳ Her expression becomes more serious.
+   ↳ > **Renata Salgado:** "If you intend to issue an instruction about this case, I would ask you to do so formally."
+
+Salgado sets the letter from Rosa Delmar beside her calendar. “The families have asked for a meeting. I’ll have the registry send their contact a date when the office can offer one.” If Lara declines to meet them now, preserve any lawful petition already received and the representative’s later opportunity. Close with `seen_justice_briefing`.
 
 ### 1.3 · The Graduating Class · Helena Kaval
 
@@ -335,6 +496,14 @@ A student describes the lab she hopes to join abroad. Kaval lifts a hand as the 
 > **Kaval** — “When would they need you there?”
 >
 > **Student** — “July, if the visa comes through. They’ve asked me twice.”
+
+“When's the last time you went home?” the rector asks the student.
+
+“Two Sundays ago. My mother wanted to see my photograph in the programme. I had to show her where they'd printed my name. She thought it was somebody else.”
+
+Kaval gives her the time to finish smiling. “When you go next, will you already know which offer you're taking?”
+
+Give the student an answer from the currently available placement. Lara can ask what would make it possible to stay or leave the question with her.
 
 **Inspect** · Existing classrooms, teacher replacements and the current research cohort. Freeze a vacant replacement and the school must cover classes from its existing staff. Shrink an uncommitted research intake and fewer graduates can be placed. Basic Education Expansion funds teachers and attendance support in underserved Mognagna or Ibira districts from a staffed school term, with recurring post and attendance costs. Higher Ed & Research buys lab capacity and placements from a ready intake, with renewals for staff, grants and equipment upkeep. Signed cohort commitments carry forward.
 
@@ -345,6 +514,14 @@ A student describes the lab she hopes to join abroad. Kaval lifts a hand as the 
 Avros opens a folder of district requests at a photograph of two padlocked classroom doors.
 
 > **Avros:** “The municipality sent him to Education. Education sent him back. He'd like to go home with a department and a date.”
+
+Avros has put a larger envelope next to the photograph. He measures one against the other and leaves both on the table.
+
+“He wanted me to take the original,” he says. “I asked him what he'd show the parents if he gave it to me. He said he could tell them he'd left it with somebody who could do something.”
+
+“What did you tell him?”
+
+“That I'd bring it here. I can still tell him that this afternoon.”
 
 - **“Ask Education for a decision through its ordinary review.”** Avros writes the ministry's name on the photograph sleeve. “I'll tell him they'll assess it with the other repairs.” An adverse decision can satisfy these terms.
 - **“Bring me a cost and an eligible funding line for these classrooms. I'll take the repair forward if both clear.”** Avros slips the photograph into a smaller folder. “I'll ask the municipality for something the ministry can use.” The commitment attaches to this repair. The actionable estimate and funding decision can remain pending.
@@ -376,6 +553,12 @@ The letter asks households what they could contribute towards an extension of th
 > **Father:** “I've asked the association if there's a figure from the contractor. They said they'd bring it to the next meeting.”
 >
 > **Celia:** “I told them I'd bring the letter. I'll bring a chair from the house as well. They never have enough.”
+
+A gust lifts the corner of the plastic sleeve. Celia sets a cup on it. “Your father says I should put these things in a drawer. I did that once. He tidied the drawer.”
+
+“I put them in a better drawer,” he says, coming back into the garden with the third chair.
+
+Lara can ask what's in the better drawer, sit where her father has made room, or bring the conversation back to the letter.
 
 - **“When's the meeting?”**
   **Celia:** “Thursday. Ivone usually puts the kettle on about half past six.”
@@ -413,6 +596,10 @@ He opens the first of three folders.
 → models
 
 #### models
+
+An engineer moves a chair away from one end of the table to make space for the maps. Marne asks him to stay. “If she asks me where a road goes, you can tell her where it actually goes. I've been looking at the same drawing so long I keep forgetting the road and the line aren't the same thing.”
+
+As Lara inspects a plan, let her ask the engineer where somebody would stand to see the first usable result. Use the selected plan's footprint and current appraisal. The answer carries no start promise.
 
 1. **Examine the Ibira mineral development proposal.** `[once]` `[flag: planning_seen += 1]` `→ rare-earths`
 2. **Examine the national railway proposal.** `[once]` `[flag: planning_seen += 1]` `→ railway`
@@ -615,11 +802,19 @@ Marne takes his hand off the map.
 
 #### Choose a priority
 
+Before asking for a decision, Livia gives Marne a moment to finish unfolding the map. It won't lie flat until Fontes moves a glass onto one corner.
+
+“If you ask me which one I can explain most easily,” says Marne, “I'll ask you who I'm explaining it to. The people looking at the route and the people who have waited for the drainage works to finish won't start in the same place.”
+
+Fontes keeps a finger on the glass. “I'd start with what their lives would be like while we were building it. That's when they'll have the most questions and the fewest answers.”
+
+Let Lara ask who gets a result first, what work is still required before appraisal, or proceed to the decision. Give a specific answer for the plan she picks.
+
 1. **“Appraise the rare-earth development at Tauá.”** → Mine
 2. **“Appraise the first freight section in Tapira.”** → Railway
 3. **“Appraise completion of the housing and sanitation works.”** → Sanitation
 
-##### Mine
+#### Mine
 
 > **Marne:** “I'll use the geological survey to sketch the area we'd need to examine. I'll bring you the proposed survey boundaries and the costs of getting to the site before the working budget review.”
 
@@ -629,7 +824,7 @@ He passes Fontes the preliminary estimate.
 
 → Close
 
-##### Railway
+#### Railway
 
 Marne unfolds only the part of the map nearest you.
 
@@ -641,7 +836,7 @@ He slides his estimate across the table. Fontes takes it out from under the map.
 
 → Close
 
-##### Sanitation
+#### Sanitation
 
 Marne opens the schedule at the list of unfinished connections.
 
@@ -653,7 +848,7 @@ He gives Fontes the works estimate and the contract summary.
 
 → Close
 
-##### Close
+#### Close
 
 > **Mertens:** “I can start sounding out the deputies.”
 
@@ -681,6 +876,10 @@ Livia has left the applications in a stack. She moves the director's page to the
 >
 > **Livia:** “I'll tell him when we have the signed date.”
 
+Mertens checks the clock, then looks at the applications again. “If I speak to someone today, I'd like to know what I'm allowed to tell them about next week.”
+
+“You can tell them what has happened today,” Livia says. “If we've cleared a file, say we cleared it. Wait for the authority to tell us when there is an appointment.” She moves the top sheet half an inch so he can see the blank space below it. “If your office gets the date first, send it here before anybody invites her to the port.”
+
 - **“Send the cleared appointments for confirmation.”** Livia takes the eligible pages within the agreed scope. When the authority's signed record comes back, she lays it in front of you. “Leal takes office Monday.” On the nomination route, use Vale when the required approvals return. If an approval is outstanding, Livia shows you the missing entry and gives the next review date if known.
 - **“Return the applications with a reason.”** Available for an identified issue. Livia attaches the authority's findings. On actual rejection the affected nominee receives the decision. Eligible remaining files may proceed within their terms.
 - **“Hold the appointments.”** Livia dates the instruction. “The acting director can keep the shifts covered. I'll ask when the authority needs a decision about the vacancy.”
@@ -696,6 +895,10 @@ Livia has left the applications in a stack. She moves the director's page to the
 Kesht leaves the allegations folder closed while an assistant brings in water. Once the door shuts, he places a single-page estimate beside it.
 
 > **Kesht** — “I can staff one of those desks with the money I have. You’ll have to tell me which question you want answered first.”
+
+Kesht puts the water where you can reach it and moves the folder back to exactly where it was.
+
+“If you ask me what the other team would find,” he says, “I can tell you what work they would do. I can't tell you what they'd find. I'd rather you tell me which question you want asked first. Then I can tell you when I expect an answer worth bringing through that door.”
 
 **Inspect** · Inherited regional assessments and ordinary referrals. A coverage reduction lengthens the interval between some district assessments. Alien Intelligence Shielding Department assesses foreign interference and attribution once an assigned desk is operating. Domestic Monitoring Department assesses domestic leads within its authority. Both use continuing staff and equipment. A hold supports one standard desk. An increase can deepen one or support two narrower briefs. The standing exchange on Red Tree and Blue Piranhas retains its own referral and safeguards choices.
 
@@ -728,6 +931,10 @@ He turns to a chart showing the outstanding debt over several years.
 > **Anselm Royce:** "We believe the government can continue meeting its current obligations. We would like to understand how it intends to manage those obligations over the medium term."
 
 > **Alexander Fontes:** "The options are to begin reducing the principal, continue under the existing arrangement, or seek additional financing. Each has implications for the budget."
+
+Royce makes room for Fontes with one hand while keeping his own copy open with the other. “If I go back with a date, someone will ask how you fixed it. They've got a habit of calling at the end of my day, which is the beginning of theirs.”
+
+Fontes says, “Then let's give you the date we can defend when they call. Anything else ought to be a condition in the document, where your office and mine can both find it.”
 
 1. **"Does your board consider our present position sustainable?"**
    ↳ > **Anselm Royce:** "Under reasonable economic assumptions, yes. Our concern is what happens if revenues disappoint or expenditure rises."
@@ -835,15 +1042,53 @@ After the delegation leaves, Fontes remains at the table.
 
 ### 2.1 · The working folder
 
-Fontes moves a stack of treasury estimates to make room for your folder. Dara's rota is clipped to the Health sheet. One corner has folded over the afternoon column.
+Fontes has asked for a larger table. The one the staff found is long enough for everyone, but narrow enough that the open folders meet in the middle. He takes his glasses off to move a stack of papers and then puts them back on to check which stack he moved.
 
-> **Fontes:** “The invoices we could verify are in the obligations column. The inherited services are already in the totals. You can turn a proposal on and off here and see how much of the projected surplus it needs.”
+“Planning and Health keep sending me the same date,” he says. “One of them means the date they think they could start. The other means the day they think somebody will send a bill. I asked which was which and got a very courteous reply from both of them.”
 
-Livia points to a sheet behind the ministry pages.
+“Did either answer the question?” Livia asks.
 
-> **Livia:** “Planning sent the dates for the project you selected. The people preparing the bill asked what they could tell their districts about the work.”
+“Yes. After I rang.”
 
-> **Fontes:** “Give them the estimate and the dates Planning used. We'll need a separate decision before we place any order.”
+He leaves a pair of pages in front of you. “Start here. On the left are bills we know we have to pay. Ask me about anything you like, but I'd prefer you look at the names before you look at the total. Some of those people have already had two governments tell them to wait.”
+
+At the top of one page there is a correction in a different typeface. You point to it.
+
+“The district sent the same invoice twice,” he says. “They'd had no reply to the first one. We asked for confirmation and they sent it a third time. We've counted it once.”
+
+“Have we paid them?”
+
+“We've established what we owe. I'm hoping to be able to give them a date after this meeting.”
+
+Livia has already turned back to the first sheet. “If the bill we're talking about never gets through Congress, which dates can I give?”
+
+Fontes puts a strip of paper across the bottom of the page. “These. I'll show you the current authority before anyone leaves. The extra sessions are further down.”
+
+Dara has brought a copy of the clinic rota from Sugar Bay. He folds it to show only the afternoons. “The director told me they can have the second consulting room. She still has to ask the other wing if she'll have a nurse. If she takes the nurse off that wing to do this, I'd want to know whether they're moving another appointment to give us one.”
+
+“You asked her?” Livia says.
+
+“I asked her to tell me before she put up the notice. Last time they printed the leaflet on the Friday. The woman at the desk spent Monday explaining what it should have said.”
+
+- **“Who can use the hours they've already got?”** Dara shows the old column. “The morning bus works for some people. A woman I met there had to decide whether to put her boy on the bus back to school or stay and see if a space came up in the afternoon. I asked reception where the people from her district usually get off. They told me I ought to ask which bus.”
+- **“How much of this is already committed?”** Fontes brings the standing schedule closer. “These payments have terms and dates. This second sheet is work the departments could do if we give them room. They can still tell us a proposal won't work.”
+- **“I'd like to look at the figures first.”** Dara leaves the rota where it was and helps Fontes hold the two pages apart.
+
+Fontes asks Livia to stand beside him while he changes the figures. “If you put the clinic proposal in, you can see what it takes out of the forecast. If I take it off, you'll see what room the old schedules leave us. Neither column need go upstairs yet.”
+
+Livia watches him add the proposal. “Where is the railway on that page?”
+
+“Nowhere until we have a liability. I have a forecast from Planning. I can show you what happens if the first payment falls where they think it might. If the contractors read a date in the budget and think I'm offering them the work, I'll have to spend tomorrow telling them to ring Planning.”
+
+He makes the comparison and leaves the two columns visible. The first is easier to read because the last few lines are blank.
+
+“If we show them one version,” you ask, “will they know what happens without it?”
+
+“We can show both,” he says. “I want them to know which services will continue anyway. If a deputy needs another line to vote for the expansion, ask them which line they mean. Then we can tell them, before they go home, whether it's in this bill or something they still have to ask for.”
+
+Dara looks down at his copy of the rota. “Can we find out when the hospital will give us an answer while they're doing that?”
+
+“Yes,” says Fontes. “I can use the cost of the staff. You can tell me when we can actually get them.”
 
 *Show the five inherited totals, verified liabilities and existing debt service once, projected surplus, and draft uses against it. Put GP1's dated estimated exposure on a separate Planning line, distinguishing any payment actually due. In the pilot GP1 has no award or payment and the Fund mission has yielded no proceeds.*
 
@@ -876,6 +1121,32 @@ He puts the receiver down and straightens a slip from the municipality.
 
 > **Avros:** “I asked the department to send its answer here. The deputy wanted a copy before he went home.”
 
+Avros smooths the photograph with the back of his hand. There's an outline on the floor where a bookcase stood. One table is still there, pushed under the part of the ceiling that hasn't come down.
+
+“The deputy keeps sending me that picture,” he says. “First time I thought he wanted me to ring the minister. I did. The second time I asked him why he hadn't gone to see the mayor. Turns out he took the picture while the mayor held the door for him.”
+
+“What did the mayor say?”
+
+“That it was a school.” Avros raises his eyes from the photograph. “I'd cheerfully have said the same thing if somebody had turned up to take my picture in it.”
+
+Livia asks who has the original estimate. Avros opens a folder, finds a slim envelope and checks the name written across the back.
+
+“He's trying to get an estimate the ministry will use. They sent him the form for a new building. He'd like somebody to look at what he sent before he has to fill out another one.”
+
+“If Education gives him a date to hear back, will he treat that as a promise to repair it?” you ask.
+
+“He'll ask me which I mean. I'll be happy to tell him, if I know. I can defend an honest answer to him. I don't want to hand him a piece of paper with the name of somebody who won't take his call.”
+
+Avros's phone starts vibrating again. He looks at the display and lets it go.
+
+- **“You can take it.”** He does. “I'm still here,” he says. “I know you can see my car.” He listens. “No, you can't have my keys. I'll be down when we're finished.”
+- **“Is that the deputy?”** Avros turns the screen so you can see that it says his office. “One of mine. They get very interested in where I am whenever somebody goes looking for me downstairs.”
+- **“Let's settle what he can actually take home.”** Avros moves the photograph out from under his hand and puts it beside the list of requests. “Then tell me what I should say when he asks whether he can announce it.”
+
+Livia takes out her pen. “If it's a review, I'll get the name of the person who's meant to give him the answer. If there's an eligible cost and you want to pursue it, we can say that. We'll still have to tell him who has to authorize the work. Is he asking you to say it tonight?”
+
+“He's asking me to say *something* tonight. His constituents will hear whatever he says tomorrow, with or without us.”
+
 *If the estimate has arrived, show the dated scope and quote. If it is still pending, Avros says who is preparing it and what they still need.*
 
 *Read D's district term. If an earlier promise about funding, publication or the school would change, Avros reads back what the bench was told. Before circulating revised terms, offer **“I'll explain the change to the bench”**, **“Give them my explanation”**, or **“Keep the earlier terms”** where those terms are feasible. Record the old terms and who heard the change. Seek fresh replies after circulation.*
@@ -885,6 +1156,38 @@ He puts the receiver down and straightens a slip from the municipality.
 - **“Keep my undertaking while Education costs the work.”** *Show if Lara gave the conditional commitment and no actionable estimate is available.* Avros folds the slip into his copy. “I’ll tell the deputy we’re waiting on the two rooms. I’ll ask Education when they can send the cost.” Circulate the ceiling without authorizing the repair.
 - **“Ask for Education’s answer before deciding.”** Avros sets the request beside the bill. “I’ll let you know which office has the estimate.” Continue to the ceiling talks with the school pending or wait for the estimate if the school is necessary to the version.
 
+Avros puts his phone in his pocket and takes out a folded paper. You can see another list of names through it.
+
+“Have we called any of these people yet?” you ask.
+
+“I called the people who'd take a call without a bill. One said she wanted to see the capital estimate for herself. Another asked if there was a date for the existing transfers. I told her we'd give her the dates Treasury could verify.”
+
+“Would she vote for the expanded ceiling if we did that?”
+
+“She asked to see the bill. I told her she could have it as soon as it existed.” He unfolds the paper and makes room for Livia's copy beside it. “We can get her a date for a payment under the old schedule, if there's one to give. I'd like somebody to answer her next call whether or not we get her vote.”
+
+“If Caio has brought people in through Mantel, shall we ask you to leave them alone?” Livia asks.
+
+“No. Ask me to show them the same copy he showed them. Last time somebody forgot to put a date on a revised page I had two members insisting they'd agreed to opposite things. We ended up walking around the chamber looking for the one photocopier that had a clock.”
+
+He presses a finger to one entry farther down. “This one said she'd read it with me. If you want to go back through the figures before I sit down with her, I'll wait. I need to go into that meeting knowing what you want me to ask for. I can take a reply. I can't tell her you'll change the bill unless you've said I can.”
+
+*Where a deputy has actually returned a request, let Lara hear it before circulation.*
+
+The deputy calls while Avros is still there. She says she read the forecast with her constituency clerk. He found a date in the Treasury paper that was different from the one they had been giving callers.
+
+“Can somebody tell him which is right?” she asks. “He has three names taped to his desk and he's rung all of them.”
+
+Fontes draws the effective schedule out of the folder. “I can give him the answer for the existing payments. If he has a name that isn't on this run, I'll ask the district to tell him why it isn't there. The expansion is in the other column.”
+
+“Fine,” she says. “Please make sure he gets your name this time. He's got mine.”
+
+She stays on the line long enough to ask for the actual version when it is ready. Avros asks when she'll have a chance to read it. They arrange a time. After she hangs up he draws a circle around her name, beside another name he has already struck out.
+
+“That's a meeting,” he says. “I'll tell you what she says after we've had it.”
+
+*Use the existing circulation choices. The call supplies a reading appointment when that reply exists. It supplies no vote and authorizes no spending.*
+
 **Send a version to the benches.**
 
 - **“Ask Pelan to organize support for this version.”** Avros looks from the ceiling to the Planning schedule. “I'll ask the members who wanted to wait. Give me the dates they can use when they go home.”
@@ -892,6 +1195,52 @@ He puts the receiver down and straightens a slip from the municipality.
 - **“Go back to the figures.”** Return to the working folder. If a circulated page changes, put the replacement before those affected and ask for fresh answers.
 
 #### The list at the door
+
+The corridor is warmer than Avros's office. Someone has propped a window open with a bound copy of last year's proceedings. The clerk goes over to take the book out, feels the heat coming off the wall, and puts it back.
+
+Avros has asked for a few minutes with the deputies before the division. He comes out of the room where they have been waiting, carrying your copy of the bill upside down.
+
+“Did you get an answer?” you ask.
+
+“I got a question. The deputy wanted to know if he could explain the school decision himself. I told him I didn't see why not. Then he asked me if I knew what it was.”
+
+*Use the actual school instruction here. On ordinary review, Avros reads back the office and any date confirmed. On a conditional undertaking, he names what still has to come back from Education. If a costed repair has been included, he names the two rooms and the separate works decision still required. If nothing has been offered, he tells the deputy the application remains where it was.*
+
+“Who else was listening?” you ask.
+
+“Everyone who has a school.” He turns the bill the right way up. “One of them wanted to know if she had to vote with us to get a letter back. I said she could have the letter either way.”
+
+Livia stops beside him. “Was that before or after you asked her how she was voting?”
+
+“After. If I'd said it before, she wouldn't have believed me.”
+
+The door opens again. A deputy comes out carrying a sheet with a figure written in the margin. She holds it against the wall to see whether it is the same figure as the one on her copy. Livia waits until she has finished.
+
+“There's a date on the notice everybody has been shown,” the deputy says. “My constituency clerk has been using it to answer callers. Can he keep using it if this doesn't pass?”
+
+Read the actual line the deputy is able to discuss. It can be an existing payment already in the effective schedule. Where no such line applies, use her question about the earliest date the office can verify.
+
+Fontes comes far enough out of the room to see the page. “Let me look at the notice. If that's the date for a payment already authorized, I'll confirm it. If they've put a proposed date next to it, I'd like somebody to tell your clerk which is which before he rings anyone else.”
+
+“I can give him your number,” she says.
+
+“He has it. I got his message while I was upstairs.”
+
+Her face changes a little. “He'll be delighted you remember it.”
+
+*Choose how Lara answers.*
+
+- **“Get him the dates he can give out today.”** Livia asks Fontes for a short reply the clerk can read back. Use only verified dates and identify the office responsible for unresolved cases.
+- **“I'd like to hear what the callers are being told.”** The deputy says the clerk puts all the letters in a stack before he goes to lunch and rings people back in order when he returns. “If you ring him yourself, wait until two. If you ring him at one he'll tell you his lunch is ruined and you'll think it's about the bill.”
+- **“Will you tell me what you think of the ceiling?”** The deputy looks back through the doorway. “I told your people what I could on this copy. If I see a different one when I go in, I'll want a chance to read it.” Use her actual reply from the list. Where no reply is confirmed, she leaves her vote open.
+
+When she has gone, Avros stands for a moment with his fingertips on the wall.
+
+“Did it help?” you ask.
+
+“She can go back and tell her clerk what to do. I think that's worth doing.” He puts the bill under his arm. “You'll have her answer when she gives it.”
+
+*Continue with the list for the current version. The exchange supplies no additional vote or spending promise.*
 
 Livia has folded down a corner of the bill to mark the ceiling. In the corridor, the clerk stops a deputy to replace a page in his copy.
 
@@ -925,6 +1274,36 @@ Fontes opens a second sheet.
 
 *Read the verified fallback before offering submission. If the contraction needs its own bill, display that proposal and its vote gate.*
 
+*Before submission, walk through the effective fallback with Fontes. Use only the reductions or postponements feasible on this run.*
+
+Fontes leaves the bill where it is and puts the fallback beside it. The pages are nearly the same size. He asks you to point to the first difference you can see.
+
+“The extra clinic hours.”
+
+“That's the one they'll notice first,” he says. “There's a difference further down. The post at Ibira has a reserve vehicle due for work.”
+
+*Play the ensuing exchange about the vehicle only if the verified fallback uses the overhaul saving. On other routes Fontes names the affected service, the change the responsible office can verify and when it would take effect. Livia asks him to make that date clear to the department before the figures are circulated. Rejoin at the choices below.*
+
+“Has Voss seen this version?” you ask.
+
+“He saw the maintenance line. I haven't told him we're using it. I needed him to tell me what it does first.” Fontes finds the note from the post and turns it around. “They can run the reserve until its inspection expires. After that, if the overhaul hasn't been done, they have the other vehicle. That will be perfectly adequate for a week in which they only need one.”
+
+“And if they need two?”
+
+“They'll have to borrow one, change the schedule or leave something until later. I can't tell you which. I can tell you what we can keep on the Health page if we take his saving.”
+
+Livia reads the date in the margin. “Then if we do use it, I'd like him to tell the post before somebody sees the figure and thinks we've taken the vehicle away today.”
+
+Fontes takes back his note. “He can have the dates when we've made the decision. Dara will need the same thing for the clinic. People will ask him on Monday whether they can make a booking.”
+
+- **“What would you tell somebody who was waiting for an afternoon appointment?”** Fontes looks to Livia. “I'd ask Dara to tell the desk what it can book now,” she says. “If somebody has been told to wait for a new list, they ought to get the existing hours too. Then they can decide if they can use them.”
+- **“If we go ahead today, what am I risking?”** Livia draws the current version toward you. “The clerk can call this one. The people who said they'd support it have seen these terms. Some of the answers are still open. If we lose, this is the authority Fontes can work with, unless you decide to bring back a different bill.” On this option she reads any actual deadline or remaining procedural step from the clerk's advice.
+- **“Put both copies in front of me.”** Fontes moves the fallback and the submitted version side by side. He leaves his hand on the edge of the table so neither page moves when the clerk comes through the door.
+
+The clerk asks Livia how much time she needs. Livia asks him for the time he actually has. He tells her, and waits. Neither of them looks at the list of names while they are talking.
+
+Livia puts down her pen. “If you want another version circulated, tell me before I give him this one. If you want him to call the bill, I'll give him the copy the benches have.”
+
 - **“Submit this version.”** Livia hands it to the clerk. A deputy lowers his lunch bag to the floor when the call begins. **Pass:** Livia writes the effective date on the copy she brings you. “I'll send Treasury the ceiling this afternoon.” Avros asks when Education can decide on the works if the repair is included, or who will answer the deputy if it's under ordinary review. **Defeat:** Fontes writes HOLD beside the new sessions. “I'll tell the departments what they can keep paying. The proposed orders can wait.” Use the verified continuing authority or offer the smaller bill.
 - **“Circulate the smaller bill.”** *Show if costed and legally available.* Fontes marks the cut and gives the new copy to Livia. The new text goes back to the affected benches, with notice to the deputy if his school commitment is affected. Return to the door when the replies arrive. A negotiated modest ceiling uses the same sequence and its own spendable figures.
 - **“Release the slot.”** Livia calls the clerk. **“Wait for revised figures”** leaves the bill pending without new authority. **“Close this attempt”** moves to the verified continuing authority as final fallback.
@@ -934,6 +1313,26 @@ Fontes opens a second sheet.
 Fontes has brought the payment schedule as well as the ceiling. He moves the papers so you can read both without turning the folder.
 
 > **Fontes:** “This is the authority we can use from the date here. The receipts and payments are on this page. The Fund instalments come out before the ministries get their figures.”
+
+On the back of the payment schedule someone has written a name and a telephone extension. Fontes turns the page just far enough to show you.
+
+“That's the person who answered when I asked the Fund what they could actually release. Royce sent us terms. This is where we'll get the notice when they release the money, if we accept those terms and the conditions are met. I thought you'd want to know which answer came from which office.”
+
+“Did you have to go through Royce to get the extension?”
+
+“I asked him. He gave it to me straight away. I wish I'd asked him on Monday.”
+
+Livia takes the sheet with the congressional date and places it beside the schedule. “If somebody calls this afternoon and asks what we can spend, can I give them one number?”
+
+“You can tell them how much Congress has authorized. If they want to know whether I can pay for an order, send them to me with the order and the date. I'd rather disappoint them on the telephone than have them tell a supplier to start.”
+
+You ask Fontes which schedule he would choose if he were preparing it for his own signature. He reads the dates down the first page without speaking.
+
+“I'd keep enough money to pay the departments while we're finding out which of these receipts will arrive on time. If you want to borrow, show me which work needs to start before those receipts arrive. If you want to pay down the debt now, let me show you what week we'll have the least cash left. There's a difference between being able to write the cheque and being able to get through that week after you've written it.”
+
+- **“Which dates would you worry about first?”** Fontes finds the largest payment already due before the next expected receipt. “This is the one somebody has already arranged their work around. The receipt below it could be late and we would still owe them.”
+- **“What does keeping the schedule buy us?”** Fontes turns the papers so the reserve sits closest to you. “Time to find out what we can collect. It also means making these payments for longer. If you want to see the cost of that, I'll show you the total beside the amount we'd still have in hand.”
+- **“Show me the choices on today's figures.”** Livia sets aside both sets of papers until Fontes can lay out the available options next to each other.
 
 - **“Keep the existing debt schedule.”** Fontes runs his pencil down the instalments. “These dates stand. I'll prepare the signature page from the money Treasury can use.” This is the choice for the three traced runs.
 - **“Use the authorized draw.”** *Show only with complete executable terms and authority.* Fontes reads out the conditions, revised service and confirmed receipt schedule. Credit cash and principal on actual receipt. Until then, Lara may wait or sign a schedule affordable from available funds.
@@ -970,13 +1369,33 @@ Livia leaves five copies at your place. One still has a paper clip over the sign
 
 *Offer combinations that fit the signed total, obligations, readiness and lawful powers. Show displaced services, setup, upkeep and estimated start. The instruction records the commitment. Ministries record actual dates from service evidence.*
 
-**Dara · call.** Dara asks the director to stay on the line.
+**Dara · call.**
+
+When Dara comes on the line, you hear a door shut at his end. He asks if the director is still there. She says she's in the consulting room with the rota on the desk, and asks him to wait while she finds something to write on.
+
+“Did you get the same figure I did?” he asks you.
+
+Livia puts your copy where you can read it. You read the Health figure back. The director repeats the date on the cover. It is clear that she has already written it down.
+
+“Tell her what that means for next week,” you say.
+
+“For next week we have the staff who are already on the rota,” Dara says. “If we're keeping those hours, they can keep taking bookings. If we're adding hours, we can ask the other wing what cover they'll release and when. If we're changing the payments, I need to speak to the district office. They'll want to know whether to send the same people a different amount or whether the list itself has changed.”
+
+“People will call reception either way,” the director says. “Can somebody tell them which office answers the payment questions? We had a woman bring her payment letter to an appointment last month. The nurse walked it down to the front desk and the front desk sent her back upstairs.”
+
+Dara asks for the district number. The director has it on a slip under the telephone. There is a pause while she reads it out, and another while he checks it back with her.
+
+- **“Tell me what you'd change first if the staff are available.”** Dara asks the director which people are waiting for follow-up and when they can get there. She gives him the appointments that can actually move and says she'll need to speak to the other wing before she can offer any of them.
+- **“Can we do something about those payment letters today?”** Dara says he can put the district's number on the notices the ministry issues. The director asks him to send it in writing so the clerks can keep it beside the book.
+- **“Let's give reception one answer before we finish.”** The director turns to a clean page and waits for Lara's decision.
 
 - **“Keep the current hours and renew the payments.”** The director confirms the existing rota. Dara asks for the payment dates.
 - **“Add outpatient follow-up sessions at Sugar Bay.”** The director checks when she can release a nurse from the other wing. Dara asks when bookings can begin.
 - **“Extend the household payments.”** Dara asks which eligible districts can verify their lists before the first funded run.
 - **“Shorten the outpatient rota.”** The director reads back the block that will close and asks reception which bookings move.
 - **“Reduce each payment.” / “Narrow eligibility.”** Dara reads back the selected rule and asks the district to identify the households affected before the payment run.
+
+*The director reads back what the desk can tell people today and what requires confirmation.*
 
 **Kaval · call.** “I have the school list and the rector’s estimate. Which one should I send back first?”
 
@@ -1014,7 +1433,13 @@ Livia leaves five copies at your place. One still has a paper clip over the sign
 >
 > **Clerk** — “At three. Come to this desk first.”
 >
-> **Dara** — “Both afternoon sessions are staffed now. She can book around the bus.”
+The woman flattens the timetable with the heel of her hand. “That gives me the four-ten,” she says. “I can tell his teacher he'll be there in the morning.”
+
+The boy looks up from the cards the clerk has left out for him. “Can I keep this one?”
+
+“You can keep the blank one,” the clerk says. “Put the one with your name in your mother's bag.”
+
+He puts both in the bag and asks for another blank one.
 
 **Current hours.** If present for a standing visit, the woman asks for an afternoon appointment. The clerk checks the existing book and offers its next morning slot. Dara confirms payment renewals separately if effective. Otherwise proceed to the next scene without the service report.
 
