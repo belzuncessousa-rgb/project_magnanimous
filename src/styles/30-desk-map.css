@@ -1,3 +1,230 @@
+/* Desk, map glass, atlas, markers, labels and resting tablet — one file, in cascade order (merged in C-13 from
+   01-map, 13-desk, 17-desk-zoom, 18-desk-fixed-frame, 20-desk-glass). Later rules override earlier ones. */
+
+/* ---- from 01-map.css */
+/* ------------------------------------------------------------------ map */
+.map { position: absolute; inset: 0; overflow: hidden; cursor: default; }
+.map.dim, body.vn-active .map { filter: brightness(0.42) saturate(0.7) blur(1.5px); }
+.map.panning { cursor: grabbing; }
+.map-svg { display: block; user-select: none; }
+.marker-svg { position: absolute; inset: 0; pointer-events: none; z-index: 4; }
+.marker-svg .marker { pointer-events: auto; }
+
+.land-shape { stroke: none; }
+.land-country { fill: #a8ad91; }
+.contour-wash { opacity: 0.2; pointer-events: none; }
+.relief path { fill: #f4ecd8; opacity: 0.3; mix-blend-mode: multiply; }
+.terrain-borders path, .coast-borders path, .political-borders path, .political-border-underlay path, .national-outline path { fill: none; stroke-linejoin: round; stroke-linecap: round; vector-effect: non-scaling-stroke; }
+.terrain-borders .border-internal { stroke: #55694e; stroke-width: 1.2; opacity: 0.7; }
+.coast-borders path { stroke: #293b34; stroke-width: 2.8; opacity: 0.52; }
+.layer-political, .political-borders, .political-border-underlay, .national-outline { display: none; }
+.view-political .layer-terrain, .view-political .terrain-borders { display: none; }
+.view-political .layer-political, .view-political .political-borders, .view-political .political-border-underlay, .view-political .national-outline { display: inline; }
+.layer-political path { stroke: none; opacity: 0.94; }
+.view-political .pol-country { filter: saturate(0.86); }
+.view-political .political-border-underlay path { stroke: #efe6d3; stroke-width: 4.1; opacity: 0.9; }
+.view-political .political-borders path { stroke: #51483a; stroke-width: 1.2; opacity: 0.92; }
+.view-political .national-outline path { stroke: #3b3429; stroke-width: 2.3; opacity: 0.95; }
+.view-terrain .national-outline { display: none; }
+.offmap { display: none; }
+.map.targeting .offmap { display: inline; }
+
+.hot { fill: transparent; stroke: transparent; stroke-width: 2.5; cursor: pointer; transition: fill 0.15s, stroke 0.15s; }
+.hot-kunasai { display: none; cursor: pointer; }
+.hot-kunasai-piece { fill: transparent; stroke: transparent; }
+.view-political:not(.targeting) .hot-region { display: none; }
+.view-political:not(.targeting) .hot-kunasai:hover .hot-kunasai-piece,
+.view-political:not(.targeting) .hot-kunasai:focus .hot-kunasai-piece { fill: rgba(255, 244, 214, 0.13); }
+.targeting .hot { cursor: not-allowed; fill: rgba(20, 15, 10, 0.32); }
+.targeting .hot.valid { cursor: crosshair; fill: rgba(176, 138, 52, 0.18); stroke: var(--gold); stroke-dasharray: 6 4; animation: march 1.2s linear infinite; }
+.targeting .hot.valid:hover { fill: rgba(176, 138, 52, 0.38); }
+.targeting .markers { opacity: 0.25; pointer-events: none; }
+@keyframes march { to { stroke-dashoffset: -20; } }
+
+.label { pointer-events: none; text-anchor: middle; paint-order: stroke; stroke-linejoin: round; }
+.label-region { font-family: var(--caps); font-weight: 700; font-size: 15px; letter-spacing: 0.18em; fill: #2f2416; stroke: rgba(240, 230, 205, 0.75); stroke-width: 3px; }
+.label-country { font-family: var(--serif); font-style: italic; font-size: 13px; letter-spacing: 0.04em; fill: #3e362b; stroke: rgba(220, 212, 192, 0.7); stroke-width: 2.5px; }
+.label-national { display: none; font-family: var(--caps); font-weight: 700; font-size: 24px; letter-spacing: 0.16em; fill: #2b251b; stroke: rgba(240, 230, 205, 0.86); stroke-width: 4px; }
+.label-canal { display: none; font-family: var(--ui-sans); font-size: 12px; font-weight: 600; letter-spacing: 0.18em; fill: #d4dfd7; stroke: rgba(30, 56, 48, 0.65); stroke-width: 3px; }
+.view-political .label-region, .view-political .capital, .view-political .label-water, .view-political .label-point { display: none; }
+.view-political .label-national { display: inline; }
+.view-political .label-canal { display: inline; }
+.view-political .label-country { font-style: normal; font-weight: 600; }
+.view-terrain .label-country { opacity: 0.48; }
+.view-terrain .label-region { font-size: 17px; letter-spacing: 0.12em; }
+.label-water { font-family: var(--serif); font-style: italic; font-size: 13px; letter-spacing: 0.2em; fill: #b9cbc7; opacity: 0.85; }
+.label-point { font-family: var(--serif); font-style: italic; font-size: 11px; text-anchor: start; fill: #2b2219; stroke: rgba(240, 230, 205, 0.8); stroke-width: 2.5px; }
+.view-political .label-region { fill: #1e170f; stroke: rgba(245, 236, 214, 0.85); }
+.capital path { fill: var(--accent); stroke: #f2e8d2; stroke-width: 1; }
+
+.marker { cursor: pointer; outline: none; }
+.marker-body { transition: transform 0.18s ease; }
+.marker .token { filter: drop-shadow(0 3px 4px rgba(0, 0, 0, 0.55)); pointer-events: none; }
+.marker.locked .token { filter: grayscale(0.8) drop-shadow(0 2px 3px rgba(0, 0, 0, 0.5)); }
+.marker.kind-personal .ring { fill: #5b3b44; }
+.marker .pulse { transform-box: fill-box; transform-origin: center; animation: pulse 2.2s ease-out infinite; }
+.marker.required .pulse { stroke: var(--gold); }
+.marker.locked { cursor: default; opacity: 0.5; }
+.marker.locked .pulse { display: none; }
+.marker.locked:hover .ring { fill: #2b2219; }
+@keyframes pulse { 0% { transform: scale(1); opacity: 0.9; } 80%, 100% { transform: scale(2.1); opacity: 0; } }
+
+.map-tooltip { position: absolute; pointer-events: none; background: rgba(43, 34, 25, 0.92); color: #f2e8d2; font-size: 0.75em; padding: 0.2em 0.55em; border-radius: 2px; white-space: nowrap; z-index: 5; font-family: var(--caps); letter-spacing: 0.04em; }
+
+.map-toasts { position: absolute; inset: 0; pointer-events: none; z-index: 3; }
+.map-toast {
+  position: absolute; pointer-events: auto; cursor: pointer; white-space: nowrap; display: flex; gap: 0.35em; align-items: center;
+  background: rgba(238, 227, 203, 0.95); background-image: var(--noise); border: 1px solid var(--paper-edge); border-radius: 2px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.35); padding: 0.22em 0.6em 0.25em 0.4em; font: inherit; font-size: 0.68em; line-height: 1.2;
+  animation: toast-in 0.6s ease both; color: var(--ink);
+}
+.map-toast:hover { border-color: var(--gold); background-color: #f6eedb; }
+.map-toast.read { opacity: 0.6; }
+.toast-icon { display: inline-flex; width: 1.4em; height: 1.4em; align-items: center; justify-content: center; border-radius: 50%; background: var(--ink); color: var(--paper); font-size: 0.85em; }
+.map-toast.kind-incident .toast-icon { background: var(--accent); }
+.map-toast.kind-reaction .toast-icon { background: #5a4a7a; }
+.map-toast.kind-report .toast-icon { background: #3e5a5c; }
+.map-toast.kind-note .toast-icon { background: #7a5a2a; }
+.toast-title { font-family: var(--caps); font-weight: 700; letter-spacing: 0.04em; }
+.map-toasts.compact .map-toast { padding: 3px; border-radius: 50%; gap: 0; }
+.map-toasts.compact .toast-title { display: none; }
+.map-toasts.compact .toast-icon { width: 1.9em; height: 1.9em; font-size: 0.95em; }
+body.vn-active .map-toasts, .map.dim .map-toasts { display: none; }
+@keyframes toast-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+/* ---- from 13-desk.css */
+/* The strategy view is one painted atlas on an executive map desk. */
+.map {
+  background: #1a211c var(--strategy-table-background, none) center / cover no-repeat;
+}
+.map:not(.table-revealed)::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: linear-gradient(90deg, #07140f48, transparent 76%);
+}
+.map-svg { position: absolute; left: 0; top: 5%; width: 100%; height: 90%; z-index: 1; }
+.marker-svg { left: 0; top: 5%; width: 100%; height: 90%; }
+.map-svg .sea, .map-svg .layer-terrain, .map-svg .layer-political { display: none !important; }
+.map-svg .atlas-art { pointer-events: none; }
+.map-svg .terrain-borders, .map-svg .political-border-underlay, .map-svg .political-borders,
+.map-svg .national-outline, .map-svg .coast-borders, .map-svg .labels { display: none !important; }
+.map-svg .label-region, .map-svg .label-country, .map-svg .label-national, .map-svg .label-canal, .map-svg .label-water, .map-svg .label-point { paint-order: stroke; filter: drop-shadow(0 1px 2px #07150fbb); }
+.map-svg .label-region { fill: #183d2c; stroke: #f0dba9; stroke-width: 3px; }
+.map-svg .label-canal { fill: #f0ebdd; }
+.map-svg .label-water { fill: #e1e8dd; stroke: #14362f; stroke-width: 3px; }
+
+/* Raised consumer tablet resting on the clear timber area of the desk. */
+.view-political .map-tablet { transform: translateY(-50%) rotate(2deg) scale(.92); }
+
+/* Keep the current painted atlas free of legacy geo overlays until its borders are redrawn to fit it. */
+
+/* ---- from 17-desk-zoom.css */
+/* Zoomable strategy table: let the artwork read as a digital map floating over a real workspace. */
+.map { transition: filter .6s ease, background .45s ease; }
+.view-political .offmap { display: inline; }
+.view-terrain:not(.targeting) .hot-country { display: none; }
+.view-political:not(.targeting) .hot-kunasai.selected .hot-kunasai-piece { fill: rgba(255, 244, 214, .13); }
+.offmap-token { cursor: pointer; outline: none; }
+.offmap-token-body { transform-box: fill-box; transform-origin: center; transition: transform .18s ease; }
+.targeting .offmap-token { opacity: .34; pointer-events: none; }
+.targeting .offmap-token.valid { opacity: 1; pointer-events: auto; }
+
+.map-tablet { position: absolute; z-index: 5; top: 50%; right: max(4vw, 34px); width: clamp(126px, 13vw, 194px); aspect-ratio: 1.34 / 1; padding: 8px; border: 1px solid #cfb676; border-radius: 15px; background: linear-gradient(145deg, #414d48, #121b19 42%, #303b36); box-shadow: 0 18px 34px #06151099, inset 0 1px 2px #ffffff54, inset 0 -3px 5px #0009; transform: translateY(-50%) rotate(2deg) scale(.66); opacity: 0; pointer-events: none; transition: opacity .35s, transform .4s cubic-bezier(.2,.8,.2,1); cursor: pointer; }
+.view-political .map-tablet { opacity: .88; pointer-events: auto; }
+.map-tablet:hover, .map-tablet:focus-visible { outline-offset: 3px; }
+:where(button, select, input):focus-visible, .hot:focus-visible, .offmap-token:focus-visible, .marker:focus-visible { outline: none; }
+@media (max-width: 600px) {
+  .map-tablet { top: 46%; right: 8px; width: 108px; padding: 6px; border-radius: 12px; }
+  .view-political .map-tablet { transform: translateY(-50%) rotate(2deg) scale(.65); }
+}
+
+/* Final size overrides follow all legacy device rules above. */
+@media (min-width: 901px) {
+  .map-tablet, .view-political .map-tablet { width: clamp(290px, 19vw, 370px); transform: translateY(-50%) rotate(2deg) scale(1); }
+}
+@media (max-width: 900px) {
+  .map-tablet, .view-political .map-tablet { width: clamp(190px, 31vw, 270px); top: 68%; right: 3%; transform: translateY(-50%) rotate(2deg) scale(1); }
+}
+/* Final game board corrections: full sea, readable geography and a usable tablet on phones. */
+.map-svg .sea { display: inline !important; }
+.map-svg .labels { display: inline !important; }
+.view-political .political-border-underlay,
+.view-political .political-borders,
+.view-political .national-outline,
+.view-terrain .terrain-borders { display: inline !important; }
+.map-svg .political-border-underlay path { stroke: #082d2b; stroke-width: 2; opacity: .34; }
+.map-svg .political-borders path { stroke: #e8d6ad; stroke-width: 1.2; opacity: .86; }
+.map-svg .national-outline path { stroke-width: 1.8; }
+.map-svg .terrain-borders .border-internal { stroke: #183c32; stroke-width: 1.6; opacity: .76; }
+.map-svg .label-country { font-size: 20px; }
+.map-svg .label-canal { font-size: 17px; }
+.view-terrain .label-country { display: none; }
+.map-svg .hot:hover, .map-svg .hot.selected, .map-svg .hot:focus-visible,
+.map-svg .hot-kunasai:hover .hot-kunasai-piece, .map-svg .hot-kunasai:focus .hot-kunasai-piece {
+  fill: #f6e4bd26 !important; stroke: #f4d58f !important; stroke-width: 3 !important;
+}
+.view-political .hot-region { display: none !important; }
+.view-political:not(.targeting) .hot-kunasai { display: inline !important; }
+@media (max-width: 900px) {
+  .map-svg .label-country { font-size: 17px; }
+  .map-svg .label-region { font-size: 16px; }
+}
+@media (max-width: 600px) {
+  .map-tablet, .view-political .map-tablet {
+    width: min(36vw, 142px); top: 77%; right: 4%; padding: 5px; border-radius: 13px;
+    transform: translateY(-50%) rotate(2deg) scale(1);
+  }
+}
+.title-card.paper {
+  position: relative; isolation: isolate; overflow: hidden;
+  border: 1px solid #cfb676; border-radius: 22px 4px 18px 4px;
+  background: linear-gradient(152deg, #2a5a49 0%, #173e32 38%, #102c25 100%);
+  box-shadow: 0 30px 72px #020a08b8, 0 5px 0 #0b241d, inset 0 2px 2px #f3e4bf38, inset 0 -5px 12px #06150f88;
+}
+.title-card .title-name { font-size: clamp(2.3rem, 3vw, 3rem); letter-spacing: -.025em; white-space: nowrap; }
+.title-card.paper::before {
+  content: ''; position: absolute; z-index: -1; inset: 10px;
+  border: 1px solid #c8a96470; border-radius: 14px 2px 12px 2px; pointer-events: none;
+}
+.title-card .btn { border-radius: 8px 2px 8px 2px; box-shadow: 0 3px 0 #071b15, inset 0 1px 1px #fff4; transition: transform .16s ease, box-shadow .16s ease, background .16s ease; }
+.title-card .btn:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 4px 0 #071b15, inset 0 1px 1px #fff5; }
+.title-card .btn.primary { box-shadow: 0 3px 0 #765f39, inset 0 1px 1px #fff7; }
+.modal-card.paper { border-radius: 16px 3px 14px 3px; box-shadow: 0 26px 72px #020907b8, 0 3px 0 #b99a60, inset 0 1px 1px #fff; }
+.menu-option {
+  padding-inline: .7rem; border: 1px solid transparent; border-bottom-color: #aab8ac;
+  border-radius: 10px 2px 9px 2px; transition: transform .16s ease, background .16s ease, border-color .16s ease, box-shadow .16s ease;
+}
+.menu-option:hover, .menu-option:focus-visible {
+  transform: translateX(3px); border-color: #b99a606e; background: linear-gradient(100deg, #e5eadf, #f5f1e5);
+  box-shadow: inset 3px 0 #b99a60, 0 3px 10px #26382d1b;
+}
+.menu-option-icon { border-color: #b99a608c; border-radius: 50% 50% 44% 44%; background: radial-gradient(circle at 35% 25%, #f3e6c6, #cbb681 78%); color: #1e4c3d; box-shadow: 0 2px 0 #9c7b45, inset 0 1px 1px #fff; }
+.menu-option-arrow { color: #9a7843; }
+@media (prefers-reduced-motion: reduce) { .title-card .btn, .menu-option { transition: none; } }
+
+/* ---- from 18-desk-fixed-frame.css */
+/* Final presidential table: fixed frame and tablet, map-only zoom. */
+.map-svg.marker-svg { background: transparent !important; }
+
+/* The atlas stays inside one inset glass display; the desk itself never zooms. */
+.map:not(.table-revealed)::before, .map::before {
+  content: ''; position: absolute;
+  z-index: 2; pointer-events: none;
+}
+.map-svg, .marker-svg { overflow: hidden; }
+.marker-svg { background: transparent; }
+.map-svg:focus { outline: none; }
+
+/* Keep the same consumer tablet resting on the wood at every map scale. */
+.map-tablet, .view-political .map-tablet {
+  opacity: 1; pointer-events: auto; transform: translateY(-50%) rotate(1.5deg); transition: filter .2s ease, box-shadow .2s ease;
+}
+.map-tablet:hover, .map-tablet:focus-visible { transform: translateY(-50%) rotate(1.5deg); outline: none; border-color: #e5cd91; }
+
+/* ---- from 20-desk-glass.css */
 /* C-01: the map viewport sits exactly inside the glass painted on the desk (positions set by MapView.layoutGlass).
    The painting already draws the bezel and brass rim, so the overlay only adds a faint glass sheen. */
 .map:not(.table-revealed)::before, .map::before {
@@ -62,13 +289,9 @@ body.vn-active .glass-hud, .map.dim .glass-hud { opacity: .4; }
   filter: drop-shadow(0 1px 0 #0c1d16) drop-shadow(0 0 5px #f1d38c55);
 }
 .ui-layer .top-left .btn.ghost:active { transform: translateY(1px); filter: drop-shadow(0 -1px 0 #0c1d16); }
-.ui-layer .top-left .btn.ghost::after {
-  content: ''; position: absolute; left: 10px; right: 10px; bottom: 0; height: 1px; opacity: 0;
-  background: linear-gradient(90deg, transparent, #d9bb74, transparent); transition: opacity .15s ease;
+.ui-layer .top-left .btn.ghost::after { position: absolute; transition: opacity .15s ease;
 }
-.ui-layer .top-left .btn.ghost:hover::after { opacity: .5; }
 .ui-layer .top-left .btn.ghost:focus-visible { outline: none; }
-.ui-layer .top-left .btn.ghost:focus-visible::after { opacity: 1; }
 .ui-layer .top-left .btn.ghost + .btn.ghost::before {
   content: ''; position: absolute; left: -5px; top: 50%; width: 5px; height: 5px; transform: translateY(-50%) rotate(45deg);
   background: linear-gradient(135deg, #f3dc9c, #8f6e33); -webkit-text-fill-color: initial;
@@ -77,7 +300,7 @@ body.vn-active .glass-hud, .map.dim .glass-hud { opacity: .4; }
 /* C-21: the free-actions panel is a leather folio from the desk — green hide, gilt tooled edge, gilt title — holding
    ivory index cards, one per action, with the cost stamped in brass. */
 .ui-layer .sidebar, .ui-layer .sidebar.paper {
-  top: calc(var(--rail-cy, 26px) + 24px); bottom: 84px; left: var(--rail-x, 14px); width: 312px; padding: 18px 16px 16px;
+  top: calc(var(--rail-cy, 26px) + 24px); left: var(--rail-x, 14px); width: 312px; padding: 18px 16px 16px;
   border: 0; border-radius: 10px; color: #e9e2cd;
   background:
     radial-gradient(ellipse at 30% 0%, #2f5a4a 0%, transparent 60%),
@@ -146,8 +369,6 @@ body.vn-active .glass-hud, .map.dim .glass-hud { opacity: .4; }
 .map-toasts .map-toast.kind-report .toast-icon { background-image: url('/map/pins/report.svg'); }
 .map-toasts .map-toast.kind-incident .toast-icon { background-image: url('/map/pins/incident.svg'); }
 .map-toasts .map-toast.read { opacity: 1; filter: saturate(.35) brightness(.8) drop-shadow(0 2px 2px #04100b99); }
-.marker-body { transform: scale(calc(1.2 / var(--zoom, 1))); }
-.marker:hover .marker-body, .marker:focus .marker-body { transform: scale(calc(1.36 / var(--zoom, 1))); }
 
 /* Off-map nations: engraved brass nameplates with a direction arrow (no letter discs). */
 .offmap-plate { fill: #b99a60; stroke: #6e5a33; stroke-width: 1; }

@@ -8,7 +8,7 @@ rules there too, unless you are deliberately cleaning up a legacy file.
 | Surface | Current file | Older layers still in effect |
 |---|---|---|
 | Tokens, reset, buttons, base type | `00-base.css` | — |
-| Desk, map glass, atlas, markers, off-map tokens | `20-desk-glass.css` (glass position), `18-desk-fixed-frame.css`, `17-desk-zoom.css` | `01-map.css`, `13-desk.css` |
+| Desk, map glass, atlas, markers, off-map tokens | `30-desk-map.css` (merged, C-13) | — |
 | Turn ledger (HUD), End Turn | `19-turn-ledger.css` | `02-rest-ui-tutorial.css`, `11-control-surfaces.css` |
 | Tablet (device, apps, news, social, codex, reports) | `15-tablet-device.css` | `05-newspaper.css`, `09-documents-tablet-frame.css`, `14-tablet-instrument.css` |
 | Dialogue / VN | `08-dialogue-presentation.css`, `10-portraits.css` | `04-dialogue.css` |
