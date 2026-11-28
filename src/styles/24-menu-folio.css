@@ -1,0 +1,56 @@
+/* C-37: the open menu is a small presidential folio set on the desk — emerald leather cover, an ivory page bound with
+   brass, unboxed option rows separated by fine rules. The desk stays visible behind it (light dim, no blur). Focus and
+   hover use a paper shift and a gilt diamond, never a rectangle. Scoped to the menu only. */
+.modal.menu-folio { background: radial-gradient(ellipse at 50% 50%, #0a1a1426, #04100cb3 80%); backdrop-filter: none; }
+.modal.menu-folio .modal-card.paper {
+  position: relative; width: min(440px, 92vw); padding: 26px 30px 26px 40px; border: 0; border-radius: 4px 10px 10px 4px;
+  color: #2a2a24;
+  background:
+    linear-gradient(90deg, #00000018 0 2px, transparent 14px),
+    repeating-linear-gradient(180deg, transparent 0 27px, #a0905f10 28px),
+    linear-gradient(170deg, #fbf7ea, #f1e9d3 70%, #e9dfc3);
+  box-shadow:
+    -14px 0 0 -2px #173f35, -14px 0 0 -1px #0b241c,          /* leather cover edge peeking on the binding side */
+    6px 8px 0 -2px #1e4a3c, 6px 8px 0 -1px #0b241c,         /* cover beneath the page */
+    0 30px 60px #020907b0, 0 4px 10px #02090780;
+  transform: rotate(-.6deg);
+}
+/* brass binding: three rivets on the left spine */
+.modal.menu-folio .modal-card.paper::before {
+  content: ''; position: absolute; left: -9px; top: 14%; bottom: 14%; width: 6px; border-radius: 3px;
+  background:
+    radial-gradient(circle at 50% 8%, #f3dc9c 0 2.4px, #8f6e33 2.6px 3px, transparent 3.2px),
+    radial-gradient(circle at 50% 50%, #f3dc9c 0 2.4px, #8f6e33 2.6px 3px, transparent 3.2px),
+    radial-gradient(circle at 50% 92%, #f3dc9c 0 2.4px, #8f6e33 2.6px 3px, transparent 3.2px);
+}
+.modal.menu-folio .modal-head { border-bottom: 1px solid #b99a6088; padding-bottom: 10px; margin-bottom: 6px; }
+.modal.menu-folio .modal-head h2 { color: #173f35; font: 600 22px 'Source Serif 4', Georgia, serif; letter-spacing: .04em; }
+.modal.menu-folio .modal-head .x { color: #8f6e33; border: 0; background: none; }
+.modal.menu-folio .menu-section-label { margin: 14px 0 4px; padding: 0; border: 0; color: #8f6e33; font: 700 10px var(--ui-sans); letter-spacing: .22em; }
+.modal.menu-folio .menu-option {
+  position: relative; grid-template-columns: 28px minmax(0, 1fr) 14px; min-height: 52px; padding: 8px 6px 8px 4px; gap: 12px;
+  border: 0; border-bottom: 1px solid #c9bb9566; border-radius: 0; background: none; box-shadow: none; transition: background .15s ease;
+}
+.modal.menu-folio .menu-option:last-child { border-bottom: 0; }
+.modal.menu-folio .menu-option-icon { width: 26px; height: 26px; border: 0; border-radius: 0; background: none; box-shadow: none; color: #173f35; font-size: 18px; }
+.modal.menu-folio .menu-option-copy strong { color: #1f3a30; font: 600 15px 'Source Serif 4', Georgia, serif; }
+.modal.menu-folio .menu-option-copy small { color: #7a7462; font: italic 12px 'Source Serif 4', Georgia, serif; }
+.modal.menu-folio .menu-option-arrow { color: #b99a60; opacity: 0; transition: opacity .15s ease; }
+.modal.menu-folio .menu-option:hover, .modal.menu-folio .menu-option:focus-visible { background: linear-gradient(90deg, #e9dcb966, transparent 85%); box-shadow: none; outline: none; }
+.modal.menu-folio .menu-option:hover .menu-option-arrow, .modal.menu-folio .menu-option:focus-visible .menu-option-arrow { opacity: 1; }
+.modal.menu-folio .menu-option:focus-visible::before {
+  content: '◆'; position: absolute; left: -16px; top: 50%; transform: translateY(-50%); color: #b99a60; font-size: 8px;
+}
+.modal.menu-folio .menu-option-quit .menu-option-icon { background: none; border: 0; color: #7a4a3a; }
+.modal.menu-folio .menu-option-quit .menu-option-copy strong { color: #7a4a3a; }
+@media (max-width: 600px) {
+  .modal.menu-folio .modal-card.paper { padding: 20px 18px 18px 26px; transform: none; }
+}
+/* every dialog (Settings, Lara's appearance) uses the same folio */
+.modal.menu-folio .modal-card.paper:has(.settings) { width: min(480px, 92vw); }
+.modal.menu-folio .settings label { color: #2a2a24; font: 14px 'Source Serif 4', Georgia, serif; }
+.modal.menu-folio .settings-audio legend { color: #8f6e33; }
+.modal.menu-folio .btn.danger { border: 0; border-top: 1px solid #c9bb9566; border-radius: 0; background: none; color: #7a4a3a; font: italic 14px 'Source Serif 4', Georgia, serif; text-align: left; padding: 12px 0 0; }
+.modal.menu-folio .btn.danger:hover, .modal.menu-folio .btn.danger:focus-visible { background: none; color: #5e2f22; text-decoration: underline; text-underline-offset: 3px; outline: none; }
+.modal.menu-folio .settings select { border: 0; border-bottom: 1px solid #b99a60; border-radius: 0; background: transparent; font: 14px 'Source Serif 4', Georgia, serif; }
+.modal.menu-folio .modal-card.paper:has(.look) { width: min(680px, 94vw); }

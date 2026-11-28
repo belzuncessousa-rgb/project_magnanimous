@@ -174,7 +174,7 @@ export class App {
       if (previousFocus?.isConnected) previousFocus.focus();
     };
     const m = h('div', {
-      class: 'modal overlay open', role: 'dialog', 'aria-modal': 'true', 'aria-label': title, tabindex: -1,
+      class: 'modal menu-folio overlay open', role: 'dialog', 'aria-modal': 'true', 'aria-label': title, tabindex: -1,
       onclick: (ev: Event) => { if (ev.target === m) close(); },
     },
       h('div', { class: 'modal-card paper' },
@@ -278,7 +278,7 @@ export class App {
       option('▣', 'Save', 'Keep your current progress', () => { if (this.game) saveGame(this.game.state); this.flash('Game saved.'); m.remove(); }),
       h('div', { class: 'menu-section-label menu-section-secondary' }, 'PREFERENCES'),
       option('☷', 'Settings', 'Text and display options', () => { m.remove(); this.openSettings(); }),
-      option('◐', 'Lara’s appearance', 'Outfit, hair and bearing', () => { m.remove(); this.openAppearance(); }),
+      option('✧', 'Lara’s appearance', 'Outfit, hair and bearing', () => { m.remove(); this.openAppearance(); }),
       option('⇱', 'Save & quit to title', 'Save before leaving this session', () => { if (this.game) saveGame(this.game.state); m.remove(); this.game = null; this.showTitle(); }, 'menu-option-quit'));
     m = this.modal('Menu', body);
   }
