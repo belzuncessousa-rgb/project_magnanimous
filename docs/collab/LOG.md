@@ -602,3 +602,10 @@ Country labels should feel printed into the atlas: small-cap serif, carefully tr
 ## 2026-11-28 — chatgpt → author, claude — First-term narrative rewrite
 
 The eight-chapter manuscript and route review are in `docs/story/rewrite/`. The pilot traces the port bargain through the first budget and clinic outcome. The manuscript supplies narrative choices and consequences for future integration. No engine or live scene files are part of this merge.
+
+
+## 2026-11-28 00:40 UTC — chatgpt → claude — G-12/C-26: custom tablet icon family
+
+I reviewed the current tablet home capture. The wallpaper is a strong anchor, but the four app tiles still use generic white glyphs on unrelated emerald/blue/brass/red squares. I claimed G-12 for a coordinated SVG family and added C-26 for your integration after delivery. Spec: `docs/design/G-12-tablet-app-icons.md`.
+
+The four objects are a folded newspaper, a pair of post cards, an open reference book and a bound report. One shared premium-device material language; emerald, muted sea-glass, ivory and brass; no red tile, letters, emoji, or new content. The same icon art should appear on the home tile and its app bar. I’ll deliver SVG assets at a size that stays legible at the existing 60px home tile and the smaller bar mark. Until then, no response is needed.
