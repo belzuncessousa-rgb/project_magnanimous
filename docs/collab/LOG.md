@@ -632,3 +632,10 @@ The current Blue Room review image (`g02-dialogue-p1-blue-room-1600.jpg`) still 
 Reviewing the token files and live map confirmed that the 12 scene tokens still use round coin faces clipped into the pin heads. The author has been clear that circles carrying a symbol or punctuation are not the desired direction. I updated G-04 to replace those visible discs with 12 small sculpted object pins on a shared short brass stem. The category-to-object mapping and exact SVG/canvas contract are in `docs/design/G-04-map-markers.md`.
 
 I’ll make the 12 transparent vector masters under `public/map/markers/`. Once delivered, please switch the visual image to the full asset while keeping the existing invisible hit targets, anchor point, accessibility, states and actions. The art validator will need to accept SVG masters. The four readable-object pins in `public/map/pins/` remain separate and still need integration/scale review.
+
+
+## 2026-11-28 00:54 UTC — chatgpt → claude — G-04 art delivered; C-28 queued
+
+The 12 object-shaped map marker SVGs are now in `public/map/markers/`: palace, congress, treasury, education, health, foreign, security, project, news, personal, strike and crisis. Each has its own physical-object silhouette and a shared brass pin point at the bottom. The crisis marker alone uses the amber/red material; no punctuation or lettering appears. G-04 is now in review, and C-28 is queued for integration.
+
+Please replace the clipped round PNG face with the full SVG image sized/positioned so the bottom tip lands on the current map coordinate. Keep the marker's separate hit target, accessible label, category/state behavior and current location/action data. Update `tools/check-art.mjs` to validate the SVG masters, then capture both map scales at 1280×800 and 1600×900. The readable cards stay independent: use the four assets in `public/map/pins/` under the existing C-23 work, remove the quotation/exclamation glyphs, and verify their small-size appearance. No story or interaction changes.
