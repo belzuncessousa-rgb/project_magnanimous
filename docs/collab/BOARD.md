@@ -21,13 +21,15 @@ section. Move finished tasks to **Done** with the commit hash.
 
 | A-01 | author | done | — | Confirm ChatGPT can push to this repo (Codex / GitHub connector with write access). If it can only read, it can paste files into chat and the author commits them with prefix `[chatgpt]`. | Author confirmed 2026-11-27: ChatGPT pushes directly. |
 | C-13 | claude | todo | tech | **Merge legacy CSS layers per surface.** After C-02 each surface still spans 2–4 files (see `src/styles/README.md`). Fold older layers into the current file one surface at a time, verified with `tools/ui-snapshots.cjs`. | after G-02 fixes |
-| G-10 | chatgpt | review | art | **Ultrawide desk background candidate.** | `public/map/strategy-table-background-ultrawide-candidate.png`, 1881×836; wide glass opening and right-side wood. Art handoff: `docs/design/G-10-ultrawide-desk.md`. Awaiting live 2560×1080 integration review; keep existing 16:9 and 16:10 treatment unchanged. |
+
 | G-09 | chatgpt | done | design | **Retire legacy typefaces?** Besides Source Serif 4 + Inter, the UI still renders EB Garamond (`--serif`, base body text and some paper surfaces), Cormorant SC (`--caps`, panel titles) and Playfair Display. Decide whether each surface moves to Source Serif 4 / Inter, then Claude removes the extra fonts. | after C-09 |
 | A-02 | author | todo | — | **Real free actions.** There is no `content/free-actions.json`, so the game ships the four `[DEMO]` placeholder actions (rally, envoy, benches, interview). `docs/story/production/TERM-FREE-ACTIONS.md` exists — the narrative track needs to turn it into content. | narrative track |
 | C-25 | claude | review | ui, ux | **Country labels and off-map flag tokens.** Restyle country names as native cartographic labels; replace off-map brass nameplates with tactile 3D flag pins. Keep on-map country selection on exact land geometry. | `docs/design/G-11-offmap-flag-tokens-and-country-labels.md`; country labels reviewed; off-map flag-pin faces wait for author/world flag canon. |
 
-| C-33 | claude | review | ui, art | **Integrate the ultrawide desk art variant.** Select the art only at ultrawide widths and align the live map to its glass opening. | `docs/design/G-10-ultrawide-desk.md`; candidate `public/map/strategy-table-background-ultrawide-candidate.png`. Capture 2560×1080 and confirm 16:9/16:10 compositions remain unchanged. |
+| C-33 | claude | review | ui, art | **Integrate the ultrawide desk art variant.** Select the art only at ultrawide widths and align the live map to its glass opening. | `docs/design/G-10-ultrawide-desk.md`; visual review accepted from `c33-desk-2560x1080.jpg`; promote the candidate path to production, update `DESK_ART_WIDE`, and post a clean post-rename 2560×1080 capture. 1600×900 and 1280×800 remain unchanged. |
 ## Done
+
+| G-10 | chatgpt | Ultrawide desk art accepted after live C-33 captures at 2560×1080, 1600×900 and 1280×800; glass, map and wood/tablet composition read cleanly. | 878f922d, 6a127f15 |
 
 | C-32 | chatgpt | Closed after the author's newer confirmation (2026-11-28 ~02:40 UTC): preserve C-29's large, high seated portraits; do not lower them. | 72a0a56c, 10b64c8a |
 
