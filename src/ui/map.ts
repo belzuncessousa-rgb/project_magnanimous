@@ -97,6 +97,7 @@ export interface MapCallbacks {
   onReadable(id: string, clientX: number, clientY: number): void;
   onTablet(): void;
   onDeskCase(): void;
+  onDeskProject(): void;
   onScaleChange(scale: MapScale): void;
 }
 
@@ -139,6 +140,8 @@ export class MapView {
   private tablet: HTMLButtonElement;
   private tabletScreen: HTMLSpanElement;
   private deskCase!: HTMLButtonElement;
+  private deskProject!: HTMLButtonElement;
+  private deskProjectLabel!: HTMLElement;
   /** Last measured size of the open tablet (.np-wrap) in CSS px; the resting clone is laid out at this size. */
   private deviceSize = { w: 1220, h: 790 };
   private atlasArtHref: string;
@@ -177,9 +180,13 @@ export class MapView {
     // The official document case: placed on the desk by a scene (`[leave: budget]`), opened like the tablet.
     this.deskCase = h('button', { class: 'desk-case', type: 'button', hidden: true, 'data-ui': 'desk-case', 'aria-label': 'Open the budget document case', onclick: () => this.cb.onDeskCase() },
       h('span', { class: 'desk-case-clasp', 'aria-hidden': 'true' }), h('span', { class: 'desk-case-label' }, 'Budget of the Republic'));
+    // The great-project folder: a manila folder on the wood above the tablet, read-only.
+    this.deskProjectLabel = h('span', { class: 'desk-project-label' });
+    this.deskProject = h('button', { class: 'desk-project', type: 'button', hidden: true, 'data-ui': 'desk-project', onclick: () => this.cb.onDeskProject() },
+      h('span', { class: 'desk-project-tab', 'aria-hidden': 'true' }), h('span', { class: 'desk-project-clip', 'aria-hidden': 'true' }), this.deskProjectLabel);
     // Planning-display furniture on the glass: thin corner brackets (decorative, fixed to the glass, not the map).
     const glassHud = h('div', { class: 'glass-hud', 'aria-hidden': 'true' }, h('i', {}), h('i', {}), h('i', {}), h('i', {}));
-    this.el.append(this.svg, this.deskCase, glassHud, this.toastLayer, this.markerSvg, this.tooltip, this.tablet);
+    this.el.append(this.svg, this.deskCase, this.deskProject, glassHud, this.toastLayer, this.markerSvg, this.tooltip, this.tablet);
     this.layoutGlass();
     new ResizeObserver(() => this.resizeFrame()).observe(this.el);
     this.applyViewBox();
@@ -493,6 +500,13 @@ export class MapView {
    */
   setDeskCase(visible: boolean) {
     this.deskCase.hidden = !visible;
+  }
+
+  /** Show the great-project folder with its typed label, or hide it (null). */
+  setDeskProject(label: string | null) {
+    this.deskProject.hidden = label === null;
+    this.deskProjectLabel.textContent = label ?? '';
+    this.deskProject.setAttribute('aria-label', label ? `Open the project folder: ${label}` : 'Open the project folder');
   }
 
   setTabletPreview(screen: HTMLElement, scroll = 0) {

@@ -9,6 +9,8 @@ import { costText, int, militaryWord, millions, money, pct1, relationWord, stabi
 import { Hud } from './hud';
 import { MapView, OFFMAP, type Geometry, type MarkerSpec } from './map';
 import { showBudget, showDebt, showVote } from './screens';
+import { deskProjects, projectPages } from './projects';
+import { showDossier } from './dossier';
 import { showTablet, type TabletApp, type TabletOptions, type TabletPage } from './tablet';
 import { tokenFor } from './tokens';
 import { VNView } from './vn';
@@ -51,6 +53,7 @@ export class App {
       onReadable: (id, x, y) => this.showReadable(id, x, y),
       onTablet: () => this.openTablet(),
       onDeskCase: () => void this.openDeskCase(),
+      onDeskProject: () => void this.openDeskProject(),
       onScaleChange: (scale) => {
         this.settings.mapView = scale === 'kunasai' ? 'terrain' : 'political';
         saveSettings(this.settings);
@@ -299,6 +302,24 @@ export class App {
     }
   }
 
+  /** The manila great-project folder: read-only dashboard plus the documents filed so far. */
+  private async openDeskProject() {
+    const g = this.game;
+    if (!g || this.busy) return;
+    const list = deskProjects(this.content.projects, g.state.flags);
+    if (!list.length) return;
+    sound.play('document-open');
+    this.busy = true;
+    try {
+      const seen = new Set(g.state.shownPopups);
+      const filed = this.content.popups.filter((r) => seen.has(r.id));
+      await showDossier(this.root, { variant: 'manila', title: list.length > 1 ? 'Great projects' : list[0]!.name, pages: projectPages(list, g.state.flags, filed) });
+    } finally {
+      this.busy = false;
+      this.refresh();
+    }
+  }
+
   private openTablet() {
     const g = this.game;
     if (!g || this.busy) return;
@@ -405,6 +426,8 @@ export class App {
     this.endBtn.setAttribute('aria-label', pending ? `End turn. ${pendingLabel}.` : 'End turn. All required matters are complete.');
     this.renderSidebar();
     this.map.setDeskCase(g.state.flags.desk_budget === true);
+    const projects = deskProjects(this.content.projects, g.state.flags);
+    this.map.setDeskProject(projects.length === 0 ? null : projects.length === 1 ? projects[0]!.name : 'Great projects');
     this.refreshTabletFace();
   }
 

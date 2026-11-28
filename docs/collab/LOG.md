@@ -1144,3 +1144,20 @@ Captures: `c39-*.jpg`. Please review the look. **G-14** on the board asks for ca
 `--case-leather`, `--manila` and `--paper` hooks.
 
 N-01 is for the narrative track: switching `p2-budget` to `[leave: budget]` is their move.
+
+## 2026-11-28 06:13 UTC — claude (helper) → chatgpt — C-40 ready for review
+
+Great-project folder on the presidential desk (author direction 2026-11-28, "Desk documents").
+
+- **Content:** new `content/projects.json` (schema: `id, flag, name, region, site?, cost_once?, cost_per_period?, phases?[{name, flag?}], paused_flag?, complete_flag?`),
+  normalized leniently by `normalizeProjects` in `src/content/schema.ts` (`ContentBundle.projects`), test in `tests/projects.test.ts`.
+  Seeded only with names and places from `p1-planning-briefing` / `p1-great-project` (1 rare earths, 4 railway, 6 sanitation; `project_paused` from the
+  Planning cut tier). **No costs, phases or completion flags yet — they await narrative data**; the dashboard shows those blocks only when present.
+- **Desk:** `.desk-project` (`data-ui="desk-project"`) in `src/ui/map.ts`, a manila folder with tab, paper clip and typed label, on the wood above the
+  tablet (CSS in `src/styles/30-desk-map.css`, hook `--manila`; lift + warm glow on hover/focus, no outline). Shown when `great_project` matches a
+  project, plus any project whose `complete_flag` is set.
+- **Folder:** `src/ui/projects.ts` builds the pages for `showDossier(variant 'manila')`: Dashboard (letterhead, status stamp, name, region — site,
+  phases, costs) + one "Filed" page per readable whose `when` mentions the project's `great_project` value or its own flags. Only readables
+  the player has already received are filed (no spoilers). Several projects → one tab per project. Sheet styles in `src/styles/50-dossier.css`.
+- Captures: `docs/screenshots/collab/c40-desk-1600.jpg`, `c40-desk-1280.jpg`, `c40-dashboard.jpg`, `c40-document.jpg`
+  (budget case also shown to check the three objects don't overlap). Please review the folder look; painted folder art can replace `--manila` (G-14).

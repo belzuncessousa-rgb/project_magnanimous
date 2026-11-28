@@ -461,3 +461,27 @@ body.vn-active .glass-hud, .map.dim .glass-hud { opacity: .4; }
   background: center / contain no-repeat url('/identity/kunasai-arms.svg'); opacity: .55; filter: sepia(1) saturate(.6) brightness(1.1); }
 body.vn-active .desk-case, .map.dim .desk-case { display: none; }
 @media (max-width: 900px) { .desk-case { left: auto; right: 4%; top: 84%; width: 150px; } }
+
+/* Great-project folder (C-40): a practical manila folder with a top tab, a paper clip and a typed label, lying on the
+   wood above the tablet. Art hook: --manila (ChatGPT can supply a painted folder image). */
+.desk-project {
+  position: absolute; z-index: 5; left: calc(var(--wood-cx, 83%) - var(--tablet-w, 300px) * .33); top: max(156px, 17.5%);
+  width: calc(var(--tablet-w, 300px) * .66); aspect-ratio: 1.42; padding: 0; border: 0; border-radius: 3px 5px 5px 5px; cursor: pointer;
+  background: var(--manila, linear-gradient(172deg, #e8cf88, #d7b76a 58%, #c4a053));
+  box-shadow: inset 0 0 0 1px #a8853f, inset 0 -6px 10px -6px #7a5c2766, 0 12px 20px #04100ba6, 0 2px 0 #6f5424;
+  transform: rotate(3deg); transition: transform .2s ease, filter .2s ease;
+}
+.desk-project[hidden] { display: none; }
+.desk-project::after { content: ''; position: absolute; inset: 5px 4px auto auto; width: 92%; height: 3px; border-radius: 2px;
+  background: #f3e3b2; opacity: .55; } /* edge of the papers inside */
+.desk-project:hover, .desk-project:focus-visible { outline: none; transform: rotate(2deg) translateY(-3px); filter: brightness(1.06) drop-shadow(0 0 7px #f1d38c77); }
+.desk-project-tab { position: absolute; left: 8%; top: -11px; width: 34%; height: 13px; border-radius: 5px 5px 0 0;
+  background: linear-gradient(180deg, #ecd593, #e1c47b); box-shadow: inset 0 1px 0 #f6e7b8, inset 1px 0 0 #a8853f, inset -1px 0 0 #a8853f; }
+.desk-project-clip { position: absolute; right: 14%; top: -9px; width: 12px; height: 34px; border: 2px solid #b7bcc0; border-bottom-color: #8e9499;
+  border-radius: 7px; box-shadow: 1px 1px 1px #0006; }
+.desk-project-clip::after { content: ''; position: absolute; left: 2px; right: 2px; top: 5px; bottom: 7px; border: 2px solid #c9cdd0; border-top: 0; border-radius: 0 0 4px 4px; }
+.desk-project-label { position: absolute; left: 14%; right: 14%; top: 40%; padding: 5px 8px; border: 1px solid #d8d0b8; background: #fbf8ef;
+  box-shadow: 0 1px 1px #6f54243d; color: #2c2a24; text-align: center; overflow: hidden; line-height: 1.25; transform: translateY(-25%);
+  font: 500 clamp(9px, .72vw, 12px) 'Courier New', Courier, monospace; letter-spacing: .02em; }
+body.vn-active .desk-project, .map.dim .desk-project { display: none; }
+@media (max-width: 900px) { .desk-project { left: auto; right: 4%; top: 12%; width: 140px; } }

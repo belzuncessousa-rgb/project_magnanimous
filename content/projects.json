@@ -1,0 +1,7 @@
+{
+  "projects": [
+    { "id": "rare_earths", "flag": 1, "name": "The rare earths of Ibira", "region": "Ibira", "site": "Tauá Hills", "paused_flag": "project_paused" },
+    { "id": "railway", "flag": 4, "name": "National Railway Integration", "region": "Tapira · Ibicuí · Mognagna", "site": "Tapira – capital – port of Katanaí", "paused_flag": "project_paused" },
+    { "id": "sanitation", "flag": 6, "name": "Great Sanitation Works", "region": "Ibicuí", "site": "Peripheries of Katanaí and St. Veldra", "paused_flag": "project_paused" }
+  ]
+}

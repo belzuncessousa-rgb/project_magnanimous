@@ -114,3 +114,19 @@
   .dossier-foot { grid-row: 3; }
   .dossier-stack { right: 10px; left: 10px; }
 }
+
+/* ---- great-project folder (C-40) */
+.sheet-project { position: relative; }
+.project-stamp { position: absolute; top: clamp(1.4rem, 3.5vw, 2.8rem); right: clamp(1.4rem, 5vw, 3.6rem); padding: 3px 10px; border: 2px solid currentColor;
+  border-radius: 3px; transform: rotate(-4deg); font: 700 11px var(--ui-sans); letter-spacing: .18em; text-transform: uppercase; color: #326554; }
+.project-stamp-paused { color: #8a6a2c; }
+.project-stamp-complete { color: #173f35; background: #173f3510; }
+.project-phases { margin: 0; padding: 0; list-style: none; }
+.project-phases li { display: flex; align-items: center; gap: 10px; padding: 7px 2px; border-bottom: 1px dotted #cfc5a8; font: 15px 'Source Serif 4', Georgia, serif; color: #4a4636; }
+.project-check { width: 14px; height: 14px; border: 1.5px solid #8f8a76; border-radius: 2px; }
+.project-phases li.done { color: #173f35; }
+.project-phases li.done .project-check { border-color: #173f35; background: center / 10px no-repeat linear-gradient(#173f35, #173f35); }
+.project-costs { width: min(360px, 100%); }
+.filed-mark { display: inline-block; margin: 0 0 1rem; padding: 2px 8px; border: 1px solid #a8853f; color: #8a6a2c; transform: rotate(-2deg);
+  font: 700 10px var(--ui-sans); letter-spacing: .18em; text-transform: uppercase; }
+.filed-text { margin: 1rem 0 0; color: #2a2a24; font: 16px/1.6 'Source Serif 4', Georgia, serif; max-width: 62ch; }

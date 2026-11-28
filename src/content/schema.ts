@@ -95,6 +95,8 @@ export interface ContentBundle {
   crises: CrisisDef[];
   ministries: Ministry[];
   bills: Bill[];
+  /** Great projects (content/projects.json): desk project folders. */
+  projects: Project[];
   papers: Paper[];
   warnings: string[];
   /** which categories fell back to content/_demo */
@@ -538,7 +540,7 @@ export function buildContent(files: RawFile[]): ContentBundle {
 
   // story-bound demo files (chapters, news, pop-ups, crises) are only used together with the demo scenes
   const realScenes = real.some((f) => /^\/content\/scenes\/.*\.md$/.test(f.path));
-  const storyBound = new Set(['chapters', 'news', 'popups', 'readables', 'crises', 'ministries', 'bills']);
+  const storyBound = new Set(['chapters', 'news', 'popups', 'readables', 'crises', 'ministries', 'bills', 'projects']);
   function choose(cat: string, test: (p: string) => boolean): RawFile[] {
     const r = real.filter((f) => test(f.path.replace(/^\/content\//, '')));
     if (r.length) return r;
@@ -572,12 +574,13 @@ export function buildContent(files: RawFile[]): ContentBundle {
   const popups = [...normalizePopups(jsonOf('readables', 'readables.json'), 'readables'), ...normalizePopups(jsonOf('popups', 'popups.json'))];
   const ministries = normalizeMinistries(jsonOf('ministries', 'ministries.json'), (m) => warnings.push(m));
   const bills = normalizeBills(jsonOf('bills', 'bills.json'), (m) => warnings.push(m));
+  const projects = normalizeProjects(jsonOf('projects', 'projects.json'), (m) => warnings.push(m));
   const freeActions = normalizeFreeActions(jsonOf('free-actions', 'free-actions.json'), (m) => warnings.push(m));
   const crisesRaw = jsonOf('crises', 'crises.json') ?? (isObj(worldRaw) ? worldRaw.crises : undefined);
   const crises = normalizeCrises(crisesRaw);
   const papers = normalizePapers(isObj(worldRaw) ? worldRaw.papers : undefined);
 
-  return { world, scenes, chapters, news, popups, freeActions, crises, papers, ministries, bills, warnings, demo };
+  return { world, scenes, chapters, news, popups, freeActions, crises, papers, ministries, bills, projects, warnings, demo };
 }
 
 // ------------------------------------------------------------------------------------------------
@@ -708,4 +711,57 @@ export function normalizeBills(raw: unknown, warn: (m: string) => void): Bill[] 
     }
     return { id, title: s(b, 'title', 'name') ?? id, summary: s(b, 'summary', 'description') ?? '', positions, whipCosts };
   });
+}
+
+// ------------------------------------------------------------------------------------------------
+// great projects (desk project folders)
+
+export interface ProjectPhase {
+  name: string;
+  /** flag that marks the phase as done */
+  flag?: string;
+}
+
+export interface Project {
+  id: string;
+  /** value of the `great_project` flag that selects this project */
+  flag: number;
+  name: string;
+  region?: string;
+  site?: string;
+  /** one-time cost in bn, only when the content provides it */
+  costOnce?: number;
+  /** cost per period in bn, only when the content provides it */
+  costPerPeriod?: number;
+  phases: ProjectPhase[];
+  pausedFlag?: string;
+  completeFlag?: string;
+}
+
+export function normalizeProjects(raw: unknown, warn: (m: string) => void): Project[] {
+  const num = (o: Obj, ...keys: string[]): number | undefined => {
+    const v = pick(o, ...keys);
+    if (typeof v === 'number' && Number.isFinite(v)) return v;
+    if (typeof v === 'string' && v.trim() !== '' && Number.isFinite(Number(v))) return Number(v);
+    return undefined;
+  };
+  const out: Project[] = [];
+  for (const p of listOf(raw, 'projects')) {
+    const id = s(p, 'id') ?? 'project';
+    const flag = num(p, 'flag', 'great_project');
+    if (flag === undefined) { warn(`project ${id}: missing great_project flag value`); continue; }
+    out.push({
+      id,
+      flag,
+      name: s(p, 'name', 'title') ?? id,
+      region: s(p, 'region'),
+      site: s(p, 'site', 'place'),
+      costOnce: num(p, 'cost_once', 'costOnce'),
+      costPerPeriod: num(p, 'cost_per_period', 'costPerPeriod', 'cost_per_turn'),
+      phases: listOf(pick(p, 'phases')).map((x) => ({ name: s(x, 'name', 'title') ?? '', flag: s(x, 'flag') })).filter((x) => x.name),
+      pausedFlag: s(p, 'paused_flag', 'pausedFlag'),
+      completeFlag: s(p, 'complete_flag', 'completeFlag'),
+    });
+  }
+  return out;
 }
