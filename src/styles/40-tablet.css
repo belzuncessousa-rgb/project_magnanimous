@@ -230,9 +230,10 @@
 }
 .np-social .np-post:hover { background: #ffffff06; }
 .np-social .np-source-mark {
-  display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%;
+  position: relative; display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; overflow: hidden;
   background: var(--outlet, #2c3a35); color: #fff; font: 800 13px var(--ui-sans); letter-spacing: .02em;
 }
+.np-social .np-source-avatar { position: absolute; inset: 0; display: block; width: 100%; height: 100%; border: 0; border-radius: 50%; }
 .np-social .src-ledger { --outlet: #3b4c5a; } .np-social .src-clarion { --outlet: #b38a0f; } .np-social .src-voice { --outlet: #9a5a1c; }
 .np-social .src-dispatch { --outlet: #24497a; } .np-social .src-canopy { --outlet: #2e6b45; }
 .np-social .np-post-source { display: flex; gap: 6px; align-items: baseline; margin: 0 0 3px; color: #8e9c96; font: 500 12px var(--ui-sans); }

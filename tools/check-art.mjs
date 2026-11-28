@@ -119,6 +119,7 @@ export function checkArt(root = ROOT) {
   for (const t of tokenSrc.matchAll(/'([a-z-]+)'/g)) direct.push(`public/map/markers/${t[1]}.svg`);
   for (const k of ['reaction', 'note', 'report', 'incident']) direct.push(`public/map/pins/${k}.svg`);
   for (const k of ['news', 'social', 'codex', 'reports']) direct.push(`public/tablet/apps/${k}.svg`);
+  for (const k of ['ledger', 'clarion', 'voice', 'dispatch', 'canopy']) direct.push(`public/tablet/press-avatars/${k}.svg`);
   for (const f of direct) {
     if (!existsSync(p(f))) { errors.push(`missing ${f}`); continue; }
     if (f.endsWith('.svg') && !/<svg[\s>]/.test(readFileSync(p(f), 'utf8').slice(0, 400))) errors.push(`${f} is not an SVG document`);

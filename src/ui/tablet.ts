@@ -172,6 +172,14 @@ export function showTablet(root: HTMLElement, options: TabletOptions): Promise<v
     };
 
     // ---------------------------------------------------------------- Social: a vertical short-post feed
+    // Outlet mark (public/tablet/press-avatars/<paper-id>.svg) over the initials; the initials stay if the image fails.
+    const sourceMark = (paper: { id: string; name: string }) => {
+      const mark = h('span', { class: 'np-source-mark', 'aria-hidden': 'true' }, initials(paper.name));
+      const image = h('img', { class: 'np-source-avatar', src: `tablet/press-avatars/${paper.id}.svg`, alt: '', draggable: 'false' });
+      image.addEventListener('error', () => image.remove(), { once: true });
+      mark.append(image);
+      return mark;
+    };
     const renderSocial = () => {
       clear(screen);
       const posts = options.edition.papers.flatMap(({ paper, items }, paperIndex) => items.map((item) => ({ paper, item, paperIndex })));
@@ -183,7 +191,7 @@ export function showTablet(root: HTMLElement, options: TabletOptions): Promise<v
         const plainText = item.text.replace(/\s+/g, ' ').trim();
         const excerpt = plainText.length > 190 ? `${plainText.slice(0, 187).trimEnd()}…` : plainText;
         return h('article', { class: `np-post src-${paper.id}` },
-          h('span', { class: 'np-source-mark', 'aria-hidden': 'true' }, initials(paper.name)),
+          sourceMark(paper),
           h('div', { class: 'np-post-content' },
             h('div', { class: 'np-post-source' }, h('span', { class: 'np-account-name' }, paper.name),
               h('span', { class: 'np-source-dot', 'aria-hidden': 'true' }, '·'), h('span', { class: 'np-source-label' }, options.edition.dateLabel)),
