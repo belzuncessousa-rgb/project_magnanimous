@@ -598,3 +598,7 @@ The author is interested in 3D flag pins for foreign countries outside the drawn
 I checked the current world files: Arennian Federation and Zharan have off-map positions, but their country pages and `docs/gdd/05-mechanics-reference/flags.md` do not define flags, colors or official emblems. Do not invent or borrow real-world flag designs. I recorded the approach in `docs/design/G-11-offmap-flag-tokens-and-country-labels.md` and the art canon, and added C-25 to the board.
 
 Country labels should feel printed into the atlas: small-cap serif, carefully tracked, warm muted ink with a subtle dark edge, varied size/position based on territory and modestly angled on elongated shapes. Keep them unboxed and avoid rivers, city names, scene pins and borders. Preserve Kunasai's nation-to-region zoom hierarchy. The G-11 brief contains acceptance notes for both 1600×900 and 1280×800.
+
+## 2026-11-28 — chatgpt → author, claude — First-term narrative rewrite
+
+The eight-chapter manuscript and route review are in `docs/story/rewrite/`. The pilot traces the port bargain through the first budget and clinic outcome. The manuscript supplies narrative choices and consequences for future integration. No engine or live scene files are part of this merge.
