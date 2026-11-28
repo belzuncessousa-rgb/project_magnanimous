@@ -79,3 +79,8 @@ Reviewed current 1280×800 and 1600×900 captures for the planning-table map, ha
 - **C-24:** the desktop cover is accepted. On the phone capture the title is cut off at the right edge; scale or wrap it within the leather cover.
 - **C-25:** the country labels read naturally at compact PC scale. Keep the off-map flag faces pending approved national flags; current brass plaques remain temporary.
 
+
+
+## Seated portrait verification — 2026-11-28
+
+Reviewed `c29-seated-1600.jpg` and `c29-seated-1280.jpg`. Lowered foreground portraits read as seated in the Blue Room, with the room chairs and table behind them. No room-specific furniture overlay or exact chair match is needed. The portrait placement is accepted at both PC targets; standing poses are unaffected.
