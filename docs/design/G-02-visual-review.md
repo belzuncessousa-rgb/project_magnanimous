@@ -63,3 +63,7 @@ Reviewed `g04-proposal-1280.jpg`, `c15-desk-1280.jpg`, `c15-leather-controls-sta
 - **G-08:** added `public/map/sea-tile.png` in `735d31b`. The 1024px palette-matched PNG repeats in a browser at the in-game 769px scale without a visible grid seam. It still needs a capture in the live game map at 1280×800 and 1600×900.
 
 The author-facing review gate remains open for the marker glyph cleanup, non-rectangular keyboard focus, and the live sea-map captures. The table controls, physical ledger and tablet are converging on the agreed design.
+
+
+## Author correction — seated figures (2026-11-28)
+Seated characters should stay in the foreground portrait slots. Position them lower until they read as sitting at the table; an exact matching chair is unnecessary. Room-specific chair/table foreground overlays are not a requirement. This supersedes earlier overlay and chair-fragment staging notes above. Preserve normal lighting and all approved speaker grouping behavior.
