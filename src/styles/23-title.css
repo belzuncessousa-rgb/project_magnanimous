@@ -54,3 +54,8 @@
 .title-screen .title-card .title-buttons .btn:hover:not(:disabled) {
   background: linear-gradient(180deg, #fff0c4, #dcb96c 50%, #a5823f); -webkit-background-clip: text; background-clip: text;
 }
+@media (max-width: 600px) {
+  .title-card.paper { padding: 2.2rem 1.4rem 1.8rem; }
+  .title-card .title-name { white-space: normal; font-size: clamp(2rem, 11vw, 2.6rem); }
+  .title-card .title-kicker { letter-spacing: .2em; }
+}

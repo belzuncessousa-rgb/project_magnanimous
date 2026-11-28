@@ -32,7 +32,7 @@
 .vote-screen .vote-deals .deal { border-color: #cdbf9e; background: #fffcf3; color: #3a3a32; }
 .vote-screen .vote-deals .deal.corrupt { border-style: dashed; border-color: #9a7a3a; }
 .vote-screen .vote-deals .deal[aria-pressed="true"] { background: #173f35; border-color: #173f35; color: #f3ecd9; }
-.vote-screen .screen-foot { border-top: 1px solid #b99a6066; background: none; }
+.vote-screen .screen-foot { border-top: 1px solid #b99a6066; background: #f1ead8; box-shadow: 0 -10px 16px -10px #2a261933; }
 .vote-screen .vote-outlook { color: #173f35; font: 600 18px 'Source Serif 4', Georgia, serif; letter-spacing: 0; }
 .vote-screen .vote-spend { color: #6d6857; }
 .vote-screen .vote-spend.over { color: #7a4a14; }

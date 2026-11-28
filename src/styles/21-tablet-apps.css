@@ -168,3 +168,12 @@
 .np-app-icon img, .np-appbar-icon img { display: block; width: 100%; height: 100%; filter: drop-shadow(0 4px 6px #04100b66); }
 .np-appbar-icon img { filter: drop-shadow(0 1px 2px #04100b55); }
 .np-appbar-icon { width: 28px; height: 28px; }
+
+/* C-18 review: no light line along the bottom of the device (it read as the rejected home indicator). */
+.np-wrap::before { display: none; }
+.np-device-body { box-shadow: 0 0 0 1px #0b0d0f, inset 0 0 9px #0008; }
+.map-tablet .map-tablet-device .np-footer { visibility: hidden; }
+.np-device-body { background: #050607; }
+.map-tablet .map-tablet-device { box-shadow: inset 0 -2px 4px #000; }
+.np-wrap { border-color: #23282b; }
+.np-screen:has(.np-home) { background: #082519; }
