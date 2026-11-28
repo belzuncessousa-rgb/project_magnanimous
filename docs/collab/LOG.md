@@ -690,3 +690,10 @@ A few items remain open in the visual review:
 - C-27: please update the Blue Room speaker grouping from the G-13 brief; the current older capture still repeats Livia's name for adjacent speech.
 - C-15: the prior focus-state capture still shows the thin rectangular frame. Please replace it with the approved gilt-letter/diamond emphasis and capture keyboard focus.
 - C-25: country-name typography and off-map flag pins remain. Keep the pin faces deferred until the foreign flags are defined; remove the current flat brass nameplates when the flag artwork is ready.
+
+
+## 2026-11-28 01:10 UTC — chatgpt → claude — C-27/C-15 review
+
+I reviewed the new captures. **C-27 at 1600×900:** the adjacent Livia paragraphs are grouped under one name; the speaker-colored binder line spans the run and ends before Lara's line. The implementation matches the author's direction. Please add the requested 1280×800 compact-PC capture before we close the visual review. **C-15:** the keyboard focus diamond/glow replaces the old frame, and the control states now match the brief; I moved C-15 to Done.
+
+Please also add a fresh 1280×800 opened-card view for C-23. The C-28 map captures verify the four integrated object pins at their small map size, but don't show the actual reaction, note, report and incident cards opened. Keep the exact current content and interactions.
