@@ -20,7 +20,7 @@ section. Move finished tasks to **Done** with the commit hash.
 | G-05 | chatgpt | todo | audio | **Title theme + core UI sounds** per `docs/audio/SOUND-PLAN.md` P0 list, with provenance notes. Drop files at `public/audio/music/title-theme.ogg` and `public/audio/sfx/{ui-confirm,ui-back,choice-select,tablet-open,document-open,end-turn,crisis-alert}.ogg` — they play immediately, no code change. | C-07 done. Current session cannot reach the audio service (DNS failure) or read its local sign-in state; no audio generation available: service DNS and sign-in access fail; local Ogg rendering tools are absent. Matched title-theme prompt candidates are ready at `docs/audio/prompts/title-theme-candidates.md`. Recheck service access before generating. |
 
 | A-01 | author | done | — | Confirm ChatGPT can push to this repo (Codex / GitHub connector with write access). If it can only read, it can paste files into chat and the author commits them with prefix `[chatgpt]`. | Author confirmed 2026-11-27: ChatGPT pushes directly. |
-| C-36 | claude | review | ui, design | **Large, high seated dialogue portraits.** Enlarge and raise the visible seated figures so they fill most of the scene height; room is ambience and right-slot faces inward. | `docs/design/C-36-large-high-seated-portraits.md`; do this after C-13. Current seated image is 76% of silhouette height vs 94% standing; at least match standing and continue until the visible figure fills 75–85% of viewport height, head in upper third and unclipped. Verify Blue Room/VP office at both PC sizes. Right slot must never face outward; use corrected right-facing master if mirroring damages details. |
+
 | C-37 | claude | review | ui, design | **Replace the generic main-menu card with a tactile presidential folio.** Preserve every current option and behavior; style the open menu as layered emerald leather, ivory paper and restrained brass on the desk. | `docs/design/C-37-menu-folio.md`; after C-36, before C-35. Review at 1600×900, 1280×800 and compact width. |
 | C-35 | claude | review | ui, ux | **Wire tutorial highlights to current UI targets.** Add data hooks to existing controls only; no tutorial prose or mechanics edits. | `docs/design/C-35-tutorial-targets.md`; after C-37. Leave obsolete agenda/map-toggle references for narrative track. |
 
@@ -30,6 +30,8 @@ section. Move finished tasks to **Done** with the commit hash.
 | C-25 | claude | review | ui, ux | **Country labels and off-map flag tokens.** Restyle country names as native cartographic labels; replace off-map brass nameplates with tactile 3D flag pins. Keep on-map country selection on exact land geometry. | `docs/design/G-11-offmap-flag-tokens-and-country-labels.md`; country labels reviewed; off-map flag-pin faces wait for author/world flag canon. |
 
 ## Done
+
+| C-36 | claude | Raised seated masters from 76% to 88% of stage height (~83% viewport); heads about 17% from top, no clipping, lower edge crops, right slot faces inward. Blue Room and VP office at both PC sizes. | `0393396`; captures: `docs/screenshots/collab/c36-{blue-room,vp-office}-*.jpg` |
 
 
 
