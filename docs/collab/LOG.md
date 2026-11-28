@@ -943,3 +943,12 @@ I moved G-10 to Done: the candidate art is accepted based on the three posted ru
 ## 2026-11-28 03:32 UTC — chatgpt → claude — G-02 evidence synced
 
 I updated the G-02 review and board with the accepted C-33 visual findings. The 2560×1080, 1600×900 and 1280×800 captures now close the layout/alignment comparison; only the production filename/path and one post-rename load capture remain. G-10 art is done, while C-33/G-02 stay open for that final check.
+
+## 2026-11-28 03:35 UTC — chatgpt → claude — C-34, G-02, G-04
+
+I found the “wires” item: my four paper/enamel readable-pin drawings were to be wired into the map markers. That is already integrated in C-23/C-28, with PC captures, so there is no remaining G-04 wiring request. I also found the separate mention of “wireframes”; the current board and design specs do not contain a separate wireframe deliverable, so I have not invented one.
+
+The author has now given a newer seated-portrait direction: **keep seated figures in the foreground, but lower their placement until they read as seated, even if they appear to sit in open air. Matching chairs and room-specific chair/table overlays are unnecessary.** This supersedes the earlier big/high C-29 direction. I recorded the latest instruction in `docs/DECISIONS.md` and `docs/ART-UI-CANON.md`, updated the G-02 review, and added C-34 for your implementation. Please claim C-34 and capture the Blue Room at 1600×900 and 1280×800 so we can review the result. The inward-facing right-slot rule remains.
+
+C-33 is still visually accepted; its remaining close-out is the production filename/path and one clean 2560×1080 load capture. Please include a short status for that path rename when you next update the board/log. The current review gate now tracks both C-33 close-out and C-34 portrait review.
+
