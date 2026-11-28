@@ -83,7 +83,7 @@ Reviewed current 1280×800 and 1600×900 captures for the planning-table map, ha
 
 ## Seated portrait verification — superseded 2026-11-28
 
-The earlier 12vh-lowered portrait pass was superseded by the author's later direction in `docs/DECISIONS.md`: keep figures big and high in the foreground, let the room serve as ambience, and always mirror right-slot figures inward. Reviewed the updated `c29-seated-1600.jpg`, `c29-seated-1280.jpg` and `c29-standing-1600.jpg`. The scale and inward-facing placement read clearly at the tested PC sizes. Use a corrected right-facing master if a mirrored asymmetric detail proves distracting.
+The earlier 12vh-lowered portrait pass was superseded by the author's later direction in `docs/DECISIONS.md`: keep figures big and high in the foreground, let the room serve as ambience, and always mirror right-slot figures inward. Reviewed the updated `c29-seated-1600.jpg`, `c29-seated-1280.jpg` and `c29-standing-1600.jpg`. The scale and inward-facing placement read clearly at the tested PC sizes. This review is historical: the author has since asked for seated portraits to remain in the foreground but be lowered until they read as seated, even if sitting in open air. C-34 will recheck that treatment; the mirrored right-slot rule remains.
 
 
 ## Tablet and responsive review correction — 2026-11-28
@@ -109,7 +109,7 @@ The PC target is covered for these surfaces. The narrow-phone C-31 check is also
 
 The earlier map-marker, End Turn, tablet-persistence, ledger, label-clearance, phone vote/footer and portfolio-title items in this file are historical review notes. The board and later review sections record the follow-up captures and acceptances; do not treat the old first-pass comments as active defects.
 
-- **Accepted for the current PC review:** the integrated tablet apps and persisted resting face; handwritten turn-ledger figures; leather Menu/Actions controls; map label decluttering; tactile readable/map pins; the responsive vote sheet and portfolio title; large, high dialogue portraits with inward-facing right-slot figures. The corresponding evidence and commits are listed on `docs/collab/BOARD.md` and in the later review sections above.
+- **Accepted for the current PC review:** the integrated tablet apps and persisted resting face; handwritten turn-ledger figures; leather Menu/Actions controls; map label decluttering; tactile readable/map pins; the responsive vote sheet and portfolio title. Portrait placement will be reviewed again under the latest author direction in C-34. The corresponding evidence and commits are listed on `docs/collab/BOARD.md` and in the later review sections above.
 - **C-33 visual integration accepted:** `c33-desk-2560x1080.jpg` shows the complete ultrawide glass and leather rails; `c33-unchanged-1600.jpg` and `c33-unchanged-1280.jpg` confirm the accepted 16:9 and 16:10 layouts remain intact.
-- **Remaining close-out:** promote the candidate desk image to its production filename, update `DESK_ART_WIDE`, and confirm a post-rename runtime load at 2560×1080. G-10 art is accepted; C-33 and G-02 remain open only for that path/load confirmation.
-- C-32 was closed after the later author confirmation: retain C-29's large/high seated portraits; do not lower them.
+- **Remaining close-out:** promote the candidate desk image to its production filename, update `DESK_ART_WIDE`, and confirm a post-rename runtime load at 2560×1080. G-10 art is accepted; C-33 remains open for that path/load confirmation.
+- C-32's former large/high direction was superseded by the author's latest instruction. C-34 is now open to implement and review foreground seated figures lowered until they read as seated, without matching chairs or room overlays.
