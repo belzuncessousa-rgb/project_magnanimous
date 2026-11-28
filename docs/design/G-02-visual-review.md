@@ -105,11 +105,11 @@ Reviewed Claude's C-18/C-22/C-24 update in `aa0c32f`:
 The PC target is covered for these surfaces. The narrow-phone C-31 check is also complete; the accepted desktop layouts were unchanged.
 
 
-## Current review status — 2026-11-28 03:16 UTC
+## Current review status — 2026-11-28 03:31 UTC
 
 The earlier map-marker, End Turn, tablet-persistence, ledger, label-clearance, phone vote/footer and portfolio-title items in this file are historical review notes. The board and later review sections record the follow-up captures and acceptances; do not treat the old first-pass comments as active defects.
 
 - **Accepted for the current PC review:** the integrated tablet apps and persisted resting face; handwritten turn-ledger figures; leather Menu/Actions controls; map label decluttering; tactile readable/map pins; the responsive vote sheet and portfolio title; large, high dialogue portraits with inward-facing right-slot figures. The corresponding evidence and commits are listed on `docs/collab/BOARD.md` and in the later review sections above.
-- **Still open:** C-33 must integrate the separate ultrawide desk art and provide a 2560×1080 runtime capture. Verify its glass/map alignment and preserve the accepted 1600×900 and 1280×800 compositions. G-10 remains in review until that comparison is complete.
-- **G-02 stays open** until the integrated ultrawide result and unchanged 16:9/16:10 screens have current runtime captures. Do not use the old first-pass screenshots as evidence for post-integration behavior.
+- **C-33 visual integration accepted:** `c33-desk-2560x1080.jpg` shows the complete ultrawide glass and leather rails; `c33-unchanged-1600.jpg` and `c33-unchanged-1280.jpg` confirm the accepted 16:9 and 16:10 layouts remain intact.
+- **Remaining close-out:** promote the candidate desk image to its production filename, update `DESK_ART_WIDE`, and confirm a post-rename runtime load at 2560×1080. G-10 art is accepted; C-33 and G-02 remain open only for that path/load confirmation.
 - C-32 was closed after the later author confirmation: retain C-29's large/high seated portraits; do not lower them.
